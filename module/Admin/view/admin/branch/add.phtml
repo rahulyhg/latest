@@ -1,0 +1,200 @@
+                    <?php 
+//                    echo "Mohit";
+                $form=$this->form; 
+                $form->prepare();
+
+
+//        $form->setAttribute('action',$this->url('admin',array('controller'=>'branch','action'=>'add')));
+//        $form->setAttribute('method','post');
+        
+        $form->setAttribute('action', $this->url('admin/branch', array('action' => 'add')));
+        $form->setAttribute('method', 'post');
+        $form->setAttribute('autocomplete', 'off');
+        $form->setAttribute('id', 'BranchForm');
+        $action = $this->url('admin/branch', array('action' => 'add'));
+        $form->setAttribute('onSubmit', "return SubmitFormAction($(this).attr('id'),'" . $action . "',addformResp)");
+
+        echo $this->form()->openTag($form);
+// echo $this->formCollection($form);
+                ?>
+          
+            
+            
+            <div class="tab-pane fade active in" id="driver_tab">
+              <div class="container col-sm-col-sm-offset-1" style="margin: 10px auto 0px !important;padding: 0 10px;">
+                
+                <div class="row">
+                                                <div class="form-group clearfix margintopbottom20">
+                                                
+                                <label id="flight_nos" class="col-sm-1 control-label labelalign "><?php echo $this->translate('Country') ?></label>
+                                            <div class="col-sm-1  " style="padding:0;">
+                                                <?php
+                                                echo $this->formRow($form->get('country'));
+                                                ?>                                                    
+                                                                                    
+                                            </div> 
+                                            
+                                             <label id="flight_nos" class="col-sm-1 control-label labelalign "><?php echo $this->translate('State'); ?></label>
+                                            <div class="col-sm-1" style="padding:0;">
+                                                <?php echo $this->formRow($form->get('state')); ?>
+                                               
+                                            </div>                                           
+
+					<label id="flight_nos" class="col-sm-1 control-label labelalign "><?php echo $this->translate('City'); ?></label>
+                                            <div class="col-sm-1 " style="padding:0;">
+                                                <?php echo $this->formRow($form->get('branch_city_id')); ?>
+                                                                                   
+                                            </div>    
+                                
+                                
+                           <label id="flight_nos" class="col-sm-1 control-label labelalign ">
+                            <!--<?= $this->translate($form->get('branch_name')->getLabel()) ?>-->
+                            Branch
+                           </label>
+                                                  <div class="col-sm-2">
+                                                     <?php 
+                                                     echo $this->formHidden($form->get('branch_id'));
+                                                     echo $this->formElement($form->get('branch_name'));
+                                                     ?>                                    
+                                                  </div>
+                                                  
+                                                 
+                                                   <label id="flight_nos" class="col-sm-1 control-label labelalign ">
+                            <?= $this->translate($form->get('is_active')->getLabel()) ?>
+                           </label>
+                                                  <div class="col-sm-1" style="padding:0;">
+                                                     <?php 
+                                                     echo $this->formElement($form->get('is_active'));
+                                                     ?>                                    
+                                                  </div>
+                                                  </div>
+                                                  <div class="form-group clearfix margintopbottom20">
+                                                   <div class="col-sm-1">
+                                                     <?php 
+                                                     echo $this->formRow($form->get('submit'));
+                                                     ?>                                    
+                                                  </div>
+                         
+                                                 </div>
+                                             </div>
+                                             
+                                             
+              </div>
+            </div>
+          
+        <?php   
+echo $this->form()->closeTag();
+
+        ?>
+
+<script>
+
+            
+            /**************Get State on select Country***************/
+            $("#country").on('change', function () {
+    var countryId = this.value;
+    //alert(countryId);
+            $.ajax({
+            url: '<?php echo $this->basePath() ?>' + '/account/getStateName',
+                    type: "POST",
+                    dataType: "json",
+                    data: {Country_ID: countryId},
+                    beforeSend: function () {
+                    $('#Loading_Request').show();
+                    },
+                    complete: function () {
+                    $('#Loading_Request').hide();
+                    },
+                    success: function (resp) {
+                    if (resp.Status == 'Success') {
+                    $("#state").empty();
+                            $("#branch_city_id").empty();
+                            $("#state").append("<option value=''>Select State</option>");
+                            $.each(resp.statelist, function (idx, obj) {
+                            $("#state").append("<option value='" + obj["id"] + "'>" + obj["state_name"] + "</option>");
+                            });
+                    } else {
+                    $("#state").empty();
+                            $("#branch_city_id").empty();
+                            alert("No States are available");
+                    }
+                    },
+                    error: function (error) {
+                    console.log(error);
+                            alert(error);
+                    }
+            });
+    });
+            /*******************End******************/
+            /*************Get City on Select State*************************************************/
+            $("#state").on('change', function () {
+    var stateId = this.value;
+            $.ajax({
+            url: '<?php echo $this->basePath() ?>' + '/account/getCityName',
+                    type: "POST",
+                    dataType: "json",
+                    data: {State_ID: stateId},
+                    beforeSend: function () {
+                    $('#Loading_Request').show();
+                    },
+                    complete: function () {
+                    $('#Loading_Request').hide();
+                    },
+                    success: function (resp) {
+                    if (resp.Status == 'Success') {
+                    $("#branch_city_id").empty();
+                            $("#branch_city_id").append("<option value=''>Select City</option>");
+                            $.each(resp.statelist, function (idx, obj) {
+                            $("#branch_city_id").append("<option value='" + obj["id"] + "'>" + obj["city_name"] + "</option>");
+                            });
+                    } else {
+                    $("#branch_city_id").empty();
+                            alert("No Cities are Available");
+                    }
+                    },
+                    error: function (error) {
+                    console.log(error);
+                            alert(error);
+                    }
+            });
+    });
+            /*******************End******************/
+            
+            /*************Get City on Select State*************************************************/
+//$("#city").on('change', function(){
+//var cityId=this.value;
+//$.ajax({
+//    url:'<?php //echo $this->basePath()?>'+'/user/getRustagiBranch',
+//    type:"POST",
+//dataType:"json",
+//    data:{City_ID:cityId},
+//    beforeSend: function(){
+//            $('#Loading_Request').show();
+//    },
+//    complete: function(){
+//            $('#Loading_Request').hide();
+//    },
+//    success:function(resp){
+//$("#branch_other").hide();
+//
+//if(resp.Status=='Success'){
+//$("#branch_ids").empty();
+//$("#branch_ids").append("<option value=''>Select Branch</option>");
+//$.each(resp.statelist, function(idx, obj) {                            
+//$("#branch_ids").append("<option value='"+obj["branch_id"]+"'>"+obj["branch_name"]+"</option>");
+//});
+//}else{
+//$("#branch_ids").empty();
+//alert("No Branches are Available");
+//$("#branch_other").show();
+//}
+//$("#branch_ids").append("<option value='Other'>Others</option>");
+//    },
+//    error:function(error){
+//            console.log(error);	
+//            alert(error);			
+//    }
+//});	
+//});
+/*******************End******************/
+</script>

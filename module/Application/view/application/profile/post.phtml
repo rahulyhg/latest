@@ -1,0 +1,382 @@
+<?php
+echo $this->headLink()
+
+        ->prependStylesheet($this->basePath() . '/css/componant-vs-14.css')
+?>
+
+
+<style>
+
+    .modal-lg
+    {width:900px;
+    }
+    .preview_img{width:150px; margin:auto 10px 10px 0px !important; float:left;}
+    .avatar-view img{height:110px!important;}
+    .table {float: left!important;}
+    .show_allocation_detail{margin-bottom:0px; cursor:pointer;color:#428bca;width:100%;}
+
+</style>
+<div class="col-sm-3 col-sm-3-new width20per">
+    <?php //echo $this->partial('layout/sidebar-user') ?>
+    <?php include('sidebar_left_member.phtml');?>
+</div>
+
+
+
+<div class="col-sm-9 width80per">
+    <?php include('main_info.phtml'); ?>
+   
+
+    <div class="clearfix"></div>
+    <?php include('menu.phtml'); ?>
+
+    <div class="tab-content">
+        <div id="education_info" class="tab-pane fade in active">
+
+            <table width="100%">
+                <tr>
+                    <td>
+
+                        <div class="col-sm-4" style="width:100%;">
+                            <h5 style="font-weight:bold; color:#F90; margin-bottom:5px; padding-bottom:12px;">"Your Arcticle will be published only after the Admin's approval"</h5>	  
+
+                            <!-- <div class="form-group row">
+                            <label for="post" class="col-sm-3 form-control-label edupading">Senders Name</label>
+                            <div class="col-sm-3">
+                            <input class="form-control" />
+                            </div>
+                    
+                    <label for="Education Field" class="col-sm-3 form-control-label edupading">
+                    Sender Email
+                    </label>
+                            <div class="col-sm-3">
+                    <input class="form-control" />
+                    </div>
+                            </div> -->
+                            <?php
+                            $form = $this->form;
+                            $form->prepare();
+
+
+                            //$form->setAttribute('action',$this->url('application/default',array('controller'=>'account','action'=>'post')));
+                            $form->setAttribute('method', 'post');
+                            //$form->setAttribute('autocomplete','off');
+                            $form->setAttribute('id', 'PostForm');
+                            $form->setAttribute('enctype', 'multipart/form-data');
+                            // $action = $this->serverUrl().$this->url().'/country/add';
+                            //$form->setAttribute('onSubmit',"return SubmitPost($(this).attr('id'))");
+
+                            echo $this->form()->openTag($form);
+                            echo $this->formHidden($form->get('id'));
+// echo $this->formCollection($form);
+                            ?>
+
+                            <div class="form-group row">
+                                <label for="Education Level" class="col-sm-3 form-control-label edupading">
+                                    Post Category 
+
+                                </label>
+                                <div class="col-sm-3">
+                                    <?php
+                                    // echo $this->formHidden($form->get('id'));
+                                    echo $this->formElement($form->get('post_category'));
+                                    ?>  
+                                    <span class="showerror"></span>	
+                                </div>
+
+                                <label for="Specialization" class="col-sm-3 form-control-label edupading">
+                                    Title
+                                </label>
+                                <div class="col-sm-3">
+                                    <?php
+                                    echo $this->formElement($form->get('title'));
+                                    ?> 
+                                    <span class="showerror"></span>	
+                                </div>
+
+                            </div>
+
+                            <div class="form-group row">
+
+                                <label for="Profession" class="col-sm-3 form-control-label edupading">
+
+                                    Upload Image
+                                </label>
+                                <div class="col-sm-3">
+<?php //print_r($userPostSummary); ?>
+<?php //echo $userPostSummary->getImage();?>
+<a href="#"  data-toggle="modal" data-target="#avatar-modalpost_image"  class="cropimage">Upload Photo</a>
+ <?php if (!empty($this->userPostSummary->getImage())) { ?>
+        <img id="post_photo" src="<?php echo $this->basePath('PostsImages/') . $this->userPostSummary->getImage(); ?>" width="40" height="40"/>
+    <?php } else { ?>
+        <img id="post_photo" src="<?php echo $this->basePath('img/default_user.png') ?>" width="40" height="40"/>
+    <?php } ?>
+
+    <?php
+//echo $this->formElement($form->get('image'));
+?>
+<input type="hidden" name="post_image_update" value="<?php if (!empty($this->userPostSummary->getImage())) { echo $this->userPostSummary->getImage();}?>">
+<input type="hidden" name="image" id="image" value="<?php if (!empty($this->userPostSummary->getImage())) { echo $this->userPostSummary->getImage();}?>">
+<input type="hidden" name="post_image_flag" id="post_image_flag" value="0">
+
+<span class="showerror"></span>	
+                                </div>
+
+                                <label for="Profession" class="col-sm-3 form-control-label edupading">
+                                    Language of Article:</label>
+                                <div class="col-sm-3">
+<?php
+echo $this->formElement($form->get('language'));
+?>
+                                    <span class="showerror"></span>	
+                                </div>
+
+
+
+                            </div>
+
+
+
+                            <div class="form-group row">
+
+                                <label for="Profession" class="col-sm-3 form-control-label edupading">Content</label>
+                                <div class="col-sm-3">
+<?php
+echo $this->formHidden($form->get('keywords'));
+
+echo $this->formElement($form->get('description'));
+?>
+                                    <span class="showerror"></span>	
+                                </div>
+
+
+
+                            </div>
+
+                            <div class="form-group row">
+
+                                <label for="Profession" class="col-sm-3 form-control-label edupading">
+
+                                </label>
+                                <div class="col-sm-3">
+
+                                </div>
+
+                                <label for="Profession" class="col-sm-3 form-control-label edupading">
+
+                                </label>
+                                <div class="col-sm-3">
+<?php
+echo $this->formElement($form->get('submit'));
+?>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+
+                            </div>
+
+                        </div>
+<?php
+echo $this->form()->closeTag();
+?>
+
+
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <?php 
+
+if ($this->flashMessenger()->hasMessages()) {
+    $disp = "display:block;";
+} else {
+    $disp = "display:none;";
+}
+?>
+
+ <div class="alert alert-block alert-success" style="<?php echo $disp;?> width:98%; text-align:center;" >
+              <!----<button type="button" class="close" data-dismiss="alert"></button>!-->
+              <?php echo $this->flashMessenger()->render();?> 
+ </div> 
+                        
+                    </td>
+                    
+                </tr>
+            </table>
+            
+           
+            
+            <?php foreach($this->post as $posts){
+                    //print_r($posts);
+                    ?>
+                <div id="pin_interest" style="display: block;">    
+                    <div class="pinned_wrap">
+                        <div class="pinned_shadow">
+
+                            <div class="pinned_profile_green">
+                               
+
+                                <div id="pin_interest_profile" class="pos_rel">
+
+                                    <div class="pinned_profile_wrap" rel="vSH87477335">
+                                        <div style="float:right"><a href="<?php echo $this->url('profile', array('action'=>'post','slug'=>'edit', 'id'=>$posts['id']))?>">Edit</a> |
+                                        <a href="<?php echo $this->url('profile', array('action'=>'post','slug'=>'delete', 'id'=>$posts['id']))?>">Delete</a>
+                                        </div>
+                                        <?php if(!empty($posts['image'])){ ?>
+                                        
+                                        <div class="pinned_pic">
+                                            <span class="thumb60">
+                                                <a href="#" target=""><img src="<?php echo $this->basePath('/PostsImages/').$posts['image']?>" border="0" height="60" width="60"></a>
+
+                                            </span>
+                                        </div>
+                                        <?php } ?>
+                                        <div class="pinned_info">
+                                            <a href="#" class="pinned_pro_name" target="_blank"><?php echo $posts['title']?></a>
+                                            
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="personal_msg" style="border-top: none">
+                                            <span id="min_profile_detail_profile_vSH87477335">
+                                                <?php echo $posts['description']?> 
+                                        </div>
+
+                                    </div>                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php } ?>
+        </div>
+    </div>
+
+
+
+
+
+<!-- Mohit Code for crop Image Starts Here -->
+
+
+
+
+<div class="modal fade" id="avatar-modalpost_image" tabindex="-1" role="dialog" aria-labelledby="avatar-modal-label" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form class="avatar-form" id="cropform_post" method="post" action="#" enctype="multipart/form-data" onsubmit="return croppostimage('<?= $this->serverurl() . $this->url() . "/croppostimage" ?>', croppostimageresults);">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h4 class="modal-title" id="avatar-modal-label">Post Picture</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="showloader_post" style="position:absolute;top:30%;left:0;width:100%;min-height:300px;display:none;z-index:1000;">
+                        <center><img src="<?= $this->basepath() ?>/img/loadingmap2.gif"></center>
+                    </div>
+
+
+                    <h4>Image:</h4>
+                    <input type="file" name="file" id="file_post"> 
+                    <div class="banner"><img class="cropper2" id="showimage_post" src="<?= $this->basepath() ?>/img/default_user.png"></div>
+
+                    <!--<input name="uid" id="uid" type="hidden">
+                    <input name="ref_no" id="ref_no" type="hidden">
+                    <input name="profile_photo_flag" id="profile_photo_flag" type="hidden">
+                    <input name="profile_photo" id="profile_photo" type="hidden">
+
+                    <input name="field_name" id="field_name1" type="hidden">
+
+                    <input name="table_name" id="table_name1" type="hidden">-->
+
+                    <input type="hidden" class="form-control" id="dataX11_post" placeholder="x1" name="x1">
+
+                    <input type="hidden" class="form-control" id="dataY11_post" placeholder="y1" name="y1">
+
+                    <input type="hidden" class="form-control" id="dataX21_post" placeholder="x2" name="x2">
+
+                    <input type="hidden" class="form-control" id="dataY21_post" placeholder="y2" name="y2">
+
+                    <input type="hidden" class="form-control" id="dataWidth1_post" placeholder="width" name="width">
+
+                    <input type="hidden" class="form-control" id="dataHeight1_post" placeholder="height" name="height">
+
+                    <input type="hidden" class="form-control" id="cropenabled2" name="cropenabled" value="Enable">
+                    <!--<div id="forprofile">
+                        <h5 style="font-weight:bold;color:cornflowerblue;">OR</h5>
+                        <a href="#" id="profileFrom_gallery" data-toggle="modal" data-target="#chooseGallery" style="font-weight:bold;font-size:14px;color:chocolate;">Choose from Gallery</a>
+                    </div>-->
+                    <input type="hidden" id="actualimage_post" name="actualimage">
+                    <button id="cropper-enable_post" type="button" class="btn btn-success croptrigger2">Enable</button>
+                    <button id="cropper-disable_post" type="button" class="btn btn-danger croptrigger2">Disable</button>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
+                    <input class="btn btn-primary avatar-save" type="submit" value="Save">
+                </div>
+            </form>
+        </div>
+
+
+
+    </div>
+</div>
+
+
+<!-- Mohit Code for crop Image Ends Here -->
+
+</div>
+
+
+<script>
+    $(function () {
+        var $cropper1 = $(".cropper2"),
+                $dataX1 = $("#dataX11_post"),
+                $dataY1 = $("#dataY11_post"),
+                $dataX2 = $("#dataX21_post"),
+                $dataY2 = $("#dataY21_post"),
+                $dataHeight = $("#dataHeight1_post"),
+                $dataWidth = $("#dataWidth1_post"),
+                cropper;
+
+        $cropper1.cropper({
+            aspectRatio: 16 / 9,
+            preview: ".extra-preview",
+            done: function (data) {
+                $dataX1.val(data.x1);
+                $dataY1.val(data.y1);
+                $dataX2.val(data.x2);
+                $dataY2.val(data.y2);
+                $dataHeight.val(data.height);
+                $dataWidth.val(data.width);
+            }
+        });
+
+        cropper1 = $cropper1.data("cropper");
+
+        
+        $("#cropper-enable_post").click(function () {
+            $cropper1.cropper("enable");
+        });
+
+
+        $("#cropper-disable_post").click(function () {
+            cropper1.disable();
+        });
+
+        $(".croptrigger2").click(function () {
+            var x = $(this).text();
+            $("#cropenabled2").val(x);
+        });
+
+        
+        $('#file_post').change(function (event) {
+            var tmppath = URL.createObjectURL(event.target.files[0]);
+            $("#showimage_post").attr("src", tmppath);
+            $("#actualimage_post").val(tmppath);
+        });
+
+    })
+</script>
+
+
+

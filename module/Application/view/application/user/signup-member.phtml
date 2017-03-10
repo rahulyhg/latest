@@ -1,0 +1,320 @@
+
+
+<div class="col-sm-9 width80per">
+
+    <div class="container">
+        <div class="row" align="center">
+            <div class="col-sm-4" align="left" style="float:none !important; box-shadow:0 0 2px 0; margin:10px 0; margin-bottom:100px; ">
+                <?php
+                $form = $this->form;
+                $form->prepare();
+                $form->setAttribute("id", "signupform");
+                $form->setAttribute("autocomplete", "off");
+                echo $this->form()->openTag($form);
+                ?>
+
+                <div class="form-group">
+                    <div class="modal-header">
+
+                        <h2 class="modal-title" id="myModalLabel">Signup</h2>
+                    </div>
+                    <div class="modal-body">
+                        <?php
+                        if ($this->flashMessenger()->hasMessages()) {
+
+                            echo '<div style="color: #800">';
+
+                            $messages = $this->flashMessenger()->getMessages();
+                            foreach ($messages as $message) {
+                                echo $message[0];
+                            }
+
+                            echo '</div>';
+                        }
+                        ?>
+                        <div class="col-sm-12">
+                            User Name
+                            <?php echo $this->formRow($form->get('username')); ?>
+                            <span class="showerror"></span>
+
+                        </div>
+
+                        <div class="col-sm-12">
+                            Password
+                            <?php echo $this->formRow($form->get('password')); ?>
+                        </div>
+
+                        <div class="col-sm-12">
+                            Email ID
+                            <?php echo $this->formRow($form->get('email')); ?>
+                            <span id="emailerror" class="showerror"></span>
+                        </div>
+
+
+                        <div class="col-sm-12">
+                            Mobile
+                            <?php echo $this->formRow($form->get('mobile_no')); ?>
+                            <span class="showerror"></span>
+                        </div>
+
+
+
+                        <div class="col-sm-12 text-center">&nbsp;</div>
+
+                        <div class="col-sm-12">
+                            <?php echo $this->formRow($form->get('submit')); ?>
+                            <!--<a class="btn btn-default btn-block popuplogingbut" href="<?php echo $this->basePath() ?>/user/signup"><?php echo $this->translate('Signup') ?></a>-->
+
+                        </div>
+
+                        <div class="col-sm-12 text-center" style="height:10px;"> </div>  
+
+                    </div>
+                    <div class="clearfix"></div>
+
+                </div>
+                <?php echo $this->form()->closeTag(); ?>
+            </div> 
+        </div>
+
+    </div>
+
+    <?php $this->inlineScript()->appendFile('/js/signupMember.js') ;?>
+
+
+
+
+</div>
+
+
+
+
+<script>
+
+    $(document).ready(function () {
+        $("#rustagi_branch_other").hide();
+        $("#profession_other").hide();
+        $("#gothra_gothram_other").hide();
+
+        $(".datepicker1").datepicker({
+            dateFormat: "dd-mm-yy",
+            yearRange: "c-25:c",
+            changeMonth: true,
+            changeYear: true});
+
+    })
+    /**************Get State on select Country***************/
+    $("#country").on('change', function () {
+        var countryId = this.value;
+        $.ajax({
+            url: '<?php echo $this->basePath() ?>' + '/user/getStateName',
+            type: "POST",
+            dataType: "json",
+            data: {Country_ID: countryId},
+            beforeSend: function () {
+                $('#Loading_Request').show();
+            },
+            complete: function () {
+                $('#Loading_Request').hide();
+            },
+            success: function (resp) {
+                if (resp.Status == 'Success') {
+                    $("#state").empty();
+                    $("#city").empty();
+                    $("#state").append("<option value=''>Select State</option>");
+                    $.each(resp.statelist, function (idx, obj) {
+                        $("#state").append("<option value='" + obj["id"] + "'>" + obj["state_name"] + "</option>");
+                    });
+                } else {
+                    $("#state").empty();
+                    $("#city").empty();
+                    alert("No States are available");
+                }
+            },
+            error: function (error) {
+                console.log(error);
+                alert(error);
+            }
+        });
+    });
+    /*******************End******************/
+    /*************Get City on Select State*************************************************/
+    $("#state").on('change', function () {
+        var stateId = this.value;
+        $.ajax({
+            url: '<?php echo $this->basePath() ?>' + '/user/getCityName',
+            type: "POST",
+            dataType: "json",
+            data: {State_ID: stateId},
+            beforeSend: function () {
+                $('#Loading_Request').show();
+            },
+            complete: function () {
+                $('#Loading_Request').hide();
+            },
+            success: function (resp) {
+                if (resp.Status == 'Success') {
+                    $("#city").empty();
+                    $("#city").append("<option value=''>Select City</option>");
+                    $.each(resp.statelist, function (idx, obj) {
+                        $("#city").append("<option value='" + obj["id"] + "'>" + obj["city_name"] + "</option>");
+                    });
+                } else {
+                    $("#city").empty();
+                    alert("No Cities are Available");
+                }
+            },
+            error: function (error) {
+                console.log(error);
+                alert(error);
+            }
+        });
+    });
+    /*******************End******************/
+    /*************Get Branch on Select City*************************************************/
+    $("#city").on('change', function () {
+        var cityId = this.value;
+        $.ajax({
+            url: '<?php echo $this->basePath() ?>' + '/user/getRustagiBranch',
+            type: "POST",
+            dataType: "json",
+            data: {City_ID: cityId},
+            beforeSend: function () {
+                $('#Loading_Request').show();
+            },
+            complete: function () {
+                $('#Loading_Request').hide();
+            },
+            success: function (resp) {
+                $("#rustagi_branch_other").hide();
+
+                if (resp.Status == 'Success') {
+                    $("#rustagi_branch").empty();
+                    $("#rustagi_branch").append("<option value=''>Select Branch</option>");
+                    $.each(resp.statelist, function (idx, obj) {
+                        $("#rustagi_branch").append("<option value='" + obj["branch_id"] + "'>" + obj["branch_name"] + "</option>");
+                    });
+                } else {
+                    $("#rustagi_branch").empty();
+                    alert("No Branches are Available");
+                    $("#rustagi_branch_other").show();
+                }
+                $("#rustagi_branch").append("<option value='1'>Others</option>");
+            },
+            error: function (error) {
+                console.log(error);
+                alert(error);
+            }
+        });
+    });
+    /*******************End******************/
+    $("#father_name").keyup(function ()
+    {
+        var searchid = $(this).val();
+        var updated = titleCase(searchid);
+        $(this).val(updated);
+        var dataString = 'search=' + searchid;
+        if (searchid != "\'\'")
+        {
+            $.ajax({
+                type: "POST",
+                url: '<?php echo $this->basePath() ?>' + '/user/userfilters',
+                data: dataString,
+                cache: false,
+                dataType: "html",
+                success: function (html)
+                {
+                    $("#result").html(html).show();
+                }
+            });
+        }
+        return false;
+    });
+
+    $("#result").on("click", function (e) {
+        var $clicked = $(e.target);
+        var $relId = $clicked.find(".name").attr('rel');
+        var $name = $clicked.find(".name").html();
+        var decoded = $("<div/>").html($name).text();
+        $("#father_name").val(decoded);
+        //alert($relId);
+        $("#father_id").val($relId);
+        $("#result").fadeOut();
+    });
+    $("#result").on("click", function (e) {
+        var $clicked = $(e.target);
+        if (!$clicked.hasClass("search")) {
+            $("#result").fadeOut();
+        }
+    });
+    /*$("#father_name").click(function(){
+     $("#result").fadeIn();
+     });*/
+
+    $("#full_name").keyup(function ()
+    {
+        var searchid = $(this).val();
+        var updated = titleCase(searchid);
+        $(this).val(updated);
+        var dataString = 'search=' + searchid;
+        if (searchid != "\'\'")
+        {
+            $.ajax({
+                type: "POST",
+                url: '<?php echo $this->basePath() ?>' + '/user/newuserfilters',
+                data: dataString,
+                cache: false,
+                dataType: "html",
+                success: function (html)
+                {
+                    if (html != "") {
+                        $("#result_user").html(html).show();
+                    }
+                }
+            });
+        }
+        return false;
+    });
+
+    $("#result_user").on("click", function (e) {
+        var $clicked = $(e.target);
+        var $relId = $clicked.find(".name").attr('rel');
+        var $name = $clicked.find(".name").html();
+        var decoded = $("<div/>").html($name).text();
+        $("#full_name").val(decoded);
+        //alert($relId);
+        $("#user_new_id").val($relId);
+        $("#result_user").fadeOut();
+    });
+    $("#result_user").on("click", function (e) {
+        var $clicked = $(e.target);
+        if (!$clicked.hasClass("search")) {
+            $("#result_user").fadeOut();
+        }
+    });
+    /*$("#full_name").click(function(){
+     $("#result_user").fadeIn();
+     });*/
+
+    $("#full_name").keydown(function () {
+        $("#result_user").fadeOut();
+    });
+
+    $("#father_name").keydown(function () {
+        $("#result").fadeOut();
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,196 @@
+
+
+
+<?php 
+
+// foreach ($newscategorys as $newscategory) {
+
+// echo  $newscategory->religion_name."<br>";
+
+// }
+
+// echo "<pre>";
+// print_r($newscategorys);
+// die;
+
+?>
+<div class="row">
+          <div class="col-xs-12"> 
+            <!-- PAGE CONTENT BEGINS -->
+            <!--<div class="alert alert-block alert-success">
+              <button type="button" class="close" data-dismiss="alert"> <i class="ace-icon fa fa-times"></i> </button>
+              <i class="ace-icon fa fa-check green"></i>Add Country Master</strong>, </div>-->
+            <div class="row">
+              <div class="space-6"></div>
+              <div class="vspace-12-sm"></div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+               <h3  >Search News Category Master</h3>
+                <div class="filter">
+                 <div class="panel-body" style="padding:0 !important">
+                  <div class="col-lg-6">View Records>></div>
+                  </div>
+                </div>
+                <div class="portlet-body">
+                    <form id="bookingFilter" method="post" autocomplete="off" action="<?= $this->url
+        ('admin/news', array('action' => 'performsearch'))
+?>" onsubmit="return performsearch(this.id, '<?= $this->url('admin/news', array('action' => 'performsearch'))
+?>', performsearchresults)">
+                        <div id="myTabContent" class="tab-content">
+                            <div class="tab-pane fade active in" id="home">
+                                <div class="col-sm-col-sm-offset-1" style="margin: 10px auto 0px !important;padding: 0 10px;">
+                                    <div class="row">
+                                        <div class="form-group clearfix margintopbottom20">
+                                            <label id="flight_nos" class="col-sm-2 control-label labelalign ">Category Name</label>
+                                            <div class="col-sm-2 ">
+                                                <input id="search_newscategoryName" class=" form-control inputchange" placeholder="Category Name" type="text" 
+                                                       onkeyup="newscategorysearchactions($(this).val(), '<?php echo $this->url('admin/news', array('action'=>'newscategorysearch'))?>', newscategorysearchresp, 'categoryName')" name="category_name">
+                                                <div class="col-sm-3" id="newscategorysearchresults" style="position: absolute;overflow-y:scroll;background:#FFF;width:93%;height:auto;z-index: 9999;display:none;">
+                                                </div>                                    
+                                            </div>                                           
+
+                                            <div class="col-sm-1 ">
+                                                <input class="btn btn-red defaultbtnsearch searchBooking"  type="submit" name="submit" value="Search">
+                                            </div>
+                                            <!--<div class="col-sm-2 ">
+                                               <a id="showaddform" class="btn btn-red defaultbtnsearch searchBooking" href="#"> Add</a>
+                                            </div>-->
+
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <!--<div class="form-group clearfix margintopbottom20">
+                   <label id="flight_nos" class="col-sm-2 control-label labelalign ">Dial Code</label>
+                                          <div class="col-sm-3 ">
+                                             <input id="search_dialCode" class=" form-control inputchange" placeholder="Country Code" type="number"
+                                            name="dial_code">
+                                             </div>  
+                                              <label id="flight_nos" class="col-sm-2 control-label labelalign "></label>
+                                          <div class="col-sm-1 ">
+                                             <input class="btn btn-red defaultbtnsearch searchBooking"  type="submit" name="submit" value="Search">
+                                             </div>
+                                             <div class="col-sm-2 ">
+                                             <input class="btn btn-red defaultbtnsearch" id="showaddform" style="background:#333 !important;"  type="submit" name="submit" value="Add Country">
+                                             </div>
+                                                                               
+                                          </div>-->
+
+
+                                        <div class="col-sm-3">
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+                 
+                  <div class="filter">
+                  <!--<div class="col-lg-6">Add Update Records>>
+  
+                  </div>-->
+   
+                </div>
+                
+                    <div class="clearfix"></div>
+                  
+                <div class="col-lg-12" style="background-color:#FFF;" id="radiosearch" fld="tbl_newscategory">
+                  
+                  <div class="col-lg-1"><div class="radio">
+                                                <label>
+                                                    <input type="radio" value="1" id="optionsRadios1" name="optionsRadios" 
+                                       onchange="RadioSearch($(this).val(), 'tbl_newscategory', '<?php echo 
+                                       $this->url('admin/news', array('action'=>'ajaxradiosearch'))?>',
+                                                   radioSearchResult12)" ><strong>Active</strong>
+                                                </label>
+                                                <br>
+ 
+                                            </div>
+                  
+                  
+                  
+                  
+                  </div>
+                  
+                  
+                   <div class="col-lg-1"><div class="radio">
+                                                <label>
+                                                    <input type="radio" value="0" id="optionsRadios1" name="optionsRadios" onchange=
+                                    "RadioSearch($(this).val(), 'tbl_newscategory', '<?php echo $this->url
+                                            ('admin/news', array('action'=>'ajaxradiosearch'))?>', 
+                                                        radioSearchResult12)"><strong>In-Active</strong>
+                                                </label>
+                                                
+                                              
+                                            </div>
+                  
+                  
+                  
+                  
+                  </div>
+                <div class="col-md-12"  id="newscategory_data_list">
+                    <?php echo $this->partial('admin/news/newscategoryList.phtml'); ?>
+                 </div>
+              </div>
+              
+              
+              
+              
+              
+              <div class="col-sm-12"> 
+                
+                <!-- /.widget-box -->
+                <!--<div  style="margin-top:20px;"> <a href="#" class="btn btn-red defaultbtnsearch searchBooking"><i class="fa fa-search" id="search_me" style="color:#fff; margin:5px"></i>Refresh</a> </div>-->
+              </div>
+            </div>
+            <!-- /.col --> 
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+            <?php 
+
+        // print_r($countries);
+
+        ?>         
+      </div>
+      <div class="modal-footer">
+        <button type="button"data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+            
+            <!-- /.row -->
+            
+            <div class="hr hr-18 dotted hr-double"></div>
+            <div class="row">
+              <div class="col-xs-12">
+                
+                <div> 
+         
+      </div>
+      <!-- /.page-content --> 
+    </div>
+  </div>
+  <!-- /.main-content -->
+  
+     
+  <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse"> <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i> </a> </div>
+<!-- /.main-container --> 
+
+<!-- basic scripts --> 
+
+<!--[if !IE]> -->
+<?php echo $this->inlineScript()->prependFile($this->basePath('/assets/js/newscategory.js')); ?>

@@ -1,0 +1,336 @@
+                    <td colspan="13">
+                     <div class="tabbable">
+                    	<ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab4">
+                        <li class="active">
+                          <a href="javascript:void(0);" >Personal Detail</a>
+                        </li>
+                      </ul>
+                        <?php
+                        $form = $this->form;
+                        $form->prepare();
+                        
+                        $form->setAttribute('action', $this->url('admin/matrimonyuser', array('action' => 'savePersonalProfile')));
+                        $form->setAttribute('method', 'post');
+                        $form->setAttribute('name', 'editform');
+                        $form->setAttribute('autocomplete', 'off');
+                        $form->setAttribute('id', 'PersonalFormEdit');
+                        $action = $this->url('admin/matrimonyuser', array('action' => 'savePersonalProfile'));
+                        $form->setAttribute('onSubmit', "return SubmitFormAction($(this).attr('id'),'" . $action . "',addformResp)");
+                        
+                        echo $this->form()->openTag($form);
+                        ?>
+                        <div class="col-sm-4" style="width:100%;">
+                            <h3><?php echo $this->translate('Basic Info') ?></h3> 
+
+                            <!--<div class="form-group row" >
+                            <label for="Education Field" class="col-sm-2 form-control-label lblline"><?php //echo $this->translate('Marital Status')   ?></label>
+                                    <div class="col-sm-3"><?php //echo $this->formRow($form->get('marital_status'));  ?></div>
+                            <label for="Gender" class="col-sm-2 form-control-label lblline"></label>
+                            <div class="col-sm-3"></div>
+                            </div>-->
+
+                            <div class="form-group row">
+                                <label for="profile_for" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Profile Created For'); ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('profile_for')); ?></div>
+                                <div style="display:none;" id="profile_For_Others_row">
+                                    <label for="profile_for" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Enter here'); ?></label>
+                                    <div class="col-sm-3"><?php echo $this->formRow($form->get('profile_for_others')); ?></div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group row">
+                                <label for="full_name" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Full Name'); ?></label>
+                                <div class="col-sm-1 coltilte" ><?php echo $this->formRow($form->get('name_title_user')); ?></div>        
+                                <div class="col-sm-2 colname">
+                                    <?php
+                                    echo $this->formHidden($form->get('id'));
+                                    //echo $this->formHidden($form->get('user_id'));
+                                    echo $this->formRow($form->get('full_name'));
+                                    ?>
+                                </div>
+                                <label for="Gender" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Gender') ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('gender')); ?></div>
+                            </div>
+
+
+
+                            <div class="form-group row">
+                                <label for="Date of Birth" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Date of Birth'); ?></label>
+                                <div class="col-sm-3"> <?php echo $this->formRow($form->get('dob')); ?></div>
+                                <label for="Age" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Age') ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('age')); ?></div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="Birth Time" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Birth Time'); ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('birth_time')); ?></div>
+
+                                <label for="Birth Place" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Birth Place') ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('birth_place')); ?></div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="Height" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Height'); ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('height')); ?></div>
+                                <label for="Phone No." class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Body Type') ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('body_type')); ?></div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="Skin Tone" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Skin Tone'); ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('color_complexion')); ?></div>
+                                <label for="Any Disability" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Any Disability?') ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('any_disability')); ?></div>
+                            </div>
+
+
+                            <div class="form-group row">			
+                                <label for="Education Field" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Blood Group') ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('blood_group')); ?></div>  
+                                <label for="Native Place" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Native Palace') ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('native_place')); ?></div>			
+                            </div> 
+                            
+                            
+                            
+                            <div class="form-group row">
+                                <label for="Body Weight" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Body Weight') ?></label>
+                                <div class="col-sm-2 coltilte" ><?php echo $this->formRow($form->get('body_weight')); ?></div>        
+                                <div class="col-sm-1 colname"><?php echo $this->formRow($form->get('body_weight_type')); ?></div>  
+                                <label for="Zodiac Sign Rassi" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Zodiac Sign') ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('zodiac_sign_raasi')); ?></div>
+                            </div>
+                            
+                            <div class="form-group row">
+                                <label for="Alt. Mobile No." class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Alt. Mob. No.'); ?></label>
+                                <div class="col-sm-3"> <?php echo $this->formRow($form->get('alternate_mobile_no')); ?></div>
+                                <label for="Phone No." class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Phone No.') ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('phone_no')); ?></div>
+                            </div>
+
+                            <h3><?php echo $this->translate('Religious Background') ?></h3>
+                            
+                                                <div class="form-group row">			       
+                                <label for="Religion" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Religion') ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('religion')); ?></div>	
+
+                                <label for="Gothra" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Gothra') ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('gothra_gothram')); ?></div>			
+
+                            </div> 
+
+                            <div class="form-group row">
+
+                                <div style="display:none;" id="Religion_Others_row">
+                                    <label for="Education Field" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Religion Other') ?></label>
+                                    <div class="col-sm-3"><?php echo $this->formRow($form->get('religion_other')); ?></div>
+                                </div>
+
+                                <div style="display:none;" id="Gother_Others_row">
+                                    <label for="Education Field" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Gothra Other') ?></label>
+                                    <div class="col-sm-3"><?php echo $this->formRow($form->get('gothra_gothram_other')); ?></div> 
+                                </div>			
+                            </div> 
+                            
+                             <div class="form-group row">
+                                <label for="Community" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Community'); ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('caste')); ?></div>
+                                <label for="Sub-Community" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Sub-Community') ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('sub_caste')); ?></div>
+                            </div>
+
+                            
+                            <div class="form-group row">
+                                
+                                <label for="Mother Tongue" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Mother Tongue') ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('mother_tongue_id')); ?></div>
+                            </div>
+        
+                            <h3><?php echo $this->translate('Astro Details') ?></h3>
+
+                            <div class="form-group row">
+                                <label for="Manglik/Chevvai dosham" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Manglik Dosham'); ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('manglik_dossam')); ?></div>
+                               <label for="Nakshtra" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Nakshtra'); ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('star_sign')); ?></div>
+                            </div>
+
+                            <h3><?php echo $this->translate('Life Style') ?></h3>
+
+                            <div class="form-group row">
+                                <label for="Drink" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Drink'); ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('drink')); ?></div>
+                                <label for="Smoke" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Smoke') ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('smoke')); ?></div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="Diet" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Diet') ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('meal_preference')); ?></div>
+                            </div>
+
+                            <h3><?php echo $this->translate('Permanent Address') ?></h3>
+
+                            <div class="form-group row">
+                                <label for="Address Line 1" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Address Line 1'); ?></label>
+                                <div class="col-sm-3">
+                                    <?php echo $this->formRow($form->get('address')); ?></div>
+
+                                <label for="Address Line 2" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Address Line 2') ?></label>
+                                <div class="col-sm-3">
+                                    <?php echo $this->formRow($form->get('address_line2')); ?></div>
+                            </div>
+
+
+                            <div class="form-group row">
+                                <label for="Country" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Country') ?></label>
+                                <div class="col-sm-3"> <?php echo $this->formRow($form->get('country')); ?></div>
+                                <label for="State" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('State') ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('state')); ?></div>
+                            </div>
+                            <img src="<?php echo $this->basePath() ?>/img/loadingmap.gif" id="Loading_Request" style="position:absolute;display:none;z-index: 9;margin-left: 45%;margin-top: -8%;width: 80px;"/>
+                            <div class="form-group row">
+                                <label for="City" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('City') ?></label>
+                                <div class="col-sm-3"> <?php echo $this->formRow($form->get('city')); ?></div>
+                                <label for="Zip/Pin Code" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Branch') ?></label>
+                                <div class="col-sm-3"> <?php echo $this->formRow($form->get('branch_ids')); ?></div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="Zip/Pin Code" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Zip/Pin Code') ?></label>
+                                <div class="col-sm-3"> <?php echo $this->formRow($form->get('zip_pin_code')); ?></div>
+                                <div style="display:none;" id="branch_other">
+                                    <label for="Branch" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Branch Other'); ?></label>
+                                    <div class="col-sm-3"><?php echo $this->formRow($form->get('branch_ids_other')); ?></div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="State" class="col-sm-2 form-control-label lblline"></label>
+                                <div class="col-sm-3"></div>
+                                <label for="State" class="col-sm-2 form-control-label lblline"></label>        
+                                <div class="col-sm-3">
+                                    <?php echo $this->formRow($form->get('submit')); ?>
+                                    <!--<input name="submit" id="submitnext" class="btn btn-default" value="Save & Next" type="submit">-->
+                                </div>        
+                            </div>  
+                        </div>
+                        </div>
+                        <?php echo $this->form()->closeTag(); ?>
+                    </td>
+                    
+                    <script>
+                        $(document).ready(function () {
+    $(function () {
+    $(".datepicker1").datepicker({dateFormat: "dd-mm-yy", changeYear: true});
+    });
+    });
+            
+            /**************Get State on select Country***************/
+            $("#country").on('change', function () {
+    var countryId = this.value;
+            $.ajax({
+            url: '<?php echo $this->basePath() ?>' + '/account/getStateName',
+                    type: "POST",
+                    dataType: "json",
+                    data: {Country_ID: countryId},
+                    beforeSend: function () {
+                    $('#Loading_Request').show();
+                    },
+                    complete: function () {
+                    $('#Loading_Request').hide();
+                    },
+                    success: function (resp) {
+                    if (resp.Status == 'Success') {
+                    $("#state").empty();
+                            $("#city").empty();
+                            $("#state").append("<option value=''>Select State</option>");
+                            $.each(resp.statelist, function (idx, obj) {
+                            $("#state").append("<option value='" + obj["id"] + "'>" + obj["state_name"] + "</option>");
+                            });
+                    } else {
+                    $("#state").empty();
+                            $("#city").empty();
+                            alert("No States are available");
+                    }
+                    },
+                    error: function (error) {
+                    console.log(error);
+                            alert(error);
+                    }
+            });
+    });
+            /*******************End******************/
+            /*************Get City on Select State*************************************************/
+            $("#state").on('change', function () {
+    var stateId = this.value;
+            $.ajax({
+            url: '<?php echo $this->basePath() ?>' + '/account/getCityName',
+                    type: "POST",
+                    dataType: "json",
+                    data: {State_ID: stateId},
+                    beforeSend: function () {
+                    $('#Loading_Request').show();
+                    },
+                    complete: function () {
+                    $('#Loading_Request').hide();
+                    },
+                    success: function (resp) {
+                    if (resp.Status == 'Success') {
+                    $("#city").empty();
+                            $("#city").append("<option value=''>Select City</option>");
+                            $.each(resp.statelist, function (idx, obj) {
+                            $("#city").append("<option value='" + obj["id"] + "'>" + obj["city_name"] + "</option>");
+                            });
+                    } else {
+                    $("#city").empty();
+                            alert("No Cities are Available");
+                    }
+                    },
+                    error: function (error) {
+                    console.log(error);
+                            alert(error);
+                    }
+            });
+    });
+            /*******************End******************/
+            
+            /*************Get City on Select State*************************************************/
+$("#city").on('change', function(){
+var cityId=this.value;
+$.ajax({
+    url:'<?php echo $this->basePath()?>'+'/user/getRustagiBranch',
+    type:"POST",
+dataType:"json",
+    data:{City_ID:cityId},
+    beforeSend: function(){
+            $('#Loading_Request').show();
+    },
+    complete: function(){
+            $('#Loading_Request').hide();
+    },
+    success:function(resp){
+$("#branch_other").hide();
+
+if(resp.Status=='Success'){
+$("#branch_ids").empty();
+$("#branch_ids").append("<option value=''>Select Branch</option>");
+$.each(resp.statelist, function(idx, obj) {                            
+$("#branch_ids").append("<option value='"+obj["branch_id"]+"'>"+obj["branch_name"]+"</option>");
+});
+}else{
+$("#branch_ids").empty();
+alert("No Branches are Available");
+$("#branch_other").show();
+}
+$("#branch_ids").append("<option value='Other'>Others</option>");
+    },
+    error:function(error){
+            console.log(error);	
+            alert(error);			
+    }
+});	
+});
+/*******************End******************/
+</script>

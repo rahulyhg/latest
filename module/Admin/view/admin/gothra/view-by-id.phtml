@@ -1,0 +1,93 @@
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+      
+      
+          <tr class="dontshow" id="indview<?php //echo $i; ?>" aria-expanded="true">
+                     
+                	<td colspan="7">
+                    <div aria-expanded="true" class="panel-body accordion-body packageDetails1 collapse in" id="accordion1">
+               
+                          <div class="tab-content" id="myTabContent">
+        
+              <div class="col-sm-col-sm-offset-1" style="margin: 10px auto 0px !important;padding: 0 10px;">
+                <div class="row">
+                   <div class="form-group clearfix margintopbottom20 col-sm-12">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Gothra Name'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     
+                                                     echo $info->gothraName;
+                                                     ?>                                    
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Created Date'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     echo date('l d-m-Y',strtotime($info->createdDate));
+                                                     ?>                                    
+                                                  </div>
+                           
+                                                 </div>
+                                             </div>
+                                             <div class="row">
+                                                <div class="form-group clearfix margintopbottom20 col-sm-12">
+                        <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Modified By'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     echo ($info->modifiedBy==1)?'Admin':'Not Available Now';
+                                                     ?>                                    
+                                                  </div>
+                                                 
+                            <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Status'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     echo ($info->isActive==1)? 'Active':'In-Active';
+                                                     ?>                                    
+                                                  </div>
+                                                 </div>
+                                             </div>
+
+                                          <div class="row">
+                                                <div class="form-group clearfix margintopbottom20 col-sm-12">
+                          
+                                                 
+                            <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Modified Date'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     echo date('l d-m-Y',strtotime($info->modifiedDate));
+                                                     ?>                                    
+                                                  </div>
+                                                 </div>
+                                             </div>  
+                                             
+              </div>
+           
+          </div>
+      </div>
+                    
+                                             
+                       </td>
+                    </tr>   
+      </div>
+      <div class="modal-footer">
+        <button type="button"data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+         

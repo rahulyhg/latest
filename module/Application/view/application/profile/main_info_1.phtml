@@ -1,0 +1,500 @@
+<?php
+// \Zend\Debug\Debug::dump($this->userSummary->profilePic['image_path']);
+if ($this->gallery_data) {
+    $images = array();
+    foreach ($gallery_data as $result) {
+        $images[] = $result;
+    }
+}
+?>
+<style>
+    /* Important part */
+    #chooseGallery .modal-dialog{
+        overflow-y: initial !important
+    }
+    #chooseGallery .modal-body{
+        height: 400px;
+        overflow-y: auto;
+    }
+    .selected{  
+        border: 5px solid blue;
+    }
+
+
+
+    .profIMG_from_gallery{ width:110px; height:100px; cursor:pointer; opacity: 1; filter: alpha(opacity=100);}
+
+
+    #container {
+        margin: 20px;
+        width: 163px;
+        height: 52px;
+    }
+
+</style>
+<link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900" rel="stylesheet" type="text/css">
+
+<?php $session = new \Zend\Session\Container('user'); ?>
+<div class="col-sm-3 profile-img col-xs-4">
+    <?php if (!empty($this->userSummary->profilePic['image_path'])) { ?>
+        <img   id="profile_photo" src="<?php echo $this->basePath('uploads/') . $this->userSummary->profilePic['image_path']; ?>" width="146" height="146"/>
+    <?php } else { ?>
+        <img src="<?php echo $this->basePath('img/default_user.png') ?>" width="146" height="146"/>
+    <?php } ?>
+    <p style="margin-bottom:2px;"><?php echo $this->translate('Membership ID ') ?> <?php echo $session->offsetGet('ref_no') ?></p>
+    <!-- <button class="btn btn-default" data-toggle="modal" data-target="#myModal" style="float:none;"><?php echo $this->translate('Upload Photo') ?></button> -->
+    <a href="#"  data-toggle="modal" data-target="#avatar-modal1" onclick="showcropbox('<?php echo $session->offsetGet('id') ?>', '<?php echo $session->offsetGet('ref_no') ?>', '1','')" class="cropimage">Upload Photo</a>  
+     
+    
+</div>
+<div class="col-sm-6 col-xs-8">
+    <div class="row">
+        <div class="col-xs-5"><?php echo $this->translate('Name') ?></div>
+        <div class="col-xs-7"><?php echo $this->userSummary->userInfo->getFullName() ?></div>
+
+        <div class="col-xs-5"><?php echo $this->translate('Father’s. Name') ?></div>
+        <div class="col-xs-7"><?= $familyInfo->familyInfoArray['name_title_father'] . " " . $familyInfo->familyInfoArray['father_name'] ?></div>
+
+        <div class="col-xs-5"><?php echo $this->translate('Address') ?></div>
+        <div class="col-xs-7"><?php echo $this->userSummary->userInfo->getAddress() ?></div>
+
+        <div class="col-xs-5"><?php echo $this->translate('Contact Number') ?></div>
+        <div class="col-xs-7"><?php echo $this->userSummary->user->getMobileNo() ?></div>
+
+        <div class="col-xs-5"><?php echo $this->translate('Profession') ?></div>
+        <div class="col-xs-7"><?php echo $this->userSummary->userInfo->getProfession() ?></div>
+
+        <div class="col-xs-5"><?php echo $this->translate('Email ID') ?></div>
+        <div class="col-xs-7"><?php echo $session->offsetGet('email') ?></div>
+    </div>
+</div>
+
+<div class="col-sm-3" align="center">
+
+    <canvas id="demo-3" style="demo"></canvas>
+</div>
+<center> <span><?= $percent[0] ?>% Completed</span></center>
+<div class="col-sm-6" style="margin-top:22px; float:right; text-align:right;">
+       <p style="text-align:right;">Connected <?php $this->MyHelper()->findage($this->userSummary->userInfo->getCreatedDate()); ?> ago</p>
+   </div>
+<!--********************************upload profile modal********************************-->
+<!--  <div class="modal fade" id="myModal">
+<div class="modal-dialog">
+<div class="modal-content">
+<form id="form" enctype="multipart/form-data" role="form">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Upload Profile Photo</h4>
+    </div>
+    <div class="modal-body">
+        <div id="messages" style="font-weight:bold;width:100%;height:auto;text-align:center;"></div>
+        <input type="file" name="img_file" id="img_file">
+                                        <h5 style="font-weight:bold;color:cornflowerblue;">OR</h5>
+                                        <a href="#" id="profileFrom_gallery" data-toggle="modal" data-target="#chooseGallery" style="font-weight:bold;font-size:14px;color:chocolate;">Choose from Gallery</a>
+    </div>
+    <div class="modal-footer">
+        
+        <button type="submit" class="btn btn-default" style="width:60px;">Upload</button>
+    </div>
+</form>
+</div>
+</div>
+</div> -->	 
+<div class="modal fade" id="avatar-modal1" tabindex="-1" role="dialog" aria-labelledby="avatar-modal-label" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form class="avatar-form" id="cropform" method="post" action="#" enctype="multipart/form-data" onsubmit="return cropimage('<?= $this->serverurl() . $this->url() . "/cropimage" ?>', cropimageresults);">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h4 class="modal-title" id="avatar-modal-label">Vehicle Picture</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="showloader1" style="position:absolute;top:30%;left:0;width:100%;min-height:300px;display:none;z-index:1000;">
+                        <center><img src="<?= $this->basepath() ?>/img/loadingmap2.gif"></center>
+                    </div>
+
+
+                    <h4>Image:</h4>
+                    <input type="file" name="file" id="file"> 
+                    <div class="banner"><img class="cropper1" id="showimage1" src="<?= $this->basepath() ?>/img/default_user.png"></div>
+
+                    <input name="uid" id="uid" type="hidden">
+                    <input name="ref_no" id="ref_no" type="hidden">
+                    <input name="profile_photo_flag" id="profile_photo_flag" type="hidden">
+                    <input name="profile_photo" id="profile_photo" type="hidden">
+
+                    <input name="field_name" id="field_name1" type="hidden">
+
+                    <input name="table_name" id="table_name1" type="hidden">
+
+                    <input type="hidden" class="form-control" id="dataX11" placeholder="x1" name="x1">
+
+                    <input type="hidden" class="form-control" id="dataY11" placeholder="y1" name="y1">
+
+                    <input type="hidden" class="form-control" id="dataX21" placeholder="x2" name="x2">
+
+                    <input type="hidden" class="form-control" id="dataY21" placeholder="y2" name="y2">
+
+                    <input type="hidden" class="form-control" id="dataWidth1" placeholder="width" name="width">
+
+                    <input type="hidden" class="form-control" id="dataHeight1" placeholder="height" name="height">
+
+                    <input type="hidden" class="form-control" id="cropenabled1" name="cropenabled" value="Enable">
+                    <div id="forprofile">
+                        <h5 style="font-weight:bold;color:cornflowerblue;">OR</h5>
+                        <a href="#" id="profileFrom_gallery" data-toggle="modal" data-target="#chooseGallery" style="font-weight:bold;font-size:14px;color:chocolate;">Choose from Gallery</a>
+                    </div>
+                    <input type="hidden" id="actualimage1" name="actualimage">
+                    <button id="cropper-enable1" type="button" class="btn btn-success croptrigger1">Enable</button>
+                    <button id="cropper-disable1" type="button" class="btn btn-danger croptrigger1">Disable</button>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
+                    <input class="btn btn-primary avatar-save" type="submit" value="Save">
+                </div>
+            </form>
+        </div>
+
+
+
+    </div>
+</div>
+
+
+<div class="modal fade" id="avatar-modal_family" tabindex="-1" role="dialog" aria-labelledby="avatar-modal-label" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form class="avatar-form" id="cropformFamilyDetail" method="post" action="#" enctype="multipart/form-data" onsubmit="return cropimagefamilydetail('<?= $this->serverurl() . $this->url() . "/cropimagefamilydetail" ?>');">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h4 class="modal-title" id="avatar-modal-label">Vehicle Picture</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="showloader1" style="position:absolute;top:30%;left:0;width:100%;min-height:300px;display:none;z-index:1000;">
+                        <center><img src="<?= $this->basepath() ?>/img/loadingmap2.gif"></center>
+                    </div>
+
+
+                    <h4>Image:</h4>
+                    <input type="file" name="file" id="file"> 
+                    <div class="banner"><img class="cropper1" id="showimage1" src="<?= $this->basepath() ?>/img/default_user.png"></div>
+
+                    <input name="uid" id="uid" type="hidden">
+                    <input name="ref_no" id="ref_no" type="hidden">
+                    <input name="profile_photo_flag" id="profile_photo_flag" type="hidden">
+                    <input name="profile_photo" id="profile_photo" type="hidden">
+                    <input name="image_index" id="image_index" type="hidden">
+
+                    <input name="field_name" id="field_name1" type="hidden">
+
+                    <input name="table_name" id="table_name1" type="hidden">
+
+                    <input type="hidden" class="form-control" id="dataX11" placeholder="x1" name="x1">
+
+                    <input type="hidden" class="form-control" id="dataY11" placeholder="y1" name="y1">
+
+                    <input type="hidden" class="form-control" id="dataX21" placeholder="x2" name="x2">
+
+                    <input type="hidden" class="form-control" id="dataY21" placeholder="y2" name="y2">
+
+                    <input type="hidden" class="form-control" id="dataWidth1" placeholder="width" name="width">
+
+                    <input type="hidden" class="form-control" id="dataHeight1" placeholder="height" name="height">
+
+                    <input type="hidden" class="form-control" id="cropenabled1" name="cropenabled" value="Enable">
+                    <div id="forprofile">
+                        <h5 style="font-weight:bold;color:cornflowerblue;">OR</h5>
+                        <a href="#" id="profileFrom_gallery" data-toggle="modal" data-target="#chooseGallery" style="font-weight:bold;font-size:14px;color:chocolate;">Choose from Gallery</a>
+                    </div>
+                    <input type="hidden" id="actualimage1" name="actualimage">
+                    <button id="cropper-enable1" type="button" class="btn btn-success croptrigger1">Enable</button>
+                    <button id="cropper-disable1" type="button" class="btn btn-danger croptrigger1">Disable</button>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
+                    <input class="btn btn-primary avatar-save" type="submit" value="Save">
+                </div>
+            </form>
+        </div>
+
+
+
+    </div>
+</div>
+
+
+
+
+
+
+
+<!--**************************upload profile modal ends************************-->	
+<!--**************************************************-->	
+<!--**************************************************-->	
+<!--********************************Choose Gallery modal********************************-->
+<div class="modal fade" id="chooseGallery">
+    <div class="modal-dialog">
+        <div class="modal-content">                        
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Upload Profile Photo</h4>
+            </div>
+            <div class="modal-body">
+                <div id="messages2" style="font-weight:bold;width:100%;height:auto;text-align:center;"></div>
+                <div class="gallery">	  
+                    <?php
+                    if (count($images)) {
+                        foreach ($images as $img) {
+                            ?>
+                            <div class="col-xs-4">
+                                <div class="col-xs-12"><img class="profIMG_from_gallery img-responsive" id="<?php echo $img['image_path']; ?>" src="<?php echo $this->basePath($img['image_path']) ?>" /></div>
+                            </div>				
+                        <?php }
+                    }
+                    ?>
+                    <input type="hidden" name="selected_from_gallery" id="selected_from_gallery" value=""/>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <!--<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>-->
+                <button type="button" id="Updtbtngallery" class="btn btn-default" style="width:60px;">Save</button>
+            </div>                        
+        </div>
+    </div>
+</div>	
+<!--**************************Choose Gallery modal ends************************-->			
+
+<script>
+    $('#form').submit(function (e) {
+        var form = $(this);
+        var formdata = false;
+        if (window.FormData) {
+            formdata = new FormData(form[0]);
+        }
+
+        var formAction = form.attr('action');
+
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo $this->basePath() ?>' + '/account/AjaxImgUpload',
+            cache: false,
+            data: formdata ? formdata : form.serialize(),
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                if (response.Status != "false") {
+                    $('#messages').removeClass('alert alert-danger');
+                    $('#messages').addClass('alert alert-success').text(response.message);
+                    setTimeout(function () {
+                        $('#myModal').modal('hide')
+                    }, 4000);
+                    $("#profile_img1").attr('src', '<?php echo $this->basePath() ?>' + response.file_path);
+                } else {
+                    $('#messages').addClass('alert alert-danger').text(response.message);
+                }
+            }
+        });
+        e.preventDefault();
+    });
+</script>
+
+<script>
+    /***************make image selectable*********************/
+    $('img').click(function () {
+        $('.selected').removeClass('selected'); // removes the previous selected class
+        $(this).addClass('selected'); // adds the class to the clicked image
+        var imgName = $(this).attr('id');
+        $("#selected_from_gallery").empty();
+        $("#selected_from_gallery").val(imgName);
+    });
+    /***********update user profile img***************/
+    $('#Updtbtngallery').click(function () {
+        var ImageName = $("#selected_from_gallery").val();
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo $this->basePath() ?>' + '/account/ChangeProfImgFrGallery',
+            cache: false,
+            data: {ImageName: ImageName},
+            dataType: 'json',
+            success: function (response) {
+                if (response.Status != "false") {
+                    $('#messages2').removeClass('alert alert-danger');
+                    $('#messages2').addClass('alert alert-success').text(response.message);
+                    setTimeout(function () {
+                        $('#myModal').modal('hide'),
+                                $('#chooseGallery').modal('hide')
+                    }, 4000);
+                    $("#profile_img1").attr('src', '<?php echo $this->basePath() ?>' + response.file_path);
+                } else {
+                    $('#messages2').addClass('alert alert-danger').text(response.message);
+                }
+                setTimeout(function () {
+                    $('#myModal').modal('hide');
+                    $('#avatar-modal1').modal('hide');
+                    $('#chooseGallery').modal('hide');
+                }, 1000);
+
+            }
+        });
+    });
+</script>
+
+<script>
+    $(function () {
+        var $cropper = $(".cropper1"),
+                $dataX1 = $("#dataX11"),
+                $dataY1 = $("#dataY11"),
+                $dataX2 = $("#dataX21"),
+                $dataY2 = $("#dataY21"),
+                $dataHeight = $("#dataHeight1"),
+                $dataWidth = $("#dataWidth1"),
+                cropper;
+
+        $cropper.cropper({
+            aspectRatio: 16 / 9,
+            preview: ".extra-preview",
+            done: function (data) {
+                $dataX1.val(data.x1);
+                $dataY1.val(data.y1);
+                $dataX2.val(data.x2);
+                $dataY2.val(data.y2);
+                $dataHeight.val(data.height);
+                $dataWidth.val(data.width);
+            }
+        });
+
+        cropper = $cropper.data("cropper");
+
+        $("#cropper-enable1").click(function () {
+            $cropper.cropper("enable");
+        });
+
+
+        $("#cropper-disable1").click(function () {
+            cropper.disable();
+        });
+        
+
+        $(".croptrigger1").click(function () {
+            var x = $(this).text();
+            $("#cropenabled1").val(x);
+        });
+
+        $('input[type=file]').change(function (event) {
+            var tmppath = URL.createObjectURL(event.target.files[0]);
+            $("#showimage1").attr("src", tmppath);
+            $("#actualimage1").val(tmppath);
+        });
+
+        $(".tab-content").delegate("input[type=text]", "keyup", function () {
+            var str = $(this).val();
+
+            // alert(str);
+            var chngval = titleCase(str);
+
+            $(this).val(chngval);
+        });
+
+    })
+</script>
+
+
+<script>
+    $(function () {
+        var $cropper = $("#avatar-modal_family").find("#showimage1"),
+                $dataX1 = $("#avatar-modal_family").find("#dataX11"),
+                $dataY1 = $("#avatar-modal_family").find("#dataY11"),
+                $dataX2 = $("#avatar-modal_family").find("#dataX21"),
+                $dataY2 = $("#avatar-modal_family").find("#dataY21"),
+                $dataHeight = $("#avatar-modal_family").find("#dataHeight1"),
+                $dataWidth = $("#avatar-modal_family").find("#dataWidth1"),
+                cropper;
+        
+        $cropper.cropper({
+             
+            aspectRatio: 16 / 9,
+            preview: ".extra-preview",
+            done: function (data) {
+                console.log(data);
+                $dataX1.val(data.x1);
+                $dataY1.val(data.y1);
+                $dataX2.val(data.x2);
+                $dataY2.val(data.y2);
+                $dataHeight.val(data.height);
+                $dataWidth.val(data.width);
+            }
+        });
+
+        cropper = $cropper.data("cropper");
+
+        $("#avatar-modal_family").find("#cropper-enable1").click(function () {
+            $cropper.cropper("enable");
+        });
+
+
+        $("#avatar-modal_family").find("#cropper-disable1").click(function () {
+            cropper.disable();
+        });
+        
+
+        $("#avatar-modal_family").find(".croptrigger1").click(function () {
+            var x = $(this).text();
+            $("#avatar-modal_family").find("#cropenabled1").val(x);
+        });
+
+        $("#avatar-modal_family").find('input[type=file]').change(function (event) {
+            var tmppath = URL.createObjectURL(event.target.files[0]);
+            $("#avatar-modal_family").find("#showimage1").attr("src", tmppath);
+            $("#avatar-modal_family").find("#actualimage1").val(tmppath);
+        });
+
+        $("#avatar-modal_family").find(".tab-content").delegate("input[type=text]", "keyup", function () {
+            var str = $(this).val();
+
+            // alert(str);
+            var chngval = titleCase(str);
+
+            $(this).val(chngval);
+        });
+
+    })
+</script>
+
+<script>
+
+<?php echo $percent[1] ?>
+
+    $('#demo-3').waterbubble({txt: '<?php echo $percent[0] ?>%', });
+</script>
+<script type="text/javascript">
+
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36251023-1']);
+    _gaq.push(['_setDomainName', 'jqueryscript.net']);
+    _gaq.push(['_trackPageview']);
+
+    (function () {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+    })();
+
+
+
+    /**
+     * 水球图 wataerbubble
+     * @author fiona23 (fiona_fanmy@163.com)
+     * @2016.3.8 version 1.2
+     *  chrome bug fixed
+     * @version 1.1
+     * Because the bug of chrome V 46.0.2490.86, I have to render the text after animation, so guilty.
+     * I have reported this issue to google, hoping it would be sovled in the new version.
+     */
+
+
+
+</script>

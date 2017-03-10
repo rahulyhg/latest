@@ -1,0 +1,238 @@
+<!-- Brand and toggle get grouped for better mobile display -->
+<script type="text/javascript">
+
+	$(function() {
+		alignMenu();
+
+		$(window).resize(function() {
+			$("#horizontal").append($("#horizontal li.hideshow ul").html());
+			$("#horizontal li.hideshow").remove();
+			alignMenu();
+		});
+
+		function alignMenu() {
+			var w = 0;
+			var mw = $("#horizontal").width()-10;
+			var i = -1;
+			var menuhtml = '';
+			jQuery.each($("#horizontal").children(), function() {
+				i++;
+				w += $(this).outerWidth(true);
+				if (mw < w) {
+					menuhtml += $('<div>').append($(this).clone()).html();
+					$(this).remove();
+				}
+			});
+			$("#horizontal").append(
+					'<li  style="position:relative;" href="#" class="hideshow">'+
+					    '<a href="#">more '+ 
+					    '<span style="font-size:12px">&#8595;</span>'+
+					    '</a><ul>'+
+			         menuhtml + '</ul></li>');
+			$("#horizontal li.hideshow ul").css("top",
+					$("#horizontal li.hideshow").outerHeight(true) + "px");
+			$("#horizontal li.hideshow").click(function() {
+				$(this).children("ul").toggle();
+			});
+		}
+	});
+</script>
+
+<!--<div class="navbar-header">
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Page Anchor</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+</div>-->
+
+<div class="collapse navbar-collapse web" id="">
+    <ul class="nav navbar-nav">
+        <li><a href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Home') ?></a></li>
+         
+        <li><a href="<?php echo $this->url('about') ?>"><?php echo $this->translate('ABOUT US') ?></a>
+            <ul class="dropdown-menu" style="background-color:#eda344 !important;">
+                <li><a href="<?php echo $this->url('history') ?>"><?php echo $this->translate('History') ?></a></li>
+                <li><a href="<?php echo $this->url('community') ?>"><?php echo $this->translate('Team Member') ?></a></li>
+                <li><a href="<?php echo $this->url('vision') ?>"><?php echo $this->translate('Our Vision') ?></a></li>
+                <li><a href="<?php echo $this->url('communities') ?>"><?php echo $this->translate('Other Rustagi Institutions') ?></a></li>	
+                <!--<li><a href="<?php //echo $this->basePath() ?>/pages/branches"><?php //echo $this->translate('All India Branches')  ?></a></li>-->
+            </ul>
+
+
+
+        </li>
+        <li><a href="<?php echo $this->basePath() ?>/matrimonial"><?php echo $this->translate('MATRIMONIAL') ?></a></li>
+        <li><a href="<?php echo $this->basePath() ?>/membership"><?php echo $this->translate('MEMBER DIRECTORY') ?></a></li>
+        <!--<ul class="dropdown-menu" style="background-color:#eda344 !important;">
+        <li><a href="#">Drop Menu1</a></li>
+        <li class="dropdown-submenu"><a href="#" tabindex="-1">Drop Menu2</a></li>
+        <ul class="dropdown-menu" style="background-color:#eda344 !important;">
+        <li><a href="#">SubDrop Menu1</a></li>
+        <li><a href="#">SubDrop Menu2</a></li>
+        <li><a href="#">SubDrop Menu3</a></li>
+        <li><a href="#">SubDrop Menu4</a></li>
+        <li><a href="#">SubDrop Menu5</a></li>
+        </ul>
+        </li>
+        <li><a href="#">Drop Menu3</a></li>
+        <li><a href="#">Drop Menu4</a></li>
+        <li><a href="#">Drop Menu5</a></li>
+        </ul>
+        </li>-->
+        <li><a href="#"><?php echo $this->translate('ATTRACTIONS') ?></a>
+
+            <ul class="dropdown-menu" style="margin-top:-2px !important; background-color:#eda344 !important;">
+                <li><a href="<?php echo $this->url('news') ?>"><?php echo $this->translate('NEWS') ?></a></li>
+
+                <li class="dropdown-submenu"><a href="<?php echo $this->basePath() ?>/events" tabindex="-1"><?php echo $this->translate('EVENTS') ?></a>
+                    <ul class="dropdown-menu" style="background-color:#eda344 !important;">
+                        <li><a href="<?php echo $this->basePath() ?>/events"><?php echo $this->translate('Upcoming Events') ?></a></li>
+                        <li><a href="<?php echo $this->basePath() ?>/events/previous"><?php echo $this->translate('Previous Events') ?></a></li>
+                    </ul>
+                </li>
+            </ul>
+
+        <li><a href="<?php echo $this->url('community') ?>"><?php echo $this->translate('COMMUNITY') ?></a></li>
+        <li><a href="<?php echo $this->url('photo-gallery') ?>"><?php echo $this->translate('PHOTO GALLERY') ?></a></li>
+        <!--<li><a href="#"><?php echo $this->translate('TESTIMONIALS') ?></a></li>-->
+        <li><a href="<?php echo $this->url('fee') ?>"><?php echo $this->translate('Fee') ?></a>
+            <ul class="dropdown-menu" style="background-color:#eda344 !important;">
+                <li><a href="<?php echo $this->url('membershipfee') ?>"><?php echo $this->translate('Membership Fee') ?></a></li>
+                <li><a href="<?php echo $this->url('matrimonialfee') ?>"><?php echo $this->translate('Matrimonial Fee') ?></a></li>
+                <li><a href="<?php echo $this->url('advertisewithus') ?>"><?php echo $this->translate('Advertise with us') ?></a></li>
+            </ul>
+        </li>
+        <li><a href="<?php echo $this->url('contact') ?>"><?php echo $this->translate('CONTACT US') ?></a></li>
+        <?php if ($this->authUser()->isLogin() === true) { 
+                $userTypeId=$session->offsetGet('user_type_id');
+                if($userTypeId==1)
+                    $url=$this->url('profile');
+                else{
+                    $url=$this->url('profile', array('action' => 'dashboard-matrimony'));
+                }
+            ?>
+            <li><a href="<?php echo $url; ?>"><?php echo $this->translate('Dashboard') ?></a></li>
+            <?php } ?>   
+    </ul>
+    
+    </div>
+    
+
+    <ul class="nav navbar-nav mobile">
+        <li><a href="<?php echo $this->url('home') ?>"><img src="<?php echo $this->basePath('icon_menu/home.png') ?>" alt="Home" title="Home" /></a></li>
+         
+        <li><a href="<?php echo $this->url('about') ?>"><img src="<?php echo $this->basePath('icon_menu/aboutus.png') ?>" alt="About" title="About" /></a>
+            <ul class="dropdown-menu" style="background-color:#eda344 !important;">
+                <li><a href="<?php echo $this->url('history') ?>"><?php echo $this->translate('History') ?></a></li>
+                <li><a href="<?php echo $this->url('community') ?>"><?php echo $this->translate('Team Member') ?></a></li>
+                <li><a href="<?php echo $this->url('vision') ?>"><?php echo $this->translate('Our Vision') ?></a></li>
+                <li><a href="<?php echo $this->url('communities') ?>"><?php echo $this->translate('Other Rustagi Institutions') ?></a></li>	
+                
+            </ul>
+
+
+
+        </li>
+        <li><a href="<?php echo $this->basePath() ?>/matrimonial"><img src="<?php echo $this->basePath('icon_menu/matrimonial.png') ?>" alt="Matrimonial" title="Matrimonial" /></a></li>
+        <li><a href="<?php echo $this->basePath() ?>/membership"><img src="<?php echo $this->basePath('icon_menu/membership.png') ?>" alt="Membership" title="Membership" /></a></li>
+      
+        <li><a href="#"><img src="<?php echo $this->basePath('icon_menu/newsevents.png') ?>" alt="Attraction" title="Attraction" /></a>
+
+            <ul class="dropdown-menu" style="margin-top:-2px !important; background-color:#eda344 !important;">
+                <li><a href="<?php echo $this->url('news') ?>"><?php echo $this->translate('NEWS') ?></a></li>
+
+                <li class="dropdown-submenu"><a href="<?php echo $this->basePath() ?>/events" tabindex="-1"><?php echo $this->translate('EVENTS') ?></a>
+                    <ul class="dropdown-menu" style="background-color:#eda344 !important;">
+                        <li><a href="<?php echo $this->basePath() ?>/events"><?php echo $this->translate('Upcoming Events') ?></a></li>
+                        <li><a href="<?php echo $this->basePath() ?>/events/previous"><?php echo $this->translate('Previous Events') ?></a></li>
+                    </ul>
+                </li>
+            </ul>
+
+        <li><a href="<?php echo $this->url('community') ?>"><img src="<?php echo $this->basePath('icon_menu/community.png') ?>" alt="Community" title="Community" /></a></li>
+        <li><a href="<?php echo $this->url('photo-gallery') ?>"><img src="<?php echo $this->basePath('icon_menu/gallery.png') ?>" alt="Gallery" title="Gallery" /></a></li>
+      
+        <li><a href="<?php echo $this->url('fee') ?>"><img src="<?php echo $this->basePath('icon_menu/fee.png') ?>" alt="Fee" title="Fee" /></a>
+            <ul class="dropdown-menu" style="background-color:#eda344 !important;">
+                <li><a href="<?php echo $this->url('membershipfee') ?>"><?php echo $this->translate('Membership Fee') ?></a></li>
+                <li><a href="<?php echo $this->url('matrimonialfee') ?>"><?php echo $this->translate('Matrimonial Fee') ?></a></li>
+                <li><a href="<?php echo $this->url('advertisewithus') ?>"><?php echo $this->translate('Advertise with us') ?></a></li>
+            </ul>
+        </li>
+        <li><a href="<?php echo $this->url('contact') ?>"><img src="<?php echo $this->basePath('icon_menu/contactus.png') ?>" alt="Contact Us" title="Contact Us" /></a></li>
+        <?php if ($this->authUser()->isLogin() === true) { 
+                $userTypeId=$session->offsetGet('user_type_id');
+                if($userTypeId==1)
+                    $url=$this->url('profile');
+                else{
+                    $url=$this->url('profile', array('action' => 'dashboard-matrimony'));
+                }
+            ?>
+            <li><a href="<?php echo $url; ?>"><img src="<?php echo $this->basePath('icon_menu/deshboard.png') ?>" alt="Deshboard" title="Matrimonial" /></a></li>
+            <?php } ?>   
+    </ul>
+
+
+
+<!-- Collect the nav links, forms, and other content for toggling -->
+   <!--<ul id="horizontal" class="nav navbar-nav">
+     
+      <li><a href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Home') ?></a></li>
+         
+        <li><a href="<?php echo $this->url('about') ?>"><?php echo $this->translate('ABOUT US') ?></a>
+            <ul class="dropdown-menu" style="background-color:#eda344 !important;">
+                <li><a href="<?php echo $this->url('history') ?>"><?php echo $this->translate('History') ?></a></li>
+                <li><a href="<?php echo $this->url('community') ?>"><?php echo $this->translate('Team Member') ?></a></li>
+                <li><a href="<?php echo $this->url('vision') ?>"><?php echo $this->translate('Our Vision') ?></a></li>
+                <li><a href="<?php echo $this->url('communities') ?>"><?php echo $this->translate('Other Rustagi Institutions') ?></a></li>	
+                
+            </ul>
+
+
+
+        </li>
+        <li><a href="<?php echo $this->basePath() ?>/matrimonial"><?php echo $this->translate('MATRIMONIAL') ?></a></li>
+        <li><a href="<?php echo $this->basePath() ?>/membership"><?php echo $this->translate('MEMBER DIRECTORY') ?></a></li>
+       
+        <li><a href="#"><?php echo $this->translate('ATTRACTIONS') ?></a>
+
+            <ul class="dropdown-menu" style="margin-top:-2px !important; background-color:#eda344 !important;">
+                <li><a href="<?php echo $this->url('news') ?>"><?php echo $this->translate('NEWS') ?></a></li>
+
+                <li class="dropdown-submenu"><a href="<?php echo $this->basePath() ?>/events" tabindex="-1"><?php echo $this->translate('EVENTS') ?></a>
+                    <ul class="dropdown-menu" style="background-color:#eda344 !important;">
+                        <li><a href="<?php echo $this->basePath() ?>/events"><?php echo $this->translate('Upcoming Events') ?></a></li>
+                        <li><a href="<?php echo $this->basePath() ?>/events/previous"><?php echo $this->translate('Previous Events') ?></a></li>
+                    </ul>
+                </li>
+            </ul>
+
+        <li><a href="<?php echo $this->url('community') ?>"><?php echo $this->translate('COMMUNITY') ?></a></li>
+        <li><a href="<?php echo $this->url('photo-gallery') ?>"><?php echo $this->translate('PHOTO GALLERY') ?></a></li>
+       
+        <li><a href="<?php echo $this->url('fee') ?>"><?php echo $this->translate('Fee') ?></a>
+            <ul class="dropdown-menu" style="background-color:#eda344 !important;">
+                <li><a href="<?php echo $this->url('membershipfee') ?>"><?php echo $this->translate('Membership Fee') ?></a></li>
+                <li><a href="<?php echo $this->url('matrimonialfee') ?>"><?php echo $this->translate('Matrimonial Fee') ?></a></li>
+                <li><a href="<?php echo $this->url('advertisewithus') ?>"><?php echo $this->translate('Advertise with us') ?></a></li>
+            </ul>
+        </li>
+        <li><a href="<?php echo $this->url('contact') ?>"><?php echo $this->translate('CONTACT US') ?></a></li>
+        <?php if ($this->authUser()->isLogin() === true) { 
+                $userTypeId=$session->offsetGet('user_type_id');
+                if($userTypeId==1)
+                    $url=$this->url('profile');
+                else{
+                    $url=$this->url('profile', array('action' => 'dashboard-matrimony'));
+                }
+            ?>
+            <li><a href="<?php echo $url; ?>"><?php echo $this->translate('Dashboard') ?></a></li>
+            <?php } ?>   
+
+<li style="position:relative;" href="#" class="hideshow"><a href="#">more <span style="font-size:13px">&#8595;</span></a><ul style="top: 92px;"></ul></li></ul>-->
+
+
+
+

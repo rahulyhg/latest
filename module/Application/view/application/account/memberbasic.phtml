@@ -1,0 +1,393 @@
+<div class="col-sm-3 col-sm-3-new width20per">
+    <?php echo $this->partial('layout/sidebar-user') ?>
+</div>
+
+
+<div class="col-sm-9 width80per">
+    <?php include('main_info.phtml'); ?>
+    <div class="col-sm-6" style="margin-top:22px; float:right; text-align:right;">
+        <p style="text-align:right;">Connected  9 Months ago</p>
+    </div>
+
+    <div class="clearfix"></div>
+    <?php include('menu.phtml'); ?>
+
+
+    <div class="tab-content">
+        <div id="personal_info" class="tab-pane fade in active">
+            <table width="100%">
+                <tr>
+                    <td>	
+                        <?php
+                        $form = $this->form;
+                        $form->prepare();
+                        echo $this->form()->openTag($form);
+                        ?>
+                        <div class="col-sm-4" style="width:100%;">
+                            <h3><?php echo $this->translate('Update Your Basic Info') ?></h3> 
+
+                            <!--<div class="form-group row" >
+                            <label for="Education Field" class="col-sm-2 form-control-label lblline"><?php //echo $this->translate('Marital Status')  ?></label>
+                                    <div class="col-sm-3"><?php //echo $this->formRow($form->get('marital_status')); ?></div>
+                            <label for="Gender" class="col-sm-2 form-control-label lblline"></label>
+                            <div class="col-sm-3"></div>
+                            </div>-->
+
+                            <div class="form-group row">
+                                <label for="profile_for" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Profile Created For'); ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('profile_for')); ?></div>
+                                <div style="display:none;" id="profile_For_Others_row">
+                                    <label for="profile_for" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Enter here'); ?></label>
+                                    <div class="col-sm-3"><?php echo $this->formRow($form->get('profile_for_others')); ?></div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group row">
+                                <label for="full_name" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Full Name'); ?></label>
+                                <div class="col-sm-3 coltilte" ><?php echo $this->formRow($form->get('name_title_user')); ?></div>        
+                                <div class="col-sm-3 colname">
+                                    <?php
+                                    echo $this->formHidden($form->get('id'));
+                                    //echo $this->formHidden($form->get('user_id'));
+                                    echo $this->formRow($form->get('full_name'));
+                                    ?>
+                                </div>
+                                <label for="Gender" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Gender') ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('gender')); ?></div>
+                            </div>
+
+
+
+                            <div class="form-group row">
+                                <label for="Alt. Mobile No." class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Date of Birth'); ?></label>
+                                <div class="col-sm-3"> <?php echo $this->formRow($form->get('dob')); ?></div>
+                                <label for="Phone No." class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Age') ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('age')); ?></div>
+                            </div>
+
+                            <div class="form-group row">			       
+                                <label for="Education Field" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Religion') ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('religion')); ?></div>	
+
+                                <label for="Education Field" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Gothra') ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('gothra_gothram')); ?></div>			
+
+                            </div> 
+
+                            <div class="form-group row">
+
+                                <div style="display:none;" id="Religion_Others_row">
+                                    <label for="Education Field" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Religion Other') ?></label>
+                                    <div class="col-sm-3"><?php echo $this->formRow($form->get('religion_other')); ?></div>
+                                </div>
+
+                                <div style="display:none;" id="Gother_Others_row">
+                                    <label for="Education Field" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Gothra Other') ?></label>
+                                    <div class="col-sm-3"><?php echo $this->formRow($form->get('gothra_gothram_other')); ?></div> 
+                                </div>			
+                            </div> 
+
+
+
+                            <div class="form-group row">
+                                <label for="Height" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Height'); ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('height')); ?></div>
+                                <label for="Phone No." class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Body Type') ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('body_type')); ?></div>
+                            </div>
+
+
+                            <div class="form-group row">
+                                <label for="Skin Tone" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Skin Tone'); ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('color_complexion')); ?></div>
+                                <label for="Any Disability" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Any Disability?') ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('any_disability')); ?></div>
+                            </div>
+
+                            <div class="form-group row">			
+                                <label for="Education Field" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Blood Group') ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('blood_group')); ?></div>  
+                                <label for="State" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Native Palace') ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('native_place')); ?></div>			
+                            </div>  
+
+                            <div class="form-group row">
+                                <label for="Alt. Mobile No." class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Alt. Mob. No.'); ?></label>
+                                <div class="col-sm-3"> <?php echo $this->formRow($form->get('alternate_mobile_no')); ?></div>
+                                <label for="Phone No." class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Phone No.') ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('phone_no')); ?></div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="Address Line 1" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Address Line 1'); ?></label>
+                                <div class="col-sm-3">
+<?php echo $this->formRow($form->get('address')); ?></div>
+
+                                <label for="Address Line 2" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Address Line 2') ?></label>
+                                <div class="col-sm-3">
+<?php echo $this->formRow($form->get('address_line2')); ?></div>
+                            </div>
+
+
+                            <div class="form-group row">
+                                <label for="Country" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Country') ?></label>
+                                <div class="col-sm-3"> <?php echo $this->formRow($form->get('country')); ?></div>
+                                <label for="State" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('State') ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('state')); ?></div>
+                            </div>
+                            <img src="<?php echo $this->basePath() ?>/img/loadingmap.gif" id="Loading_Request" style="position:absolute;display:none;z-index: 9;margin-left: 45%;margin-top: -8%;width: 80px;"/>
+                            <div class="form-group row">
+                                <label for="City" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('City') ?></label>
+                                <div class="col-sm-3"> <?php echo $this->formRow($form->get('city')); ?></div>
+                                <label for="Zip/Pin Code" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Zip/Pin Code') ?></label>
+                                <div class="col-sm-3"> <?php echo $this->formRow($form->get('zip_pin_code')); ?></div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="State" class="col-sm-2 form-control-label lblline"></label>
+                                <div class="col-sm-3"></div>
+                                <label for="State" class="col-sm-2 form-control-label lblline"></label>        
+                                <div class="col-sm-3">
+                                    <?php echo $this->formRow($form->get('submit')); ?>
+                                    <input name="submit" id="submitnext" class="btn btn-default" value="Save & Next" type="submit">
+                                </div>        
+                            </div>  
+                        </div>
+<?php echo $this->form()->closeTag(); ?>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var obj = new Date();
+    var curr_year = obj.getFullYear();
+    var curr_month = obj.getMonth();
+    var curr_date = obj.getDate();
+    var picker = new Pikaday(
+            {
+                field: document.getElementById('dob'),
+                firstDay: 1,
+                minDate: new Date(1801, 0, 1),
+                maxDate: new Date(curr_year, curr_month, curr_date),
+                yearRange: [1801, curr_year],
+                format: 'DD-MM-YYYY',
+                formatStrict: false
+            });
+
+</script>
+
+<!--/*************************Validate Registration Form***************************/-->
+<script>
+    $(document).ready(function () {
+        /* $("#MemberbasicForm").validate({
+         rules: {                            
+         profile_for:
+         {
+         required: true                                   
+         },
+         full_name:
+         {
+         required: true,
+         minlength:3,
+         maxlength:30
+         },
+         gender:
+         {
+         required: true
+         },
+         dob:
+         {
+         required: true
+         },
+         age:
+         {
+         required: true                                
+         },
+         alternate_mobile_no: 
+         {
+         required: true,	
+         minlength:10,
+         maxlength:12,
+         number:true
+         },
+         phone_no: 
+         {
+         required: false,
+         minlength:6,
+         maxlength:12,
+         number:true
+         },			
+         address: 
+         {
+         required: true
+         },
+         country: 
+         {
+         required: true
+         },
+         state: 
+         {
+         required: true
+         },
+         city: 
+         {
+         required: true
+         },
+         native_place: 
+         {
+         required: true
+         },
+         marital_status:
+         {
+         required: true                                   
+         },					
+         caste:
+         {
+         required: true
+         },					
+         religion:
+         {
+         required: true                                
+         },	
+         blood_group: 
+         {
+         required: true
+         }
+         },
+         messages: {                              
+         
+         }
+         });  */
+        $(".inputDate").css('cursor', 'pointer');
+
+        if ($("#profile_for").val() == "Others") {
+            $("#profile_For_Others_row").css('display', 'block');
+        } else {
+            $("#profile_For_Others_row").css('display', 'none');
+        }
+        if ($("#gothra_gothram").val() == 173) {
+            $("#Gother_Others_row").css('display', 'block');
+        } else {
+            $("#Gother_Others_row").css('display', 'none');
+        }
+        if ($("#religion").val() == 7) {
+            $("#Religion_Others_row").css('display', 'block');
+        } else {
+            $("#Religion_Others_row").css('display', 'none');
+        }
+    });
+</script>
+
+<!-----*******************************end***********************--->
+<script>
+    /**************Get State on select Country***************/
+    $("#country").on('change', function () {
+        var countryId = this.value;
+        $.ajax({
+            url: '<?php echo $this->basePath() ?>' + '/account/getStateName',
+            type: "POST",
+            dataType: "json",
+            data: {Country_ID: countryId},
+            beforeSend: function () {
+                $('#Loading_Request').show();
+            },
+            complete: function () {
+                $('#Loading_Request').hide();
+            },
+            success: function (resp) {
+                if (resp.Status == 'Success') {
+                    $("#state").empty();
+                    $("#city").empty();
+                    $("#state").append("<option value=''>Select State</option>");
+                    $.each(resp.statelist, function (idx, obj) {
+                        $("#state").append("<option value='" + obj["id"] + "'>" + obj["state_name"] + "</option>");
+                    });
+                } else {
+                    $("#state").empty();
+                    $("#city").empty();
+                    alert("No States are available");
+                }
+            },
+            error: function (error) {
+                console.log(error);
+                alert(error);
+            }
+        });
+    });
+    /*******************End******************/
+    /*************Get City on Select State*************************************************/
+    $("#state").on('change', function () {
+        var stateId = this.value;
+        $.ajax({
+            url: '<?php echo $this->basePath() ?>' + '/account/getCityName',
+            type: "POST",
+            dataType: "json",
+            data: {State_ID: stateId},
+            beforeSend: function () {
+                $('#Loading_Request').show();
+            },
+            complete: function () {
+                $('#Loading_Request').hide();
+            },
+            success: function (resp) {
+                if (resp.Status == 'Success') {
+                    $("#city").empty();
+                    $("#city").append("<option value=''>Select City</option>");
+                    $.each(resp.statelist, function (idx, obj) {
+                        $("#city").append("<option value='" + obj["id"] + "'>" + obj["city_name"] + "</option>");
+                    });
+                } else {
+                    $("#city").empty();
+                    alert("No Cities are Available");
+                }
+            },
+            error: function (error) {
+                console.log(error);
+                alert(error);
+            }
+        });
+    });
+    /*******************End******************/
+</script>
+<script>
+//*****************************Others info hide show********************/
+//*********apend profile for others info
+    $("#profile_for").on('change', function () {
+        if ($("#profile_for").val() == "Others") {
+            $("#profile_For_Others_row").css('display', 'block');
+        } else {
+            $("#profile_For_Others_row").css('display', 'none');
+        }
+    });
+//*********apend gothra gothram others info
+    $("#gothra_gothram").on('change', function () {
+        if ($("#gothra_gothram").val() == 173) {
+            $("#Gother_Others_row").css('display', 'block');
+        } else {
+            $("#Gother_Others_row").css('display', 'none');
+        }
+    });
+//*********apend religion  others info
+    $("#religion").on('change', function () {
+        if ($("#religion").val() == 7) {
+            $("#Religion_Others_row").css('display', 'block');
+        } else {
+            $("#Religion_Others_row").css('display', 'none');
+        }
+    });
+</script>
+
+
+
+
+
+
+
+
+

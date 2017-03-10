@@ -1,0 +1,28 @@
+<?php 
+if(count($userData)>0){
+foreach ($userData as $value) {              
+            $username   = $value['full_name'];
+            $b_username = '<strong>'.$q.'</strong>';
+            $final_username = str_ireplace($q, $b_username, $username);
+            $final_dob = date('d-m-Y',strtotime($value['dob']));
+            $user_id = $value['user_id'];
+            $native_place=$value['native_place'];
+            $mobile_no='xxxxxx'.substr($value['mobile_no'], -4);;
+            
+            if(!empty($value['image_path'])){
+            $imgPath=IMAGE_PATH.'/uploads/'. $value['image_path'];
+                
+            }else{
+            $imgPath= IMAGE_PATH.'/img/default_user.png';  
+                
+            }
+
+?>
+<div class="show" align="left">
+    <img src="<?php echo $imgPath;?>" style="width:50px; height:40px; float:left; margin-right:6px;" /><span class="name" rel="<?php echo $user_id; ?>"><?php echo $final_username; ?></span>&nbsp;&nbsp;<strong>Native Place:</strong>&nbsp;<?php echo $native_place; ?>&nbsp;<br/><strong>DOB:</strong>&nbsp;<?php echo $final_dob; ?>&nbsp;&nbsp;<strong>Mobile No:</strong>&nbsp;<?php echo $mobile_no;?><br/>
+            </div>
+ <?php 
+}
+}else{?>
+<div class="show" align="left">Currently No Suggestion Available</div>
+ <?php }?>

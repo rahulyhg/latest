@@ -1,0 +1,1081 @@
+<?php
+$session = new Zend\Session\Container('user');
+// print_r($session);
+// echo $session->offsetGet('email');
+?>
+<style>
+    .img-title {
+        background: rgba(237, 163, 68, 0.75) none repeat scroll 0 0;
+        bottom: 0;
+        color: #fff;
+        padding: 5px 10px;
+        position: absolute;
+        width: 100%;
+    }
+    .col-xs-3 {
+        width: 20%;
+    }
+    .list-view ul li .col-xs-3 img{ border-radius:50%; width:60px; height:60px; margin:auto; overflow:hidden;}
+    .grid-view ul li{margin:0 4px 20px 4px;  font-size:14px; color:#636363; float:left; width:auto !important;}
+    .list-view ul li{margin:0 4px 20px 4px;  font-size:14px; color:#636363; float:left; width:15.5% !important;}
+    .list-view ul li {
+        color: #636363;
+        float: left;
+        font-size: 12px;
+        margin: 0 4px 20px;
+        width: 15.5% !important;
+    }
+
+    .list-view ul li {
+        border: none;
+    }
+
+    .list-view ul li .col-xs-3 .heithviue {
+        color: #666666;
+        display: block;
+        font-size: 12px;
+        font-weight: normal !important;
+        margin: 0;
+        padding: 3px 0;
+        text-align: center;
+    }
+
+    .list-view ul li .col-xs-3 .btn {
+        border: 0 none;
+        border-radius: 3px;
+        display: table;
+        font-size: 12px;
+        font-weight: normal;
+        line-height: 1.1;
+        margin: 0 auto;
+        padding: 5px 10px;
+    }
+
+    .col-xs-7
+    {
+        height:25px;
+    }
+
+</style>
+
+
+
+
+<div class="col-sm-3 col-sm-3-new width20per">
+    <?php echo $this->partial('layout/sidebar-matrimonial') ?>
+</div>
+<div class="showerrorbox">
+
+</div>
+<div id="profilepage">
+    <?php
+    foreach ($this->userinfo as $user_Record)
+        ;
+    ?>
+    <div class="col-sm-9 width80per">
+
+        <div class="col-sm-3 profile-img col-xs-4">
+            <a class="thumbnail" href="#thumb" style="margin-bottom:0;"><img src="<?php
+                if ($user_Record->profile_photo != '') {
+                    echo $this->basePath() . $user_Record->profile_photo;
+                } else {
+                    echo $this->basePath() . '/img/default_user.png';
+                }
+                ?>" width="116"/><span><img src="<?php
+                                                                                 if ($user_Record->profile_photo != '') {
+                                                                                     echo $this->basePath() . $user_Record->profile_photo;
+                                                                                 } else {
+                                                                                     echo $this->basePath() . '/img/default_user.png';
+                                                                                 }
+                                                                                 ?>" /></span></a>
+
+<!--<img src="<?php
+            if ($user_Record->profile_photo != '') {
+                echo $this->basePath() . $user_Record->profile_photo;
+            } else {
+                echo $this->basePath() . '/img/default_user.png';
+            }
+            ?>" width="112" />-->
+            <p>Membership ID <?= $user_Record->ref_no ?></p>
+
+        </div>
+        <div class="col-sm-6 col-xs-8">
+            <div class="row">
+                <div class="col-xs-5">Name</div>
+                <div class="col-xs-7"><?= $user_Record->name_title_user . " " . $user_Record->full_name ?></div>
+
+                <div class="col-xs-5">Father’s. Name</div>
+                <div class="col-xs-7"><?= $user_Record->name_title_father . " " . $user_Record->father_name ?></div>
+
+                <div class="col-xs-5">Address</div>
+                <div class="col-xs-7"><?= $user_Record->address ?></div>
+                <?php
+                if (!empty($session->offsetGet('email'))) {
+                    ?>
+                    <div class="col-xs-5">Contact Number</div>
+                    <div class="col-xs-7"><?= $user_Record->mobile_no ?></div>
+                    <?php
+                }
+                ?>
+                <div class="col-xs-5">Profession</div>
+                <div class="col-xs-7"><?= $user_Record->profession ?></div>
+                <?php
+                if (!empty($session->offsetGet('email'))) {
+                    ?>
+                    <div class="col-xs-5">Email ID</div>
+                    <div class="col-xs-7"><?= $user_Record->email ?></div>
+                    <?php
+                }
+                ?>
+            </div>
+        </div>
+        <div class="col-sm-3  col-xs-12 col-sm-3-matri">
+            <?php $gender = $user_Record->gender ?>
+            <h3>
+                <?php
+                if ($gender == "Male")
+                    echo "Connect with him?";
+                else
+                    echo "Connect with her?";
+                ?>
+            </h3>
+
+            <button class="btn btn-info btn-block" onclick="sendInterest(<?php echo $user_Record->user_id;?>,'yes')">Yes</button>
+            <button class="btn btn-success pull-left" onclick="sendInterest(<?php echo $user_Record->user_id;?>,'maybe')">May be</button>
+            <button class="btn btn-danger pull-right" onclick="sendInterest(<?php echo $user_Record->user_id;?>,'no')">No</button>
+            <div class="clearfix"></div>
+            <h4><span class="glyphicon glyphicon-envelope"></span>Send Mail</h4>
+        </div>
+
+        <div class="col-sm-12">
+            <p>Connected  9 Months ago</p>
+        </div>
+
+        <div class="clearfix"></div>
+        <ul class="nav nav-pills" id="disableme">
+            <li class="active"><a data-toggle="pill" href="#about">About</a></li>
+            <li><a data-toggle="pill" href="#personal-info">Personal Info</a></li>
+            <li><a data-toggle="pill" href="#education">Education</a></li>
+            <li><a data-toggle="pill" href="#profession">Profession</a></li>
+            <li><a data-toggle="pill" href="#family-details">Family Details</a></li>
+            <li><a data-toggle="pill" href="#marital-detail">Marital Detail</a></li>
+            <li><a data-toggle="pill" href="#photo-gallery">Gallery</a></li>     
+        </ul>
+        <?php
+        if ($this->authUser()->isLogin() === false) {
+            ?>
+            <div class="tab-content">
+                <div id="about" class="tab-pane fade in active">			
+                    <label><?= $this->translate('About ') . $user_Record->name_title_user . " " . $user_Record->full_name ?></label>
+                    <p><?= $user_Record->about_yourself_partner_family ?></p>
+                </div>
+            </div>
+        <?php } ?>
+        <?php
+        if ($this->authUser()->isLogin() === true) {
+            ?>
+            <div class="tab-content">
+                <div id="about" class="tab-pane fade in active">			
+                    <label><?= $this->translate('About ') . $user_Record->name_title_user . " " . $user_Record->full_name ?></label>
+                    <p><?= $user_Record->about_yourself_partner_family ?></p>
+                </div>
+                <div id="personal-info" class="tab-pane fade">
+                    <div class="row divrow1">
+                        <?php if (!empty($user_Record->full_name)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Full Name'); ?></span>
+                                <div class="col-sm-3 nwclas"><?= $user_Record->name_title_user . " " . $user_Record->full_name ?></div>
+                            </div>
+                        <?php } ?>
+
+                        <?php if (!empty($user_Record->gender)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Gender') ?></span>
+                                <div class="col-sm-3 nwclas"><?= $user_Record->gender ?></div>
+                            </div>
+                        <?php } ?>
+
+
+                    </div>
+                    <div class="row divrow1">
+                        <?php if (!empty($user_Record->dob)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Date of Birth'); ?></span>
+                                <div class="col-sm-3 nwclas"><?= date('d-m-Y', strtotime($user_Record->dob)); ?></div>
+                            </div>
+                        <?php } ?>
+
+                        <?php if (!empty($user_Record->age)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Age') ?></span>
+                                <div class="col-sm-3 nwclas"><?= $user_Record->age ?></div>
+                            </div>
+                        <?php } ?>
+
+                    </div>
+                    <div class="row divrow">
+                        <?php if (!empty($user_Record->height)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Height.'); ?></span>
+                                <div class="col-sm-3 nwclas"><?= $user_Record->height ?></div>
+                            </div>
+                        <?php } ?>
+
+                        <?php if (!empty($user_Record->body_type)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Body Type') ?></span>
+                                <div class="col-sm-3 nwclas"><?= $user_Record->body_type ?></div>
+                            </div>
+                        <?php } ?>
+
+                    </div>
+
+                    <div class="row divrow">
+                        <?php if (!empty($user_Record->any_disability)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Any Disability?') ?></span>
+                                <div class="col-sm-3 nwclas">No</div>
+                            </div>
+                        <?php } ?>
+                        <?php if (!empty($user_Record->color_complexion)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Skin Tone.'); ?></span>
+                                <div class="col-sm-3 nwclas"><?= $user_Record->color_complexion ?></div>
+                            </div>
+                        <?php } ?>
+
+
+
+                    </div>
+
+                    <div class="row divrow1">
+                        <?php if (!empty($user_Record->mobile_no)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Phone No.'); ?></span>
+                                <div class="col-sm-3 nwclas"><?= $user_Record->mobile_no ?></div>
+                            </div>
+                        <?php } ?>
+
+                        <?php if (!empty($user_Record->alternate_mobile_no)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Alt. Mob. No.'); ?></span>
+                                <div class="col-sm-3 nwclas"><?= $user_Record->alternate_mobile_no ?></div>
+                            </div>
+                        <?php } ?>
+
+                    </div>
+                    <div class="row divrow1">
+                        <?php if (!empty($user_Record->address)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Address Line 1'); ?></span>
+                                <div class="col-sm-3 nwclas " style="line-height:18px;"><?= $user_Record->address ?></div>
+                            </div>
+                        <?php } ?>
+
+                        <?php if (!empty($user_Record->address_line2)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Address Line 2') ?></span>
+                                <div class="col-sm-3 nwclas" style="line-height:18px;"><?= $user_Record->address_line2 ?></div>
+                            </div>
+                        <?php } ?>
+
+                    </div>
+                    <div class="row divrow1">
+                        <?php if (!empty($user_Record->country)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Country'); ?></span>
+                                <div class="col-sm-3 nwclas"><?= $user_Record->country ?></div>
+                            </div>
+                        <?php } ?>
+
+                        <?php if (!empty($user_Record->state)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('State') ?></span>
+                                <div class="col-sm-3 nwclas"><?= $user_Record->state ?></div>
+                            </div>
+                        <?php } ?>
+
+                    </div>
+                    <div class="row divrow1">
+                        <?php if (!empty($user_Record->city)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('City'); ?></span>
+                                <div class="col-sm-3 nwclas"><?= $user_Record->city ?></div>
+                            </div>
+                        <?php } ?>
+
+                        <?php if (!empty($user_Record->zip_pin_code)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Zip/Pin Code') ?></span>
+                                <div class="col-sm-3 nwclas"><?= $user_Record->zip_pin_code ?></div>
+                            </div>
+                        <?php } ?>
+
+                    </div>
+                    <div class="row divrow1">
+                        <?php if (!empty($user_Record->native_place)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Native Palace'); ?></span>
+                                <div class="col-sm-3 nwclas"><?= $user_Record->native_place ?></div>
+                            </div>
+                        <?php } ?> 
+
+                    </div>
+                </div>
+                <div id="education" class="tab-pane fade">
+                    <div class="row divrow">
+                        <?php if (!empty($user_Record->education_level)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Education Level'); ?></span>
+                                <div class="col-sm-3 nwclas"><?= $user_Record->education_level ?></div>
+                            </div>
+                        <?php } ?>
+                        <?php if (!empty($user_Record->education_field)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Education Field') ?></span>
+                                <div class="col-sm-3 nwclas"><?= $user_Record->education_field ?></div>
+                            </div>
+                        <?php } ?>
+
+                    </div>
+                    <div class="row divrow">
+                        <?php if (!empty($user_Record->specialization_major)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Specialization'); ?></span>
+                                <div class="col-sm-3 nwclas"><?= $user_Record->specialization_major ?></div>
+                            </div>
+                        <?php } ?>
+
+
+                        <?php if (!empty($user_Record->employment_status)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Employment Status'); ?></span>
+                                <div class="col-sm-3 nwclas"> <?= $user_Record->employment_status ?></div>
+                            </div>	
+                        <?php } ?>
+
+                    </div>
+
+                    <div class="row divrow">
+
+                        <?php if (!empty($user_Record->profession)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Profession'); ?></span>
+                                <div class="col-sm-3 nwclas"><?= $user_Record->profession ?></div>
+                            </div>		
+                        <?php } ?>	
+                    </div>
+
+                </div>
+                <div id="profession" class="tab-pane fade">
+                    <div class="row divrow">
+                        <?php if (!empty($user_Record->workplace_info)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Working Info'); ?></span>
+                                <div class="col-sm-3 nwclas"><?= $user_Record->workplace_info ?></div>
+                            </div>		
+                        <?php } ?>	
+
+                        <?php if (!empty($user_Record->office_name)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Office Name') ?></span>
+                                <div class="col-sm-3 nwclas"><?= $user_Record->office_name ?></div>
+                            </div>		
+                        <?php } ?>	
+
+
+                    </div>
+
+                    <div class="row divrow">
+                        <?php if (!empty($user_Record->designation)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Designation'); ?></span>
+                                <div class="col-sm-3 nwclas"><?= $user_Record->designation ?></div>
+                            </div>	
+                        <?php } ?>	
+
+                        <?php if (!empty($user_Record->working_with)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Working With') ?></span>
+                                <div class="col-sm-3 nwclas"><?= $user_Record->working_with ?></div>
+                            </div>
+                        <?php } ?>	
+
+
+                    </div>
+
+                    <div class="row divrow">
+                        <?php if (!empty($user_Record->specialize_profession)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Specialization') ?></span>
+                                <div class="col-sm-3 nwclas"><?= $user_Record->specialize_profession ?></div>
+                            </div>
+                        <?php } ?>	
+
+                        <?php if (!empty($user_Record->office_address)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Office Address') ?></span>
+                                <div class="col-sm-3 nwclas"><?= $user_Record->office_address ?></div>
+                            </div>
+                        <?php } ?>	
+
+
+
+
+
+
+                    </div>
+                    <div class="row divrow">
+
+
+                        <?php if (!empty($this->officeData['officecountry'])) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Office Country'); ?></span>
+                                <div class="col-sm-3 nwclas"><?php
+                                    if ($this->officeData['officecountry'] != '') {
+                                        echo $this->officeData['officecountry'];
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+                        <?php } ?>	
+
+
+                        <?php if (!empty($this->officeData['officestate'])) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Office State') ?></span>
+                                <div class="col-sm-3 nwclas"><?php
+                                    if ($this->officeData['officestate'] != '') {
+                                        echo $this->officeData['officestate'];
+                                    }
+                                    ?></div>
+                            </div>
+                        <?php } ?>	
+
+
+
+
+                    </div>
+                    <div class="row divrow">
+
+                        <?php if (!empty($this->officeData['officecity'])) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Office City'); ?></span>
+                                <div class="col-sm-3 nwclas"><?php
+                                    if ($this->officeData['officecity'] != '') {
+                                        echo $this->officeData['officecity'];
+                                    }
+                                    ?></div>
+                            </div>
+                        <?php } ?>	
+
+                        <?php if (!empty($this->officeData['office_pincode'])) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Office Zip/Pin') ?></span>
+                                <div class="col-sm-3 nwclas"><?= $user_Record->office_pincode ?></div>
+                            </div>
+
+                        <?php } ?>	
+
+
+
+
+
+
+                    </div>
+                    <div class="row divrow">
+                        <?php if (!empty($user_Record->office_phone)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Office Phone'); ?></span>
+                                <div class="col-sm-3 nwclas"><?= $user_Record->office_phone ?></div>
+                            </div>
+
+                        <?php } ?>	
+
+                        <?php if (!empty($user_Record->office_email)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Office Email'); ?></span>
+                                <div class="col-sm-3 nwclas"><?= $user_Record->office_email ?></div>
+                            </div>
+
+                        <?php } ?>	
+
+
+
+
+                    </div>
+
+                    <div class="row divrow">
+
+                        <?php if (!empty($user_Record->office_website)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Office Website') ?></span>
+                                <div class="col-sm-3 nwclas"><?= $user_Record->office_website ?></div>
+                            </div>
+
+                        <?php } ?>	
+
+                        <?php if (!empty($user_Record->annual_income)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Annual Income'); ?></span>
+                                <div class="col-sm-3 nwclas"><?= $user_Record->annual_income ?></div>
+                            </div>	
+
+                        <?php } ?>	
+
+
+                    </div>
+                </div>
+                <div id="family-details" class="tab-pane fade">
+                    <div class="row divrow">
+                        <?php if (!empty($user_Record->father_name)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Father Name'); ?></span>
+                                <div class="col-sm-3 nwclas"><?= $user_Record->name_title_father . " " . $user_Record->father_name ?></div>
+                            </div>
+
+                        <?php } ?>
+
+                        <?php if (!empty($user_Record->father_status)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Father Status') ?></span>
+                                <div class="col-sm-3 nwclas"><?= $user_Record->father_status ?></div>
+                            </div>
+
+                        <?php } ?>
+
+                    </div>
+                    <div class="row divrow1">
+                        <?php if (!empty($user_Record->father_dob)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Father DOB'); ?></span>
+                                <div class="col-sm-3 nwclas"><?= date('d-m-Y', strtotime($user_Record->father_dob)); ?></div>
+                            </div>
+
+                        <?php } ?>
+
+
+                        <?php if (!empty($user_Record->father_dob)) { ?>
+                            <!-- <div class="divmatrimon">
+                                                      <span class="col-sm-2n"><?= $this->translate('Father DOB'); ?></span>
+                                                      <div class="col-sm-3 nwclas"><?= date('d-m-Y', strtotime($user_Record->father_dob)); ?></div>
+                                      </div> -->
+
+                        <?php } ?>
+                        <!-- <div class="divmatrimon">
+                                        <span class="col-sm-2n"><?= $this->translate('Father Photo') ?></span>
+                                        <div class="col-sm-3 nwclas"><?= $user_Record->father_photo ?></div>
+                        </div> -->
+                    </div>
+                    <div class="row divrow1">
+                        <?php if (!empty($user_Record->mother_name)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Mother Name'); ?></span>
+                                <div class="col-sm-3 nwclas"><?= $user_Record->mother_name ?></div>
+                            </div>
+
+                        <?php } ?>
+
+                        <?php if (!empty($user_Record->mother_status)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Mother Status') ?></span>
+                                <div class="col-sm-3 nwclas"><?= $user_Record->mother_status ?></div>
+                            </div>
+
+                        <?php } ?>
+
+                    </div>
+                    <div class="row divrow1">
+                        <?php if (!empty($user_Record->mother_dob)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Mother DOB'); ?></span>
+                                <div class="col-sm-3 nwclas"><?= date('d-m-Y', strtotime($user_Record->mother_dob)); ?></div>
+                            </div>
+
+                        <?php } ?>
+
+                        <!-- <div class="divmatrimon">
+                                       <span class="col-sm-2n"><?= $this->translate('Mother Photo') ?></span>
+                                       <div class="col-sm-3 nwclas"><?= $user_Record->mother_photo ?></div>
+                       </div> -->
+                    </div>
+                    <div class="row divrow1">
+                        <?php if (!empty($user_Record->grand_father_name)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Grand Father Name'); ?></span>
+                                <div class="col-sm-3 nwclas"><?= $user_Record->grand_father_name ?></div>
+                            </div>
+
+                        <?php } ?>
+                        <?php if (!empty($user_Record->grand_father_status)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Grand Father Status') ?></span>
+                                <div class="col-sm-3 nwclas"><?= $user_Record->grand_father_status ?></div>
+                            </div>
+
+                        <?php } ?>
+
+
+                    </div>
+                    <div class="row divrow1">
+                        <?php if (!empty($user_Record->grand_mother_name)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Grand Mother Name'); ?></span>
+                                <div class="col-sm-3 nwclas"><?= $user_Record->grand_mother_name ?></div>
+                            </div>
+
+                        <?php } ?>
+
+                        <?php if (!empty($user_Record->grand_mother_status)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Grand Mother Status') ?></span>
+                                <div class="col-sm-3 nwclas"><?= $user_Record->grand_mother_status ?></div>
+                            </div>
+
+                        <?php } ?>
+
+
+                    </div>
+                    <div class="row divrow1">
+                        <?php if (!empty($user_Record->spouse_name)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Name of Spouse'); ?></span>
+                                <div class="col-sm-3 nwclas"><?= $user_Record->spouse_name ?></div>
+                            </div>
+
+                        <?php } ?>
+                        <?php if (!empty($user_Record->spouse_status)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Spouse Status'); ?></span>
+                                <div class="col-sm-3 nwclas"><?= $user_Record->spouse_status ?></div>
+                            </div>
+
+                        <?php } ?>
+
+                    </div>
+                    <?php
+// foreach ($userinfo[0]['kids_info'] as $key => $value) {
+// echo count($userinfo[0]['kids_info'][0]);
+
+                    for ($i = 0; $i < count($userinfo[0]['kids_info'][0]); $i++) {
+                        ?>
+
+                        <div class="row">
+                            <?php if (!empty($userinfo[0]['kids_info'][1][$i])) { ?>
+                                <div class="divmatrimon">
+                                    <span class="col-sm-2n"><?= $this->translate('Name of Kid'); ?></span>
+                                    <div class="col-sm-3 nwclas"> <?= $userinfo[0]['kids_info'][0][$i] ?> <?= $userinfo[0]['kids_info'][1][$i] ?></div>
+                                </div>
+                            <?php } ?>
+                            <?php if (!empty($userinfo[0]['kids_info'][2][$i])) { ?>
+
+                                <div class="divmatrimon">
+                                    <span class="col-sm-2n"><?= $this->translate('Kid Status'); ?></span>
+                                    <div class="col-sm-3 nwclas"> <?= $userinfo[0]['kids_info'][2][$i] ?></div>
+                                </div>
+                            <?php } ?>
+                        </div>
+
+
+                        <div class="row">
+                            <?php if (!empty($userinfo[0]['kids_info'][3][$i])) { ?>
+
+                                <div class="divmatrimon">
+                                    <span class="col-sm-2n"><?= $this->translate('Kid DOB'); ?></span>
+                                    <div class="col-sm-3 nwclas"> <?= $userinfo[0]['kids_info'][3][$i] ?></div>
+                                </div>
+                            <?php } ?>
+
+                        </div>
+
+                        <?php
+                    }
+                    // }
+                    ?>
+                    <?php
+                    // foreach ($userinfo[0]['kids_info'] as $key => $value) {
+                    // echo count($userinfo[0]['kids_info'][0]);
+
+                    for ($i = 0; $i < count($userinfo[0]['brother_info'][0]); $i++) {
+                        ?>
+
+                        <div class="row">
+                            <?php if (!empty($userinfo[0]['brother_info'][1][$i])) { ?>
+
+                                <div class="divmatrimon">
+                                    <span class="col-sm-2n"><?= $this->translate('Name of Brother'); ?></span>
+                                    <div class="col-sm-3 nwclas"> <?= $userinfo[0]['brother_info'][0][$i] ?> <?= $userinfo[0]['brother_info'][1][$i] ?></div>
+                                </div>
+                            <?php } ?>
+                            <?php if (!empty($userinfo[0]['brother_info'][2][$i])) { ?>
+
+                                <div class="divmatrimon">
+                                    <span class="col-sm-2n"><?= $this->translate('Brother Status'); ?></span>
+                                    <div class="col-sm-3 nwclas"> <?= $userinfo[0]['brother_info'][2][$i] ?></div>
+                                </div>
+                            <?php } ?>
+                        </div>
+
+
+                        <div class="row">
+                            <?php if (!empty($userinfo[0]['brother_info'][3][$i])) { ?>
+
+                                <div class="divmatrimon">
+                                    <span class="col-sm-2n"><?= $this->translate('Brother DOB'); ?></span>
+                                    <div class="col-sm-3 nwclas"> <?= $userinfo[0]['brother_info'][3][$i] ?></div>
+                                </div>
+                            <?php } ?>
+                        </div>
+
+                        <?php
+                    }
+
+                    for ($i = 0; $i < count($userinfo[0]['sister_info'][0]); $i++) {
+                        ?>
+
+                        <div class="row">
+                            <?php if (!empty($userinfo[0]['sister_info'][1][$i])) { ?>
+
+                                <div class="divmatrimon">
+                                    <span class="col-sm-2n"><?= $this->translate('Name of Sister'); ?></span>
+                                    <div class="col-sm-3 nwclas"> <?= $userinfo[0]['sister_info'][0][$i] ?> <?= $userinfo[0]['sister_info'][1][$i] ?></div>
+                                </div><?php } ?>
+                            <?php if (!empty($userinfo[0]['sister_info'][2][$i])) { ?>
+
+                                <div class="divmatrimon">
+                                    <span class="col-sm-2n"><?= $this->translate('Sister Status'); ?></span>
+                                    <div class="col-sm-3 nwclas"> <?= $userinfo[0]['sister_info'][2][$i] ?></div>
+                                </div>
+                            <?php } ?>
+                        </div>
+
+
+                        <div class="row">
+                            <?php if (!empty($userinfo[0]['sister_info'][3][$i])) { ?>
+
+                                <div class="divmatrimon">
+                                    <span class="col-sm-2n"><?= $this->translate('Sister DOB'); ?></span>
+                                    <div class="col-sm-3 nwclas"> <?= $userinfo[0]['sister_info'][3][$i] ?></div>
+                                </div>
+                            <?php } ?>
+                        </div>
+
+                        <?php
+                    }
+                    // }
+                    ?>
+                </div>
+                <div id="marital-detail" class="tab-pane fade">
+                    <div class="row divrow">
+                        <?php if (!empty($user_Record->marital_status)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Marital Status'); ?></span>
+                                <div class="col-sm-3 nwclas"><?= $user_Record->marital_status ?></div>
+                            </div>
+
+                        <?php } ?>
+                        <?php if (!empty($user_Record->caste)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Caste') ?></span>
+                                <div class="col-sm-3 nwclas"><?= $user_Record->caste ?></div>
+                            </div>
+
+                        <?php } ?>
+
+
+                    </div>
+                    <div class="row divrow">
+                        <?php if (!empty($user_Record->religion)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Religion'); ?></span>
+                                <div class="col-sm-3 nwclas"><?= $user_Record->religion ?></div>
+                            </div>
+
+                        <?php } ?>
+
+                        <?php if (!empty($user_Record->caste_other)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Other Caste') ?></span>
+                                <div class="col-sm-3 nwclas"><?= $user_Record->caste_other ?> </div>
+                            </div>
+
+                        <?php } ?>
+
+                    </div>	
+                    <div class="row divrow">
+                        <?php if (!empty($user_Record->blood_group)) { ?>
+                            <div class="divmatrimon">
+                                <span class="col-sm-2n"><?= $this->translate('Blood Group') ?></span>
+                                <div class="col-sm-3 nwclas"><?= $user_Record->blood_group ?></div>
+                            </div>
+
+                        <?php } ?>
+
+                    </div>
+
+                </div>
+
+                <div id="photo-gallery" class="tab-pane fade">
+                    <div class="gallery">
+
+                        <div class="col-sm-6 highslide-gallery">
+                            <div class="col-sm-12" style="padding:0;"><h3>Personal Photos</h3></div>
+
+                            <?php
+                            if (count($galleries[0]) > 0) {
+                                foreach ($galleries[0] as $key => $value) {
+
+                                    if ($key == 0) {
+                                        $cl1 = "8";
+                                        $cl2 = "1";
+                                    }
+                                    if ($key == 1) {
+                                        $cl1 = "4";
+                                        $cl2 = "1";
+                                    }
+                                    if ($key > 1) {
+                                        $cl1 = "3";
+                                        $cl2 = "2";
+                                    }
+
+
+                                    if ($key == 5) {
+                                        $cl1 = "3";
+                                        $cl2 = "2";
+                                        ?>
+                                        <div class="col-sm-<?= $cl1 ?>"><a class='highslide' iid="thumb1"  href='<?= $this->basePath() . $value ?>' title="Personal Photo"
+                                                                           onclick="return hs.expand(this, miniGalleryOptions1)">
+                                                <img src="<?= $this->basePath() . $value ?>" class="moreimgthamb<?= $cl2 ?>"/></a>
+                                            <div class="moreimage" style="cursor:pointer; background: transparent none repeat scroll 0 0; height:10px; width:10px; margin-left:31px;"> + </div>
+                                        </div>
+                                        <?php
+                                        break;
+                                    } else {
+                                        ?>
+                                        <div class="col-sm-<?= $cl1 ?>" style="padding:0 !important;">
+                                            <a class='highslide' id="thumb1" href='<?= $this->basePath() . $value ?>' title="Personal Photo"
+                                               onclick="return hs.expand(this, miniGalleryOptions1)">
+                                                <img src="<?= $this->basePath() . $value ?>"  class=" recposhiv moreimgthamb<?= $cl2 ?>"/>
+                                            </a>
+                                        </div>
+                                        <?php
+                                    }
+                                }
+                                ?>
+
+                                <div class="hidden-container" style="width:100%; background:#333;">
+                                    <?php
+                                    foreach ($galleries[0] as $key => $value) {
+
+                                        if ($key > 5) {
+                                            ?>
+                                            <a class='highslide' href='<?= $this->basePath() . $value ?>' title="Personal Photo"
+                                               onclick="return hs.expand(this, miniGalleryOptions1)">
+                                                <img src='<?= $this->basePath() . $value ?>' alt=''/></a>
+                                            <?php
+                                        }
+                                    }
+                                    ?>
+                                </div>
+                                <?php
+                            } else
+                                echo "<h4>No Photos Uploaded Yet</h4>";
+                            ?>
+                        </div>
+
+
+                        <div class="col-sm-6">
+                            <div class="col-sm-12" style="padding:0;"><h3>Family Photos</h3></div>
+
+
+
+                            <?php
+                            if (count($galleries[1]) > 0) {
+                                foreach ($galleries[1] as $key => $value) {
+
+                                    if ($key == 0) {
+                                        $cl1 = "8";
+                                        $cl2 = "1";
+                                    }
+                                    if ($key == 1) {
+                                        $cl1 = "4";
+                                        $cl2 = "1";
+                                    }
+                                    if ($key > 1) {
+                                        $cl1 = "3";
+                                        $cl2 = "2";
+                                    }
+                                    ?>
+
+                                    <?php
+                                    if ($key == 5) {
+                                        $cl1 = "3";
+                                        $cl2 = "2";
+                                        ?>
+                                        <div class="col-sm-<?= $cl1 ?>">
+                                            <a class='highslide' id="thumb1" href='<?= $this->basePath() . $value[0][0] ?>' title="<?= $value[0][1] ?> (<?= $value[1][0] ?>)"
+                                               onclick="return hs.expand(this, miniGalleryOptions1)">
+                                                <img src="<?= $this->basePath() . $value[0][0] ?>" class="moreimgthamb<?= $cl2 ?>"/>
+
+                                            </a>
+                                        </div>
+                                        <div class="moreimage" style="cursor:pointer; background: transparent none repeat scroll 0 0; height:10px; width:10px; margin-left:31px;"> + </div>
+                                    </div>
+                                    <?php
+                                    break;
+                                } else {
+                                    ?>
+                                    <div class="col-sm-<?= $cl1 ?>" style="padding:0 !important;">
+                                        <a class='highslide' id="thumb1" href='<?= $this->basePath() . $value[0][0] ?>' title="<?= $value[0][1] ?> (<?= $value[1][0] ?>)"
+                                           onclick="return hs.expand(this, miniGalleryOptions1)">
+                                            <img src="<?= $this->basePath() . $value[0][0] ?>"  class=" recposhiv moreimgthamb<?= $cl2 ?>"/>
+
+                                        </a>
+                                    </div>
+
+                                    <?php
+                                }
+                            }
+                            ?>
+
+                            <div class="hidden-container" style="width:100%; background:#333;">
+                                <?php
+                                foreach ($galleries[1] as $key => $value) {
+
+                                    if ($key > 5) {
+                                        ?>
+                                        <a class='highslide' id="thumb1" href='<?= $this->basePath() . $value[0][0] ?>' title="<?= $value[0][1] ?> (<?= $value[1][0] ?>)"
+                                           onclick="return hs.expand(this, miniGalleryOptions1)">
+                                            <img src='<?= $this->basePath() . $value[0][0] ?>' alt=''/>
+
+                                        </a>
+                                        <?php
+                                    }
+                                }
+                                ?>
+                            </div>
+                            <?php
+                        } else
+                            echo "<h4>No Photos Uploaded Yet</h4>";
+                        ?>
+
+
+                    </div> 
+
+                    <div class="clearfix"></div>
+                </div>			
+            </div>
+        <?php } ?>
+    </div>
+</div>
+</div>
+<div class="col-sm-9 width80per">
+    <div class="row">
+        <div class="col-xs-9">
+            <!--<ul class="view-menu">
+            <li>Sort By :</li>
+            <li class="active"><a href="#">New Joining</a></li>
+            <li><a href="#">Executive Communinty</a></li>
+            <li><a href="#">Senior Citizen</a></li>             
+            </ul>-->
+        </div>
+        <div class="col-xs-3" id="listgrid" style="display:none;">
+            <ul class="prof-view pull-right">
+                <li><a href="#" id="grid"><span class="glyphicon glyphicon-th-list"></span><span class="sr-only">List View</span></a></li>
+                <li><a href="#" id="list"><span class="glyphicon glyphicon-th"></span><span class="sr-only">Grid View</span></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div id="profile1"> 
+
+    </div>
+    <div class="clearfix"></div>
+
+
+</div>
+
+<?php
+if ($this->authUser()->getUser()->id) {
+    ?>
+    <script>
+        //        $(document).ready(function () {
+        //            disabletabs();
+        //        });
+    </script>
+    <?php
+}
+?>
+<script>
+    function sendInterest(uid,type){
+     $.ajax({
+      url: '/matrimonial/interest',
+      data: {
+         uid: uid,type: type
+      },
+     error: function (request, status, error) {
+        console.log(status);
+    },
+     
+      success: function(data) {
+         console.log(data);
+      },
+      type: 'POST'
+   });
+ }   
+</script>
+<!--<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document" style="width:222px !important;">
+    <div class="modal-content gnt-pad15 modal-contentnew">
+      <form role="form" action="<?php echo $this->basePath() ?>/matrimonial/profile-view?groom_id=<?php echo $BrdData->id ?>">
+                <div class="form-group">
+        <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title" id="myModalLabel">Login</h2>
+      </div>
+      <div class="modal-body">
+       
+       <div class="col-sm-12">
+       Email OR Mobile
+      <input type="text" name="login_email" id="login_email" class="form-control" />
+       </div>
+       <div class="col-sm-12">
+      Password
+     <input type="password" name="login_password" id="login_password" class="form-control" />
+       </div>
+       
+       <div class="col-sm-12">
+      
+     <input type="checkbox" name="rember" /><em>Remember me</em>
+       </div>
+       
+        <div class="col-sm-12">
+      
+     <button type="submit" name="login" id="login" class="btn btn-default btn-block popuplogingbut">Sign In</button>
+       </div>
+       
+       <div class="col-sm-12">
+<a type="submit" class="">Forgot your password?</a>
+</div>
+
+<div class="col-sm-12 text-center">OR</div>
+
+<div class="col-sm-12">New account 
+<a class="btn btn-default btn-block popuplogingbut" href="<?php echo $this->basePath() ?>/user/signup"><?php echo $this->translate('Signup') ?></a>
+
+</div>
+
+    <div class="col-sm-12 text-center"> </div>  
+        
+      </div>
+      <div class="clearfix"></div>
+      <div class="modal-footer">
+       
+      </div>
+      </div>
+        </form>
+    </div>
+  </div>
+</div>-->
+
+<?php echo $this->inlineScript()->prependFile($this->basePath('/js/matrimony_filters.js')); ?>

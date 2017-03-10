@@ -1,0 +1,114 @@
+                    <div class="table-responsive">
+                      <table id="dynamic-table" class="table table-striped table-bordered table-hover">
+                    <thead>
+                      <tr>
+                           <th><input type="checkbox" value="" id="checkAll" onclick="checkall(this.branch_id)" > </th>
+                        <th>S. No.</th>
+                        <th class="hidden-480">Country</th>
+                        <th class="hidden-480">State</th>
+                        <th class="hidden-480">City</th>
+                        <th>Branch Name</th>
+                        
+                        <!--<th class="hidden-480">Created Date</th>-->
+                        <th class="hidden-480">Modified Date</th> 
+                        <!--<th class="hidden-480">Created By</th>-->
+                        <th class="hidden-480">Modified By</th>
+                        <th class="hidden-480">Status</th>
+                        
+                        <th><b>Actions</b></th>
+                      </tr>
+                    </thead>
+                    <tbody id="sortable">
+                        <input type="hidden" id="table_name" value="tbl_rustagi_branches">
+                            <input type="hidden" id="id_name" value="branch_id">
+                      <?php 
+					  $i=1;
+                        if (count($branchs) > 0) {
+                      foreach ($branchs as $branch) {
+//                          echo  "<pre>";
+//                          print_r($branch);exit;
+                      
+                      ?>
+                      <tr id="<?php echo $branch['branch_id']; ?>" >
+                        <td><input type="checkbox" value="<?=$branch['branch_id']?>" class="checkme" name="checkme[]"> </td> 
+                       <td><?= $i ?></td>  
+                       <td><?= $branch['country_name']?></td> 
+                       <td><?= $branch['state_name']?></td> 
+                       <td><?= $branch['city_name']?></td> 
+                        <td><?= $branch['branch_name']?></td>            
+                        <!--<td class="hidden-480"><?//=$branch['created_date']?></td>-->
+                        <td class="hidden-480"><?=$branch['modified_date']?></td>
+                        <!--<td class="hidden-480"><?php //echo ($branch['modified_by']==1)? 'Admin': 'NotByAdmin'; ?></td>-->
+                        <!--<td class="hidden-480"><?php //echo $branch['username']; ?></td>-->
+                        <td class="hidden-480"><?php echo $branch['username'];?></td>
+                        
+                        
+                        <td class="hidden-480">
+						<!--<?php echo ($branch->isActive==1)? 'Active': '<span class="label label-sm label-warning">In-Active</span>'; ?>-->
+                        <?php $status = ($branch['is_active']==1)? 'Active': 'In-Active';
+                        $statuscolor = ($branch['is_active']==1)? 'activestatus': 'de-activestatus';
+                         ?>
+                          <div name="ChangeStatus" id="changestatus<?=$i;?>" onclick="changestatusquick(<?=$branch['branch_id']?>,<?= ($branch['is_active']==0)?0:1; ?>,'<?php echo $this->
+                                                                url('admin/branch', array('action'=>
+                                                                    'changestatus')); ?>',changstatusresult);" class="<?=$statuscolor?>">
+                        </div>
+                        </td>
+                        
+                        <td><div class="hidden-sm hidden-xs action-buttons"> 
+                        <!--<a class="blue" href="<?php echo $this->url('admin',array('controller'=>'branch','action'=>'view','id'=>$branch->id)); ?>">
+                         <i class="ace-icon fa fa-search-plus bigger-130"></i> </a> -->
+                         <a class="blue" style="cursor:pointer;" data-toggle="modal" data-target="#myModal"  
+                                                   tar="indview<?= $i ?>"> <i onclick="findRowDataByBranchId('<?php echo $this->url
+                                                           ('admin/branch', array('action'=>'viewById','id'=>$branch['branch_id'])); ?>', 
+                                                                       viewRowDataById);" class="ace-icon fa fa-search-plus bigger-130">
+                                                    </i> </a>
+                         
+                         <a class="green" href="javascript:void(0);" onclick="editbox(<?= 
+                                                   $branch['branch_id'] ?>, '<?php echo $this->url('admin/branch', array('action' => 
+                                                       'edit', 'id' => $branch['branch_id']));
+                                        ?>', editformresp);" > <i class="ace-icon fa fa-pencil bigger-130"></i> </a> 
+                          <a class="red" href="<?php echo $this->url('admin/branch',array('action'=>'delete','id'=>
+                              $branch['branch_id'])); ?>" onclick="return confirm('are you sure you want to delete');"> <i class="ace-icon fa 
+                                                                                             fa-trash-o bigger-130"></i> </a> </div>
+                          </td>
+                      </tr>
+                      
+                      
+                      
+                      
+                      <?php 
+                      $i++;
+                    }
+                    } else{
+                        //Zend\Debug\Debug::dump($religions);
+                        echo" <tr><td colspan=9><center><h2>No data available</h2></center></td></tr>";
+                    }
+                      ?>
+                    </tbody>
+                  </table>
+                      
+                      
+                      
+                      
+                    </div>
+                
+<?php 
+
+if($this->action!='index'){
+    ?>
+<script src="<?php echo $this->basePath(); ?>/assets/js/jquery.2.1.1.min.js"></script>
+<script src="<?php echo $this->basePath(); ?>/assets/js/jquery.dataTables.min.js"></script> 
+<script src="<?php echo $this->basePath(); ?>/assets/js/jquery.dataTables.bootstrap.min.js"></script> 
+<script src="<?php echo $this->basePath(); ?>/assets/js/dataTables.tableTools.min.js"></script> 
+<script src="<?php echo $this->basePath(); ?>/assets/js/dataTables.colVis.min.js"></script>
+<script src="<?php echo $this->basePath(); ?>/assets/js/table.js"></script> 
+<?php
+}
+
+?>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+<script src="<?php echo $this->basePath(); ?>/assets/js/jquery-1.10.2.js"></script> 
+<script src="<?php echo $this->basePath(); ?>/assets/js/jquery-ui-1.10.4.custom.min.js"></script> 
+<script src="<?php echo $this->basePath(); ?>/assets/js/script.js"></script>
+            
+             

@@ -1,0 +1,75 @@
+<div class="tree">
+    <?php
+    $memberOrder = explode(',', $memberOrder);
+    foreach ($memberOrder as $memberOrders) {
+        $data = explode(':', $memberOrders);
+        foreach ($community as $communitys) {
+
+            if ($communitys['comm_mem_id'] == $data[3]) {
+                \Zend\Debug\Debug::dump($this->MyHelper()->getCommunityMemberChild($data[3]));
+                ?>
+                
+                    <ul>
+                        <li>
+                           
+                                <?php //echo $communitys['user_id'];  ?>
+                                <?php echo $communitys['full_name']; ?>
+                                <?php echo $data['2']; ?>
+                                <?php //echo $communitys['comm_mem_id']; ?>
+                            <?php 
+                                                foreach ( $this->MyHelper()->getCommunityMemberChild($data[3]) as $child1){
+                                                    
+                                                }
+                            ?>
+                        </li>
+                    </ul>
+               
+
+                <?php
+            }
+        }
+//        echo '<pre>';
+//        print_r($data);
+//        echo '</pre>';
+    }
+    ?>
+ </div>
+
+<div class="tree">
+    <ul>
+        <li>
+            <a href="#">Parent</a>
+            <ul>
+                <li>
+                    <a href="#">Child</a>
+                    <ul>
+                        <li>
+                            <a href="#">Grand Child</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Child</a>
+                    <ul>
+                        <li><a href="#">Grand Child</a></li>
+                        <li>
+                            <a href="#">Grand Child</a>
+                            <ul>
+                                <li>
+                                    <a href="#">Great Grand Child</a>
+                                </li>
+                                <li>
+                                    <a href="#">Great Grand Child</a>
+                                </li>
+                                <li>
+                                    <a href="#">Great Grand Child</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Grand Child</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>

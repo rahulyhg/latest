@@ -1,0 +1,317 @@
+<style>
+    .modal-dialog {
+        width: 67%;
+    }
+
+    .activestatus{
+        color:green;
+        background:green;
+        border-radius:30px; width:15px; height:15px;
+        cursor:pointer
+
+    }
+
+    .de-activestatus{
+        color:green;
+        background:red;
+        border-radius:30px; width:15px; height:15px;
+        cursor:pointer;
+
+
+    }
+
+
+
+</style>
+
+
+<?php 
+
+// foreach ($awards as $award) {
+
+// echo  $award->award_name."<br>";
+
+// }
+
+// echo "<pre>";
+// print_r($awards);
+// die;
+
+?>
+<div class="row">
+          <div class="col-xs-12"> 
+            <!-- PAGE CONTENT BEGINS -->
+            <!--<div class="alert alert-block alert-success">
+              <button type="button" class="close" data-dismiss="alert"> <i class="ace-icon fa fa-times"></i> </button>
+              <i class="ace-icon fa fa-check green"></i>Add Award Master</strong>, </div>-->
+            <!--<div class="row">
+              <div class="space-6"></div>
+              <div class="vspace-12-sm"></div>
+            </div>-->
+            <div class="row">
+              <div class="col-xs-12">
+                <h3  >Add Award Master</h3>
+                <div class="filter">
+                 <div class="panel-body" style="padding:0 !important">
+                  <div class="col-lg-6">Add Ad Banner>></div>
+                  </div>
+                </div>
+                <div class="portlet-body">
+                   <form id="bookingFilter">
+          <div class="tab-content" id="myTabContent">
+            <div id="home" class="tab-pane fade active in">
+              <div style="margin: 10px auto 0px !important;padding: 0 10px;" class="col-sm-col-sm-offset-1">
+                <div class="row">
+                                        <div class="form-group clearfix margintopbottom20">
+                                            <label id="flight_nos" class="col-sm-1 control-label labelalign ">Ad Name</label>
+                                            <div class="col-sm-2 ">
+                                                <input id="ad_name" class=" form-control inputchange" placeholder="Ad Name" type="text" name="award_name">
+                                                <div class="col-sm-3" id="awardsearchresults" style="position: absolute;overflow-y:scroll;background:#FFF;width:93%;height:auto;z-index: 9999;display:none;">
+                                                </div>                                    
+                                            </div>  
+                                            
+                                             <label id="flight_nos" class="col-sm-1 control-label labelalign ">Page Name</label>
+                                            <div class="col-sm-2 ">
+                                                <select>
+                                                	<option>Matrimonial</option>
+                                                    <option>Mambership</option>
+                                                </select>                   
+                                            </div> 
+                                            
+                                             <label id="flight_nos" class="col-sm-1 control-label labelalign ">Valid Form</label>
+                                            <div class="col-sm-2 ">
+                                                <input id="ad_name" class=" form-control inputchange" placeholder="Ad Name" type="text" name="award_name">
+                                                <div class="col-sm-3" id="awardsearchresults" style="position: absolute;overflow-y:scroll;background:#FFF;width:93%;height:auto;z-index: 9999;display:none;">
+                                                </div>                                    
+                                            </div> 
+                                            
+                                            
+                                             <label id="flight_nos" class="col-sm-1 control-label labelalign ">Valid To</label>
+                                            <div class="col-sm-2 ">
+                                                <input id="ad_name" class=" form-control inputchange" placeholder="Ad Name" type="text" name="award_name">
+                                                <div class="col-sm-3" id="awardsearchresults" style="position: absolute;overflow-y:scroll;background:#FFF;width:93%;height:auto;z-index: 9999;display:none;">
+                                                </div>                                    
+                                            </div> 
+                                            
+                                            
+                                                </div>
+                                                
+                                         <div class="form-group clearfix margintopbottom20">
+                    <label class="col-sm-1 control-label labelalign Status type" id="flight_nos">Image</label>
+                    <div class="col-sm-3">
+                      <input type="file">
+                    </div>
+                    <label class="col-sm-4 control-label labelalign Female" id="point_airport">(Image Size : 1600X400, 200kb)</label>
+                    
+                     <div class="col-sm-1 ">
+                                                <input class="btn btn-red defaultbtnsearch searchBooking"  type="submit" name="submit" value="Submit">
+                                            </div>
+                  </div>        
+                                                
+                                                
+                                                <div class="col-sm-3" id="awardsearchresults" style="position: absolute;overflow-y:scroll;background:#FFF;width:93%;height:auto;z-index: 9999;display:none;">
+                                                </div>                                    
+                                            </div>                                         
+
+                                            
+                                            
+
+
+                                        </div>
+                                    </div>
+                
+              </div>
+            </div>
+          </div>
+        </form> 
+                </div>
+                
+                 
+                  <div class="filter">
+                   <div class="panel-body " style="padding:0 !important;">
+                  <div class="col-lg-6" style="cursor:pointer;">Add Update Records>>
+                  </div>
+  
+                  </div>
+   
+                </div>
+                
+                
+                
+          
+                <div id="editForm" class="tab-content dontshow">
+                 mihir
+                </div>
+                                            
+                
+                    <div class="clearfix"></div>
+                  
+                <div class="col-lg-12" style="background-color:#FFF;" id="radiosearch" fld="tbl_award">
+                  
+                  <div class="col-lg-1"><div class="radio">
+                                                
+                                               <label>
+                                                    <input type="radio" value="0" id="optionsRadios1" name="optionsRadios" onchange=
+                                    "RadioSearch($(this).val(), 'tbl_award', '<?php echo $this->url
+                                            ('admin/award', array('action'=>'ajaxradiosearch'))?>', 
+                                                        radioSearchResult2)"><strong>In-Active</strong>
+                                                </label>
+ 
+                                            </div>
+                  
+                  
+                  
+                  
+                  </div>
+                  
+                  
+                   <div class="col-lg-1"><div class="radio">
+                   
+                                                <label>
+                                                    <input type="radio" value="0" id="optionsRadios1" name="optionsRadios" onchange=
+                                    "RadioSearch($(this).val(), 'tbl_award', '<?php echo $this->url
+                                            ('admin/award', array('action'=>'ajaxradiosearch'))?>', 
+                                                        radioSearchResult2)"><strong>In-Active</strong>
+                                                </label>
+                                                
+                                              
+                                            </div>
+                  
+                  
+                  
+                  
+                  </div>
+                  
+                  
+                   <div class="col-lg-2 pull-right">
+                    <div class="delete">
+                      <button class="btn btn-red defaultbtnsearch searchBooking" onclick="delselected('<?php echo $this->url('admin/award', array('action'=>
+                                    'delmultiple'))?>',delmultipleresp)">Delete Selected</button>                                              
+                    </div>
+                  </div> 
+                  <div class="col-lg-2 pull-right">
+                    <div class="delete">
+                      <button class="btn btn-red defaultbtnsearch searchBooking" onclick="statuschangeall('<?php echo $this->url('admin/award', array
+                                    ('action'=>'changeStatusAll'))?>',statuschangeallresp,1)">Activate Selected</button>                                    
+                    </div>
+                  </div> 
+                    <div class="col-lg-2 pull-right">
+                        <div class="delete">
+                      <button class="btn btn-red defaultbtnsearch searchBooking" onclick="statuschangeall('<?php echo $this->url('admin/award', array
+                                    ('action'=>'changeStatusAll'))?>',statuschangeallresp,0)">De-Activate Selected</button>                                    
+                        </div>
+                    </div>
+                 
+                  
+                  
+                  </div>
+                  
+                  <div class="col-sm-12">
+
+
+                </div>
+                  
+                <div class="col-md-12"  id="award_data_list">
+                <div class="table-responsive">
+                      <table id="dynamic-table" class="table table-striped table-bordered table-hover">
+                    <thead>
+                      <tr>
+                           <th><input type="checkbox" value="" id="checkAll" onclick="checkall(this.id)" > </th>
+                        <th>S. No.</th>
+                        <th>Ad Name</th>
+                        <th class="hidden-480">Valid From</th>
+                        <th class="hidden-480">Valid To</th>   
+                        <th class="hidden-480">Modified By</th>
+                        <th class="hidden-480">Status</th>                        
+                        <th><b>Actions</b></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    
+                      <tr>
+                        <td><input type="checkbox" value="<?=$award->id?>" class="checkme" name="checkme[]"> </td> 
+                       <td>1</td>  
+                        <td>Matrimonial</td>                
+                        <td class="hidden-480">21-11-2016</td>
+                        <td class="hidden-480">21-11-2016</td> 
+                        
+                        <td class="hidden-480">Admin</td>
+                        
+                        <td class="hidden-480">
+						<!--<?php echo ($award->isActive==1)? 'Active': '<span class="label label-sm label-warning">In-Active</span>'; ?>-->
+                        <?php $status = ($award->isActive==1)? 'Active': 'In-Active';
+                        $statuscolor = ($award->isActive==1)? 'activestatus': 'de-activestatus';
+                         ?>
+                          <div name="ChangeStatus" id="changestatus<?=$i;?>" onclick="changestatusquick(<?=$award->id?>,<?= ($award->isActive==0)?0:1; ?>,'<?php echo $this->
+                                                                url('admin/award', array('action'=>
+                                                                    'changestatus')); ?>',changstatusresult);" class="<?=$statuscolor?>">
+                        </div>
+                        </td>
+                        
+                        <td><div class="hidden-sm hidden-xs action-buttons"> 
+                        <!--<a class="blue" href="<?php echo $this->url('admin',array('controller'=>'award','action'=>'view','id'=>$award->id)); ?>">
+                         <i class="ace-icon fa fa-search-plus bigger-130"></i> </a> -->
+                         <a class="blue" style="cursor:pointer;" data-toggle="modal" data-target="#myModal"  
+                                                   tar="indview<?= $i ?>"> <i onclick="findRowDataByAwardId('<?php echo $this->url
+                                                           ('admin/award', array('action'=>'viewById','id'=>$award->id)); ?>', 
+                                                                       viewRowDataById);" class="ace-icon fa fa-search-plus bigger-130">
+                                                    </i> </a>
+                         
+                         <a class="green" href="javascript:void(0);" onclick="editbox(<?= 
+                                                   $award->id ?>, '<?php echo $this->url('admin/award', array('action' => 
+                                                       'edit', 'id' => $award->id));
+                                        ?>', editformresp);" > <i class="ace-icon fa fa-pencil bigger-130"></i> </a> 
+                          <a class="red" href="<?php echo $this->url('admin/award',array('action'=>'delete','id'=>
+                              $award->id)); ?>" onclick="return confirm('are you sure you want to delete');"> <i class="ace-icon fa 
+                                                                                             fa-trash-o bigger-130"></i> </a> </div>
+                          </td>
+                      </tr>
+                      
+                      <tr>
+                           <td><input type="checkbox" value="" id="checkAll" onclick="checkall(this.id)" > </td>
+                        <td>1</td>
+                        <td>Award Name</td>
+                        <td class="hidden-480">21-11-2016</td>
+                        <td class="hidden-480">21-11-2016</td>   
+                        <td class="hidden-480">Admin</td>
+                       <td class="hidden-480">
+						<!--<?php echo ($award->isActive==1)? 'Active': '<span class="label label-sm label-warning">In-Active</span>'; ?>-->
+                        <?php $status = ($award->isActive==1)? 'Active': 'In-Active';
+                        $statuscolor = ($award->isActive==1)? 'activestatus': 'de-activestatus';
+                         ?>
+                          <div name="ChangeStatus" id="changestatus<?=$i;?>" onclick="changestatusquick(<?=$award->id?>,<?= ($award->isActive==0)?0:1; ?>,'<?php echo $this->
+                                                                url('admin/award', array('action'=>
+                                                                    'changestatus')); ?>',changstatusresult);" class="<?=$statuscolor?>">
+                        </div>
+                        </td>                    
+                        <td><b>Actions</b></td>
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+                      
+                      
+                      
+                      
+                    </div>
+                
+                    <?php /*echo $this->partial('admin/award/awardList.phtml'); */?>
+                 </div>
+              </div>
+              
+              
+              
+              
+              
+              <div class="col-sm-12"> 
+                
+                <!-- /.widget-box -->
+                <!--<div  style="margin-top:20px;"> <a href="#" class="btn btn-red defaultbtnsearch searchBooking"><i class="fa fa-search" id="search_me" style="color:#fff; margin:5px"></i>Refresh</a> </div>-->
+              </div>
+            </div>
+            <!-- /.col --> 
+          
+  <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse"> <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i> </a>
+</div></div>
+<div id="viewAwardModel"></div>
+<?php echo $this->inlineScript()->prependFile($this->basePath('/assets/js/award.js')); ?>

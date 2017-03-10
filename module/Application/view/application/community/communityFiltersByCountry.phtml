@@ -1,0 +1,95 @@
+
+<style>
+       .col-sm-9 label {
+        color: #777;
+        font-size: 11px;
+        font-weight: 400;
+        line-height: 15px;
+        font-weight:normal !important ;
+        margin-bottom: 5px;
+        text-align: center;
+    }
+    
+</style>
+<?php
+     $breadcum="";
+     if($postdata['Country_name']){
+       $country=$this->MyHelper()->getCountryNameById($postdata['Country_name']);
+       $breadcum.=$country->country_name;
+     }
+     if($postdata['State_name']){
+       $state=$this->MyHelper()->getStateNameById($postdata['State_name']);
+       $breadcum.=" / ".$state->state_name;
+       
+     }
+     if($postdata['City_name']){
+       $city=$this->MyHelper()->getCityNameById($postdata['City_name']);
+       $breadcum.=" / ".$city->city_name;
+  
+     }
+     if($postdata['Branch_name']){
+       $branch=$this->MyHelper()->getBranchNameById($postdata['Branch_name']);
+       $breadcum.=" / ".$branch[0]['branch_name'];
+  
+     }
+    
+     echo "<h2>".$breadcum."</h2>";
+      
+?>
+
+<?php
+    $memberOrder = explode(',', $memberOrder);
+    $type='';
+    foreach ($memberOrder as $memberOrders) {
+        $data = explode(':', $memberOrders);
+        foreach ($community as $communitys) {
+            if($communitys['comm_mem_id']==$data[3]){
+                ?><h2><?php echo $data[2]?></h2> <?php
+                                break;
+            }
+        }
+        ?>
+
+    <div class = "row" style="margin-bottom:1%">
+            <?php
+        foreach ($community as $communitys) {
+            //\Zend\Debug\Debug::dump($communitys);
+            if($communitys['comm_mem_id']==$data[3]){
+               
+            ?>
+        <div class="col-sm-2">
+                            <label>
+                                <div class="profile-pic">
+                                    <?php
+                                    $imagepath=$this->MyHelper()->getProfilePicByUsergId((int)$communitys['user_id']);
+                                    if($imagepath){
+                                        ?> <img src="<?php echo $this->basePath() ."/uploads/". $imagepath->image_path; ?>" style="width:71px;"/><?php
+                                    }else{
+                                     ?> <img src="<?php echo $this->basePath() . '/img/default_user.png'; ?>"/><?php   
+                                    }
+                                    
+                                    ?>
+                                    
+                                   
+                                </div>
+                                <?php echo $communitys['full_name']; ?><br/>
+                                <?php echo $data['2']; ?><br/>
+                                <span style="padding-bottom:5px;"> <?php echo $this->MyHelper()->getBranchNameById($communitys['branch_ids'])[0]['branch_name'] ?></span><br/>
+                                <label>
+                                    <a href="/membership/profile-view?member_id=<?php echo $communitys['uid']?>" class="btn btn-default homemore">more info</a>
+                                </label>
+                            </label>
+            </div>
+
+            <?php
+            }
+           
+        }
+         ?>
+           
+            </div>
+            <?php
+
+    }
+
+    ?>

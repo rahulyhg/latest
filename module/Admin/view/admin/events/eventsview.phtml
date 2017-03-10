@@ -1,0 +1,59 @@
+ <?php 
+
+// print_r($Info->username);die;
+ ?>
+ <div>
+            <p>
+              <a href="<?= $this->url('admin/events',array('action'=>'eventsindex'));?>"><button class="btn btn-warning btn-xlg">Go Back</button></a>
+            </p>
+          </div>
+<label>Title:</label>
+<div class="alert alert-block alert-success">
+    
+    <?= $info->eventTitle?></strong> </div>
+  
+  <div class="row">
+    <div class="col-xs-12">
+      <p class="pull-left newsimg"  ><?php $image = (empty($info->image))?'/images/new-big.jpg' : $info->image;?><img src="<?= $this->basepath()."/EventsImages/".$image;?>" width="257"  height="257" alt=""></p>
+      
+      
+    </div>
+  </div>
+<label>Event Desc:</label>
+    <div class="row">
+    <div class="col-xs-12">      
+      <p style="padding-left:20px"><?= $info->eventDesc; ?>
+      </p>
+      
+    </div>
+  </div>
+
+<albel>Event Venue:</label>
+    <div class="row">
+    <div class="col-xs-12">      
+      <p style="padding-left:20px"><?= $info->eventVenue; ?>
+      </p>
+      
+    </div>
+  </div>
+
+<albel>Status:</label>
+    <div class="row">
+    <div class="col-xs-12">      
+      <p style="padding-left:20px"><?= $status = (empty($info->isActive))?Inactive : Active; ?>
+      </p>
+      
+    </div>
+  </div>
+  
+  <div class="clearfix"></div>
+  
+  
+  <div class="timeline-body alert-success2">
+                     <!--Posted By : <?php //echo $info->username ;?> |-->
+                   Posted Date : <?= date("l d-m-y",strtotime($info->createdDate)); ?> | 
+
+                   Modified Date : <?= ($info->modifiedDate); ?> 
+
+                      
+                    </div>

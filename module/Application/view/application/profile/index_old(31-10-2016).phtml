@@ -1,0 +1,365 @@
+<?php
+echo $this->headLink()
+
+        ->prependStylesheet($this->basePath() . '/css/componant-vs-14.css')
+?>
+<div class="container orange-panelbg">
+    <div class="col-sm-3 col-sm-3-new width20per">
+        <div id="tour_step1" data-step="1">
+            <div id="profile_info_widget" class="profile_info" style="display:block">
+
+                <div id="" class="my_rustagi_profile_info">
+                    <div class="my_rustagi_thumbnail"> <a href="#"> 
+                            <img src="<?php echo $this->basePath('/uploads/').$userSummary->profilePic['image_path']?>" height="" width="100%"></a></div>
+                    <div class="manage_links_wrap">
+                        <a href="<?php echo $this->url('profile', array('action'=>'personal-profile')) ?>" class="light_blue">Edit Profile</a>
+                        <a href="<?php echo $this->url('profile', array('action'=>'mygallery')) ?>" class="light_blue">Manage Photos</a>
+                        <!-- <a href="#" class="light_blue">Edit Preferences</a>
+                                     <a href="#" class="light_blue">Privacy Options</a>-->
+                    </div><br class="clear"><div class="myshaadi_badge_bg " id="myshaadi_badge_bg">
+                        <div class="myshaadi_badges"><div class="contact_badge_active"></div><div id="social_tooltip">
+                                <div class="social_badge"></div>
+                                <div id="widget_tooltip" class="pop" style="width: 236px; display: none;">
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                        <tbody>
+                                            <tr>
+                                                <td class="pop_top_l" valign="top"></td>
+                                                <td class="pop_top_m">&nbsp;</td>
+                                                <td class="pop_top_r" valign="top"></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3" class="pop_middle" valign="top">
+                                                    <div id="pop_inner_content">
+                                                        <div>
+                                                            <span class="pop-pointer" style="left: 10px;"></span>
+                                                            <div id="widget_content" class="badge_tooltip_content">
+                                                                <div class="badge_tooltip_heading">
+                                                                    Social Profile Badge</div>
+
+                                                                Connect your social profile to activate this Badge. We will never post anything to your account.
+                                                                <div class="spacer_5"></div>
+                                                                <a class="unlock_tooltip" href="#">Unlock Now<span class="unlock_right_arrow"></span></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="pop_bot_l" nowrap="nowrap" valign="top"></td>
+                                                <td class="pop_bot_m">&nbsp;</td>
+                                                <td class="pop_bot_r" valign="top"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div><div id="offline_tooltip">
+                                <div class="offline_badge"></div>
+                                <div id="widget_tooltip" class="pop" style="width: 236px; display: none; position: absolute; top: 36px; left: -8px;">
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                        <tbody>
+                                            <tr>
+                                                <td class="pop_top_l" valign="top"></td>
+                                                <td class="pop_top_m">&nbsp;</td>
+                                                <td class="pop_top_r" valign="top"></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3" class="pop_middle" valign="top">
+                                                    <div id="pop_inner_content">
+                                                        <div>
+                                                            <span class="pop-pointer" style="left: 10px;"></span>
+                                                            <div id="widget_content" class="badge_tooltip_content">
+                                                                <div class="badge_tooltip_heading">
+                                                                    Offline ID Badge</div>
+
+                                                                Activate this Badge by sending us a copy of Driving 
+                                                                License, Passport or any other Govt. issued ID. Your ID will not be 
+                                                                shared with others.
+                                                                <div class="spacer_5"></div>
+                                                                <a class="unlock_tooltip" href="http://www.shaadi.com/my-shaadi/trust-badge">Unlock Now<span class="unlock_right_arrow"></span></a>
+                                                            </div>                                                       
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="pop_bot_l" nowrap="nowrap" valign="top"></td>
+                                                <td class="pop_bot_m">&nbsp;</td>
+                                                <td class="pop_bot_r" valign="top"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>	<div class="clearfix"></div>
+                        </div>
+
+                    </div></div>        </div>
+        </div>
+
+        <div class="inbox_widget">
+            <ul>
+
+                <li>
+                    <span class="ms_ln_heading">Inbox</span>
+                </li>  
+                <li class="default">
+
+                    <span class="ms_ln_heading">Inbox</span>
+                </li>
+                <li class="inner_list">
+                    <div class="inner_folders">
+
+                        <a href="<?php echo $this->url('profile', array('action'=>'received','slug'=>'interests'));?>">
+                            <span class="span_bold"><?php echo $this->invitation['invitation']; ?></span>                <span>Invitations</span>
+                            <span class="arrow_wrap"><span class="myshaadi_left_arrow"></span></span>            </a>
+                    </div>
+                </li>
+
+                <li>
+                    <span class="accepted_icon"></span>
+                    <span class="ms_ln_heading">Accepted</span>
+                    
+                </li>
+                <li class="inner_list">
+                    <div class="inner_folders">
+                        <a href="<?php echo $this->url('profile', array('action'=>'accepted','slug'=>'interests'));?>">
+                            <span>Members</span>
+                            <span class=" num"><?php echo $this->accepted['accepted']; ?></span>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <span class="sent_icon"></span>
+                    <span class="ms_ln_heading">Sent</span>
+                </li>
+                <li class="inner_list">
+                    <div class="inner_folders">
+
+                        <a href="<?php echo $this->url('profile', array('action'=>'sent','slug'=>'interests'));?>">
+                            <span>Invitations </span>
+                            <span class=" num"><?php echo $this->sent['sent']; ?></span></a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+
+
+
+
+    
+
+    </div>
+    <div class="col-sm-9 width80per">
+        <div class="myshaadi_wrap">
+            <div class="welcome_screen"></div>
+
+
+            <div class="prof_title">
+                <span class="hello">Hello!</span> <span class="prof_name"><?php echo $this->userSummary->userInfo->getFullName() ?></span>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        <!--MY SHAADI LEFT-->
+        <div class="col-sm-9" style="padding-top:0; padding-left:0;">
+
+            <!--<div id="my_rustagi_left">
+            
+            
+                    
+            
+            
+            </div>--><!--end left_half-->	
+
+            <!--MIDDLE SECTION-->
+            <div id="my_rustagi_middle">
+
+                
+                <!--Pin Interest render-->
+                <?php foreach($this->post as $posts){
+                   // print_r($posts);
+                    ?>
+                <div id="pin_interest" style="display: block;">    
+                    <div class="pinned_wrap">
+                        <div class="pinned_shadow">
+
+                            <div class="pinned_profile_green">
+                               
+
+                                <div id="pin_interest_profile" class="pos_rel">
+
+                                    <div class="pinned_profile_wrap" rel="vSH87477335">
+                                        <?php if(!empty($posts['image'])){ ?>
+                                        <div class="pinned_pic">
+                                            <span class="thumb60">
+                                                <a href="#" target=""><img src="<?php echo $this->basePath('/PostsImages/').$posts['image']?>" border="0" height="60" width="60"></a>
+
+                                            </span>
+                                        </div>
+                                        <?php } ?>
+                                        <div class="pinned_info">
+                                            <a href="#" class="pinned_pro_name" target="_blank"><?php echo $posts['title']?></a>
+                                            
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="personal_msg" style="border-top: none">
+                                            <span id="min_profile_detail_profile_vSH87477335">
+                                                <?php echo $posts['description']?> 
+                                        </div>
+
+                                    </div>                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php } ?>
+<!--                <div id="pin_interest" style="display: block;">    
+                    <div class="pinned_wrap">
+                        <div class="pinned_shadow">
+
+                            <div class="pinned_profile_green">
+                                <p class="pinned_heading">
+                                    Heading                   
+                                </p>
+
+                                <div id="pin_interest_profile" class="pos_rel">
+
+                                    <div class="pinned_profile_wrap" rel="vSH87477335">
+                                        <div class="pinned_pic">
+                                            <span class="thumb60">
+                                                <a href="#" target=""><img src="images/beby.jpg" border="0" height="60" width="60"></a>
+
+                                            </span>
+                                        </div>
+                                        <div class="pinned_info">
+                                            <a href="#" class="pinned_pro_name" target="_blank">SH87477335</a>
+                                            <ul class="member_details">
+                                                <li><span class="category">Age / Height</span><span>:</span><span class="category_info">34 / 5' 4" (162cm)</span></li>
+                                                <li><span class="category">Marital Status</span><span>:</span><span class="category_info">Never Married</span></li>
+                                                <li><span class="category">Religion / Community</span><span>:</span><span class="category_info">Hindu, Agarwal</span></li>
+                                                <li><span class="category">Mother Tongue</span><span>:</span><span class="category_info">Hindi</span></li>
+                                                <li><span class="category">Location</span><span>:</span><span class="category_info">Bengaluru / Bangalore, India</span></li>
+                                                <li><span class="category">Profession</span><span>:</span><span class="category_info">Investment Professional</span></li>
+                                                <li><span class="category">Education</span><span>:</span><span class="category_info">Masters - Management</span></li>
+                                            </ul>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="personal_msg">
+                                            <span id="min_profile_detail_profile_vSH87477335">
+                                                Hello, I have liked your profile and believe it to be good Match. If you like my sister's profile, k <a onclick="showMore('vSH87477335')" href="javascript:void(0)" class="secondary_link">Read more...</a>        </span>
+                                            <span id="showdata_vSH87477335" class="none"><span class="email"></span>Hello,
+                                                I have liked your profile and believe it to be good Match. If you like 
+                                                my sister's profile, kindly accept this Invitation. We can then pursue 
+                                                this further on ph:  <span style="color:#c1690b;background:#ffffbe" title="This member's contact details will be visible after you Accept the Interest">Phone Number Visible on Accept</span>  or through email: <span style="color:#c1690b;background:#ffffbe" title="This member's contact details will be visible after you Accept the Interest">Email Id Visible on Accept</span> Warm Regards, anju aggrawal</span>
+                                        </div>
+
+                                    </div>                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+
+                <!-- recently joined render -->
+<!--                <div id="recently_joined" style="display: block;">
+                    <div class="mid_box">
+                        <div class="mid_box_header">
+                            <p>New Matches <span class="recently_joined_count"> (58) </span></p>
+                                    <p class="view_all"><a href="#" class="light_link_blue" target="_blank">View all</a></p>
+
+                        </div>
+                        <div id="recently_joined_profiles" class="pos_rel">
+
+
+                            <div class="profile_compact_view">
+                                <span class="thumbnail">
+                                    <a href="#" target=""><div class="fl small-pic">
+                                            <img src="images/gallery-thumb.jpg" width="100%" border="0"></div></a>
+                                </span>
+                                <div class="user_info">
+                                    <p> <a href="#" class="light_blue" target="">Shruti R</a> </p>
+                                    <p>29, 5' 1", Hindu, Baniya, Hindi</p>
+                                    <p>Medical / Healthcare Professional (Others), Faridabad, India</p>
+                                    <a href="#" class="full_profile" target="">Full Profile</a>
+                                </div>
+                            </div>
+
+                            <div class="profile_compact_view">
+                                <span class="thumbnail">
+                                    <a href="#" target=""><div class="fl small-pic">
+                                            <img src="images/gallery-thumb.jpg" width="100%" border="0"></div></a>
+                                </span>
+                                <div class="user_info">
+                                    <p> <a href="#" class="light_blue" target="">Mini Sunita G</a> </p>
+                                    <p>32, 5' 3", Hindu, Baniya, Hindi</p>
+                                    <p>Media Professional, Mumbai, India</p>
+                                    <a href="#" class="full_profile" target="">Full Profile</a>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>-->
+                <!-- recently joined render -->
+
+
+
+
+
+            </div>
+            
+        </div>
+        <!--MY rustagi RIGHT-->
+        <div id="my_rustagi_right" class="col-sm-3 col-sm-3new pull-right">
+            <div class="mid_box">
+                <div id="myshaadi-banner">
+                    <?php echo $this->partial('layout/sidebar-slider') ?>
+                </div>
+
+            </div>
+
+            <div class="mid_box" id="my_feeds_content_div">
+                <div class="mid_box_header">
+                    <p>Accepted</p>
+                </div>
+                <div class="recent_updated_wrap over_y_s">
+                    <?php foreach($this->acceptedMember as $acceptedMembers){ ?>
+                    <div class="profile_compact_view profile_compact_viewn">
+                        <?php
+                        if(!empty($acceptedMembers['image_path'])){
+                        $imagepath='uploads/'.$acceptedMembers['image_path'];
+                        }else{
+                            $imagepath='images/beby.jpg';
+                        }
+                        ?>
+                        <span class="thumbnail thumbnailnew"><a href="#" target="_blank"><img src="<?php echo $imagepath?>"  alt="" title="" ondragstart="return false;" ondragenter="return false;" ondragover="return false;" ondrop="return false;" onmousedown="return false;" oncontextmenu="return false;" height="27" width="27"></a>
+                        </span>
+                        <div class="user_info user_infon">
+                            <span>
+                                <a id="feeds_mini_profile" href="#" onmouseover="#" class="light_blue"><?php echo $acceptedMembers['full_name'];?></a>
+                            </span>
+                        </div><!--end of user_info-->
+
+
+                    </div>
+                    <?php } ?>
+
+
+
+                    
+
+                   
+
+
+                </div><!--end recent_updated_wrap--><p class="mid_box_footer">
+                    <a href="#" class="light_link_blue" target="">View all</a>
+                </p></div>
+        </div>
+        <!--end right_half-->
+        <br class="clear">
+    </div>
+</div>

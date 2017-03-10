@@ -1,0 +1,50 @@
+<style>
+    p{
+        text-align:center;
+    }
+</style>
+
+<div class="col-sm-3 col-sm-3-new width20per">
+    <?php echo $this->partial('layout/sidebar-community') ?>
+    <?php echo $this->partial('layout/sidebar-slider') ?>
+</div>
+
+<div class="col-sm-9 width80per" id="community_filter_view" >
+
+    <?php
+    $memberOrder = explode(',', $memberOrder);
+    $type = '';
+    foreach ($memberOrder as $memberOrders) {
+        $data = explode(':', $memberOrders);
+        ?>
+
+        <div class = "row" style="margin-bottom:1%">
+            <?php
+            foreach ($community as $communitys) {
+                //\Zend\Debug\Debug::dump($communitys);
+                if ($communitys['comm_mem_id'] == $data[3]) {
+                    ?>
+                    <div class = "col-sm-6 col-md-3">
+                        <div class="profile-pic">
+                            <img src="<?php echo $this->basePath() . '/img/default_user.png'; ?>" />
+                        </div>
+                        <div> <?php echo $communitys['full_name']; ?></div>
+                        <div> <?php echo $data['2']; ?></div>
+                        <a href="/membership/profile-view?member_id=<?php echo $communitys['user_id'] ?>" class="btn btn-default">more info</a>
+                    </div>
+
+                    <?php
+                }
+            }
+            ?>
+
+        </div>
+    <?php
+}
+?>
+
+</div>
+
+
+<?php echo $this->inlineScript()->prependFile($this->basePath('/js/community_filters.js')); ?>
+ 

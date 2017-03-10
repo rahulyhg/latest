@@ -1,0 +1,134 @@
+<style>
+.tree
+{min-width:2000px;
+
+}
+
+.scroldiv
+{
+	
+	width:768px; top: 0px; left: 0px; z-index: 2; -webkit-user-select: none; height: 533px; cursor: auto; overflow:scroll;
+}
+</style>
+
+   
+<div class="scroldiv">    
+
+<div class="tree">
+    <?php $root=$this->MyHelper()->getCommunityMemberByParentId(1);?>
+    <?php foreach($root as $kahabe){ 
+     
+        ?>
+    <ul>
+        <li>
+            <?php $pahalamukabla=$this->MyHelper()->getCommunityMemberById($kahabe['id']);?>
+            <?php foreach($community as $com){
+     //Zend\Debug\Debug::dump($com);
+                if($com['comm_mem_id']==$pahalamukabla[0]['id']){
+                ?>
+            
+                       
+            <div class="profile-pic">
+                    <img src="<?php echo $this->basePath() . '/img/default_user.png';?>" />
+            </div>
+            <?php echo $com['id']?>
+            <?php echo $com['full_name']?>
+            <a href="#"><?php echo $pahalamukabla[0]['category_name']?></a>
+           
+            
+            
+            
+                <?php } } ?>
+            <ul>
+    
+                <?php foreach ($this->MyHelper()->getCommunityMemberChild($pahalamukabla[0]['id']) as $child1){ 
+                      //echo $child1['id'];
+                ?>
+                     <?php foreach($community as $com){
+                     //echo $pahalamukabla[0]['id'];
+                         //echo $com['branch_ids'];
+                        //$memberRepeat= $com['comm_mem_id'];
+                       if($com['comm_mem_id']==$child1['id']){
+                    ?>
+                <li> 
+                    
+                            <div class="profile-pic">
+                                    <img src="<?php echo $this->basePath() . '/img/default_user.png';?>" />
+                                </div>
+                            <?php echo $com['id']?>
+                            <?php echo $com['full_name']?>
+                    <?php echo $com['branch_ids']?>
+                           <a href="#"><?php echo $child1['category_name']?></a>
+                          
+                    
+                    <ul>
+    
+                        <?php foreach ($this->MyHelper()->getCommunityMemberChild($child1['id']) as $child2){ ?>
+                    <?php foreach($community as $com){
+                     //echo $pahalamukabla[0]['id'];
+                       if($com['comm_mem_id']==$child2['id']){
+                    ?>
+                            <li> 
+                                
+                                <div class="profile-pic">
+                                        <img src="<?php echo $this->basePath() . '/img/default_user.png';?>" />
+                                    </div>
+                                 <?php echo $com['id']?>
+                            <?php echo $com['full_name']?>
+                               <a href="#"><?php echo $child2['category_name']?></a>
+                                
+                            </li>
+ <?php } } ?>
+                        <?php  } ?>
+    
+                    </ul>
+                </li>
+                <?php } } ?>
+ 
+               <?php  } ?>
+    
+            </ul>
+        </li>
+    </ul>
+    <?php } ?>
+    
+ </div>
+</div>
+<!--<div class="tree">
+    <ul>
+        <li>
+            <a href="#">Parent</a>
+            <ul>
+                <li>
+                    <a href="#">Child</a>
+                    <ul>
+                        <li>
+                            <a href="#">Grand Child</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Child</a>
+                    <ul>
+                        <li><a href="#">Grand Child</a></li>
+                        <li>
+                            <a href="#">Grand Child</a>
+                            <ul>
+                                <li>
+                                    <a href="#">Great Grand Child</a>
+                                </li>
+                                <li>
+                                    <a href="#">Great Grand Child</a>
+                                </li>
+                                <li>
+                                    <a href="#">Great Grand Child</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Grand Child</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>-->

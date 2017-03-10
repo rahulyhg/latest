@@ -1,0 +1,109 @@
+<style>
+	p{
+		text-align:center;
+	}
+</style>
+
+<div class="col-sm-3 col-sm-3-new width20per">
+<?php echo $this->partial('layout/sidebar-community') ?>
+<?php echo $this->partial('layout/sidebar-slider') ?>
+</div>
+
+<div class="col-sm-9 width80per">
+<h2 class="heading">Rohini Branch</h2>
+<?php 
+
+foreach ($new as $key => $value) {
+  ?>
+  <div class="tree">
+  <ul>
+    <li><a href="<?php echo $this->basePath()?>/membership/profile-view?groom_id=<?php echo $value['user_id'] ?>" class="maincommunity">
+       <div class="img-tag">
+       <img src="<?php if($value['profile_photo'] !=''){
+            echo $this->basePath().$value['profile_photo'];
+          }else{
+            echo $this->basePath().'/img/default_user.png';
+          } ?>" style="width:71px;"/>
+      <!-- <img src="<?php echo $this->basePath('images/community1.png') ?>" />--></div>
+       <div class="pull-right" align="center" style="text-align:center;">
+       <p class="lead" style="text-align:center;"><?=$value['full_name']?> Full Name </p>
+        <p><?=$value['category_name']?> Post</p>
+        <p><?=$value['email']?> Email ID</p>
+        </div>
+        </a>
+<ul>
+  <?php
+
+          foreach ($value['mychild'] as $k => $v) {
+
+          ?>
+          <li> <a href="#" class="maincommunity">
+            <div class="img-tag">
+             <img src="<?php if($v['profile_photo'] !=''){
+            echo $this->basePath().$v['profile_photo'];
+          }else{
+            echo $this->basePath().'/img/default_user.png';
+          } ?>" style="width:71px;"/>
+            <!--<img src="<?php echo $this->basePath('images/community2.png') ?>" />--></div>
+            <div class="col-xs-7">
+            <p class="lead"><?=$v['full_name']?></p>
+            <p><?=$v['category_name']?></p>
+            <p><?=$v['email']?></p>
+            </div>
+            </a></li>
+          <?php
+
+          }
+
+
+          ?></ul></li></ul></div>
+          <?php
+        }
+
+
+         
+			if(isset($lone)){
+          foreach ($lone as $key => $value) {
+
+              ?><div class="tree">
+              <ul><li><ul>
+              <?php
+					//for Live purpose
+                foreach ($value as $k => $v) {
+				
+				//for testing purpose
+				// foreach ($lone as $k => $v) {	
+					
+                    ?><li><a href="#" class="maincommunity">
+            <div class="img-tag">
+             <img src="<?php if($v['profile_photo'] !=''){
+            echo $this->basePath().$v['profile_photo'];
+          }else{
+            echo $this->basePath().'/img/default_user.png';
+          } ?>" style="width:71px;"/>
+            <!--<img src="<?php echo $this->basePath('images/community2.png') ?>" />--></div>
+            <div class="col-xs-7">
+            <p class="lead"><?=$v['full_name']?></p>
+            <p><?=$v['category_name']?></p>
+            <p><?=$v['email']?></p>
+            </div>
+            </a></li>
+                    <?php
+                }
+                ?>
+              </ul></li></ul></div>
+                <?php
+         }
+		 }else{?>
+			 <div><?php //  echo 'lone variable is empty'; ?></div>
+			 
+		<?php	 }
+ 
+?>
+
+<div class="clearfix"></div>
+
+</div>
+
+<?php echo $this->inlineScript()->prependFile($this->basePath('/js/community_filters.js')); ?>
+ 

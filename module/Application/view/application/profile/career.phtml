@@ -1,0 +1,289 @@
+<div class="col-sm-3 col-sm-3-new width20per">
+<?php echo $this->partial('layout/sidebar-user') ?>
+</div>
+
+<div class="col-sm-9 width80per">
+<?php include('main_info.phtml'); ?>
+<div class="col-sm-6" style="margin-top:22px; float:right; text-align:right;">
+<p style="text-align:right;">Connected  9 Months ago</p>
+</div>
+
+<div class="clearfix"></div>
+<ul class="nav nav-pills">
+<li><a href="<?php echo $this->basePath()?>/account/editabout"><?php echo $this->translate('About') ?></a></li> 
+<li><a href="<?php echo $this->basePath()?>/account/memberbasic"><?php echo $this->translate('Personal Details') ?></a></li>
+<li><a href="<?php echo $this->basePath()?>/account/editeducation"><?php echo $this->translate('Education') ?></a></li>  
+<li class="active"><a href="#"><?php echo $this->translate('Profession') ?></a></li>
+<li><a href="<?php echo $this->basePath()?>/account/editfamily"><?php echo $this->translate('Family Details') ?></a></li>
+<!--<li><a href="<?php echo $this->basePath()?>/account/editmatrimoni"><?php echo $this->translate('Marital Details') ?></a></li>-->
+
+<li><a href="<?php echo $this->basePath()?>/account/post"><?php echo $this->translate('Post') ?></a></li>
+<li><a href="<?php echo $this->basePath()?>/account/mygallery"><?php echo $this->translate('Gallery') ?></a></li>
+  </ul>
+ <div class="tab-content">
+    <div id="personal_info" class="tab-pane fade in active">
+	<table width="100%">
+	<tr>
+	<td>
+     <?php
+		$form = $this->form;
+		$form->prepare();
+		echo $this->form()->openTag($form);?>
+		 <div class="col-sm-4" style="width:100%;">
+        <h3><?php echo $this->translate('Update Your Career Info') ?></h3> 
+		
+		<div class="form-group row">
+		<label for="Specialization" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Specialization');?></label>
+		<div class="col-sm-3">
+			<!-- <input type="text" class="form-control" /> -->
+			<?=$this->formRow($form->get('specialize_profession'));?>
+			
+		</div>
+		<label for="Office Name" class="col-sm-2 form-control-label lblline"></label>
+		<div class="col-sm-3"></div>
+		</div>
+        
+        
+		<div class="form-group row">
+		<label for="Working Info" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Working Info');?></label>
+		<div class="col-sm-3">
+			<?php  
+					echo $this->formHidden($form->get('id'));
+					echo $this->formRow($form->get('workplace_info'));?>
+		</div>
+		<label for="Office Name" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Office Name') ?></label>
+		<div class="col-sm-3"><?php  echo $this->formRow($form->get('office_name'));?></div>
+		</div>
+		
+		<div class="form-group row">
+		<label for="Office Email" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Office Email');?></label>
+		<div class="col-sm-3"><?php echo $this->formRow($form->get('office_email'));?></div>
+		<label for="Office Address" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Office Address') ?></label>
+		<div class="col-sm-3"><?php  echo $this->formRow($form->get('office_address'));?></div>
+		</div>
+		
+		<div class="form-group row">
+		<label for="Office Country" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Office Country');?></label>
+		<div class="col-sm-3"><?php echo $this->formRow($form->get('office_country'));?></div>
+		<label for="Office State" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Office State') ?></label>
+		<div class="col-sm-3"><?php  echo $this->formRow($form->get('office_state'));?></div>
+		</div>
+		
+		<img src="<?php echo $this->basePath()?>/img/loadingmap.gif" id="Loading_Request" style="position:absolute;display:none;z-index: 9;margin-left: 45%;margin-top: -8%;width: 80px;"/>
+		<div class="form-group row">
+		<label for="Office City" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Office City');?></label>
+		<div class="col-sm-3"><?php echo $this->formRow($form->get('office_city'));?></div>
+		<label for="Office Zip/Pin" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Office Zip/Pin') ?></label>
+		<div class="col-sm-3"><?php  echo $this->formRow($form->get('office_pincode'));?></div>
+		</div>
+		
+		<div class="form-group row">
+		<label for="Office Phone" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Office Phone');?></label>
+		<div class="col-sm-3"><?php echo $this->formRow($form->get('office_phone'));?></div>
+		<label for="Office Website" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Office Website') ?></label>
+		<div class="col-sm-3"><?php  echo $this->formRow($form->get('office_website'));?></div>
+		</div>
+		
+		<div class="form-group row">
+		<label for="Designation" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Designation');?></label>
+		<div class="col-sm-3"><?php echo $this->formRow($form->get('designation'));?></div>
+		<label for="Working With" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Working With') ?></label>
+		<div class="col-sm-3"><?php  echo $this->formRow($form->get('working_with'));?></div>
+		</div>
+        
+        <div class="form-group row">
+        <div id="Designation_Others_row" style="display:none;">
+		<label for="Education Level" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Designation Other') ?></label>
+		<div class="col-sm-3"><?php  echo $this->formRow($form->get('designation_other'));?></div>
+        </div>
+         <div id="Working_Others_row" style="display:none;">
+        <label for="Education Field" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Working Other') ?></label>
+		<div class="col-sm-3"><?php  echo $this->formRow($form->get('working_with_other'));?></div>
+		</div>
+		</div>
+		
+		<div class="form-group row">
+		<label for="Annual Income" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Annual Income') ?></label>
+		<div class="col-sm-3"><?php  echo $this->formRow($form->get('annual_income'));?></div>
+        <div class="col-sm-1 incomecbx"><?php echo $this->formRow($form->get('annual_income_status'));?></div>
+		<label for="Office Website" class="col-sm-3 form-control-label lblline1" style="padding-left:15px !important;"><?php echo $this->translate('Hide Annual Income for Public');?></label>
+				</div>
+		
+		<div class="form-group row">
+		<div class="col-sm-3"><?php  echo $this->formRow($form->get('submit'));?>
+			<input name="submit" id="submitnext" class="btn btn-default" value="Save & Next" type="submit">
+		</div>
+		</div>
+            		  
+      </div>
+		<?php echo $this->form()->closeTag(); ?>
+		</td>
+		</tr>
+	</table>
+    </div>
+  </div>
+  
+  
+</div>
+<script>
+$( document ).ready(function() {
+   /* $("#CareerForm").validate({
+			rules: {                            
+                    workplace_info:
+						{
+						required: true                                   
+						},					
+					office_address:
+						{
+						required: true
+						},
+					office_country:
+						{
+						required: true
+						},
+				    office_state:
+						{
+						required: true                                
+						},	
+					office_city: 
+						{
+						required: true
+						},
+					designation:
+						{
+						required: true                                
+						},
+					working_with:
+						{
+						required: true                                
+						},
+					annual_income:
+						{
+						required: true,
+						number:true,
+						minlength:4,
+						maxlength:12
+						}
+			       },
+			messages: {                              
+                  					
+			        }
+		     }); */ 
+
+	if($("#working_with").val()=="Others"){
+		$("#Working_Others_row").css('display','block');
+	}else{
+		$("#Working_Others_row").css('display','none');
+	}	
+	if($("#designation").val()==7){
+		$("#Designation_Others_row").css('display','block');
+	}else{
+		$("#Designation_Others_row").css('display','none');
+	}		 
+			 });
+</script>
+
+ 
+<script>
+/**************Get State on select Country***************/
+$("#office_country").on('change', function(){
+	var countryId=this.value;
+	$.ajax({
+		url:'<?php echo $this->basePath()?>'+'/account/getStateName',
+		type:"POST",
+	    dataType:"json",
+		data:{Country_ID:countryId},
+		beforeSend: function(){
+			$('#Loading_Request').show();
+		},
+		complete: function(){
+			$('#Loading_Request').hide();
+		},
+		success:function(resp){
+							if(resp.Status=='Success'){
+								$("#office_state").empty();
+								$("#office_city").empty();
+								$("#office_state").append("<option value=''>Select State</option>");
+								 $.each(resp.statelist, function(idx, obj) {                            
+									$("#office_state").append("<option value='"+obj["id"]+"'>"+obj["state_name"]+"</option>");
+								});
+							}else{
+								$("#office_state").empty();
+								$("#office_city").empty();
+								alert("No States are available");
+							}
+		},
+		error:function(error){
+			console.log(error);	
+			alert(error);			
+		}
+	});	
+});
+/*******************End******************/
+/*************Get City on Select State*************************************************/
+$("#office_state").on('change', function(){
+	var stateId=this.value;
+	$.ajax({
+		url:'<?php echo $this->basePath()?>'+'/account/getCityName',
+		type:"POST",
+	    dataType:"json",
+		data:{State_ID:stateId},
+		beforeSend: function(){
+			$('#Loading_Request').show();
+		},
+		complete: function(){
+			$('#Loading_Request').hide();
+		},
+		success:function(resp){
+							if(resp.Status=='Success'){
+								$("#office_city").empty();
+								$("#office_city").append("<option value=''>Select City</option>");
+								 $.each(resp.statelist, function(idx, obj) {                            
+									$("#office_city").append("<option value='"+obj["id"]+"'>"+obj["city_name"]+"</option>");
+								});
+							}else{
+								$("#office_city").empty();
+								alert("No Cities are Available");
+							}
+		},
+		error:function(error){
+			console.log(error);	
+			alert(error);			
+		}
+	});	
+});
+/*******************End******************/
+</script>
+
+<script>
+//*****************************Others info hide show********************/
+//*********apend working_with others info
+$("#working_with").on('change', function(){	
+	if($("#working_with").val()=="Others"){
+		$("#Working_Others_row").css('display','block');
+	}else{
+		$("#Working_Others_row").css('display','none');
+	}	
+});
+//*********apend designation others info
+$("#designation").on('change', function(){	
+	if($("#designation").val()==7){
+		$("#Designation_Others_row").css('display','block');
+	}else{
+		$("#Designation_Others_row").css('display','none');
+	}	
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+

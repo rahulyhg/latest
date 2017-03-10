@@ -1,0 +1,976 @@
+
+
+
+
+<div id="personal_info" class="tab-pane fade in active">
+    <table width="100%">
+        <tr>
+            <td>	
+                <?php
+                //Zend\Debug\Debug::dump($userSummary['dob']);
+                $form = $this->form;
+                $form->prepare();
+                $form->setAttribute('onSubmit', "return SubmitPost($(this).attr('id'))");
+
+                echo $this->form()->openTag($form);
+                ?>
+                <div class="col-sm-4" style="width:100%;">
+                    <h3><strong><?php echo $this->translate('Basic Info') ?></strong></h3> 
+
+                    <div class="form-group row" >
+                        <label for="Education Field" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Marital Status') ?></label>
+                        <div class="col-sm-6" id="marital_status_div"><?php echo $this->formRow($form->get('marital_status')); ?></div>
+                        <label for="Gender" class="col-sm-2 form-control-label lblline"></label>
+                        
+                    </div>
+                    <div class="form-group row" id="children_div" style="display: none;">
+                        <label for="Education Field" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Have children') ?></label>
+                        <div class="col-sm-3"><?php echo $this->formRow($form->get('children')); ?></div>
+                        <label for="Gender" class="col-sm-2 form-control-label lblline"></label>
+                        <div class="col-sm-3"></div>
+                    </div>
+                    <div class="form-group row" id="no_of_kids_div" style="display: none;">
+                        <label for="Education Field" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('No. of Children') ?></label>
+                        <div class="col-sm-3"><?php echo $this->formRow($form->get('no_of_kids')); ?></div>
+                        <label for="Gender" class="col-sm-2 form-control-label lblline"></label>
+                        <div class="col-sm-3"></div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="profile_for" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Profile Created For'); ?></label>
+                        <div class="col-sm-3"><?php echo $this->formRow($form->get('profile_for')); ?></div>
+                        <div style="display:none;" id="profile_For_Others_row">
+                            <label for="profile_for" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Enter here'); ?></label>
+                            <div class="col-sm-3"><?php echo $this->formRow($form->get('profile_for_others')); ?></div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group row">
+                        <label for="full_name" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Full Name'); ?></label>
+                        <div class="col-sm-3 coltilte" ><?php echo $this->formRow($form->get('name_title_user')); ?></div>        
+                        <div class="col-sm-2 colname">
+                            <?php
+                            echo $this->formHidden($form->get('id'));
+                            //echo $this->formHidden($form->get('user_id'));
+                            echo $this->formRow($form->get('full_name'));
+                            ?>
+                        </div>
+                        <div class="col-sm-3 colname">
+                            <?php echo $this->formRow($form->get('last_name')); ?>
+                        </div>
+                        
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="Gender" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Gender') ?></label>
+                        <div class="col-sm-3"><?php echo $this->formRow($form->get('gender')); ?></div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="Date of Birth" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Date of Birth'); ?></label>
+                        <div class="col-sm-3"> <?php echo $this->formRow($form->get('dob')); ?></div>
+                        <label for="Age" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Age') ?></label>
+                        <div class="col-sm-3"><?php echo $this->formRow($form->get('age')); ?></div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="Birth Time" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Birth Time'); ?></label>
+                        <div class="col-sm-3"><?php echo $this->formRow($form->get('birth_time')); ?></div>
+
+                        <label for="Birth Place" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Birth Place') ?></label>
+                        <div class="col-sm-3"><?php echo $this->formRow($form->get('birth_place')); ?></div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="Height" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Height'); ?></label>
+                        <div class="col-sm-3"><?php echo $this->formRow($form->get('height')); ?></div>
+                        <label for="Phone No." class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Body Type') ?></label>
+                        <div class="col-sm-3"><?php echo $this->formRow($form->get('body_type')); ?></div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="Skin Tone" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Skin Tone'); ?></label>
+                        <div class="col-sm-3"><?php echo $this->formRow($form->get('color_complexion')); ?></div>
+                        <label for="Any Disability" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Any Disability?') ?></label>
+                        <div class="col-sm-3"><?php echo $this->formRow($form->get('any_disability')); ?></div>
+                    </div>
+
+
+                    <div class="form-group row">			
+                        <label for="Education Field" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Blood Group') ?></label>
+                        <div class="col-sm-3"><?php echo $this->formRow($form->get('blood_group')); ?></div>  
+                        <label for="Native Place" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Native Palace') ?></label>
+                        <div class="col-sm-3"><?php echo $this->formRow($form->get('native_place')); ?></div>			
+                    </div> 
+
+
+
+                    <div class="form-group row">
+                        <label for="Body Weight" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Body Weight') ?></label>
+                        <div class="col-sm-3 coltilte" ><?php echo $this->formRow($form->get('body_weight')); ?></div>        
+                        <div class="col-sm-3 colname"><?php echo $this->formRow($form->get('body_weight_type')); ?></div>  
+                        <label for="Zodiac Sign Rassi" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Zodiac Sign') ?></label>
+                        <div class="col-sm-3"><?php echo $this->formRow($form->get('zodiac_sign_raasi')); ?></div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="Alt. Mobile No." class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Alt. Mob. No.'); ?></label>
+                        <div class="col-sm-3"> <?php echo $this->formRow($form->get('alternate_mobile_no')); ?></div>
+                        <label for="Phone No." class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Phone No.') ?></label>
+                        <div class="col-sm-3"><?php echo $this->formRow($form->get('phone_no')); ?></div>
+                    </div>
+
+                    <h3><strong><?php echo $this->translate('Religious Background') ?></strong></h3>
+
+                    <div class="form-group row">			       
+                        <label for="Religion" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Religion') ?></label>
+                        <div class="col-sm-3"><?php echo $this->formRow($form->get('religion')); ?></div>	
+                        <label for="Community" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Community') ?></label>
+                        <div class="col-sm-3"><?php echo $this->formRow($form->get('community')); ?></div>
+                       
+                    </div> 
+
+                    <div class="form-group row">
+
+                        <div style="display:none;" id="Religion_Others_row">
+                            <label for="Education Field" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Religion Other') ?></label>
+                            <div class="col-sm-3"><?php echo $this->formRow($form->get('religion_other')); ?></div>
+                        </div>
+
+                        <div style="display:none;" id="Gother_Others_row">
+                            <label for="Education Field" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Gothra Other') ?></label>
+                            <div class="col-sm-3"><?php echo $this->formRow($form->get('gothra_gothram_other')); ?></div> 
+                        </div>			
+                    </div> 
+
+                    <div class="form-group row">
+                        <label for="Community" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Sub-Community/Caste'); ?></label>
+                        <div class="col-sm-3"><?php echo $this->formRow($form->get('caste')); ?></div>
+                        <!--<label for="Sub-Community" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Sub-Community') ?></label>
+                        <div class="col-sm-3"><?php echo $this->formRow($form->get('sub_caste')); ?></div>-->
+                         <label for="Gothra" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Gothra') ?></label>
+                        <div class="col-sm-3"><?php echo $this->formRow($form->get('gothra_gothram')); ?></div>			
+
+                    </div>
+
+
+                    <div class="form-group row">
+
+                        <label for="Mother Tongue" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Mother Tongue') ?></label>
+                        <div class="col-sm-3"><?php echo $this->formRow($form->get('mother_tongue_id')); ?></div>
+                    </div>
+
+
+
+
+
+
+
+
+                    <h3><strong><?php echo $this->translate('Astro Details') ?></strong></h3>
+
+
+
+
+                    <div class="form-group row">
+                        <label for="Manglik/Chevvai dosham" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Manglik Dosham'); ?></label>
+                        <div class="col-sm-3"><?php echo $this->formRow($form->get('manglik_dossam')); ?></div>
+                        <label for="Nakshtra" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Nakshtra'); ?></label>
+                        <div class="col-sm-3"><?php echo $this->formRow($form->get('star_sign')); ?></div>
+                    </div>
+
+                    <h3><strong><?php echo $this->translate('Life Style') ?></strong></h3>
+
+                    <div class="form-group row">
+                        <label for="Drink" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Drink'); ?></label>
+                        <div class="col-sm-3"><?php echo $this->formRow($form->get('drink')); ?></div>
+                        <label for="Smoke" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Smoke') ?></label>
+                        <div class="col-sm-3"><?php echo $this->formRow($form->get('smoke')); ?></div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="Diet" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Diet') ?></label>
+                        <div class="col-sm-3"><?php echo $this->formRow($form->get('meal_preference')); ?></div>
+                    </div>
+
+                    <h3><strong><?php echo $this->translate('Permanent Address') ?></strong></h3>
+
+                    <div class="form-group row">
+                        <label for="Address Line 1" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Address'); ?></label>
+                        <div class="col-sm-3">
+                            <?php echo $this->formRow($form->get('address')); ?></div>
+
+                        <label for="Address Line 2" class="col-sm-2 form-control-label lblline" style="display:none;"><?php echo $this->translate('Address Line 2') ?></label>
+                        <div class="col-sm-3" style="display:none;">
+                            <?php echo $this->formRow($form->get('address_line2')); ?></div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label for="Country" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Country') ?></label>
+                        <div class="col-sm-3"> <?php echo $this->formRow($form->get('country')); ?></div>
+                        <label for="State" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('State') ?></label>
+                        <div class="col-sm-3"><?php echo $this->formRow($form->get('state')); ?></div>
+                    </div>
+                    <img src="<?php echo $this->basePath() ?>/img/loadingmap.gif" id="Loading_Request" style="position:absolute;display:none;z-index: 9;margin-left: 45%;margin-top: -8%;width: 80px;"/>
+                    <div class="form-group row">
+                        <label for="City" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('City') ?></label>
+                        <div class="col-sm-3"> <?php echo $this->formRow($form->get('city')); ?></div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="Zip/Pin Code" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Zip/Pin Code') ?></label>
+                        <div class="col-sm-3"> <?php echo $this->formRow($form->get('zip_pin_code')); ?></div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="State" class="col-sm-2 form-control-label lblline"></label>
+                        <div class="col-sm-3"></div>
+                        <label for="State" class="col-sm-2 form-control-label lblline"></label>        
+                        <div class="col-sm-3">
+                            <?php echo $this->formRow($form->get('submit')); ?>
+                            <input name="submit" id="submitnext" class="btn btn-default" value="Save & Next" type="submit">
+                        </div>        
+                    </div>  
+                </div>
+                <?php echo $this->form()->closeTag(); ?>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+
+
+
+<!--/*************************Validate Registration Form***************************/-->
+
+<script>
+    $(document).ready(function () {
+        
+        var countryId = '<?php echo $userSummary['country'];?>';
+        var stateId = '<?php echo $userSummary['state'];?>';
+        var cityId = '<?php echo $userSummary['city'];?>';
+        var religionId = '<?php echo $userSummary['religion'];?>';
+        var communityId = '<?php echo $userSummary['community'];?>';
+        var casteId = '<?php echo $userSummary['caste'];?>';
+        var gothra_gothramId = '<?php echo $userSummary['gothra_gothram'];?>';
+                
+        //// Ajax Code to fetch State name Selected /////
+        $.ajax({
+            url: '<?php echo $this->basePath() ?>' + '/account/getStateName',
+            type: "POST",
+            dataType: "json",
+            data: {Country_ID: countryId},
+            beforeSend: function () {
+                $('#Loading_Request').show();
+            },
+            complete: function () {
+                $('#Loading_Request').hide();
+            },
+            success: function (resp) {
+                if (resp.Status == 'Success') {
+                    $("#state").empty();
+                    $("#state").append("<option value=''>Select State</option>");
+                    $.each(resp.statelist, function (idx, obj) {
+                        if(obj["id"]==stateId){
+                            var sel='<?php echo "selected";?>';
+                        }else{
+                            var sel='';
+                        }
+                        $("#state").append("<option value='" + obj["id"] + "' "+sel+">" + obj["state_name"] + "</option>");
+                    });
+                } else {
+                    $("#state").empty();
+                    $("#city").empty();
+                    alert("No States are available");
+                }
+            },
+            error: function (error) {
+                console.log(error);
+                alert(error);
+            }
+        });
+        
+        //// Ajax Code to fetch City name Selected /////
+        
+        $.ajax({
+            url: '<?php echo $this->basePath() ?>' + '/account/getCityName',
+            type: "POST",
+            dataType: "json",
+            data: {State_ID: stateId},
+            beforeSend: function () {
+                $('#Loading_Request').show();
+            },
+            complete: function () {
+                $('#Loading_Request').hide();
+            },
+            success: function (resp) {
+                if (resp.Status == 'Success') {
+                    $("#city").empty();
+                    $("#city").append("<option value=''>Select City</option>");
+                    $.each(resp.statelist, function (idx, obj) {
+                        if(obj["id"]==cityId){
+                            var sel='<?php echo "selected";?>';
+                        }else{
+                            var sel='';
+                        }
+                        $("#city").append("<option value='" + obj["id"] + "' "+sel+">" + obj["city_name"] + "</option>");
+                    });
+                } else {
+                    $("#city").empty();
+                    alert("No Cities are Available");
+                }
+            },
+            error: function (error) {
+                console.log(error);
+                alert(error);
+            }
+        });
+        
+        //// Ajax Code to fetch Community name Selected /////
+        
+        $.ajax({
+            url: '<?php echo $this->basePath() ?>' + '/user/getCommunityName',
+            type: "POST",
+            dataType: "json",
+            data: {Religion_ID: religionId},
+            beforeSend: function () {
+                $('#Loading_Request').show();
+            },
+            complete: function () {
+                $('#Loading_Request').hide();
+            },
+            success: function (resp) {
+                if (resp.Status == 'Success') {
+                    $("#community").empty();
+                    $("#community").append("<option value=''>Select Community</option>");
+                    $.each(resp.communitylist, function (idx, obj) {
+                        if(obj["id"]==communityId){
+                            var sel='<?php echo "selected";?>';
+                        }else{
+                            var sel='';
+                        }
+                        $("#community").append("<option value='" + obj["id"] + "' "+sel+">" + obj["community_name"] + "</option>");
+                    });
+                } else {
+                    $("#community").empty();
+                    $("#community").append("<option value=''>Select Community</option>");
+                    alert("No Community are Available");
+                }
+            },
+            error: function (error) {
+                console.log(error);
+                alert(error);
+            }
+        });
+        
+        //// Ajax Code to fetch Caste name Selected /////
+        
+         $.ajax({
+            url: '<?php echo $this->basePath() ?>' + '/user/getCasteName',
+            type: "POST",
+            dataType: "json",
+            data: {Community_ID: communityId},
+            beforeSend: function () {
+                $('#Loading_Request').show();
+            },
+            complete: function () {
+                $('#Loading_Request').hide();
+            },
+            success: function (resp) {
+                if (resp.Status == 'Success') {
+                    $("#caste").empty();
+                    $("#caste").append("<option value=''>Select Sub-Community/Caste</option>");
+                    $.each(resp.castelist, function (idx, obj) {
+                        if(obj["id"]==casteId){
+                            var sel='<?php echo "selected";?>';
+                        }else{
+                            var sel='';
+                        }
+                        $("#caste").append("<option value='" + obj["id"] + "' "+sel+">" + obj["caste_name"] + "</option>");
+                    });
+                } else {
+                    $("#caste").empty();
+                    $("#caste").append("<option value=''>Select Sub-Community/Caste</option>");
+                    alert("No Sub-Community/Caste are Available");
+                }
+            },
+            error: function (error) {
+                console.log(error);
+                alert(error);
+            }
+        });
+        
+        //// Ajax Code to fetch Gothra name Selected /////
+        
+        $.ajax({
+            url: '<?php echo $this->basePath() ?>' + '/user/getGothraList',
+            type: "POST",
+            dataType: "json",
+            data: {Caste_ID: casteId},
+            beforeSend: function () {
+                $('#Loading_Request').show();
+            },
+            complete: function () {
+                $('#Loading_Request').hide();
+            },
+            success: function (resp) {
+                if (resp.Status == 'Success') {
+                    $("#gothra_gothram").empty();
+                    $("#gothra_gothram").append("<option value=''>Select Gothra</option>");
+                    $.each(resp.gothralist, function (idx, obj) {
+                        if(obj["id"]==gothra_gothramId){
+                            var sel='<?php echo "selected";?>';
+                        }else{
+                            var sel='';
+                        }
+                        $("#gothra_gothram").append("<option value='" + obj["id"] + "' "+sel+">" + obj["gothra_name"] + "</option>");
+                    });
+                } else {
+                    $("#gothra_gothram").empty();
+                    $("#gothra_gothram").append("<option value=''>Select Gothra</option>");
+                    alert("No Gothra are Available");
+                }
+            },
+            error: function (error) {
+                console.log(error);
+                alert(error);
+            }
+        });
+        
+        
+        
+        /*************Get Communuty on Select Religion*************************************************/
+    $("#religion").on('change', function () {
+        var religionId = this.value;
+        $.ajax({
+            url: '<?php echo $this->basePath() ?>' + '/user/getCommunityName',
+            type: "POST",
+            dataType: "json",
+            data: {Religion_ID: religionId},
+            beforeSend: function () {
+                $('#Loading_Request').show();
+            },
+            complete: function () {
+                $('#Loading_Request').hide();
+            },
+            success: function (resp) {
+                if (resp.Status == 'Success') {
+                    $("#community").empty();
+                    $("#caste").empty();
+                     $("#gothra_gothram").empty();
+                    $("#community").append("<option value=''>Select Community</option>");
+                    $.each(resp.communitylist, function (idx, obj) {
+                        $("#community").append("<option value='" + obj["id"] + "'>" + obj["community_name"] + "</option>");
+                    });
+                } else {
+                    $("#community").empty();
+                    $("#community").append("<option value=''>Select Community</option>");
+                    alert("No Community are Available");
+                }
+            },
+            error: function (error) {
+                console.log(error);
+                alert(error);
+            }
+        });
+    });
+    /*******************End******************/
+    
+    
+    /*************Get Sub-Community/Cast on Select Communuty*************************************************/
+    $("#community").on('change', function () {
+        var communityId = this.value;
+        $.ajax({
+            url: '<?php echo $this->basePath() ?>' + '/user/getCasteName',
+            type: "POST",
+            dataType: "json",
+            data: {Community_ID: communityId},
+            beforeSend: function () {
+                $('#Loading_Request').show();
+            },
+            complete: function () {
+                $('#Loading_Request').hide();
+            },
+            success: function (resp) {
+                if (resp.Status == 'Success') {
+                    $("#caste").empty();
+                    $("#gothra_gothram").empty();
+                    $("#caste").append("<option value=''>Select Sub-Community/Caste</option>");
+                    $.each(resp.castelist, function (idx, obj) {
+                        $("#caste").append("<option value='" + obj["id"] + "'>" + obj["caste_name"] + "</option>");
+                    });
+                } else {
+                    $("#caste").empty();
+                    $("#caste").append("<option value=''>Select Sub-Community/Caste</option>");
+                    alert("No Sub-Community/Caste are Available");
+                }
+            },
+            error: function (error) {
+                console.log(error);
+                alert(error);
+            }
+        });
+    });
+    /*******************End******************/
+    
+        /*************Get Gothra on Select Communuty*************************************************/
+    $("#caste").on('change', function () {
+        var casteId = this.value;
+        $.ajax({
+            url: '<?php echo $this->basePath() ?>' + '/user/getGothraList',
+            type: "POST",
+            dataType: "json",
+            data: {Caste_ID: casteId},
+            beforeSend: function () {
+                $('#Loading_Request').show();
+            },
+            complete: function () {
+                $('#Loading_Request').hide();
+            },
+            success: function (resp) {
+                if (resp.Status == 'Success') {
+                    $("#gothra_gothram").empty();
+                    $("#gothra_gothram").append("<option value=''>Select Gothra</option>");
+                    $.each(resp.gothralist, function (idx, obj) {
+                        $("#gothra_gothram").append("<option value='" + obj["id"] + "'>" + obj["gothra_name"] + "</option>");
+                    });
+                } else {
+                    $("#gothra_gothram").empty();
+                    $("#gothra_gothram").append("<option value=''>Select Gothra</option>");
+                    alert("No Gothra are Available");
+                }
+            },
+            error: function (error) {
+                console.log(error);
+                alert(error);
+            }
+        });
+    });
+    /*******************End******************/
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        calAge('<?php echo $userSummary['dob']; ?>');
+        //fetchZodiacSign('<?php echo $familyInfo->userInfo['dob']; ?>')
+        function calAge(val) {
+            var queryString = "value=" + val;
+            var action = "<?php echo $this->basePath() ?>" + "/account/covertdateage";
+            var callback = covertdateageresults;
+            ajax_call_normal(queryString, action, callback)
+        }
+
+        function fetchZodiacSign(val) {
+            var queryString = "value=" + val;
+            var action = "<?php echo $this->basePath() ?>" + "/account/fetchZodiacSign";
+            var callback = zodiacsignresults;
+            ajax_call_normal(queryString, action, callback)
+        }
+
+        $(".datepicker1").datepicker({
+            dateFormat: "dd-mm-yy",
+            yearRange: "c-25:c",
+            changeMonth: true,
+            changeYear: true});
+
+
+        /* $("#MemberbasicForm").validate({
+         rules: {                            
+         profile_for:
+         {
+         required: true                                   
+         },
+         full_name:
+         {
+         required: true,
+         minlength:3,
+         maxlength:30
+         },
+         gender:
+         {
+         required: true
+         },
+         dob:
+         {
+         required: true
+         },
+         age:
+         {
+         required: true                                
+         },
+         alternate_mobile_no: 
+         {
+         required: true,	
+         minlength:10,
+         maxlength:12,
+         number:true
+         },
+         phone_no: 
+         {
+         required: false,
+         minlength:6,
+         maxlength:12,
+         number:true
+         },			
+         address: 
+         {
+         required: true
+         },
+         country: 
+         {
+         required: true
+         },
+         state: 
+         {
+         required: true
+         },
+         city: 
+         {
+         required: true
+         },
+         native_place: 
+         {
+         required: true
+         },
+         marital_status:
+         {
+         required: true                                   
+         },					
+         caste:
+         {
+         required: true
+         },					
+         religion:
+         {
+         required: true                                
+         },	
+         blood_group: 
+         {
+         required: true
+         }
+         },
+         messages: {                              
+         
+         }
+         });  */
+        $(".inputDate").css('cursor', 'pointer');
+        if ($("#profile_for").val() == "Others") {
+            $("#profile_For_Others_row").css('display', 'block');
+        } else {
+            $("#profile_For_Others_row").css('display', 'none');
+        }
+        if ($("#gothra_gothram").val() == 173) {
+            $("#Gother_Others_row").css('display', 'block');
+        } else {
+            $("#Gother_Others_row").css('display', 'none');
+        }
+        if ($("#religion").val() == 7) {
+            $("#Religion_Others_row").css('display', 'block');
+        } else {
+            $("#Religion_Others_row").css('display', 'none');
+        }
+    });</script>
+
+<!-----*******************************end***********************--->
+<script>
+    /**************Get State on select Country***************/
+    $("#country").on('change', function () {
+        var countryId = this.value;
+        $.ajax({
+            url: '<?php echo $this->basePath() ?>' + '/account/getStateName',
+            type: "POST",
+            dataType: "json",
+            data: {Country_ID: countryId},
+            beforeSend: function () {
+                $('#Loading_Request').show();
+            },
+            complete: function () {
+                $('#Loading_Request').hide();
+            },
+            success: function (resp) {
+                if (resp.Status == 'Success') {
+                    $("#state").empty();
+                    $("#city").empty();
+                    $("#state").append("<option value=''>Select State</option>");
+                    $.each(resp.statelist, function (idx, obj) {
+                        $("#state").append("<option value='" + obj["id"] + "'>" + obj["state_name"] + "</option>");
+                    });
+                } else {
+                    $("#state").empty();
+                    $("#city").empty();
+                    alert("No States are available");
+                }
+            },
+            error: function (error) {
+                console.log(error);
+                alert(error);
+            }
+        });
+    });
+    /*******************End******************/
+    /*************Get City on Select State*************************************************/
+    $("#state").on('change', function () {
+        var stateId = this.value;
+        $.ajax({
+            url: '<?php echo $this->basePath() ?>' + '/account/getCityName',
+            type: "POST",
+            dataType: "json",
+            data: {State_ID: stateId},
+            beforeSend: function () {
+                $('#Loading_Request').show();
+            },
+            complete: function () {
+                $('#Loading_Request').hide();
+            },
+            success: function (resp) {
+                if (resp.Status == 'Success') {
+                    $("#city").empty();
+                    $("#city").append("<option value=''>Select City</option>");
+                    $.each(resp.statelist, function (idx, obj) {
+                        $("#city").append("<option value='" + obj["id"] + "'>" + obj["city_name"] + "</option>");
+                    });
+                } else {
+                    $("#city").empty();
+                    alert("No Cities are Available");
+                }
+            },
+            error: function (error) {
+                console.log(error);
+                alert(error);
+            }
+        });
+    });
+    /*******************End******************/
+
+    /*************Get City on Select State*************************************************/
+//$("#city").on('change', function(){
+//var cityId=this.value;
+//$.ajax({
+//    url:'<?php echo $this->basePath() ?>'+'/user/getRustagiBranch',
+//    type:"POST",
+//dataType:"json",
+//    data:{City_ID:cityId},
+//    beforeSend: function(){
+//            $('#Loading_Request').show();
+//    },
+//    complete: function(){
+//            $('#Loading_Request').hide();
+//    },
+//    success:function(resp){
+//$("#branch_other").hide();
+//
+//if(resp.Status=='Success'){
+//$("#branch_ids").empty();
+//$("#branch_ids").append("<option value=''>Select Branch</option>");
+//$.each(resp.statelist, function(idx, obj) {                            
+//$("#branch_ids").append("<option value='"+obj["branch_id"]+"'>"+obj["branch_name"]+"</option>");
+//});
+//}else{
+//$("#branch_ids").empty();
+//alert("No Branches are Available");
+//$("#branch_other").show();
+//}
+//$("#branch_ids").append("<option value='Other'>Others</option>");
+//    },
+//    error:function(error){
+//            console.log(error);	
+//            alert(error);			
+//    }
+//});	
+//});
+    /*******************End******************/
+
+    /*************Get City on Select State*************************************************/
+    $("#caste").on('change', function () {
+        var casteId = this.value;
+        $.ajax({
+            url: '<?php echo $this->basePath() ?>' + '/user/getGothraList',
+            type: "POST",
+            dataType: "json",
+            data: {Caste_ID: casteId},
+            beforeSend: function () {
+                $('#Loading_Request').show();
+            },
+            complete: function () {
+                $('#Loading_Request').hide();
+            },
+            success: function (resp) {
+
+                if (resp.Status == 'Success') {
+                    $("#gothra_gothram").empty();
+                    $("#gothra_gothram").append("<option value=''>Select Gothra</option>");
+                    $.each(resp.gothralist, function (idx, obj) {
+                        $("#gothra_gothram").append("<option value='" + obj["id"] + "'>" + obj["gothra_name"] + "</option>");
+                    });
+                } else {
+                    $("#gothra_gothram").empty();
+                    alert("No Gothra are Available");
+                }
+            },
+            error: function (error) {
+                console.log(error);
+                alert(error);
+            }
+        });
+    });
+    /*******************End******************/
+</script>
+<script type="text/javascript">
+//*****************************Others info hide show********************/
+
+//********children*******//
+//  $('#marital_status input:radio').click(function() {
+//    alert($(this).val());
+//  });
+    $('#marital_status_div input[type="radio"]').on('click', function () {
+        //alert($(this).val());
+        if ($(this).val() == "Divorced" || $(this).val() == "Awaiting Divorce") {
+            if ($("#children").val() == "Yes. Living together" || $("#children").val() == "Yes. Not living together") {
+                $("#children_div").css('display', 'block');
+                $("#no_of_kids_div").css('display', 'block');
+            } else {
+                $("#no_of_kids_div").css('display', 'none');
+            }
+            $("#children_div").css('display', 'block');
+        } else {
+            $("#children_div").css('display', 'none');
+            $("#no_of_kids_div").css('display', 'none');
+        }
+    });
+
+    $("#children").on('change', function () {
+        if ($("#children").val() == "Yes. Living together" || $("#children").val() == "Yes. Not living together") {
+            $("#no_of_kids_div").css('display', 'block');
+        } else {
+            $("#no_of_kids_div").css('display', 'none');
+        }
+    });
+
+    var maritalStatus =<?php echo json_encode($userSummary) ?>;
+    //alert(maritalStatus.body_weight_type);
+    if (maritalStatus.marital_status == 'Divorced' || maritalStatus.marital_status == 'Awaiting Divorce') {
+        //console.log(maritalStatus.marital_status);
+        $("#children_div").css('display', 'block');
+        if (maritalStatus.children == 'Yes. Living together' || maritalStatus.children == 'Yes. Not living together') {
+            //console.log(maritalStatus.marital_status);
+            $("#no_of_kids_div").css('display', 'block');
+        } else {
+            $("#no_of_kids_div").css('display', 'none');
+        }
+    } else {
+        $("#children_div").css('display', 'none');
+    }
+   
+    //// Code to show Body weight type radio button selected ////
+    
+    var $radios = $('input:radio[name=body_weight_type]');
+    if($radios.is(':checked') === false) {
+        $radios.filter('[value=kgs]').prop('checked', true);
+    }
+
+
+//*********apend profile for others info
+    $("#profile_for").on('change', function () {
+        if ($("#profile_for").val() == "Others") {
+            $("#profile_For_Others_row").css('display', 'block');
+        } else {
+            $("#profile_For_Others_row").css('display', 'none');
+        }
+    });
+//*********apend gothra gothram others info
+    $("#gothra_gothram").on('change', function () {
+        if ($("#gothra_gothram").val() == 173) {
+            $("#Gother_Others_row").css('display', 'block');
+        } else {
+            $("#Gother_Others_row").css('display', 'none');
+        }
+    });
+//*********apend religion  others info
+    $("#religion").on('change', function () {
+        if ($("#religion").val() == 7) {
+            $("#Religion_Others_row").css('display', 'block');
+        } else {
+            $("#Religion_Others_row").css('display', 'none');
+        }
+    });
+
+    $("#branch_ids").on('change', function () {
+        if ($("#branch_ids").val() == 'Other') {
+            $("#branch_other").css('display', 'block');
+        } else {
+            $("#branch_other").css('display', 'none');
+        }
+    });
+
+
+
+    function SubmitPost(data) {
+
+        //console.log);
+        var formdata = $("#" + data).serialize();
+        $.ajax({
+            url: '<?php echo $this->url('profile', array('action' => 'personal-profile')) ?>',
+            type: "POST",
+            dataType: "json",
+            data: formdata,
+            beforeSend: function () {
+                $('#Loading_Request').show();
+            },
+            complete: function () {
+                $('#Loading_Request').hide();
+            },
+            success: function (resp) {
+                console.log(resp);
+                //$("#profile").empty();
+                //$("#profile").append(resp);
+                //debugger;
+//                    if (resp.Status == 'Success') {
+//                            $("#profile").empty();
+//                            $("#state").append(resp);
+//                          
+//                    } else {
+//                    $("#state").empty();
+//                            $("#city").empty();
+//                            alert("No States are available");
+//                    }
+            },
+            error: function (error) {
+                console.log(error);
+                // alert(error);
+            }
+        });
+        //debugger;
+        return false;
+
+    }
+    
+    $("#dob").on('change',function () {
+        var val = $(this).val();
+        var queryString = "value=" + val;
+
+        //For Testing purpose
+        var action = "http://" + location.hostname + "/account/covertdateage";
+
+        var callback = covertdateageresults;
+        // alert();
+        ajax_call_normal(queryString, action, callback)
+    });
+</script>
+
+
+
+
+
+
+
+
+

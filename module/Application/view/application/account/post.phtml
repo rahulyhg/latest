@@ -1,0 +1,251 @@
+
+
+
+<style>
+
+	.modal-lg
+{width:900px;
+}
+.preview_img{width:150px; margin:auto 10px 10px 0px !important; float:left;}
+.avatar-view img{height:110px!important;}
+.table {float: left!important;}
+.show_allocation_detail{margin-bottom:0px; cursor:pointer;color:#428bca;width:100%;}
+
+</style>
+<div class="col-sm-3 col-sm-3-new width20per">
+<?php echo $this->partial('layout/sidebar-user') ?>
+</div>
+
+
+
+<div class="col-sm-9 width80per">
+<?php include('main_info.phtml'); ?>
+<div class="col-sm-6" style="margin-top:22px; float:right; text-align:right;">
+<p style="text-align:right;">Connected  9 Months ago</p>
+</div>
+
+<div class="clearfix"></div>
+ <?php include('menu.phtml'); ?>
+ 
+  
+  <div class="tab-content">
+    <div id="education_info" class="tab-pane fade in active">
+	
+	<table width="100%">
+		<tr>
+			<td>
+    
+		<div class="col-sm-4" style="width:100%;">
+		 <h5 style="font-weight:bold; color:#F90; margin-bottom:5px; padding-bottom:12px;">"Your Arcticle will be published only after the Admin's approval"</h5>	  
+		  
+		<!-- <div class="form-group row">
+		<label for="post" class="col-sm-3 form-control-label edupading">Senders Name</label>
+		<div class="col-sm-3">
+		<input class="form-control" />
+		</div>
+        
+        <label for="Education Field" class="col-sm-3 form-control-label edupading">
+        Sender Email
+        </label>
+		<div class="col-sm-3">
+        <input class="form-control" />
+        </div>
+		</div> -->
+ <?php 
+
+                $form=$this->form; 
+                $form->prepare();
+
+
+        //$form->setAttribute('action',$this->url('application/default',array('controller'=>'account','action'=>'post')));
+        $form->setAttribute('method','post');
+        //$form->setAttribute('autocomplete','off');
+        $form->setAttribute('id','PostForm');
+        $form->setAttribute('enctype','multipart/form-data');
+        // $action = $this->serverUrl().$this->url().'/country/add';
+        //$form->setAttribute('onSubmit',"return SubmitPost($(this).attr('id'))");
+
+        echo $this->form()->openTag($form);
+        echo $this->formHidden($form->get('id'));
+// echo $this->formCollection($form);
+                ?>
+ 		
+		<div class="form-group row">
+		<label for="Education Level" class="col-sm-3 form-control-label edupading">
+                            Post Category 
+
+		</label>
+		<div class="col-sm-3">
+		<?php 
+                                                     // echo $this->formHidden($form->get('id'));
+                                                     echo $this->formElement($form->get('post_category'));
+                                                     ?>  
+                                                     <span class="showerror"></span>	
+    	</div>
+        
+       <label for="Specialization" class="col-sm-3 form-control-label edupading">
+       	Title
+       </label>
+		<div class="col-sm-3">
+			<?php 
+                                                     
+                                                     echo $this->formElement($form->get('title'));
+            ?> 
+             <span class="showerror"></span>	
+		</div>
+        
+		</div>
+		
+		<div class="form-group row">
+		
+       <label for="Profession" class="col-sm-3 form-control-label edupading">
+
+       	Upload Image
+       </label>
+		<div class="col-sm-3">
+        
+         
+			 <?php 
+                                                     echo $this->formElement($form->get('image'));
+            ?>  
+             <span class="showerror"></span>	
+		</div>
+        
+          <label for="Profession" class="col-sm-3 form-control-label edupading">
+Language of Article:</label>
+		<div class="col-sm-3">
+        <?php 
+                                                     echo $this->formElement($form->get('language'));
+            ?>
+             <span class="showerror"></span>	
+        </div>
+        
+        
+        
+		</div>
+		
+		
+		
+		<div class="form-group row">
+		
+        <label for="Profession" class="col-sm-3 form-control-label edupading">Content</label>
+		<div class="col-sm-3">
+         	<?php 
+                                                     echo $this->formHidden($form->get('keywords'));
+                                                    
+                                                     echo $this->formElement($form->get('description'));
+            ?>
+             <span class="showerror"></span>	
+        </div>
+        
+		 
+      
+        </div>
+        
+        <div class="form-group row">
+        
+        <label for="Profession" class="col-sm-3 form-control-label edupading">
+     
+        </label>
+        <div class="col-sm-3">
+		
+		</div>
+		
+		<label for="Profession" class="col-sm-3 form-control-label edupading">
+     
+        </label>
+        <div class="col-sm-3">
+		<?php 
+                                                    
+                                                     echo $this->formElement($form->get('submit'));
+            ?>
+		</div>
+        </div>
+		
+		<div class="form-group row">
+		
+		</div>
+		  	  
+	  </div>
+<?php   
+echo $this->form()->closeTag();
+
+        ?>
+
+		
+		</td>
+		</tr>
+	</table>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div id="crop-vehicle" style="width:140px; margin:auto;"> 
+                  
+                  <!-- Current avatar -->
+                  
+                  <div data-original-title="Vehicle Picture" class="avatar-view userimg_byratio" title=""> <img src="Hello421_files/vehicle.png" id="vehicle_pic_update" alt="Avatar" style="height:140px"> </div>
+                  
+                  <!-- Cropping modal -->
+                  <div class="modal fade" id="avatar-modal" tabindex="-1" role="dialog" aria-labelledby="avatar-modal-label" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                        <form class="avatar-form" id="vehicle_update_2179" method="post" action="/hello42/public/crop-avatar.php" enctype="multipart/form-data">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">×</button>
+                            <h4 class="modal-title" id="avatar-modal-label">Post Picture</h4>
+                          </div>
+                          <div class="modal-body">
+                            <div class="avatar-body"> 
+                              
+                              <!-- Upload image and data -->
+                              <div class="avatar-upload">
+                                <input class="avatar-src" name="avatar_src" type="hidden">
+                                <input class="avatar-data" name="avatar_data" type="hidden">
+                                <label for="avatarInput">upload</label>
+                                <!--<?php 
+                                                     echo $this->formElement($form->get('image'));
+            ?>-->
+                                <input class="avatar-input" id="avatarInput" name="avatar_file" type="file">
+                              </div>
+                              
+                              <!-- Crop and preview -->
+                              <div class="row">
+                                <div class="col-md-9">
+                                  <div class="loading" tabindex="-1" role="img" aria-label="Loading"></div>
+                                  <div class="avatar-wrapper"></div>
+                                </div>
+                                <div class="col-md-3">
+                                  <div class="avatar-preview preview-lg" style="position:relative"><img src="Hello421_files/vehicle.png" class="resimg"></div>
+                                  <div class="avatar-preview preview-md" style="position:relative"><img src="Hello421_files/vehicle.png" class="resimg"></div>
+                                  <div class="avatar-preview preview-sm" style="position:relative"><img src="Hello421_files/vehicle.png" class="resimg"></div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
+                            <button class="btn btn-primary avatar-save" type="submit">Save</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /.modal --> 
+                  
+                  <!-- Loading state --> 
+                  
+                </div>
+
+
+
+
+
+
+
+
+
+

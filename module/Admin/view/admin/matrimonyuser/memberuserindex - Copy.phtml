@@ -1,0 +1,1691 @@
+<?php 
+// foreach ($userinfos as $userinfo) {
+//   echo $userinfo->affluence_level."<br>";
+// }
+// print_r($userinfos);die;
+
+?>
+        <!-- 3nd table start-->
+        
+
+<?php /* ?><div class="row">
+    <div class="col-xs-12">
+      <h3>Matrimonial filter search</h3>
+      <div class="filter">
+        <div class="col-lg-6"><i class="fa fa-filter" ></i> Filter</div>
+      </div>
+      <div class="portlet-body">
+        <ul id="myTab" class="nav nav-tabs">
+          <li class="active"> <a href="#home" data-toggle="tab"><i class="fa fa-list" style="color:#; margin:5px"></i><span id="general_fiter_head" class="general_filter_head">General</span></a> </li>
+         
+          <li class=""> <a href="#driver_tab" id="myTabDrop1" class="dropdown-toggle" data-toggle="tab"><i class="fa fa-user" style="color:#; margin:5px"></i><span class="driver_filter_head">Location</span></a> </li>
+          <li class=""> <a href="#vehicle_tab" id="myTabDrop2" class="dropdown-toggle" data-toggle="tab"><i class="fa fa-road" style="color:#; margin:5px"></i><span class="vehicle_filter_head">Status</span></a> </li>
+           
+        </ul>
+        <form id="bookingFilter">
+          <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active in" id="home">
+              <div class="col-sm-col-sm-offset-1" style="margin: 10px auto 0px !important;padding: 0 10px;">
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <label id="flight_nos" class="col-sm-2 control-label labelalign Profile ID">Profile ID</label>
+                    <div class="col-sm-3">
+                      <input id="ref" type="text" class=" form-control inputchange" placeholder="Profile ID ">
+                    </div>
+                    <label id="point_airport" class="col-sm-2 control-label labelalign age" >Age</label>
+                    <div class="col-sm-1">
+                      <input id="created_since" class="form-control inputchange hasDatepicker" placeholder="18" type="text">
+                    </div>
+                    <div class="col-sm-2">
+                      <input id="created_since" class="form-control inputchange hasDatepicker" placeholder="20" type="text">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <label id="flight_nos" class="col-sm-2 control-label labelalign Profile ID">User Type</label>
+                    <div class="col-sm-3">
+                      <select name="booking_status" id="select" style="" class="col-sm-12 col-lg-12 inputfild name valid" aria-required="true" aria-invalid="false">
+                        <option value="">All</option>
+                        <option value="1">A</option>
+                        <option value="2">B</option>
+                        <option value="3">C</option>
+                        <option value="4">D</option>
+                      </select>
+                    </div>
+                    <label id="point_airport" class="col-sm-2 control-label labelalign age" >Income</label>
+                    <div class="col-sm-1">
+                      <input id="created_since" class="form-control inputchange hasDatepicker" placeholder="5.6lkh" type="text">
+                    </div>
+                    <div class="col-sm-2">
+                      <input id="created_since" class="form-control inputchange hasDatepicker" placeholder="8.6lkh" type="text">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                                              
+                                                 
+                            <label class="col-sm-2 control-label labelalign " id="point_airport">Start Date
+</label>
+                                                   <div class="col-sm-3">
+                                                     <div class="input-group">
+                                  <input type="text" data-date-format="dd-mm-yyyy" id="id-date-picker-1" class="form-control date-picker">
+                                  <span class="input-group-addon">
+                                    <i class="fa fa-calendar bigger-110"></i>
+                                  </span>
+                                </div> 
+                                                     
+                                                                                        
+                                                  </div>
+                                                  
+                                                  
+                                                    <div class="form-group clearfix margintopbottom20">
+                           <label class="col-sm-2 control-label labelalign " id="flight_nos">Male</label>
+                                                  <div class="col-sm-3 ">
+                                                     <input type="text" placeholder="Male" class=" form-control inputchange" id="Male">                                    
+                                                  </div>
+                                                  
+                                                  
+                                                
+                                                                                      
+                                                  
+                                                  
+                                                  
+                                                 </div>
+                                             </div>
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <label id="flight_nos" class="col-sm-2 control-label labelalign Status type">Status type </label>
+                    <div class="col-sm-3">
+                      <select name="booking_status" id="select" style="" class="col-sm-12 col-lg-12 inputfild name valid" aria-required="true" aria-invalid="false">
+                        <option value="">All</option>
+                        <option value="1">Active</option>
+                        <option value="2">Deactive</option>
+                      </select>
+                    </div>
+                    <label id="point_airport" class="col-sm-2 control-label labelalign Female" >Female</label>
+                    <div class="col-sm-3">
+                      <input id="ref" type="text" class=" form-control inputchange" placeholder="Female ">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <label id="flight_nos" class="col-sm-2 control-label labelalign Profile ID">Alphabetic filter</label>
+                    <div class="col-sm-3">
+                      <select name="booking_status" id="select" style="" class="col-sm-12 col-lg-12 inputfild name valid" aria-required="true" aria-invalid="false">
+                        <option value="">All</option>
+                        <option value="1">Active</option>
+                        <option value="2">Deactive</option>
+                      </select>
+                    </div>
+                    <label id="point_airport" class="col-sm-2 control-label labelalign Marital Status" >Marital Status</label>
+                    <div class="col-sm-3">
+                      <input id="ref" type="text" class=" form-control inputchange" placeholder="Marital Status ">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <div class="col-sm-4 pull-right"> <a href="#" class="btn btn-red defaultbtnsearch searchBooking"><i class="fa fa-search" id="search_me" style="color:#fff; margin:5px"></i>Search</a> <a href="javascript:document.getElementById('bookingFilter').reset();" class="btn btn-red defaultbtnsearch"><i class="fa fa-times" style="color:#fff; margin:5px"></i>Clear</a> </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="tab-pane fade" id="driver_tab">
+              <div class=" col-sm-col-sm-offset-1" style="margin: 10px auto 0px !important;padding: 0 10px;">
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <label id="flight_nos" class="col-sm-2 control-label labelalign ">Country</label>
+                    <div class="col-sm-3">
+                      <select name="booking_status" id="select" style="" class="col-sm-12 col-lg-12 inputfild name valid" aria-required="true" aria-invalid="false">
+                        <option value="">All</option>
+                        <option value="1">India</option>
+                        <option value="2">Pakistan</option>
+                        <option value="3">Afgan</option>
+                        <option value="4">Turki</option>
+                      </select>
+                    </div>
+                    <label id="point_airport" class="col-sm-2 control-label labelalign ">Area</label>
+                    <div class="col-sm-3">
+                      <input id="Karol Bagh" type="text" class=" form-control inputchange" placeholder="Karol Bagh">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <label id="flight_nos" class="col-sm-2 control-label labelalign ">City</label>
+                    <div class="col-sm-3">
+                      <select name="booking_status" id="select" style="" class="col-sm-12 col-lg-12 inputfild name valid" aria-required="true" aria-invalid="false">
+                        <option value="">All</option>
+                        <option value="1">Dlehi</option>
+                        <option value="2">Mumbai</option>
+                        <option value="3">Pune</option>
+                        <option value="4">Kolkatta</option>
+                      </select>
+                    </div>
+                    <label id="point_airport" class="col-sm-2 control-label labelalign ">Zone</label>
+                    <div class="col-sm-3">
+                      <input id="East Zone" type="text" class=" form-control inputchange" placeholder="East Zone">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <label id="flight_nos" class="col-sm-2 control-label labelalign">State</label>
+                    <div class="col-sm-3">
+                      <select name="booking_status" id="select" style="" class="col-sm-12 col-lg-12 inputfild name valid" aria-required="true" aria-invalid="false">
+                        <option value="">All</option>
+                        <option value="1">Bokaro</option>
+                        <option value="2">jharkhand</option>
+                        <option value="3">Pune</option>
+                        <option value="4">Kolkatta</option>
+                      </select>
+                    </div>
+                    <label id="point_airport" class="col-sm-2 control-label labelalign">Driver mobile No</label>
+                    <div class="col-sm-3">
+                      <div class="input-group">
+                        <input type="text" id="driver_mob" class="form-control inputchange" placeholder="Driver mobile No">
+                        <span class="input-group-addon"><i class="fa fa-search"></i></span> </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <div class="col-sm-4 pull-right"> <a href="#" class="btn btn-red defaultbtnsearch searchBooking"><i class="fa fa-search" id="search_me" style="color:#fff; margin:5px"></i>Search</a> <a href="javascript:document.getElementById('bookingFilter').reset();" class="btn btn-red defaultbtnsearch"><i class="fa fa-times" style="color:#fff; margin:5px"></i>Clear</a> </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="vehicle_tab">
+              <div class=" col-sm-col-sm-offset-1" style="margin: 10px auto 0px !important;padding: 0 10px;">
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <label id="flight_nos" class="col-sm-2 control-label labelalign ">Member Status</label>
+                    <div class="col-sm-3">
+                      <select name="booking_status" id="select" style="" class="col-sm-12 col-lg-12 inputfild name valid" aria-required="true" aria-invalid="false">
+                        <option value="1">Active</option>
+                        <option value="2">Deactive</option>
+                      </select>
+                    </div>
+                    <label id="point_airport" class="col-sm-2 control-label labelalign ">General</label>
+                    <div class="col-sm-3">
+                      <select name="booking_status" id="select" style="" class="col-sm-12 col-lg-12 inputfild name valid" aria-required="true" aria-invalid="false">
+                        <option value="1">Active</option>
+                        <option value="2">Deactive</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <label id="flight_nos" class="col-sm-2 control-label labelalign ">Member Time Period</label>
+                    <div class="col-sm-1">
+                     <div class="input-group">
+                                  <input type="text" class="form-control date-picker" id="id-date-picker-1" data-date-format="dd-mm-yyyy">
+                                  <span class="input-group-addon">
+                                    <i class="fa fa-calendar bigger-110"></i>
+                                  </span>
+                                </div>
+                    </div>
+                    <div class="col-sm-2">
+                     <div class="input-group">
+                                  <input type="text" class="form-control date-picker" id="id-date-picker-1" data-date-format="dd-mm-yyyy">
+                                  <span class="input-group-addon">
+                                    <i class="fa fa-calendar bigger-110"></i>
+                                  </span>
+                                </div>
+                    </div>
+                    <label id="point_airport" class="col-sm-2 control-label labelalign "> Communtiy</label>
+                    <div class="col-sm-3">
+                      <select name="booking_status" id="select" style="" class="col-sm-12 col-lg-12 inputfild name valid" aria-required="true" aria-invalid="false">
+                        <option value="1">Active</option>
+                        <option value="2">Deactive</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <label id="flight_nos" class="col-sm-2 control-label labelalign ">Matrimonial</label>
+                    <div class="col-sm-3">
+                      <select name="booking_status" id="select" style="" class="col-sm-12 col-lg-12 inputfild name valid" aria-required="true" aria-invalid="false">
+                        <option value="1">Active</option>
+                        <option value="2">Deactive</option>
+                      </select>
+                    </div>
+                    
+                    <!--<label id="point_airport" class="col-sm-2 control-label labelalign ">License Plate</label>
+                                                   <div class="col-sm-4">
+                                                         <input id="license_plate" type="text" class=" form-control inputchange" placeholder="License Plate">     
+                                                    </div>--> 
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <div class="col-sm-4 pull-right"> <a href="#" class="btn btn-red defaultbtnsearch searchBooking"><i class="fa fa-search" id="search_me" style="color:#fff; margin:5px"></i>Search</a> <a href="javascript:document.getElementById('bookingFilter').reset();" class="btn btn-red defaultbtnsearch"><i class="fa fa-times" style="color:#fff; margin:5px"></i>Clear</a> </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="location_tab">
+              <div class=" col-sm-col-sm-offset-1" style="margin: 10px auto 0px !important;padding: 0 10px;">
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <label id="flight_nos" class="col-sm-2 control-label labelalign ">Previous Registered </label>
+                    <div class="col-sm-3">
+                      <select name="booking_status" id="select" style="" class="col-sm-12 col-lg-12 inputfild name valid" aria-required="true" aria-invalid="false">
+                        <option value="">All</option>
+                        <option value="1">Dlehi</option>
+                        <option value="2">Mumbai</option>
+                        <option value="3">Pune</option>
+                        <option value="4">Kolkatta</option>
+                      </select>
+                    </div>
+                    <label id="point_airport" class="col-sm-2 control-label labelalign ">New Born</label>
+                    <div class="col-sm-3">
+                      <input id="New Born" class=" form-control inputchange" placeholder="New Born" type="text">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <label id="flight_nos" class="col-sm-2 control-label labelalign ">Year Wise</label>
+                    <div class="col-sm-3">
+                      <select name="booking_status" id="select" style="" class="col-sm-12 col-lg-12 inputfild name valid" aria-required="true" aria-invalid="false">
+                        <option value="">All</option>
+                        <option value="1">1998</option>
+                        <option value="2">1999</option>
+                        <option value="3">2000</option>
+                        <option value="4">2001</option>
+                      </select>
+                    </div>
+                    <label id="point_airport" class="col-sm-2 control-label labelalign ">New Added Member</label>
+                    <div class="col-sm-3">
+                      <input id="New Added Member" type="text" class=" form-control inputchange" placeholder="New Added Member">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <label id="flight_nos" class="col-sm-2 control-label labelalign ">Monthly  Wise</label>
+                    <div class="col-sm-3">
+                      <select name="booking_status" id="select" style="" class="col-sm-12 col-lg-12 inputfild name valid" aria-required="true" aria-invalid="false">
+                        <option value="">All</option>
+                        <option value="1">January</option>
+                        <option value="2">February</option>
+                        <option value="3">March</option>
+                        <option value="4">April</option>
+                      </select>
+                    </div>
+                    <label id="point_airport" class="col-sm-2 control-label labelalign ">Obituary</label>
+                    <div class="col-sm-1">
+                      <input id="created_since" class="form-control inputchange hasDatepicker" placeholder="Since" type="text">
+                    </div>
+                    <div class="col-sm-2">
+                      <input id="created_since" class="form-control inputchange hasDatepicker" placeholder="Since" type="text">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <label id="flight_nos" class="col-sm-2 control-label labelalign ">Week wise</label>
+                    <div class="col-sm-3">
+                      <select name="booking_status" id="select" style="" class="col-sm-12 col-lg-12 inputfild name valid" aria-required="true" aria-invalid="false">
+                        <option value="">All</option>
+                        <option value="1">sunday</option>
+                        <option value="2">monday</option>
+                        <option value="3">Tuesday</option>
+                        <option value="4">wednesday</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <div class="col-sm-4 pull-right"> <a href="#" class="btn btn-red defaultbtnsearch searchBooking"><i class="fa fa-search" id="search_me" style="color:#fff; margin:5px"></i>Search</a> <a href="javascript:document.getElementById('bookingFilter').reset();" class="btn btn-red defaultbtnsearch"><i class="fa fa-times" style="color:#fff; margin:5px"></i>Clear</a> </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="state_tab">
+              <div class=" col-sm-col-sm-offset-1" style="margin: 10px auto 0px !important;padding: 0 10px;">
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <label id="flight_nos" class="col-sm-2 control-label labelalign ">Payment Type</label>
+                    <div class="col-sm-3">
+                      <select name="booking_status" id="booking_status" style="" class="col-sm-12 col-lg-12 inputfild name valid" aria-required="true" aria-invalid="false">
+                        <option value="">All</option>
+                        <option value="16">Credit</option>
+                        <option value="14">Cash</option>
+                      </select>
+                    </div>
+                    <label id="point_airport" class="col-sm-2 control-label labelalign ">Is Paid </label>
+                    <div class="col-sm-3">
+                      <select name="order_time" id="order_time" style="" class="col-sm-12 col-lg-12 inputfild name valid" aria-required="true" aria-invalid="false">
+                        <option value="">All</option>
+                        <option value="2">True</option>
+                        <option value="3">False</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <div class="col-sm-4 pull-right"> <a href="#" class="btn btn-red defaultbtnsearch searchBooking"><i class="fa fa-search" id="search_me" style="color:#fff; margin:5px"></i>Search</a> <a href="javascript:document.getElementById('bookingFilter').reset();" class="btn btn-red defaultbtnsearch"><i class="fa fa-times" style="color:#fff; margin:5px"></i>Clear</a> </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-sm-12"> 
+      
+      <!-- /.widget-box -->
+      <div  style="margin-top:20px;"> <a href="#" class="btn btn-red defaultbtnsearch searchBooking"><i class="fa fa-search" id="search_me" style="color:#fff; margin:5px"></i>Refresh</a> </div>
+    </div>
+  </div> <?php */ ?>
+
+
+
+
+
+        <div class="col-md-12">
+                    <h3>Membership Users</h3>
+					
+					<div class="table-responsive">
+                    <table class="table table-hover table-striped">  <!--id="bootstrap-table"-->
+                      <thead>
+                        <tr>
+                          <th>User ID</th>
+                          <th>Personal Details</th>
+                          <th>Physical Details</th>
+                          <th>Religional Details</th>
+                          <th>Educations</th>
+                          <th>Location</th>
+                          <th>Family Details</th>
+                          <th>Office Details</th>
+                          <th>Change Status</th>
+                        </tr>
+                      </thead>
+                        <tbody>
+                      <?php 
+                      $i =1;
+                        foreach ($userinfos as $userinfo) {
+                          
+                        
+
+                      ?>
+                      <tr>
+                        <td  tar="UserIdTab<?php echo $i;?>" class="itarget" ><?php echo (empty($userinfo->user_id))?'See More':$userinfo->user_id; ?></td>                        
+                        <td  tar="PersonalDetailTab<?php echo $i;?>" class="itarget"><?php echo (empty($userinfo->full_name))?'See More':$userinfo->full_name; ?></td>                        
+                        <td  tar="PhysicalDetailTab<?php echo $i;?>" class="itarget"><?php echo (empty($userinfo->height))?'See More':$userinfo->height; ?></td>                        
+                        <td  tar="ReligionalDetailTab<?php echo $i;?>" class="itarget"><?php echo (empty($userinfo->marital_status))?'See More':$userinfo->marital_status; ?></td>                        
+                        <td  tar="EducationsTab<?php echo $i;?>" class="itarget"><?php echo (empty($userinfo->education_field))?'See More':$userinfo->education_field; ?></td>                        
+                        <td  tar="LocationTab<?php echo $i;?>" class="itarget"><?php echo (empty($userinfo->country_name))?'See More':$userinfo->country_name; ?></td>                        
+                        <td  tar="FamilyDetailTab<?php echo $i;?>" class="itarget"><?php echo (empty($userinfo->father_name))?'See More':$userinfo->father_name; ?></td>                        
+                        <td  tar="OfficeDetailTab<?php echo $i;?>" class="itarget">Office details</td>                        
+                        <td><?php $status = ($userinfo->userstatus==1)?'Active':'In-active'; 
+                        $statuscolor = ($userinfo->userstatus==1)?'lightgreen':'red';
+                         ?><select name="ChangeStatus" id="changestatus<?=$i;?>" onchange="changestatus(<?=$userinfo->user_id?>,this.id,'<?= $this->serverUrl().$this->url().'/matrimonyuser/changestatus';?>');"  style="background:<?=$statuscolor?>;color:white;font-weight:bold;">
+                          <option value="<?= $userinfo->userstatus?>"><?= $status?></option>
+                          <option value="0">In-Active</option>
+                          <option value="1">Active</option>
+                        </select></td>
+                      </tr>
+
+                  <tr class="dontshow" id="UserIdTab<?php echo $i;?>">
+                        <td colspan="10" align="left">
+                      <div class="tabbable">
+                      <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab4">
+                        <li class="active">
+                          <a href="javascript:void(0);" >User ID</a>
+                        </li>
+                      </ul>
+                      <div class="tab-content">
+                        <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Profile ID'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <?php echo $userinfo->user_id; ?>
+                                                                                         
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('E-Mail'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      <?php echo $userinfo->email; ?>
+                                                                                         
+                                                  </div>
+                           
+                                                 </div>
+                                             </div>
+                                             <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Mobile No'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <?php echo $userinfo->mobile_no; ?>
+                                                                                         
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Created Date'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      <?php echo $userinfo->created_date; ?>
+                                                                                         
+                                                  </div>
+                           
+                                                 </div>
+                                             </div>
+                                             <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('User Type'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <?php echo $userinfo->user_type; ?>
+                                                                                         
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Reference No'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <?php echo $userinfo->ref_no; ?>
+                                                                                         
+                                                  </div>
+                                                 </div>
+                                             </div>
+                                              <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('User Name'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <?php echo $userinfo->username; ?>
+                                                                                         
+                                                  </div>
+                                                   
+                                                 </div>
+                                             </div>
+                      </div>
+                      </div>
+                      </td>
+                  </tr>
+
+                  <tr class="dontshow" id="PersonalDetailTab<?php echo $i;?>">
+                        <td colspan="10" align="left">
+                      <div class="tabbable">
+                      <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab4">
+                        <li class="active">
+                          <a href="javascript:void(0);" >Personal Details</a>
+                        </li>
+                      </ul>
+                      <div class="tab-content">
+                        <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           
+                                                  <div class="col-sm-2">
+                                                      
+                                                     
+                                                     <?php $imagePath = (empty($userinfo->profile_photo))?'/img/default_user.png' : $userinfo->profile_photo;
+                                                     // echo $this->basepath().$imagePath."sasasasas";
+                                                     ?><img src="<?= $this->basepath().$imagePath;?>" alt="">
+                                                                                         
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('About User'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <textarea class="addressstyle" col="100"> <?= (empty($userinfo->about_yourself_partner_family))? 'Not Available':$userinfo->about_yourself_partner_family; ?></textarea>
+                                                                                         
+                                                  </div>
+                                                   
+                           
+                                                 </div>
+                                             </div>
+                                             <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           
+                                                  
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Phone No'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <p> <?= (empty($userinfo->phone_no))? 'Not Available':$userinfo->phone_no; ?></p>
+                                                                                         
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Address'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <p> <?= (empty($userinfo->address))? 'Not Available':$userinfo->address; ?></p>
+                                                                                         
+                                                  </div>
+                                                   
+                           
+                                                 </div>
+                                             </div>
+                                             <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           
+                                                  
+                                                   
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Full Name'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <p> <?= (empty($userinfo->full_name))? 'Not Available':$userinfo->full_name; ?></p>
+                                                                                         
+                                                  </div>
+                                                   <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Date of Birth'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <p> <?= (empty($userinfo->dob))? 'Not Available':$userinfo->dob; ?></p>
+                                                                                         
+                                                  </div>
+                           
+                                                 </div>
+                                             </div>
+                                             <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           
+                                                  
+                                                   
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Age'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <p> <?= (empty($userinfo->age))? 'Not Available':$userinfo->age; ?></p>
+                                                                                         
+                                                  </div>
+                                                  
+                           
+                                                 </div>
+                                             </div>
+                      </div>
+                      </div>
+                      </td>
+                  </tr>
+                  <tr class="dontshow" id="PhysicalDetailTab<?php echo $i;?>">
+                        <td colspan="10" align="left">
+                      <div class="tabbable">
+                      <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab4">
+                        <li class="active">
+                          <a href="javascript:void(0);" >Physical Details</a>
+                        </li>
+                      </ul>
+                      <div class="tab-content">
+                        <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Height'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <?= (empty($userinfo->height))? 'Not Available':$userinfo->height; ?>
+                                                                                         
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Blood Group '); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?= (empty($userinfo->blood_group))? 'Not Available':$userinfo->blood_group; ?>
+                                                                                         
+                                                  </div>
+                           
+                                                 </div>
+                                             </div>
+                                             <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Color Complexion'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <?= (empty($userinfo->color_complexion))? 'Not Available':$userinfo->color_complexion; ?>
+                                                                                         
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Any Disability '); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?= (empty($userinfo->any_disability))? 'Not Available':$userinfo->any_disability; ?>
+                                                                                         
+                                                  </div>
+                           
+                                                 </div>
+                                             </div>
+                                             <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Body Type'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <?= (empty($userinfo->body_type))? 'Not Available':$userinfo->body_type; ?>
+                                                                                         
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Gender'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <?= (empty($userinfo->gender))? 'Not Available':$userinfo->gender; ?>
+                                                                                         
+                                                  </div>
+                                                   
+                           
+                                                 </div>
+                                             </div>
+                      </div>
+                      </div>
+                      </td>
+                  </tr>
+                  <tr class="dontshow" id="ReligionalDetailTab<?php echo $i;?>">
+                        <td colspan="10" align="left">
+                      <div class="tabbable">
+                      <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab4">
+                        <li class="active">
+                          <a href="javascript:void(0);" >Religional Details</a>
+                        </li>
+                      </ul>
+                      <div class="tab-content">
+                        <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Caste'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <?= (empty($userinfo->caste_name))? 'Not Available':$userinfo->caste; ?>
+                                                                                         
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Religion '); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?= (empty($userinfo->religion_name))? 'Not Available':$userinfo->religion_name; ?>
+                                                                                         
+                                                  </div>
+                           
+                                                 </div>
+                                             </div>
+                                             <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Mangalik Dosh'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <?= (empty($userinfo->manglik_dossam))? 'Not Available':$userinfo->manglik_dossam; ?>
+                                                                                         
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Sevvai Dossam'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?= (empty($userinfo->sevvai_dosham))? 'Not Available':$userinfo->sevvai_dosham; ?>
+                                                                                         
+                                                  </div>
+                           
+                                                 </div>
+                                             </div>
+                                             <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Gothra'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <?= (empty($userinfo->gothra_name))? 'Not Available':$userinfo->gothra_name; ?>
+                                                                                         
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Star Sign'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?= (empty($userinfo->star_sign_name))? 'Not Available':$userinfo->star_sign; ?>
+                                                                                         
+                                                  </div>
+                           
+                                                 </div>
+                                             </div>
+                                             <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Zodia Sign'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <?= (empty($userinfo->zodiac_sign_name))? 'Not Available':$userinfo->zodiac_sign; ?>
+                                                                                         
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Marital Status'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <?= (empty($userinfo->marital_status))? 'Not Available':$userinfo->marital_status; ?>
+                                                                                         
+                                                  </div>
+                                                  
+                           
+                                                 </div>
+                                             </div>
+                      </div>
+                      </div>
+                      </td>
+                  </tr>
+                  <tr class="dontshow" id="EducationsTab<?php echo $i;?>">
+                        <td colspan="10" align="left">
+                      <div class="tabbable">
+                      <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab4">
+                        <li class="active">
+                          <a href="javascript:void(0);" >Educations</a>
+                        </li>
+                      </ul>
+                      <div class="tab-content">
+                        <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Education Field'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <?= (empty($userinfo->education_field))? 'Not Available':$userinfo->education_field; ?>
+                                                                                         
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Education Level'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <?= (empty($userinfo->education_level))? 'Not Available':$userinfo->education_level; ?>
+                                                                                         
+                                                  </div>
+                                                  
+                           
+                                                 </div>
+                                             </div>
+                                             <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Annual Income'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <?= (empty($userinfo->annual_income))? 'Not Available':$userinfo->annual_income; ?>
+                                                                                         
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Specialisation'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <?= (empty($userinfo->specialization_major))? 'Not Available':$userinfo->specialization_major; ?>
+                                                                                         
+                                                  </div>
+                                                  
+                           
+                                                 </div>
+                                             </div>
+                                             <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Employment Status'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <?= (empty($userinfo->employment_status))? 'Not Available':$userinfo->employment_status; ?>
+                                                                                         
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Specialisation'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <?= (empty($userinfo->specialization_major))? 'Not Available':$userinfo->specialization_major; ?>
+                                                                                         
+                                                  </div>
+
+                           
+                                                 </div>
+                                             </div>
+                                             <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           
+
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Profession'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <?= (empty($userinfo->profession))? 'Not Available':$userinfo->profession; ?>
+                                                                                         
+                                                  </div>
+                                                  
+                           
+                                                 </div>
+                                             </div>
+                      </div>
+                      </div>
+                      </td>
+                  </tr>
+                   
+                  <tr class="dontshow" id="LocationTab<?php echo $i;?>">
+                        <td colspan="10" align="left">
+                      <div class="tabbable">
+                      <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab4">
+                        <li class="active">
+                          <a href="javascript:void(0);" >Location</a>
+                        </li>
+                      </ul>
+                      <div class="tab-content">
+                        <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Country'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <?= (empty($userinfo->country_name))? 'Not Available':$userinfo->country_name; ?>
+                                                                                         
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('State'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <?= (empty($userinfo->state_name))? 'Not Available':$userinfo->state_name; ?>
+                                                                                         
+                                                  </div>
+
+                           
+                                                 </div>
+                                             </div>
+                                             <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('City'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <?= (empty($userinfo->city_name))? 'Not Available':$userinfo->city_name; ?>
+                                                                                         
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Native Place'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <?= (empty($userinfo->native_place))? 'Not Available':$userinfo->native_place; ?>
+                                                                                         
+                                                  </div>
+
+                           
+                                                 </div>
+                                             </div>
+                                             <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Pin Code'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <?= (empty($userinfo->zip_pin_code))? 'Not Available':$userinfo->zip_pin_code; ?>
+                                                                                         
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Address'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                    <TEXTAREA cols="20" rows="1"><?= (empty($userinfo->address))? 'Not Available':$userinfo->address; ?></TEXTAREA>  
+                                                                                         
+                                                  </div>
+
+                           
+                                                 </div>
+                                             </div>
+                      </div>
+                      </div>
+                      </td>
+                  </tr>
+                  <tr class="dontshow" id="FamilyDetailTab<?php echo $i;?>">
+                        <td colspan="10" align="left">
+                      <div class="tabbable">
+                      <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab4">
+                        <li class="active">
+                          <a href="javascript:void(0);" >Family Details</a>
+                        </li>
+                      </ul>
+                      <div class="tab-content">
+                        <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Father Name'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <?= (empty($userinfo->father_name))? 'Not Available':$userinfo->father_name; ?>
+                                                                                         
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Father Date of Birth'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                    <?= (empty($userinfo->father_dob))? 'Not Available':$userinfo->father_dob; ?>  
+                                                                                         
+                                                  </div>
+
+                           
+                                                 </div>
+                                             </div>
+                          <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Father Status'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <?= (empty($userinfo->father_status))? 'Not Available':$userinfo->father_status; ?>
+                                                                                         
+                                                  </div>
+                                                  <?php if($userinfo->father_status=="Passed Away"){?>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Date of Death'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                    <?= (empty($userinfo->father_dod))? 'Not Available':$userinfo->father_dod; ?>  
+                                                                                         
+                                                  </div>
+                                                  <?php }?>
+                           
+                                                 </div>
+                                             </div>
+                         <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Father House Address'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <TEXTAREA  cols="20" rows="1"><?= (empty($userinfo->father_house_address))? 'Not Available':$userinfo->father_house_address; ?>
+                                                          </TEXTAREA>                               
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Father Office Address'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                    <TEXTAREA cols="20" rows="1"><?= (empty($userinfo->father_office_address))? 'Not Available':$userinfo->father_office_address; ?></TEXTAREA>  
+                                                                                         
+                                                  </div>
+
+                           
+                                                 </div>
+                                             </div>
+                          <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Father Email'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <?= (empty($userinfo->father_email))? 'Not Available':$userinfo->father_email; ?>
+                                                                                         
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Father Mobile'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                    <?= (empty($userinfo->father_mobile))? 'Not Available':$userinfo->father_mobile; ?> 
+                                                                                         
+                                                  </div>
+
+                           
+                                                 </div>
+                                             </div>
+                          <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Father Photo'); ?>
+                            
+                           </label>
+                           
+                           
+                           
+                           
+                           
+                                                  <div class="col-sm-3">
+                                                  
+                                                
+                                                
+                                                
+                                                
+                                                
+												  
+                                                 <a href="#" class="thumbnail" data-toggle="modal" data-target="#lightbox"> 
+            <img src="/rustagi-new/img/600x350.png" alt="...">
+            
+             <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+            
+        </a>
+												  
+												 <!--<a href="#"  data-toggle="modal" data-target="#lightbox"> <img class="thumbnail img-responsive"  src="/rustagi-new/img/600x350.png" width="60px" height="50px"  ></a>-->
+												  
+												  
+												  
+												  
+												  
+												  
+												  
+												   <!--<a href="#" class="thumbnail" data-toggle="modal" data-target="#lightbox"> 
+												   <?php $imagePath = (empty($userinfo->father_photo))? '/images/new-big.jpg' : $userinfo->father_photo;?>
+												    <img src="<?= $this->basepath().$imagePath;?>" width="43" height="37" alt="">
+												   </a>-->
+												   
+                                                     <div id="lightbox" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <!--  <button type="button" class="close hidden" data-dismiss="modal" aria-hidden="true">×</button>-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <img src="" alt="" />
+            </div>
+        </div>
+    </div>
+</div>
+                                                 
+                                                 
+                                                 
+                                             </div>
+                                             <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Mother Name'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <?= (empty($userinfo->mother_name))? 'Not Available':$userinfo->mother_name; ?>
+                                                                                         
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Mother Date of Birth'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                    <?= (empty($userinfo->mother_dob))? 'Not Available':$userinfo->mother_dob; ?>  
+                                                                                         
+                                                  </div>
+
+                           
+                                                 </div>
+                                             </div>
+                          <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Mother Status'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <?= (empty($userinfo->mother_status))? 'Not Available':$userinfo->mother_status; ?>
+                                                                                         
+                                                  </div>
+                                                  <?php if($userinfo->mother_status=="Passed Away"){?>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Mother Date of Death'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                    <?= (empty($userinfo->mother_dod))? 'Not Available':$userinfo->mother_dod; ?>  
+                                                                                         
+                                                  </div>
+                                                  <?php }?>
+                           
+                                                 </div>
+                                             </div>
+                         <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Mother House Address'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <TEXTAREA cols="20" rows="1"><?= (empty($userinfo->mother_house_address))? 'Not Available':$userinfo->mother_house_address; ?>
+                                                          </TEXTAREA>                               
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Father Office Address'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                    <TEXTAREA cols="20" rows="1"><?= (empty($userinfo->father_office_address))? 'Not Available':$userinfo->father_office_address; ?></TEXTAREA>  
+                                                                                         
+                                                  </div>
+
+                           
+                                                 </div>
+                                             </div>
+                          <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Mother Email'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <?= (empty($userinfo->mother_email))? 'Not Available':$userinfo->mother_email; ?>
+                                                                                         
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Mother Mobile'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                    <?= (empty($userinfo->mother_mobile))? 'Not Available':$userinfo->mother_mobile; ?> 
+                                                                                         
+                                                  </div>
+
+                           
+                                                 </div>
+                                             </div>
+                          <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Mother Photo'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      <?php $imagePath = (empty($userinfo->mother_photo))? '/images/new-big.jpg' : $userinfo->mother_photo;?>
+                        <img src="<?= $this->basepath().$imagePath;?>" width="43" height="37" alt="">
+                                                     
+
+                                                                                         
+                                                  </div>
+                                                   
+
+                           
+                                                 </div>
+                                             </div>
+                                             <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Spouse Name'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <?= (empty($userinfo->spouse_name))? 'Not Available':$userinfo->spouse_name; ?>
+                                                                                         
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Spouse Date of Birth'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                    <?= (empty($userinfo->spouse_dob))? 'Not Available':$userinfo->spouse_dob; ?>  
+                                                                                         
+                                                  </div>
+
+                           
+                                                 </div>
+                                             </div>
+                          <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Spouse Status'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <?= (empty($userinfo->spouse_status))? 'Not Available':$userinfo->spouse_status; ?>
+                                                                                         
+                                                  </div>
+                                                  <?php if($userinfo->spouse_status=="Passed Away"){?>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('spouse Date of Death'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                    <?= (empty($userinfo->spouse_died_on))? 'Not Available':$userinfo->spouse_died_on; ?>  
+                                                                                         
+                                                  </div>
+                                                  <?php }?>
+                           
+                                                 </div>
+                                             </div>
+                         <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Spouse House Address'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <TEXTAREA cols="20" rows="1"><?= (empty($userinfo->spouse_house_address))? 'Not Available':$userinfo->spouse_house_address; ?>
+                                                          </TEXTAREA>                               
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Father Office Address'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                    <TEXTAREA cols="20" rows="1"><?= (empty($userinfo->spouse_office_address))? 'Not Available':$userinfo->spouse_office_address; ?></TEXTAREA>  
+                                                                                         
+                                                  </div>
+
+                           
+                                                 </div>
+                                             </div>
+                          <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Spouse Email'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <?= (empty($userinfo->spouse_email))? 'Not Available':$userinfo->spouse_email; ?>
+                                                                                         
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Spouse Mobile'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                    <?= (empty($userinfo->spouse_mobile))? 'Not Available':$userinfo->spouse_mobile; ?> 
+                                                                                         
+                                                  </div>
+
+                           
+                                                 </div>
+                                             </div>
+                          <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Spouse Photo'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      <?php $imagePath = (empty($userinfo->spouse_photo))? '/images/new-big.jpg' : $userinfo->spouse_photo;?>
+                        <img src="<?= $this->basepath().$imagePath;?>" width="43" height="37" alt="">
+                                                     
+
+                                                                                         
+                                                  </div>
+                                                   
+
+                           
+                                                 </div>
+                                             </div>
+
+                                             <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Grand Father Name'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <?= (empty($userinfo->grand_father_name))? 'Not Available':$userinfo->grand_father_name; ?>
+                                                                                         
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Grand Father Date of Birth'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                    <?= (empty($userinfo->grand_father_dob))? 'Not Available':$userinfo->grand_father_dob; ?>  
+                                                                                         
+                                                  </div>
+
+                           
+                                                 </div>
+                                             </div>
+                          <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Grand Father Status'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <?= (empty($userinfo->grand_father_status))? 'Not Available':$userinfo->grand_father_status; ?>
+                                                                                         
+                                                  </div>
+                                                  <?php if($userinfo->grand_father_status=="Passed Away"){?>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Grand Father Date of Death'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                    <?= (empty($userinfo->grand_father_dod))? 'Not Available':$userinfo->grand_father_dod; ?>  
+                                                                                         
+                                                  </div>
+                                                  <?php }?>
+                           
+                                                 </div>
+                                             </div>
+                          
+                          
+                          <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Grand Father Photo'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      <?php $imagePath = (empty($userinfo->grand_father_photo))? '/images/new-big.jpg' : $userinfo->grand_father_photo;?>
+                        <img src="<?= $this->basepath().$imagePath;?>" width="43" height="37" alt="">
+                                                     
+
+                                                                                         
+                                                  </div>
+                                                   
+
+                           
+                                                 </div>
+                                             </div>
+                                             <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Grand Mother Name'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <?= (empty($userinfo->grand_mother_name))? 'Not Available':$userinfo->grand_mother_name; ?>
+                                                                                         
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Grand Mother Date of Birth'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                    <?= (empty($userinfo->grand_mother_dob))? 'Not Available':$userinfo->grand_mother_dob; ?>  
+                                                                                         
+                                                  </div>
+
+                           
+                                                 </div>
+                                             </div>
+                          <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Grand Mother Status'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <?= (empty($userinfo->grand_mother_status))? 'Not Available':$userinfo->grand_mother_status; ?>
+                                                                                         
+                                                  </div>
+                                                  <?php if($userinfo->grand_mother_status=="Passed Away"){?>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Grand Mother Date of Death'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                    <?= (empty($userinfo->grand_mother_dod))? 'Not Available':$userinfo->grand_mother_dod; ?>  
+                                                                                         
+                                                  </div>
+                                                  <?php }?>
+                           
+                                                 </div>
+                                             </div>
+                          
+                          
+                          <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Grand Mother Photo'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      <?php $imagePath = (empty($userinfo->grand_mother_photo))? '/images/new-big.jpg' : $userinfo->grand_mother_photo;?>
+                        <img src="<?= $this->basepath().$imagePath;?>" width="43" height="37" alt="">
+                                                     
+
+                                                                                         
+                                                  </div>
+                                                   
+
+                           
+                                                 </div>
+                                             </div>
+                                                                                                                                                              
+                      </div>
+                      </div>
+                      </td>
+                  </tr>
+                  <tr class="dontshow" id="OfficeDetailTab<?php echo $i;?>">
+                        <td colspan="10" align="left">
+                      <div class="tabbable">
+                      <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab4">
+                        <li class="active">
+                          <a href="javascript:void(0);" >Office Details</a>
+                        </li>
+                      </ul>
+                      <div class="tab-content">
+                        <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Office Name'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <?= (empty($userinfo->office_name))? 'Not Available':$userinfo->office_name; ?>
+                                                                                         
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Office Address'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                    <TEXTAREA cols="20" rows="1"><?= (empty($userinfo->office_address))? 'Not Available':$userinfo->office_address; ?></TEXTAREA>  
+                                                                                         
+                                                  </div>
+
+                           
+                                                 </div>
+                                             </div>
+                                             <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Office Email'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <?= (empty($userinfo->office_email))? 'Not Available':$userinfo->office_email; ?>
+                                                                                         
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Office Country'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                   <?= (empty($userinfo->office_country))? 'Not Available':$userinfo->office_country; ?>  
+                                                                                         
+                                                  </div>
+
+                           
+                                                 </div>
+                                             </div>
+                                           
+                                             <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Office State'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <?= (empty($userinfo->office_state))? 'Not Available':$userinfo->office_state; ?>
+                                                                                         
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Office City'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                   <?= (empty($userinfo->office_city))? 'Not Available':$userinfo->office_city; ?> 
+                                                                                         
+                                                  </div>
+
+                           
+                                                 </div>
+                                             </div>
+                                               <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Office Pincode'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <?= (empty($userinfo->office_pincode))? 'Not Available':$userinfo->office_pincode; ?>
+                                                                                         
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Office Phone'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                    <?= (empty($userinfo->office_phone))? 'Not Available':$userinfo->office_phone; ?> 
+                                                                                         
+                                                  </div>
+
+                           
+                                                 </div>
+                                             </div>
+                                               <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Office Website'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <?= (empty($userinfo->office_website))? 'Not Available':$userinfo->office_website; ?>
+                                                                                         
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Designation'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                    <?= (empty($userinfo->designation))? 'Not Available':$userinfo->designation; ?> 
+                                                                                         
+                                                  </div>
+
+                           
+                                                 </div>
+                                             </div>
+                                              <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Profession'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <?= (empty($userinfo->profession))? 'Not Available':$userinfo->profession; ?>
+                                                                                         
+                                                  </div>
+                                                  
+
+                           
+                                                 </div>
+                                             </div>
+                      </div>
+                      </div>
+                      </td>
+                  </tr>
+
+                  
+                      
+                      
+                      
+                      <?php 
+                    $i++;
+                    }
+                      ?>
+                      </tbody>
+                      </table>
+					  </div>
+                      
+                       
+                      
+                        
+          <!-- /.col --> 
+        </div>
+        <!-- /.row --> 

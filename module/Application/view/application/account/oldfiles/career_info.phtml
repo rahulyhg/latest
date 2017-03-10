@@ -1,0 +1,172 @@
+<div class="col-sm-4" style="width:100%;">
+        <h3><?php echo $this->translate('Update Your Career Info') ?></h3>   
+
+		<div class="row">
+	     <div class="form-group">	
+	        <div class="col-md-2">
+            <label><?php echo $this->translate('Working Info') ?></label>
+			</div>
+			 <div class="col-md-">			 
+            <?php  
+			echo $this->formHidden($form->get('id'));
+			echo $this->formRow($form->get('workplace_info'));?>
+          </div>
+		</div>
+	 </div> 
+		  
+		  <div class="row">
+	     <div class="form-group">	
+	        <div class="col-md-2">
+            <label><?php echo $this->translate('Office Name') ?></label>
+			</div>
+			 <div class="col-md-">
+            <?php  echo $this->formRow($form->get('office_name'));?>
+          </div>
+		</div>
+	 </div> 
+		  
+		  <div class="row">
+	     <div class="form-group">	
+	        <div class="col-md-2">
+            <label><?php echo $this->translate('Office Email') ?></label>
+			</div>
+			 <div class="col-md-">
+            <?php  echo $this->formRow($form->get('office_email'));?>
+          </div>
+		</div>
+	 </div> 
+		  
+		  <div class="row">
+	     <div class="form-group">	
+	        <div class="col-md-2">
+            <label><?php echo $this->translate('Office Address') ?></label>
+			</div>
+			 <div class="col-md-">
+            <?php  echo $this->formRow($form->get('office_address'));?>
+          </div>
+		</div>
+	 </div> 
+          
+		  <div class="row">
+	     <div class="form-group">	
+	        <div class="col-md-2">
+                <label style="margin-top: 20px;"><?php echo $this->translate('Office Country') ?></label>
+			</div>
+			</div>
+			<div class="form-group">
+			 <div class="col-md-">
+                <?php  echo $this->formRow($form->get('office_country'));?>
+             </div>			 
+		</div>
+	 </div>
+	 
+	 <div class="row">
+	     <div class="form-group">	
+	        <div class="col-md-2">
+                <label style="margin-top: 20px;"><?php echo $this->translate('Office State') ?></label>
+			</div>
+			</div>
+			<div class="form-group">
+			 <div class="col-md-">
+                <?php  echo $this->formRow($form->get('office_state'));?>
+             </div>			 
+		</div>
+	 </div>
+	 
+	 <div class="row">
+	     <div class="form-group">	
+	        <div class="col-md-2">
+                <label style="margin-top: 20px;"><?php echo $this->translate('Office City') ?></label>
+			</div>
+			</div>
+			<div class="form-group">
+			 <div class="col-md-">
+                <?php  echo $this->formRow($form->get('office_city'));?>
+             </div>			 
+		</div>
+	 </div>
+	 
+	 
+	 <div class="row">
+	     <div class="form-group">	
+	        <div class="col-md-2">
+            <label><?php echo $this->translate('Office Zip/Pin') ?></label>
+			</div>
+			 <div class="col-md-">
+            <?php  echo $this->formRow($form->get('office_pincode'));?>
+          </div>
+		</div>
+	 </div> 
+	 
+		  <div class="row">
+			 <div class="form-group">	
+				<div class="col-md-2">
+				<label><?php echo $this->translate('Office Phone') ?></label>
+				</div>
+				 <div class="col-md-">
+				<?php  echo $this->formRow($form->get('office_phone'));?>
+			  </div>
+			</div>
+		 </div> 
+		  
+		  <div class="row">
+			 <div class="form-group">	
+				<div class="col-md-2">
+				<label><?php echo $this->translate('Office Website') ?></label>
+				</div>
+				 <div class="col-md-">
+				<?php  echo $this->formRow($form->get('office_website'));?>
+			  </div>
+			</div>
+		 </div> 
+		  
+		  <div class="row">
+			 <div class="form-group">	
+				<div class="col-md-2">
+				<label><?php echo $this->translate('Working With') ?></label>
+				</div>
+				 <div class="col-md-">
+				<?php  echo $this->formRow($form->get('working_with'));?>
+			  </div>
+			</div>
+		 </div>		   
+            
+		 <div class="row">
+				 <div class="form-group">	
+					<div class="col-md-2">
+						<label style="margin-top: 20px;"><?php echo $this->translate('Designation') ?></label>
+					</div>
+					</div>
+					<div class="form-group">
+					 <div class="col-md-">
+						<?php  echo $this->formRow($form->get('designation'));?>
+					 </div>			 
+				</div>
+			 </div>
+
+		 <div class="row">
+				 <div class="form-group">	
+					<div class="col-md-2">
+						<label style="margin-top: 20px;"><?php echo $this->translate('Annual Income') ?></label>
+					</div>
+					</div>
+					<div class="form-group">
+					 <div class="col-md-">
+						<?php  echo $this->formRow($form->get('annual_income'));?>
+					 </div>			 
+				</div>
+			 </div>
+
+		 <div class="row">
+				 <div class="form-group">	
+					<div class="col-md-2">
+						<label style="margin-top: 20px;"><?php echo $this->translate('Annual Income Status') ?></label>
+					</div>
+					</div>
+					<div class="form-group">
+					 <div class="col-md-">
+						<?php  echo $this->formRow($form->get('annual_income_status'));?>
+					 </div>			 
+				</div>
+			 </div>	  
+	  </div> 

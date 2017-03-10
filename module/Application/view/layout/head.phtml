@@ -1,0 +1,21 @@
+<?php
+echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath('/img/favicon.ico')))
+        ->headLink(array('rel' => 'canonical', 'href' => $this->basePath('http://www.hello42cab.com/')))
+      		 ->prependStylesheet($this->basePath() . '/css/final.css') 
+?>
+<?php
+echo $this->headScript()
+                ->prependFile($this->basePath() . '/js/jquery-1.12.0.min.js');
+?>
+
+
+
+<style>		
+    .dropdown-menu > li > a{
+        color:#fff;
+    } 
+    .dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus{color:#fff;text-decoration:none;background-color:#333;}
+    .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus{background-color:#333;}
+    .col-sm-9 label{font-weight:bold !important;}
+    p{text-align:justify;}
+</style>

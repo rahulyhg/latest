@@ -1,0 +1,206 @@
+<script type="text/javascript">
+        try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+      </script>
+  <div id="sidebar" class="sidebar                  responsive"> 
+    <script type="text/javascript">
+          try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
+        </script>
+    <div class="sidebar-shortcuts" id="sidebar-shortcuts">
+      <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+        <button class="btn btn-success"> <i class="ace-icon fa fa-signal"></i> </button>
+        <button class="btn btn-info"> <i class="ace-icon fa fa-pencil"></i> </button>
+        <button class="btn btn-warning"> <i class="ace-icon fa fa-users"></i> </button>
+        <button class="btn btn-danger"> <i class="ace-icon fa fa-cogs"></i> </button>
+      </div>
+      <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini"> <span class="btn btn-success"></span> <span class="btn btn-info"></span> <span class="btn btn-warning"></span> <span class="btn btn-danger"></span> </div>
+    </div>
+    <!-- /.sidebar-shortcuts -->
+    
+    <ul class="nav nav-list">
+      <li class=""> <a href="<?php
+               echo $this->url('admin', array('controller' => 'admin', 'action' => 'dashboard'));
+               ?>"> <i class="menu-icon fa fa-tachometer"></i> <span class="menu-text" style="color: red"> Dashboard </span> </a> <b class="arrow"></b> </li>
+                <li class=""> <a href="<?php
+               echo $this->url('admin/master', array('action' => 'masterview'));
+                ?>"> <i class="menu-icon fa fa-tachometer"></i> <span class="menu-text"> Master Enteries </span> </a> <b class="arrow"></b> </li>
+      <!--<li class=""> <a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-desktop"></i> <span class="menu-text"> Manage Static Page </span> </a> </li>-->
+                <li class=""> <a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-user"></i> <span class="menu-text" style="color: red"> User(Members)</span> <b class="arrow fa fa-angle-down"></b> </a> <b class="arrow"></b>
+        <ul class="submenu">
+          <li class=""> <a href="<?php
+               echo $this->url('admin/matrimonyuser', array('action' => 'matrimonyuserindex'));
+                ?>"> <i class="menu-icon fa fa-caret-right"></i> Manage Matrimony Members </a> <b class="arrow"></b> </li>
+          <li class=""> <a href="<?php
+               echo $this->url('admin/matrimonyuser', array('action' => 'memberuserindex'));
+                ?>"> <i class="menu-icon fa fa-caret-right"></i>Manage Membership Users</a> <b class="arrow"></b> </li>
+          <li class=""> <a href="#"> <i class="menu-icon fa fa-caret-right"></i>Manage Commitee Users</a> <b class="arrow"></b> </li>
+        </ul>
+      </li>
+      
+      
+      
+      
+      <li class=""> <a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-pencil-square-o"></i> <span class="menu-text" style="color: red"> Manage Comments </span> </a> </li>
+      <li class=""> <a href="#"> <i class="menu-icon fa fa-trophy"></i> <span class="menu-text" style="color: red"> Awards </span> </a> <b class="arrow"></b> </li>
+      <li class=""> <a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-newspaper-o"></i> <span class="menu-text"> News</span> <b class="arrow fa fa-angle-down"></b> </a> <b class="arrow"></b>
+        <ul class="submenu">
+    
+    
+    <li class=""> <a href="<?php
+               echo $this->url('admin/news', array('action' => 'addnews'));
+                ?>"> <i class="menu-icon fa fa-caret-right"></i>Add News</a> <b class="arrow"></b> </li>
+    <li class=""> <a href="<?php
+               echo $this->url('admin/news', array('action' => 'indexnews'));
+                ?>"> <i class="menu-icon fa fa-caret-right"></i>Manage News </a> <b class="arrow"></b> </li>
+          <li class=""> <a href="<?php
+               echo $this->url('admin/news', array('action' => 'addnewscategory'));
+                ?>"> <i class="menu-icon fa fa-caret-right"></i>Add News Categories </a> <b class="arrow"></b> </li>
+          <li class=""> <a href="<?php
+               echo $this->url('admin/news', array('action' => 'indexnewscategory'));
+                ?>"> <i class="menu-icon fa fa-caret-right"></i>Manage  News categories</a> <b class="arrow"></b> </li>
+          <!--<li class=""> <a href="#"> <i class="menu-icon fa fa-caret-right"></i>Add News subcategorie</a> <b class="arrow"></b> </li>
+           <li class=""> <a href="#"> <i class="menu-icon fa fa-caret-right"></i>Manage News subcategories</a> <b class="arrow"></b> </li>-->
+        </ul>
+      </li>
+      <li class=""> <a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-calendar"></i> <span class="menu-text"> Events</span> <b class="arrow fa fa-angle-down"></b> </a> <b class="arrow"></b>
+        <ul class="submenu">
+          <li class=""> <a href="<?php
+               echo $this->url('admin/events', array('action' => 'eventsindex'));
+                ?>"> <i class="menu-icon fa fa-caret-right"></i>Manage Events </a> <b class="arrow"></b> </li>
+          <li class=""> <a href="<?php
+               echo $this->url('admin/events', array('action' => 'eventsadd'));
+                ?>"> <i class="menu-icon fa fa-caret-right"></i>Add Events </a> <b class="arrow"></b> </li>
+          <li class=""> <a href="<?php
+               echo $this->url('admin/subevents', array('action' => 'index'));
+                ?>"> <i class="menu-icon fa fa-caret-right"></i>Manage Subevents </a> <b class="arrow"></b> </li>
+           <li class=""> <a href="<?php
+               echo $this->url('admin/subevents', array('action' => 'subeventsadd'));
+                ?>"> <i class="menu-icon fa fa-caret-right"></i>Add Subevents </a> <b class="arrow"></b> </li>
+          
+           
+        </ul>
+      </li>
+
+
+      <!--<li class=""> <a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-user"></i> <span class="menu-text"> Sponser Type</span> <b class="arrow fa fa-angle-down"></b> </a> <b class="arrow"></b>
+        <ul class="submenu">
+          <li class=""> <a href="<?php
+               //echo $this->url('admin/sponsertype', array('action' => 'index'));
+                ?>"> <i class="menu-icon fa fa-caret-right"></i>Manage Sponsertype </a> <b class="arrow"></b> </li>           
+        </ul>
+      </li>-->
+      
+      <li class=""> <a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-calendar"></i> <span class="menu-text"> Sponsermaster</span> <b class="arrow fa fa-angle-down"></b> </a> <b class="arrow"></b>
+        <ul class="submenu">
+
+        <li class=""> <a href="<?php
+               echo $this->url('admin/sponsermaster', array('action' => 'addsponsermaster'));
+                ?>"> <i class="menu-icon fa fa-caret-right"></i>Add Sponsermaster </a> <b class="arrow"></b> </li>
+          <li class=""> <a href="<?php
+               echo $this->url('admin/sponsermaster', array('action' => 'index'));
+                ?>"> <i class="menu-icon fa fa-caret-right"></i>Manage Sponsermaster </a> <b class="arrow"></b> </li>
+          
+          <!--<li class=""> <a href="#"> <i class="menu-icon fa fa-caret-right"></i>Manage Subevents </a> <b class="arrow"></b> </li>-->
+           <!--<li class=""> <a href="uploadsubevent.html"> <i class="menu-icon fa fa-caret-right"></i>Add Subevents </a> <b class="arrow"></b> </li>-->
+          
+           
+        </ul>
+      </li>
+      
+      <li class=""> <a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-book"></i> <span class="menu-text"> Pages</span> <b class="arrow fa fa-angle-down"></b> </a> <b class="arrow"></b>
+        <ul class="submenu">
+          <li class=""> <a href="<?php
+               echo $this->url('admin/pages', array('action' => 'pagesindex'));
+                ?>"> <i class="menu-icon fa fa-caret-right"></i>Manage Pages </a> <b class="arrow"></b> </li>
+          <li class=""> <a href="<?php
+               echo $this->url('admin/pages', array('action' => 'pagesadd'));
+                ?>"> <i class="menu-icon fa fa-caret-right"></i>Add </a> <b class="arrow"></b> </li>            
+        </ul>
+      </li>    
+
+      <li class=""> <a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-user"></i> <span class="menu-text" style="color: red"> MembershipFeature</span> <b class="arrow fa fa-angle-down"></b> </a> <b class="arrow"></b>
+        <ul class="submenu">  
+
+          <li class=""> <a href="<?php
+               echo $this->url('admin/membershipfeature', array('action' => 'add'));
+                ?>"> <i class="menu-icon fa fa-caret-right"></i>Add Membershipfeature</a> <b class="arrow"></b> </li>
+    <li class=""> <a href="<?php
+               echo $this->url('admin/membershipfeature', array('action' => 'index'));
+                ?>"> <i class="menu-icon fa fa-caret-right"></i>Manage Membershipfeature </a> <b class="arrow"></b> </li>
+
+        </ul>
+      </li> 
+     
+      <li class=""> <a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-tags"></i> <span class="menu-text" style="color: red"> Post</span> <b class="arrow fa fa-angle-down"></b> </a> <b class="arrow"></b>
+        <ul class="submenu">
+          <li class=""> <a href="#"> <i class="menu-icon fa fa-caret-right"></i>Add Post  Category</a> <b class="arrow"></b> </li>
+          <li class=""> <a href="#"> <i class="menu-icon fa fa-caret-right"></i>Add Post</a> <b class="arrow"></b> </li>
+          <li class=""> <a href="#"> <i class="menu-icon fa fa-caret-right"></i>Manage post</a> <b class="arrow"></b> </li>
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class=""> <a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-user"></i> <span class="menu-text"> User type</span> <b class="arrow fa fa-angle-down"></b> </a> <b class="arrow"></b>
+        <ul class="submenu">
+          <li class=""> <a href="<?php
+               echo $this->url('admin/master', array('action' => 'indexusertype'));
+                ?>"> <i class="menu-icon fa fa-caret-right"></i>Manage User type</a> <b class="arrow"></b> </li>
+          <li class=""> <a href="<?php
+               echo $this->url('admin/master', array('action' => 'addusertype'));
+                ?>"> <i class="menu-icon fa fa-caret-right"></i>Add User type</a> <b class="arrow"></b> </li>
+          <li class=""> <a href="#"> <i class="menu-icon fa fa-caret-right"></i>Manage User</a> <b class="arrow"></b> </li>
+          
+        </ul>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+     <li class=""> <a href="#<?php
+              // echo $this->url('admin', array('controller' => 'homepage', 'action' => 'index'));
+     ?>"> <i class="menu-icon fa fa-book"></i> <span class="menu-text" style="color: red"> Home Page</span> <b class="arrow fa fa-angle-down"></b> </a> <b class="arrow"></b>
+        <ul class="submenu">
+          
+          <li class=""> <a href="upload-banner.html"> <i class="menu-icon fa fa-caret-right"></i>Upload Banner</a> <b class="arrow"></b> </li>
+         <li class=""> <a href="banner-listing-page.html"> <i class="menu-icon fa fa-caret-right"></i>Banner Listing</a> <b class="arrow"></b> </li>
+          
+        </ul>
+      </li>
+    
+    
+      <li class=""> <a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-tags"></i> <span class="menu-text" style="color: red"> Ad Banner</span> <b class="arrow fa fa-angle-down"></b> </a> <b class="arrow"></b>
+        <ul class="submenu">
+          <li class=""> <a href="<?php
+               echo $this->url('admin/ad', array('action' => 'index'));
+                ?>"> <i class="menu-icon fa fa-caret-right"></i>Add Ad  Banner</a> <b class="arrow"></b> </li>
+   
+          <li class=""> <a href="#"> <i class="menu-icon fa fa-caret-right"></i>Manage Ad</a> <b class="arrow"></b> </li>
+          
+        </ul>
+      </li>
+    
+    
+    
+      <li class=""> <a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-phone"></i> <span class="menu-text" style="color: red"> Contact Us</span> <b class="arrow fa fa-angle-down"></b> </a> <b class="arrow"></b>
+        <ul class="submenu">
+          
+          <li class=""> <a href="#"> <i class="menu-icon fa fa-caret-right"></i>Upload Contact Us</a> <b class="arrow"></b> </li>
+         <li class=""> <a href="#"> <i class="menu-icon fa fa-caret-right"></i>Contact-listing-page</a> <b class="arrow"></b> </li>
+          
+        </ul>
+      </li>
+      
+   
+    </ul>
+    <!-- /.nav-list -->
+    
+    <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse"> <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i> </div>
+    <script type="text/javascript">
+          try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
+        </script> 

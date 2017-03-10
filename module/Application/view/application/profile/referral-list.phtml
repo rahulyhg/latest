@@ -1,0 +1,259 @@
+<?php $session = new \Zend\Session\Container('user'); ?>
+<?php
+$user_id = $session->offsetGet('id');
+// $searchFor=2;
+//                            $sents=array_filter($invitationRows, function($element) use($searchFor){
+//                                     if($element['user_id']==$searchFor && $element['sent']!==NULL){
+//                                     return $element;
+//                                     }
+//                             });
+//                             
+//                              foreach ($sents as $sent) {
+//                                  //$profileSent=$this->MyHelper()->userSummaryByIdMatrimonial($sent['sent']);
+//                                  //\Zend\Debug\Debug::dump($profileSent);
+//                              }
+//\Zend\Debug\Debug::dump($this->MyHelper()->userSummaryByIdMatrimonial(1));
+//                              exit;
+?>
+
+<style>
+
+    /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+    .show {display:block;}
+
+    label {
+
+        margin-bottom: 0;
+
+    }
+
+    .grid-view ul li .col-xs-2 .btn {
+        border: 0 none;
+        border-radius: 3px;
+        display: table;
+        font-size: 9px;
+        font-weight: normal;
+        line-height: 1.1;
+        margin: 0 auto;
+        padding: 4px 5px;
+        float:right;
+    }
+
+    .list-view ul li .col-xs-10 .col-xs-8 {
+        font-size: 11px;
+        font-weight: normal;
+        margin: 0;
+        padding: 0 0 0;
+
+    }
+
+
+    .grid-view ul li {
+        color: #636363;
+        float: left;
+        font-size: 11px;
+        margin: 0 7px 20px;
+
+    }
+
+
+    .list-view ul li {
+
+        width:97%;
+    }
+</style>
+
+<?php
+echo $this->headLink()
+        ->prependStylesheet($this->basePath() . '/css/componant-vs-14.css')
+?>
+<div class="container orange-panelbg">
+    <div class="col-sm-3 col-sm-3-new width20per">
+        <?php //include('sidebar-left-matrimonial.phtml'); ?>
+        <?php echo $sidebarLeft; ?>
+        <?php echo $this->partial('layout/sidebar-matrimonial')?>
+    </div>
+
+    <div class="col-sm-9 width80per">
+        <div class="myshaadi_wrap">
+            <div class="welcome_screen"></div>
+
+
+            <div class="clear"></div>
+        </div>
+                <div class="row" id="listgrid" style="display: none">
+            <div class="col-xs-9">
+                <!--<ul class="view-menu">
+                <li>Sort By :</li>
+                <li class="active"><a href="#">New Joining</a></li>
+                <li><a href="#">Executive Communinty</a></li>
+                <li><a href="#">Senior Citizen</a></li>             
+                </ul>-->
+            </div>
+            <div class="col-xs-3">
+                <ul class="prof-view pull-right">
+                    <li><a href="#" id="grid"><span class="glyphicon glyphicon-th-list"></span><span class="sr-only">List View</span></a></li>
+                    <li><a href="#" id="list"><span class="glyphicon glyphicon-th"></span><span class="sr-only">Grid View</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div id="profile1"></div>
+        <!--MY SHAADI LEFT-->
+        <div class="col-sm-9" style="padding-top:0; padding-left:0;" id="profilepage">
+
+            <!--<div id="my_rustagi_left">
+            
+            
+                    
+            
+            
+            </div>--><!--end left_half-->	
+            <?php
+//\Zend\Debug\Debug::dump($this->userSummary);exit;
+            ?>
+            <!--MIDDLE SECTION-->
+            <div id="my_rustagi_middle">
+                <h1 style="font-size: 20px;">Referral Key Used By (<?php echo count($referral_key_used_by)?>) </h1>
+                <table width="100%">
+                    <tr style="background-color: #ccc">
+                        <td style="width: 10px">S.No.</td>
+                        <td style="padding-left: 30px;">Name</td>
+                    </tr>
+                    <?php
+                    $i=1;
+                    foreach($referral_key_used_by as $key=>$value){ 
+     
+                        ?>
+                     <tr style="border-bottom: 1px solid #ccc">
+                        <td style="width: 10px"><?php echo $i;?></td> 
+                        <td style="padding-left: 30px;"><?php echo $this->MyHelper()->userSummaryByIdMatrimonial($value['used_by'])['full_name']?></td>
+                    </tr>
+                    <?php $i++; } ?>
+                </table>
+                
+            </div>
+        </div>
+        <!--MY rustagi RIGHT-->
+        <div id="my_rustagi_right" class="col-sm-3 col-sm-3new pull-right" id="profilepage">
+            <?php echo $sidebarRight ?>
+            <?php //echo $this->partial('layout/sidebar-right') ?>
+        </div>
+        <!--end right_half-->
+        <br class="clear">
+    </div>
+
+
+</div>
+
+<script>
+
+<?php echo $percent[1] ?>
+
+    $('#demo-3').waterbubble({txt: '<?php echo $percent[0] ?>%', });
+</script>
+
+
+<script>
+    $(document).ready(function () {
+        $("#contact_detail").click(function () {
+            $(".contactde").toggle();
+        });
+
+    });
+</script>
+
+<script>
+    function sendRequest(uid, type) {
+        var url = '<?php echo $this->url('profile', array('action' => 'sendRequestMatrimonial')) ?>';
+        $.ajax({
+            url: url,
+            data: {
+                uid: uid, type: type
+            },
+            error: function (request, status, error) {
+                console.log(status);
+            },
+            success: function (data) {
+                $('#new_matches_' + uid).hide();
+                console.log(data);
+            },
+            type: 'POST'
+        });
+    }
+
+    function acceptRequest(id, uid, type) {
+        $.ajax({
+            url: '<?php echo $this->url('profile', array('action' => 'matrimonyinterestaccepted')) ?>',
+            data: {
+                id: id, uid: uid, type: type
+            },
+            error: function (request, status, error) {
+                console.log(status);
+            },
+            success: function (data) {
+                $('#invitation_received_' + id).hide();
+                console.log(data);
+            },
+            type: 'POST'
+        });
+    }
+
+    function declineRequest(id, uid, type, request_type) {
+        $.ajax({
+            url: '<?php echo $this->url('profile', array('action' => 'interestDeclineMatrimonial')) ?>',
+            data: {
+                id: id, uid: uid, type: type, request_type: request_type
+            },
+            error: function (request, status, error) {
+                console.log(status);
+            },
+            success: function (data) {
+                if (request_type == "cancel") {
+                    $('#invitation_sent_' + id).hide();
+                } else if (request_type == "decline") {
+                    $('#invitation_received_' + id).hide();
+                }
+                console.log(data);
+            },
+            type: 'POST'
+        });
+    }
+
+    function acceptYesRequest(uid, id, type) {
+        $.ajax({
+            url: '<?php echo $this->url('profile', array('action' => 'interestAcceptYesMatrimonial')) ?>',
+            data: {
+                uid: uid, id: id, type: type
+            },
+            error: function (request, status, error) {
+                console.log(status);
+            },
+            success: function (data) {
+                $('#invitation_sent_' + id).hide();
+                console.log(data);
+            },
+            type: 'POST'
+        });
+    }
+</script>
+<script>
+    function sendInterest(uid,type){
+     $.ajax({
+      url: '/matrimonial/interest',
+      data: {
+         uid: uid,type: type
+      },
+     error: function (request, status, error) {
+        console.log(status);
+    },
+     
+      success: function(data) {
+         console.log(data);
+      },
+      type: 'POST'
+   });
+ }   
+</script>
+
+<?php echo $this->inlineScript()->prependFile($this->basePath('/js/matrimony_filters.js')); ?>

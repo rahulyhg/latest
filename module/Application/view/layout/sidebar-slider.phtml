@@ -1,0 +1,306 @@
+ <script type="text/javascript">
+      $(document).ready(function() {
+      $("#theForm").validate();
+      });
+    </script>
+    
+<style>
+	.popuplogingbut {
+    background: #6f021a none repeat scroll 0 0 !important;
+    border: medium none !important;
+    border-radius: 0 !important;
+    color: #fff;
+}
+</style>
+
+<!--<div class="featured-list">
+<ul id="flexiselDemo5">
+
+<li><a href="#"><img src="<?php echo $this->basePath('images/slide1.jpg') ?>" class="img-responsive" /></a></li>
+<li><a href="#"><img src="<?php echo $this->basePath('images/slide1.jpg') ?>" class="img-responsive" /></a></li>
+<li><a href="#"><img src="<?php echo $this->basePath('images/slide1.jpg') ?>" class="img-responsive" /></a></li>
+<li><a href="#"><img src="<?php echo $this->basePath('images/slide1.jpg') ?>" class="img-responsive" /></a></li>
+<li><a href="#"><img src="<?php echo $this->basePath('images/slide1.jpg') ?>" class="img-responsive" /></a></li>
+</ul>
+</div>-->
+
+
+
+<div id="myCarousel1" class="carousel slide" data-ride="carousel"> 
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel1" data-slide-to="0" class="active"></li>
+	<?php for($i=1;$i<=9;$i++){ ?>
+    <li data-target="#myCarousel1" data-slide-to="<?php echo $i;?>"></li>
+	<?php } ?>
+  </ol>
+  <a href="#" data-toggle="modal" data-target="#myModal">
+  <div class="carousel-inner">
+<div class="item active">
+	<img src="<?php echo $this->basePath('images/australia_22.jpg') ?>" class="img-responsive" alt="First slide"  style="width:100% !important;">
+</div>
+<div class="item">
+	<img src="<?php echo $this->basePath('images/car_rental_delhi.jpg') ?>" class="img-responsive" alt="Second slide"  style="width:100% !important;">
+</div>
+<div class="item">
+	<img src="<?php echo $this->basePath('images/golden_triangle.jpg') ?>" class="img-responsive" alt="Fourth slide"  style="width:100% !important;">
+</div>
+<div class="item">
+	<img src="<?php echo $this->basePath('images/grand_j.jpg') ?>" class="img-responsive" alt="Fifth slide"  style="width:100% !important;">
+</div>
+<div class="item">
+	<img src="<?php echo $this->basePath('images/hello42_small.jpg') ?>" class="img-responsive" alt="Sixth slide"  style="width:100% !important;">
+</div>
+<div class="item">
+	<img src="<?php echo $this->basePath('images/himachal.jpg') ?>" class="img-responsive" alt="Seventh slide"  style="width:100% !important;">
+</div>
+<div class="item">
+	<img src="<?php echo $this->basePath('images/Kerala.jpg') ?>" class="img-responsive" alt="Eighth slide"  style="width:100% !important;">
+</div>
+<div class="item">
+	<img src="<?php echo $this->basePath('images/Maldives_3.jpg') ?>" class="img-responsive" alt="Nineth slide"  style="width:100% !important;">
+</div>
+<div class="item">
+	<img src="<?php echo $this->basePath('images/regency_small.jpg') ?>" class="img-responsive" alt="Tenth slide"  style="width:100% !important;">
+</div>
+<div class="item">
+	<img src="<?php echo $this->basePath('images/srilanka.jpg') ?>" class="img-responsive" alt="Twelve slide" style="width:100% !important;">
+</div>
+  </div>
+  </a>
+  <a class="left carousel-control" href="#myCarousel1" data-slide="prev"></a>
+  <a class="right carousel-control" href="#myCarousel1" data-slide="next"></a>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document" style="">
+    <div class="modal-content gnt-pad15 modal-contentnew">
+      <form role="form" action="#" id="theForm">
+   		<div class="form-group" style="border:10px solid #6f021a;">
+        <div class="modal-header" style="padding-bottom:2px; padding-top:2px;">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:#48042d; size:25px; font-size:30px;"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title" id="myModalLabel"><img src="<?php echo $this->basePath('images/logo_regency.jpg') ?>" alt="Twelve slide"></h2>
+      </div>
+      <div class="modal-body">
+      
+      <div class="col-sm-6" style="padding-top:5px; padding-bottom:5px;">
+      Name
+     <input type="text" name="name" id="name" class="form-control required" />
+       </div>
+       
+       <div class="col-sm-6" style="padding-top:5px; padding-bottom:5px;">
+      Email-ID
+     <input type="text" name="email" id="email" class="form-control required" />
+       </div>
+       
+       <div class="col-sm-6" style="padding-top:5px; padding-bottom:5px;">
+      Contact No.
+     <input type="text" name="contactno" id="contactno" class="form-control required" />
+       </div>
+       
+       <div class="col-sm-6" style="padding-top:5px; padding-bottom:5px;">
+       No. of Days
+     
+        <select class="form-control required" >
+       		<option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+            <option>10</option>
+            <option>12</option>
+       </select>
+       
+       </div>
+       <div class="col-sm-6" style="padding-top:5px; padding-bottom:5px;">
+      Month of travel
+      <select class="form-control" >
+      		<option>Select Month</option>
+       		<option>January-March</option>
+            <option>April-June</option>
+            <option>July-September</option>
+            <option>October-December</option>
+         
+       </select>
+       </div>
+       
+       <div class="col-sm-6" style="padding-top:5px; padding-bottom:5px;">
+      Date of travel
+     <input type="text" id="datepicker" class="form-control required">
+       </div>
+       
+         <script>
+  $(function() {
+    $( "#datepicker" ).datepicker({ minDate: +1, maxDate: "+6M +10D" });
+  });
+  </script>
+       
+        <div class="col-sm-6" style="padding-top:5px; padding-bottom:5px;">
+        No of Travelers
+     
+       <select class="form-control" >
+       		<option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+            <option>10</option>
+            <option>12</option>
+       </select>
+       
+       </div>
+       
+       
+       <div class="col-sm-6" style="padding-top:5px; padding-bottom:5px;">
+        Budget
+     
+     
+       <select class="form-control" >
+       		<option>Rs 10000 - 20000</option>
+            <option>21000 - 50000</option>
+            <option>51000 - 100000</option>
+            <option>100001 - 150000</option>
+            <option>150001 - 200000</option>
+            <option>200001 - 250000</option>
+            
+       </select>
+     
+      
+       
+       </div>
+       
+       <div class="col-sm-6" style="padding-top:5px; padding-bottom:5px;">
+       Destination
+     
+       <select class="form-control" id="destination" >
+       		<option value="dom">Domestic</option>
+            <option value="inter">International</option>
+            
+       </select>
+       
+       </div>
+       
+       
+       <div class="col-sm-6" style="padding-top:5px; padding-bottom:5px;" id="dom">
+      Domestic
+      <select class="form-control">
+      	<option>Select Package</option>
+        <option>Goa</option>
+        <option>Himachal</option>
+         <option>Jammu &amp; Kashmir</option>
+        <option>Kerala</option>
+         <option>New&nbsp;Delhi</option>
+        <option>North&nbsp;East</option>
+         <option>Port&nbsp;Blair</option>
+          <option>Rajasthan</option>
+           <option>South&nbsp;India</option>
+            <option>Uttaranchal</option>
+             <option>Weekends</option>
+         
+       </select>
+      
+    
+       </div>
+        <div class="col-sm-6" style="padding-top:5px; padding-bottom:5px; display:none;" id="inter">
+      International
+     <select class="form-control">
+      	<option>Select Package</option>
+        <option>Austria</option>
+        <option>Australia</option>
+         <option>Canada</option>
+        <option>Cyprus</option>
+         <option>China</option>
+        <option>Dubai</option>
+         <option>Egypt</option>
+          <option>Fiji&nbsp;Island</option>
+         <option>Greece</option>
+        <option>Germany</option>
+         <option>Hongkong</option>
+           <option>Indonesia</option>
+        <option>Italy</option>
+         <option>Japan</option>
+        <option>Kenya</option>
+         <option>London</option>
+        <option>Maldives</option>
+         <option>Mauritius</option>
+          <option>Macau</option>
+         <option>Malaysia</option>
+        <option>Newzealand</option>
+         <option>Nepal</option>
+         
+            <option>Philippines</option>
+        <option>Paris</option>
+         <option>Singapore</option>
+        <option>Switzerland</option>
+         <option>South&nbsp;Africa</option>
+        <option>Seychelles</option>
+         <option>South&nbsp;Korea</option>
+          <option>Sri&nbsp;Lanka</option>
+         <option>Turkey</option>
+        <option>Taiwan</option>
+         <option>Thailand</option>
+         <option>USA</option>
+       </select>
+       </div>
+       
+        <div class="col-sm-12" style="padding-top:5px; padding-bottom:5px; ">
+      
+     <button type="submit" name="login" id="login" class="btn btn-default btn-block popuplogingbut">Submit</button>
+       </div>
+       
+       
+    <div class="col-sm-12 text-center"> </div>  
+        
+      </div>
+      <div class="clearfix"></div>
+      <div class="modal-footer">
+       
+      </div>
+      </div>
+        </form>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+    $("#destination").change(function(){
+
+        $(this).find("option:selected").each(function(){
+
+            if($(this).attr("value")=="dom"){
+
+                $("#inter").hide();
+
+                $("#dom").show();
+
+            }
+
+            else {
+
+                $("#dom").hide();
+
+                $("#inter").show();
+
+            }
+
+           
+
+        });
+
+    })
+
+});
+
+</script>

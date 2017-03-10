@@ -1,0 +1,177 @@
+
+<div class="col-sm-3 col-sm-3-new width20per">
+<?php echo $this->partial('layout/sidebar') ?>
+
+ 
+</div>
+<?php //echo $this->partial('flash-message'); ?>
+
+
+<div class="col-sm-9 width80per">
+<div class="upcoming-events">
+<span class="bar">&nbsp;</span>
+<h2 class="text-center">UPCOMING EVENTS</h2>
+
+ 
+                 
+        
+<ul id="flexiselDemo1">
+<?php   if(count($this->Upcoming_events)>0){
+          foreach($Upcoming_events as $event){ ?>
+
+<li>
+<a href="#">
+<div class="col-xs-2">
+<span class="text14"><?=date("M",strtotime($event->event_date));?></span>
+<span class="text28"><?=date("d",strtotime($event->event_date));?></span>
+</div>
+<div class="col-xs-10">
+<p class="lead"> <?=$event->event_name?><?=date("Y",strtotime($event->event_date));?></p>
+<p>प्रस्तुत करता - रुस्तगी सभा डेल्ही रजिस्टर्ड,<br> दिनांक - <?=date("d-M-Y",strtotime($event->event_date));?>,<br> <?=date("l",strtotime($event->event_date));?> - AM <?=date("h:i",strtotime($event->start_time));?> बजे से PM ८ बजे तक,<br> स्थान - <?=$event->venue?>  </p>
+</div>
+</a>
+</li>
+<?php }
+      }else{ ?> 
+        <span style="text-align:center;font-weight:bold;font-size:16px;color:cornflowerblue;">No Data available</span>
+      <?php } ?>
+
+
+</ul>                   
+                         
+</div>
+
+<div class="clearfix"></div>
+
+<div class="featured-list" style="width:95%; padding-left:67px;">
+<ul id="flexiselDemo2">
+<li style="width:100%;">
+<a href="<?php echo $this->basePath();?>/pages/gallery" style="float:left; padding:0;" class="col-sm-4">
+<div class="col-xs-5"><img src="<?php echo $this->basePath('images/gallery-thumb.jpg'); ?>" class="img-responsive" /></div>
+<div class="col-xs-7"><span class="bar">&nbsp;</span><h2><?php echo $this->translate('PHOTO GALLERY') ?></h2></div>
+</a>
+
+<a href="<?php echo $this->basePath();?>/pages/about" style="float:left; padding:0;" class="col-sm-4">
+<div class="col-xs-5"><img src="<?php echo $this->basePath('images/about-us-thumb.jpg'); ?>" class="img-responsive" /></div>
+<div class="col-xs-7"><span class="bar">&nbsp;</span><h2><?php echo $this->translate('ABOUT RUSTAGI SAMAJ') ?></h2></div>
+</a>
+
+<a href="<?php echo $this->basePath();?>/matrimonial" style="float:left; padding:0;" class="col-sm-4">
+<div class="col-xs-5"><img src="<?php echo $this->basePath('images/matrimonial.jpg'); ?>" class="img-responsive" /></div>
+<div class="col-xs-7"><span class="bar">&nbsp;</span><h2><?php echo $this->translate('MATRIMONIAL') ?></h2></div>
+</a>
+</li>
+
+<li>
+<a href="<?php echo $this->basePath();?>/pages/gallery" class="col-sm-12" style="width:100%; padding:0;">
+<img src="<?php echo $this->basePath('images/rustagi_ad.jpg'); ?>" class="img-responsive" style="width:100%;" />
+</a>
+</li>
+</ul>
+</div>
+
+
+<div class="clearfix"></div>
+
+<div class="profile-list">
+<h2><?php echo $this->translate('EXECUTIVE COMMITTEE MEMBERS') ?></h2>
+<ul id="flexiselDemo3">
+  <?php   if(count($this->ExecMembers)>0){
+
+          foreach($ExecMembers as $execmem){
+            
+           ?>
+
+<li class="homepagelicls">
+                    <div id="f1_container" align="center">
+                     <a href="<?php echo $this->basePath()?>/membership/profile-view?groom_id=<?php echo $execmem->uid ?>">
+<div id="f1_card" class="shadow">
+  <div class="front face">
+                    
+                    <img src="<?php if($execmem->profile_photo !=''){
+            echo $this->basePath().$execmem->profile_photo;
+          }else{
+            echo $this->basePath().'/img/default_user.png';
+          } ?>"/>
+                    
+                     </div>
+                     <div class="back face center" align="center" style="vertical-align:middle;">
+                    <span style="font-size:9px;">F's Name</span><br />
+     <?php echo $execmem->father_name ?> 
+  <!-- <?php echo ($execmem->age>0)? "Age:".$execmem->age: ""; ?> <br>-->
+  
+    <!-- <?php echo $execmem->native_place ?> <br> -->
+  </div>
+          </div>
+          
+          </a>
+</div>           
+          <div class="profile-content">
+          <h4 style="text-align:center !important; margin-bottom:0 !important; height:22px;"><?php echo $execmem->full_name ?></h4>
+          <p style="text-align:center !important; text-transform:capitalize;"><?php echo $execmem->category_name ?><!--, <?php echo $execmem->city_name ?>--></p>
+                    
+          <a href="<?php echo $this->basePath()?>/membership/profile-view?groom_id=<?php echo $execmem->uid ?>" class="btn btn-default homemore">More Info</a>
+                   
+          </div>
+          </li>
+ 
+ <?php }
+      }else{ ?> 
+        <span style="text-align:center;font-weight:bold;font-size:16px;color:cornflowerblue;">No Data available</span>
+      <?php } ?>
+
+</ul>
+
+</div>
+
+<div class="clearfix"></div>
+
+<div class="profile-list">
+<h2><?php echo $this->translate('MEMBERS') ?></h2>
+<ul id="flexiselDemo4">
+
+	
+	
+	   <?php   if(count($this->GroomData)>0){
+				  foreach($GroomData as $GrData){ ?>
+					<li class="homepagelicls">
+                    <div id="f1_container" align="center">
+                     <a href="<?php echo $this->basePath()?>/membership/profile-view?groom_id=<?php echo $GrData->uid ?>">
+<div id="f1_card" class="shadow">
+  <div class="front face">
+                    
+                    <img src="<?php if($GrData->profile_photo !=''){
+						echo $this->basePath().$GrData->profile_photo;
+					}else{
+						echo $this->basePath().'/img/default_user.png';
+					} ?>"/>
+                    
+                     </div>
+                     <div class="back face center" align="center">
+                      <span style="font-size:9px;">F's Name</span><br />
+    <?php echo $GrData->father_name ?> <br>
+  <!-- <?php echo ($GrData->age>0)? "Age:".$GrData->age: ""; ?> <br>-->
+    <!-- <?php echo $execmem->native_place ?> <br> -->
+  </div>
+          </div>
+          
+          </a>
+</div>          
+					<div class="profile-content">
+					<h4 style="text-align:center !important;  margin-bottom:0 !important; height:22px;"><?php echo $GrData->full_name ?></h4>
+					<p style="text-align:center !important;"><?php echo $GrData->profession ?><!--<?php echo $GrData->city_name ?>--></p>
+                    
+					<a href="<?php echo $this->basePath()?>/membership/profile-view?groom_id=<?php echo $GrData->uid ?>" class="btn btn-default homemore">More Info</a>
+                   
+					</div>
+					</li>				
+				<?php }
+			}else{ ?> 
+				<span style="text-align:center;font-weight:bold;font-size:16px;color:cornflowerblue;">No Data available</span>
+			<?php } ?>
+
+</ul>
+
+</div>
+
+</div>

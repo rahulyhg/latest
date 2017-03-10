@@ -1,0 +1,1693 @@
+<?php 
+
+if(!empty($msg)){
+  echo "<script>alert('".$msg."')</script>";
+}
+// foreach ($userinfos as $userinfo) {
+//   echo $userinfo->affluence_level."<br>";
+// }
+// print_r($userinfos);die;
+
+?>
+        <!-- 3nd table start-->
+ <style>
+ 	.activestatus{
+		color:green;
+		background:green;
+		border-radius:30px; width:15px; height:15px;
+		cursor:pointer
+		
+	}
+	
+	.de-activestatus{
+		color:green;
+		background:red;
+		border-radius:30px; width:15px; height:15px;
+		cursor:pointer
+		
+	}
+
+  .unassign{
+    color:green;
+    background:red;
+    border-radius:30px; width:20px; height:20px;
+    cursor:pointer
+    
+  }
+ 
+ .dataTable > thead > tr > th[class*="sort"]::after {
+    color: #555;
+    content: normal !important;
+    display: inline;
+    float: right;
+    font-family: FontAwesome;
+    font-size: 11px;
+    font-weight: 400;
+}
+ 
+ .table.table-bordered > thead > tr > th {
+    vertical-align: top;
+}
+
+.hideme{
+  display: none;
+}
+
+ .userstatus{
+		color:pink;
+		background:#e57713;
+		border-radius:30px; width:15px; height:15px;
+		cursor:pointer;
+		box-shadow:none;
+		border:none;
+		
+	}
+	
+	 .userstatus1{
+		color:pink;
+		background:#d15b47;
+		border-radius:30px; width:15px; height:15px;
+		cursor:pointer;
+		box-shadow:none;
+		border:none;
+		
+	}
+ 
+ </style>       
+
+            
+               
+
+            
+        <div class="row">
+              <div class="col-sm-12">
+                <div id="ShowCatBox" style="display:none;width:100%;height:100%;left:0%;top:0%;position:fixed;height:100%;background:rgba(0, 0, 0, 0.66) none repeat scroll 0% 0%;border:1px solid black;z-index:1000;">
+                  <div id="ShowCatContent" style="width:60%;left:20%;top:10%;position:relative;height:auto;padding:20px;background:#fff;border:1px solid black;z-index:1001;">
+
+                </div>
+              </div>
+                <div class="widget-box transparent" id="recent-box">
+                  <div class="widget-header">
+                   
+                    <div class="widget-toolbar no-border" style="float:left;">
+                      <ul class="nav nav-tabs" id="recent-tab">
+                        <li class="active"> <a data-toggle="tab" href="#members-tab">All Members</a> </li>
+                        <li> <a data-toggle="tab" href="#matrimony-members-tab" onclick="showmembers('IsMatrimonial','latest-news-tab','<?= $this->serverUrl().$this->url().'/usertypeinfo';?>',showmembersresults)">Matrimony Members</a> </li>
+                        <li> <a data-toggle="tab" href="#latest-news-tab" onclick="showmembers('IsMember','latest-news-tab','<?= $this->serverUrl().$this->url().'/usertypeinfo';?>',showmembersresults)">Members</a> </li>
+                        <li> <a data-toggle="tab" href="#latest-events-tab" onclick="showmembers('IsExecutive','latest-news-tab','<?= $this->serverUrl().$this->url().'/usertypeinfo';?>',showmembersresults)">Community Members</a> </li>
+                       <!-- <li> <a data-toggle="tab" href="#latest-community-tab">Latest Community</a> </li>-->
+                      </ul>
+                    </div>
+                    
+                  </div>
+                  
+                  <div class="portlet-body">
+        <ul id="myTab" class="nav nav-tabs">
+          <li class="active"> <a href="#home" data-toggle="tab"><i class="fa fa-list" style="margin:5px"></i><span id="general_fiter_head" class="general_filter_head">General</span></a> </li>
+         <li class=""> <a href="#client_tab" data-toggle="tab" id="new_ClientTab"><i class="fa fa-user" style="margin:5px"></i><span class="client_filter_head">Client</span></a> </li>
+          <li class=""> <a href="#driver_tab" id="myTabDrop1" class="dropdown-toggle" data-toggle="tab"><i class="fa fa-user" style=" margin:5px"></i><span class="driver_filter_head">Location</span></a> </li>
+          <li class=""> <a href="#vehicle_tab" id="myTabDrop2" class="dropdown-toggle" data-toggle="tab"><i class="fa fa-road" style=" margin:5px"></i><span class="vehicle_filter_head">Status</span></a> </li>
+           
+          <li class=""> <a href="#location_tab" id="myTabDrop3" class="dropdown-toggle" data-toggle="tab"><i class="fa fa-globe" style=" margin:5px"></i><span class="location_filter_head">Timewise</span></a> </li>
+          <li class=""> <a href="#state_tab" id="myTabDrop4" class="dropdown-toggle" data-toggle="tab"><i class="fa fa-gear alias" style=" margin:5px"></i><span class="state_filter_head">Payment</span></a> </li>
+        </ul>
+        <form id="bookingFilter">
+          <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active in" id="home">
+              <div class="col-sm-col-sm-offset-1" style="margin: 10px auto 0px !important;padding: 0 10px;">
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <label id="flight_nos" class="col-sm-2 control-label labelalign Profile ID">Profile ID</label>
+                    <div class="col-sm-3">
+                      <input id="ref" type="text" class=" form-control inputchange" placeholder="Profile ID ">
+                    </div>
+                    <label id="point_airport" class="col-sm-2 control-label labelalign age" >Age</label>
+                    <div class="col-sm-1">
+                      <input id="created_since" class="form-control inputchange hasDatepicker" placeholder="18" type="text">
+                    </div>
+                    <div class="col-sm-2">
+                      <input id="created_since" class="form-control inputchange hasDatepicker" placeholder="20" type="text">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <label id="flight_nos" class="col-sm-2 control-label labelalign Profile ID">User Type</label>
+                    <div class="col-sm-3">
+                      <select name="booking_status" id="select" style="" class="col-sm-12 col-lg-12 inputfild name valid" aria-required="true" aria-invalid="false">
+                        <option value="">All</option>
+                        <option value="1">A</option>
+                        <option value="2">B</option>
+                        <option value="3">C</option>
+                        <option value="4">D</option>
+                      </select>
+                    </div>
+                    <label id="point_airport" class="col-sm-2 control-label labelalign age" >Income</label>
+                    <div class="col-sm-1">
+                      <input id="created_since" class="form-control inputchange hasDatepicker" placeholder="5.6lkh" type="text">
+                    </div>
+                    <div class="col-sm-2">
+                      <input id="created_since" class="form-control inputchange hasDatepicker" placeholder="8.6lkh" type="text">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                                              
+                                                 
+                            <label class="col-sm-2 control-label labelalign " id="point_airport">Start Date
+</label>
+                                                   <div class="col-sm-3">
+                                                     <div class="input-group">
+                                  <input type="text" data-date-format="dd-mm-yyyy" id="id-date-picker-1" class="form-control date-picker">
+                                  <span class="input-group-addon">
+                                    <i class="fa fa-calendar bigger-110"></i>
+                                  </span>
+                                </div> 
+                                                     
+                                                                                        
+                                                  </div>
+                                                  
+                                                  
+                                                    <div class="form-group clearfix margintopbottom20">
+                           <label class="col-sm-2 control-label labelalign " id="flight_nos">Male</label>
+                                                  <div class="col-sm-3 ">
+                                                     <input type="text" placeholder="Male" class=" form-control inputchange" id="Male">                                    
+                                                  </div>
+                                                  
+                                                  
+                                                
+                                                                                      
+                                                  
+                                                  
+                                                  
+                                                 </div>
+                                             </div>
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <label id="flight_nos" class="col-sm-2 control-label labelalign Status type">Status type </label>
+                    <div class="col-sm-3">
+                      <select name="booking_status" id="select" style="" class="col-sm-12 col-lg-12 inputfild name valid" aria-required="true" aria-invalid="false">
+                        <option value="">All</option>
+                        <option value="1">Active</option>
+                        <option value="2">Deactive</option>
+                      </select>
+                    </div>
+                    <label id="point_airport" class="col-sm-2 control-label labelalign Female" >Female</label>
+                    <div class="col-sm-3">
+                      <input id="ref" type="text" class=" form-control inputchange" placeholder="Female ">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <label id="flight_nos" class="col-sm-2 control-label labelalign Profile ID">Alphabetic filter</label>
+                    <div class="col-sm-3">
+                      <select name="booking_status" id="select" style="" class="col-sm-12 col-lg-12 inputfild name valid" aria-required="true" aria-invalid="false">
+                        <option value="">All</option>
+                        <option value="1">Active</option>
+                        <option value="2">Deactive</option>
+                      </select>
+                    </div>
+                    <label id="point_airport" class="col-sm-2 control-label labelalign Marital Status" >Marital Status</label>
+                    <div class="col-sm-3">
+                      <input id="ref" type="text" class=" form-control inputchange" placeholder="Marital Status ">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <div class="col-sm-4 pull-right"> <a href="#" class="btn btn-red defaultbtnsearch searchBooking"><i class="fa fa-search" id="search_me" style="color:#fff; margin:5px"></i>Search</a> <a href="javascript:document.getElementById('bookingFilter').reset();" class="btn btn-red defaultbtnsearch"><i class="fa fa-times" style="color:#fff; margin:5px"></i>Clear</a> </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="tab-pane fade" id="client_tab">
+              <div class=" col-sm-col-sm-offset-1" style="margin: 10px auto 0px !important;padding: 0 10px;">
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <label id="flight_nos" class="col-sm-2 control-label labelalign ">Client first Name</label>
+                    <div class="col-sm-3">
+                      <input id="client_first_name" type="text" class=" form-control inputchange" placeholder="Client first Name">
+                    </div>
+                    <label id="point_airport" class="col-sm-2 control-label labelalign ">Client Profession</label>
+                    <div class="col-sm-3">
+                      <input id="client_first_name" type="text" class=" form-control inputchange" placeholder="Client first Name">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <label id="flight_nos" class="col-sm-2 control-label labelalign ">Client Last Name</label>
+                    <div class="col-sm-3">
+                      <input id="client_last_name" type="text" class=" form-control inputchange" placeholder="Client Last Name">
+                    </div>
+                    <label id="point_airport" class="col-sm-2 control-label labelalign ">Mobile No</label>
+                    <div class="col-sm-3">
+                      <input id="Mobile No" type="text" class=" form-control inputchange" placeholder="Mobile No">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <label id="flight_nos" class="col-sm-2 control-label labelalign">Client Id</label>
+                    <div class="col-sm-3">
+                      <input id="client_ids" type="text" class=" form-control inputchange" placeholder="Client Id">
+                    </div>
+                    <label id="point_airport" class="col-sm-2 control-label labelalign">Client Email</label>
+                    <div class="col-sm-3">
+                      <input id="Client Email" type="text" class=" form-control inputchange" placeholder="Client Email">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <label id="flight_nos" class="col-sm-2 control-label labelalign">Client Father Name</label>
+                    <div class="col-sm-3">
+                      <input id="client_ids" type="text" class=" form-control inputchange" placeholder="Client Father Name">
+                    </div>
+                    <label id="point_airport" class="col-sm-2 control-label labelalign">Email Id</label>
+                    <div class="col-sm-3">
+                      <input id="Email Id" type="text" class=" form-control inputchange" placeholder="Email Id">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <label id="flight_nos" class="col-sm-2 control-label labelalign">Client Mother Name</label>
+                    <div class="col-sm-3">
+                      <input id="client_ids" type="text" class=" form-control inputchange" placeholder="Client Mother Name">
+                    </div>
+                    <label id="point_airport" class="col-sm-2 control-label labelalign">Community Memberhip</label>
+                    <div class="col-sm-3">
+                      <input id="Community Memberhip" type="text" class=" form-control inputchange" placeholder="Community Memberhip">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <div class="col-sm-4 pull-right"> <a href="#" class="btn btn-red defaultbtnsearch searchBooking"><i class="fa fa-search" id="search_me" style="color:#fff; margin:5px"></i>Search</a> <a href="javascript:document.getElementById('bookingFilter').reset();" class="btn btn-red defaultbtnsearch"><i class="fa fa-times" style="color:#fff; margin:5px"></i>Clear</a> </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="tab-pane fade" id="driver_tab">
+              <div class=" col-sm-col-sm-offset-1" style="margin: 10px auto 0px !important;padding: 0 10px;">
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <label id="flight_nos" class="col-sm-2 control-label labelalign ">Country</label>
+                    <div class="col-sm-3">
+                      <select name="booking_status" id="select" style="" class="col-sm-12 col-lg-12 inputfild name valid" aria-required="true" aria-invalid="false">
+                        <option value="">All</option>
+                        <option value="1">India</option>
+                        <option value="2">Pakistan</option>
+                        <option value="3">Afgan</option>
+                        <option value="4">Turki</option>
+                      </select>
+                    </div>
+                    <label id="point_airport" class="col-sm-2 control-label labelalign ">Area</label>
+                    <div class="col-sm-3">
+                      <input id="Karol Bagh" type="text" class=" form-control inputchange" placeholder="Karol Bagh">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <label id="flight_nos" class="col-sm-2 control-label labelalign ">City</label>
+                    <div class="col-sm-3">
+                      <select name="booking_status" id="select" style="" class="col-sm-12 col-lg-12 inputfild name valid" aria-required="true" aria-invalid="false">
+                        <option value="">All</option>
+                        <option value="1">Delhi</option>
+                        <option value="2">Mumbai</option>
+                        <option value="3">Pune</option>
+                        <option value="4">Kolkata</option>
+                      </select>
+                    </div>
+                    <label id="point_airport" class="col-sm-2 control-label labelalign ">Zone</label>
+                    <div class="col-sm-3">
+                      <input id="East Zone" type="text" class=" form-control inputchange" placeholder="East Zone">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <label id="flight_nos" class="col-sm-2 control-label labelalign">State</label>
+                    <div class="col-sm-3">
+                      <select name="booking_status" id="select" style="" class="col-sm-12 col-lg-12 inputfild name valid" aria-required="true" aria-invalid="false">
+                        <option value="">All</option>
+                        <option value="1">Bokaro</option>
+                        <option value="2">jharkhand</option>
+                        <option value="3">Pune</option>
+                        <option value="4">Kolkata</option>
+                      </select>
+                    </div>
+                    <label id="point_airport" class="col-sm-2 control-label labelalign">Driver mobile No</label>
+                    <div class="col-sm-3">
+                      <div class="input-group">
+                        <input type="text" id="driver_mob" class="form-control inputchange" placeholder="Driver mobile No">
+                        <span class="input-group-addon"><i class="fa fa-search"></i></span> </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <div class="col-sm-4 pull-right"> <a href="#" class="btn btn-red defaultbtnsearch searchBooking"><i class="fa fa-search" id="search_me" style="color:#fff; margin:5px"></i>Search</a> <a href="javascript:document.getElementById('bookingFilter').reset();" class="btn btn-red defaultbtnsearch"><i class="fa fa-times" style="color:#fff; margin:5px"></i>Clear</a> </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="vehicle_tab">
+              <div class=" col-sm-col-sm-offset-1" style="margin: 10px auto 0px !important;padding: 0 10px;">
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <label id="flight_nos" class="col-sm-2 control-label labelalign ">Member Status</label>
+                    <div class="col-sm-3">
+                      <select name="booking_status" id="select" style="" class="col-sm-12 col-lg-12 inputfild name valid" aria-required="true" aria-invalid="false">
+                        <option value="1">Active</option>
+                        <option value="2">Deactive</option>
+                      </select>
+                    </div>
+                    <label id="point_airport" class="col-sm-2 control-label labelalign ">General</label>
+                    <div class="col-sm-3">
+                      <select name="booking_status" id="select" style="" class="col-sm-12 col-lg-12 inputfild name valid" aria-required="true" aria-invalid="false">
+                        <option value="1">Active</option>
+                        <option value="2">Deactive</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <label id="flight_nos" class="col-sm-2 control-label labelalign ">Member Time Period</label>
+                    <div class="col-sm-1">
+                     <div class="input-group">
+                                  <input type="text" class="form-control date-picker" id="id-date-picker-1" data-date-format="dd-mm-yyyy">
+                                  <span class="input-group-addon">
+                                    <i class="fa fa-calendar bigger-110"></i>
+                                  </span>
+                                </div>
+                    </div>
+                    <div class="col-sm-2">
+                     <div class="input-group">
+                                  <input type="text" class="form-control date-picker" id="id-date-picker-1" data-date-format="dd-mm-yyyy">
+                                  <span class="input-group-addon">
+                                    <i class="fa fa-calendar bigger-110"></i>
+                                  </span>
+                                </div>
+                    </div>
+                    <label id="point_airport" class="col-sm-2 control-label labelalign "> Communtiy</label>
+                    <div class="col-sm-3">
+                      <select name="booking_status" id="select" style="" class="col-sm-12 col-lg-12 inputfild name valid" aria-required="true" aria-invalid="false">
+                        <option value="1">Active</option>
+                        <option value="2">Deactive</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <label id="flight_nos" class="col-sm-2 control-label labelalign ">Matrimonial</label>
+                    <div class="col-sm-3">
+                      <select name="booking_status" id="select" style="" class="col-sm-12 col-lg-12 inputfild name valid" aria-required="true" aria-invalid="false">
+                        <option value="1">Active</option>
+                        <option value="2">Deactive</option>
+                      </select>
+                    </div>
+                    
+                    <!--<label id="point_airport" class="col-sm-2 control-label labelalign ">License Plate</label>
+                                                   <div class="col-sm-4">
+                                                         <input id="license_plate" type="text" class=" form-control inputchange" placeholder="License Plate">     
+                                                    </div>--> 
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <div class="col-sm-4 pull-right"> <a href="#" class="btn btn-red defaultbtnsearch searchBooking"><i class="fa fa-search" id="search_me" style="color:#fff; margin:5px"></i>Search</a> <a href="javascript:document.getElementById('bookingFilter').reset();" class="btn btn-red defaultbtnsearch"><i class="fa fa-times" style="color:#fff; margin:5px"></i>Clear</a> </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="location_tab">
+              <div class=" col-sm-col-sm-offset-1" style="margin: 10px auto 0px !important;padding: 0 10px;">
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <label id="flight_nos" class="col-sm-2 control-label labelalign ">Previous Registered </label>
+                    <div class="col-sm-3">
+                      <select name="booking_status" id="select" style="" class="col-sm-12 col-lg-12 inputfild name valid" aria-required="true" aria-invalid="false">
+                        <option value="">All</option>
+                        <option value="1">Delhi</option>
+                        <option value="2">Mumbai</option>
+                        <option value="3">Pune</option>
+                        <option value="4">Kolkata</option>
+                      </select>
+                    </div>
+                    <label id="point_airport" class="col-sm-2 control-label labelalign ">New Born</label>
+                    <div class="col-sm-3">
+                      <input id="New Born" class=" form-control inputchange" placeholder="New Born" type="text">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <label id="flight_nos" class="col-sm-2 control-label labelalign ">Year Wise</label>
+                    <div class="col-sm-3">
+                      <select name="booking_status" id="select" style="" class="col-sm-12 col-lg-12 inputfild name valid" aria-required="true" aria-invalid="false">
+                        <option value="">All</option>
+                        <option value="1">1998</option>
+                        <option value="2">1999</option>
+                        <option value="3">2000</option>
+                        <option value="4">2001</option>
+                      </select>
+                    </div>
+                    <label id="point_airport" class="col-sm-2 control-label labelalign ">New Added Member</label>
+                    <div class="col-sm-3">
+                      <input id="New Added Member" type="text" class=" form-control inputchange" placeholder="New Added Member">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <label id="flight_nos" class="col-sm-2 control-label labelalign ">Monthly  Wise</label>
+                    <div class="col-sm-3">
+                      <select name="booking_status" id="select" style="" class="col-sm-12 col-lg-12 inputfild name valid" aria-required="true" aria-invalid="false">
+                        <option value="">All</option>
+                        <option value="1">January</option>
+                        <option value="2">February</option>
+                        <option value="3">March</option>
+                        <option value="4">April</option>
+                      </select>
+                    </div>
+                    <label id="point_airport" class="col-sm-2 control-label labelalign ">Obituary</label>
+                    <div class="col-sm-1">
+                      <input id="created_since" class="form-control inputchange hasDatepicker" placeholder="Since" type="text">
+                    </div>
+                    <div class="col-sm-2">
+                      <input id="created_since" class="form-control inputchange hasDatepicker" placeholder="Since" type="text">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <label id="flight_nos" class="col-sm-2 control-label labelalign ">Week wise</label>
+                    <div class="col-sm-3">
+                      <select name="booking_status" id="select" style="" class="col-sm-12 col-lg-12 inputfild name valid" aria-required="true" aria-invalid="false">
+                        <option value="">All</option>
+                        <option value="1">sunday</option>
+                        <option value="2">monday</option>
+                        <option value="3">Tuesday</option>
+                        <option value="4">wednesday</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <div class="col-sm-4 pull-right"> <a href="#" class="btn btn-red defaultbtnsearch searchBooking"><i class="fa fa-search" id="search_me" style="color:#fff; margin:5px"></i>Search</a> <a href="javascript:document.getElementById('bookingFilter').reset();" class="btn btn-red defaultbtnsearch"><i class="fa fa-times" style="color:#fff; margin:5px"></i>Clear</a> </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="state_tab">
+              <div class=" col-sm-col-sm-offset-1" style="margin: 10px auto 0px !important;padding: 0 10px;">
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <label id="flight_nos" class="col-sm-2 control-label labelalign ">Payment Type</label>
+                    <div class="col-sm-3">
+                      <select name="booking_status" id="booking_status" style="" class="col-sm-12 col-lg-12 inputfild name valid" aria-required="true" aria-invalid="false">
+                        <option value="">All</option>
+                        <option value="16">Credit</option>
+                        <option value="14">Cash</option>
+                      </select>
+                    </div>
+                    <label id="point_airport" class="col-sm-2 control-label labelalign ">Is Paid </label>
+                    <div class="col-sm-3">
+                      <select name="order_time" id="order_time" style="" class="col-sm-12 col-lg-12 inputfild name valid" aria-required="true" aria-invalid="false">
+                        <option value="">All</option>
+                        <option value="2">True</option>
+                        <option value="3">False</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group clearfix margintopbottom20">
+                    <div class="col-sm-4 pull-right"> <a href="#" class="btn btn-red defaultbtnsearch searchBooking"><i class="fa fa-search" id="search_me" style="color:#fff; margin:5px"></i>Search</a> <a href="javascript:document.getElementById('bookingFilter').reset();" class="btn btn-red defaultbtnsearch"><i class="fa fa-times" style="color:#fff; margin:5px"></i>Clear</a> </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+                  
+                  <div class="table-responsive " style="overflow-x:auto;border: 1px solid #d2d2d2; margin-top:10px;">
+          <table class="table  table-striped table-bordered table-hover dataTable tabcolspac font12px" style="margin-top: 0px !important;" id="dataTables-example">
+            <tbody>
+              <tr>
+                <td class="date" data="2016-01-02" id="2016-01-02"><h4>2-Jan</h4></td>
+                <td class="date" data="2016-01-03" id="2016-01-03"><h4>3-Jan</h4>
+                 </td>
+                <td class="date" data="2016-01-04" id="2016-01-04"><h4>4-Jan</h4>
+                  </td>
+                <td class="date" data="2016-01-05" id="2016-01-05"><h4>5-Jan</h4>
+                  </td>
+                <td class="date" data="2016-01-06" id="2016-01-06"><h4>6-Jan</h4>
+                  </td>
+                <td class="date" data="2016-01-07" id="2016-01-07"><h4>7-Jan</h4>
+                  </td>
+                <td class="date" data="2016-01-08" id="2016-01-08"><h4>8-Jan</h4>
+                  </td>
+                <td class="date" data="2016-01-09" id="2016-01-09"><h4>9-Jan</h4>
+                  </td>
+                <td class="date" data="2016-01-10" id="2016-01-10"><h4>10-Jan</h4>
+                  </td>
+                <td class="date" data="2016-01-11" id="2016-01-11"><h4>11-Jan</h4>
+                 </td>
+                <td class="date" data="2016-01-12" id="2016-01-12"><h4>12-Jan</h4>
+                  </td>
+                <td class="date" data="2016-01-13" id="2016-01-13"><h4>13-Jan</h4>
+                  </td>
+                <td class="date" data="2016-01-14" id="2016-01-14"><h4>14-Jan</h4>
+                  </td>
+                <td class="date" data="2016-01-15" id="2016-01-15"><h4>15-Jan</h4>
+                  </td>
+                <td class="date" data="2016-01-16" id="2016-01-16"><h4>16-Jan</h4>
+                  </td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="table table-striped table-bordered table-hover dataTable tabcolspac font12px" id="dataTables-example">
+            <tbody>
+              <tr>
+                <td class="activecol hour" id="hour_0" data="0"><h4>0</h4>
+                  <span></span></td>
+                <td id="hour_1" class="hour" data="1"><h4>1</h4>
+                  <span></span></td>
+                <td id="hour_2" class="hour" data="2"><h4>2</h4>
+                  <span></span></td>
+                <td id="hour_3" class="hour" data="3"><h4>3</h4>
+                  <span></span></td>
+                <td id="hour_4" class="hour" data="4"><h4>4</h4>
+                  <span></span></td>
+                <td id="hour_5" class="hour" data="5"><h4>5</h4>
+                  <span></span></td>
+                <td id="hour_6" class="hour" data="6"><h4>6</h4>
+                  <span></span></td>
+                <td id="hour_7" class="hour" data="7"><h4>7</h4>
+                  <span></span></td>
+                <td id="hour_8" class="hour" data="8"><h4>8</h4>
+                  <span></span></td>
+                <td id="hour_9" class="hour" data="9"><h4>9</h4>
+                  <span></span></td>
+                <td id="hour_10" class="hour" data="10"><h4>10</h4>
+                  <span></span></td>
+                <td id="hour_11" class="hour" data="11"><h4>11</h4>
+                  <span></span></td>
+                <td id="hour_12" class="hour" data="12"><h4>12</h4>
+                  <span></span></td>
+                <td id="hour_13" class="hour" data="13"><h4>13</h4>
+                  <span></span></td>
+                <td id="hour_14" class="hour" data="14"><h4>14</h4>
+                  <span></span></td>
+                <td id="hour_15" class="hour" data="15"><h4>15</h4>
+                  <span></span></td>
+                <td id="hour_16" class="hour" data="16"><h4>16</h4>
+                  <span></span></td>
+                <td id="hour_17" class="hour" data="17"><h4>17</h4>
+                  <span></span></td>
+                <td id="hour_18" class="hour" data="18"><h4>18</h4>
+                  <span></span></td>
+                <td id="hour_19" class="hour" data="19"><h4>19</h4>
+                  <span></span></td>
+                <td id="hour_20" class="hour" data="20"><h4>20</h4>
+                  <span></span></td>
+                <td id="hour_21" class="hour" data="21"><h4>21</h4>
+                  <span></span></td>
+                <td id="hour_22" class="hour" data="22"><h4>22</h4>
+                  <span></span></td>
+                <td id="hour_23" class="hour" data="23"><h4>23</h4>
+                  <span></span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+                  <div class="widget-body">
+                    <div class="widget-main padding-4">
+                      <div class="tab-content padding-8">
+                        <div id="members-tab" class="tab-pane active">
+                        <!-- <div class="filter">
+                 <div class="panel-body" style="padding:0 !important">
+                  <div class="col-lg-6">Search Records</div>
+                  </div>
+                </div>
+              			 <div class="portlet-body">
+                  <form id="AllFilter" method="post" action="#" name="memberFilter" onsubmit="return SearchMembers(this.id,)">
+                    <div id="myTabContent" class="tab-content">
+                      <div class="tab-pane fade active in" id="home">
+                        <div class="col-sm-col-sm-offset-1" style="margin: 10px auto 0px !important;padding: 0 10px;">
+                          <div class="row">
+                                                <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">Name</label>
+                                                  <div class="col-sm-3 ">
+                                                     <input id="full_name" class=" form-control inputchange" placeholder="Enter Name" name="full_name" onkeyup="memberlisting(this.id,$(this).parents('form').attr('id'),'tbl_user_info',$(this).attr('name'),$(this).val(),$(this).parents('form').find('input[type=hidden]').val(),'<?=$this->serverUrl().$this->url().'/matrimonyuser/memberlisting'?>',memberlistingresults)" type="text">
+                                                     <div class="keyupresults"></div> 
+                                                     <input type="hidden" name="memtype" value="all">                                   
+                                                  </div>
+                                                 
+                            <label id="point_airport" class="col-sm-2 control-label labelalign ">Father's Name
+</label>
+                                                   <div class="col-sm-3">
+                                                     <input id="KarolBagh" class=" form-control inputchange" placeholder="Enter Father's Name" type="text"> 
+                                                  </div>
+                                                 </div>
+                                             </div>
+                          
+                          <div class="row">
+                                                <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">Gotra</label>
+                                                  <div class="col-sm-3 ">
+                                                     <input id="Classic Dance" class=" form-control inputchange" placeholder="India" type="text">                                    
+                                                  </div>
+                                                 
+                            <label id="point_airport" class="col-sm-2 control-label labelalign ">Educations
+</label>
+                                                   <div class="col-sm-3">
+                                                     <input id="Karol Bagh" class=" form-control inputchange" placeholder="" type="text"> 
+                                                  </div>
+                                                 </div>
+                                             </div>
+                                             
+                          <div class="row">
+                                                <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">Location</label>
+                                                  <div class="col-sm-3 ">
+                                                     <input id="Classic Dance" class=" form-control inputchange" placeholder="India" type="text">                                    
+                                                  </div>
+                                                 
+                            <label id="point_airport" class="col-sm-2 control-label labelalign ">Branch
+</label>
+                                                   <div class="col-sm-3">
+                                                     <input id="Karol Bagh" class=" form-control inputchange" placeholder="" type="text"> 
+                                                  </div>
+                                                 </div>
+                                             </div>
+
+                          
+                          <div class="row">
+                            <div class="form-group clearfix margintopbottom20">
+                              <div class="col-sm-4 pull-right"> <input type="submit" class="btn btn-red defaultbtnsearch searchBooking" value="Search"> </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </form>
+   
+                </div>-->
+                
+                        
+                        
+                        
+                          <h4 class="smaller lighter green"> <i class="ace-icon fa fa-list"></i> Members Lists </h4>
+                          <div class="table-responsive">
+                    
+                    <table class="table table-hover table-striped">  <!--id="bootstrap-table"-->
+                      <thead>
+                        <tr>
+                         <th class="center"> <label class="pos-rel">
+                            <input type="checkbox" class="ace" />
+                            <span class="lbl"></span> </label>
+                        </th>
+                        
+                          <th>User ID</th>
+                          <th style="width:5% !important;">Image</th>
+                          <th>Personal Details</th>
+                          
+                         <!-- <th>Religional Details</th>-->
+                          <th>Educations & Career</th>
+                          <th>Family Details</th>
+                          <th>Location</th>
+                          <th>Post</th>
+                          <th valign="top" >Financial Year</th>
+                          <th valign="top" >Show Roles</th>
+                          <th>Status</th>
+                          <th>Action</th>
+                          <th>Delete</th>
+                        </tr>
+                      </thead>
+                        <tbody>
+                      <?php 
+                      $i =1;
+                        foreach ($userinfos as $userinfo) {
+                          
+                        //echo  "<pre>";
+						//print_r($userinfo);exit;
+
+                      ?>
+                      <tr>
+                      
+                       <td class="center"><label class="pos-rel">
+                            <input type="checkbox" class="ace" />
+                            <span class="lbl"></span> </label></td>
+                        <td style="cursor:pointer;"  tar="UserIdTab<?php echo $i;?>" class="itarget" ><?php echo (empty($userinfo->user_id))?'See More':$userinfo->user_id; ?></td>                        
+                        <td style="cursor:pointer; text-align:left;" align="left">
+                        				  
+                                                      <a  href="#" class="thumbnail" data-toggle="modal" data-target="#lightbox">
+                                                     <?php $imagePath = (empty($userinfo->profile_photo))?'/img/default_user.png' : $userinfo->profile_photo;
+                                                     // echo $this->basepath().$imagePath."sasasasas";
+                                                     ?><img src="<?= $this->basepath().$imagePath;?>" alt="" style="max-width:22px; float:left;">
+                                                       </a>                                  
+                                                  
+                          
+                          </td>
+                        <td style="cursor:pointer;"  tar="PersonalDetailTab<?php echo $userinfo->user_id;?>" id= "PersonalDetailTab_<?php echo $userinfo->user_id;?>" value="<?php echo $userinfo->user_id;?>" class="itarget"><?php echo (empty($userinfo->full_name))?'See More':$userinfo->full_name; ?><input type="hidden" id="PersonalDetailTab<?php echo $i;?>" value="<?php //echo $userinfo->user_id;?>"></td>                        
+                       <!-- <td  tar="PhysicalDetailTab<?php echo $i;?>" class="itarget"><?php echo (empty($userinfo->height))?'See More':$userinfo->height; ?></td>                        
+                        <td  tar="ReligionalDetailTab<?php echo $i;?>" class="itarget"><?php echo (empty($userinfo->marital_status))?'See More':$userinfo->marital_status; ?></td>-->                        
+                        <td  style="cursor:pointer;" tar="EducationsTab<?php echo $userinfo->user_id;?>"  id= "EducationsTab_<?php echo $userinfo->user_id;?>"   value="<?php echo $userinfo->user_id;?>" class="itarget"><?php echo (empty($userinfo->education_field))?'See More':$userinfo->education_field; ?></td>                        
+                                              
+                        <td  style="cursor:pointer;" tar="FamilyDetailTab<?php echo $i;?>" class="itarget"><?php echo (empty($userinfo->father_name))?'See More':$userinfo->father_name; ?></td>
+                         <td style="cursor:pointer;"  tar="LocationTab<?php echo $userinfo->user_id;?>"   id= "LocationTab_<?php echo $userinfo->user_id;?>"   value="<?php echo $userinfo->user_id;?>" class="itarget"><?php echo (empty($userinfo->city_name))?'See More':$userinfo->city_name; ?></td>                         
+                        <!--<td>
+						<?php $status = ($userinfo->userstatus==1)?'Active':'In-active'; 
+                        $statuscolor = ($userinfo->userstatus==1)?'lightgreen':'red';
+                         ?><select name="ChangeStatus" id="changestatus<?=$i;?>" onchange="changestatus(<?=$userinfo->user_id?>,this.id,'<?= $this->serverUrl().$this->url().'/matrimonyuser/changestatus';?>');"  style="background:<?=$statuscolor?>;color:white;font-weight:bold;">
+                          <option value="<?= $userinfo->userstatus?>"><?= $status?></option>
+                          <option value="0">In-Active</option>
+                          <option value="1">Active</option>
+                        </select>
+                       
+                        </td>-->
+                        <td  tar="PostDetailTab<?php echo $userinfo->user_id;?>" id= "PostDetailTab_<?php echo $userinfo->user_id;?>"   value="<?php echo $userinfo->user_id;?>" class="itarget"><?php echo (empty($userinfo->post))?'See More':$userinfo->post; ?></td>
+                          <td  tar="FinancialYearTab<?php echo $i;?>" class=""><?php echo (empty($userinfo->financial_year))?'See More':$userinfo->financial_year; ?></td> 
+                        
+                        
+                        <td align="center">
+                          
+                        <input type='button' class='userstatus1' value=''>
+                         
+                        </td>
+                        
+                          <td class="hidden-480" align="center">
+						  <?php $status = ($userinfo->userstatus==1)? 'Active': 'In-Active';
+                        $statuscolor = ($userinfo->userstatus==1)? 'activestatus': 'de-activestatus';
+                         ?>
+                        
+                          <div name="ChangeStatus" id="changestatus<?=$i;?>" onclick="changestatusquick(<?=$userinfo->user_id?>,<?= ($userinfo->userstatus==0)?0:1; ?>,'<?= $this->serverUrl().$this->url().'/changestatus';?>',changstatusresult);" class="<?=$statuscolor?>">
+                        </div></td>  
+                        
+                       <!-- <td  tar="OfficeDetailTab<?php echo $i;?>" class="itarget">Office details</td>   -->  
+                       <td align="center">
+                       <input name="Action" value="Action" type="button" onclick=
+                            'ShowUserRoles("<?=$userinfo->uid;?>","<?= $this->serverUrl().$this->url().'/'
+                                    . 'showuserroles';?>",ShowUserRolesResults)'></td>                   
+                        
+                        
+                     <td align="center">
+                          
+                        <a class="red" href="<?php echo $this->url('admin/matrimonyuser',array('action'=>'delete','id'=>
+                              $userinfo->user_id)); ?>" onclick="return confirm('are you sure you want to delete');"> <i class="ace-icon fa 
+                                                                                             fa-trash-o bigger-130"></i> </a>
+                         
+                        </td>        
+                        
+                      </tr>
+
+                  <tr class="dontshow" id="UserIdTab<?php echo $i;?>">
+                        <td colspan="12" align="left">
+                      <div class="tabbable">
+                      <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab4">
+                        <li class="active">
+                          <a href="javascript:void(0);" >User ID1</a>
+                        </li>
+                      </ul>
+                      <div class="tab-content">
+                        <div class="row">
+                   <div class="form-group clearfix margintopbottom20" style="margin-top:10px;">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Profile ID'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                                                                         
+                                                      <?php echo $userinfo->user_id; ?>
+                                                                                         
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('E-Mail'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                  <input type="text" value="<?php echo $userinfo->email; ?>" class="form-control" disabled="disabled"/>
+                                                      
+                                                                                         
+                                                  </div>
+                           
+                                                 </div>
+                                             </div>
+                                             <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Mobile No'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                       <input type="text" value=" <?php echo $userinfo->mobile_no; ?>" class="form-control" disabled="disabled"/>
+                                                     
+                                                     
+                                                                                         
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Created Date'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                   <input type="text" value=" <?php echo $userinfo->created_date; ?>" class="form-control" disabled="disabled"/>
+                                                     
+                                                                                         
+                                                  </div>
+                           
+                                                 </div>
+                                             </div>
+                                             <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('User Type'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                       <input type="text" value=" <?php echo $userinfo->user_type; ?>" class="form-control" disabled="disabled" />
+                                                     
+                                                     
+                                                                                         
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Reference No'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                       <input type="text" value="<?php echo $userinfo->ref_no; ?>" class="form-control" disabled="disabled"/>
+                                                     
+                                                      
+                                                                                         
+                                                  </div>
+                                                 </div>
+                                             </div>
+                                              <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('User Name'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                      <input type="text" value="<?php echo $userinfo->username; ?>" class="form-control" disabled="disabled"/>
+                                                      
+                                                                                         
+                                                  </div>
+                                                  
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                           
+                           </label>
+                                                  <!--<div class="col-sm-3">
+                                                      
+                                                      <a href="#" class="btn btn-red defaultbtnsearch searchBooking">Edit</a>
+                                                      
+                                                                                         
+                                                  </div>-->
+                                                   
+                                                 </div>
+                                             </div>
+                      </div>
+                      </div>
+                      </td>
+                  </tr>
+
+                  <tr class="dontshow" id="PersonalDetailTab<?php echo $userinfo->user_id;?>">
+                       <!--<input type="hidden" id="PersonalDetailTab<?php //echo $i;?>" value="<?php //echo $userinfo->user_id;?>">-->
+                        <div id="PersonalDetailTab<?php //echo $userinfo->user_id;?>">
+                            
+                            
+                        </div>
+
+                
+                  </tr>
+                                  
+                  
+                  <tr class="dontshow" id="EducationsTab<?php echo $userinfo->user_id;?>">
+                        
+                  </tr>
+                   
+                  <tr class="dontshow" id="LocationTab<?php echo $userinfo->user_id;?>">
+                        
+                  </tr>
+                  
+                  
+                  <tr class="dontshow" id="FamilyDetailTab<?php echo $i;?>">
+                        <td colspan="10" align="left">
+                      <div class="tabbable">
+                      <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab4">
+                        <li class="active">
+                          <a href="javascript:void(0);" >Family Details</a>
+                        </li>
+                      </ul>
+                      <div class="tab-content">
+                        <div class="row">
+                   <div class="form-group clearfix margintopbottom20" style="margin-top:10px;">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Father Name'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <input value="<?= (empty($userinfo->father_name))? 'Not Available':$userinfo->father_name; ?>" class="form-control" />
+                                                                                         
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Father Date of Birth'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                   <input value=" <?= (empty($userinfo->father_dob))? 'Not Available':$userinfo->father_dob; ?>  " class="form-control" />
+                                                                                         
+                                                  </div>
+
+                           
+                                                 </div>
+                                             </div>
+                          <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Father Status'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <input value="<?= (empty($userinfo->father_status))? 'Not Available':$userinfo->father_status; ?>" class="form-control" />
+                                                                                         
+                                                  </div>
+                                                  <?php if($userinfo->father_status=="Passed Away"){?>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Date of Death'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                    <input value="<?= (empty($userinfo->father_dod))? 'Not Available':$userinfo->father_dod; ?>  " class="form-control" />
+                                                                                         
+                                                  </div>
+                                                  <?php }?>
+                           
+                                                 </div>
+                                             </div>
+                         <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Father House Address'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <TEXTAREA  cols="20" class="form-control" rows="1"><?= (empty($userinfo->father_house_address))? 'Not Available':$userinfo->father_house_address; ?>
+                                                          </TEXTAREA>                               
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Father Office Address'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                    <TEXTAREA cols="20" class="form-control" rows="1"><?= (empty($userinfo->father_office_address))? 'Not Available':$userinfo->father_office_address; ?></TEXTAREA>  
+                                                                                         
+                                                  </div>
+
+                           
+                                                 </div>
+                                             </div>
+                          <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Father Email'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                     <input value=" <?= (empty($userinfo->father_email))? 'Not Available':$userinfo->father_email; ?>" class="form-control" />
+                                                                                         
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Father Mobile'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                    <input value="<?= (empty($userinfo->father_mobile))? 'Not Available':$userinfo->father_mobile; ?> " class="form-control" />
+                                                                                         
+                                                  </div>
+
+                           
+                                                 </div>
+                                             </div>
+                          <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Father Photo'); ?>
+                            
+                           </label>
+                           
+                                                  <div class="col-sm-3">
+                                                  
+												 
+												   <?php $imagePath = (empty($userinfo->father_photo))? '/images/new-big.jpg' : $userinfo->father_photo;?>
+												    <img src="<?= $this->basepath().$imagePath;?>" width="43" height="37" alt="">
+												  
+												   
+                                                     <div id="lightbox" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <!--  <button type="button" class="close hidden" data-dismiss="modal" aria-hidden="true">×</button>-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <img src="" alt="" />
+            </div>
+        </div>
+    </div>
+</div>
+                                                 
+                                                 
+                                                 
+                                             </div>
+                                             
+                                    </div></div>         
+                      <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Mother Name'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                     <input value=" <?= (empty($userinfo->mother_name))? 'Not Available':$userinfo->mother_name; ?>" class="form-control" />
+                                                                                         
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Mother Date of Birth'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                    <input value="<?= (empty($userinfo->mother_dob))? 'Not Available':$userinfo->mother_dob; ?>" class="form-control" /> 
+                                                                                         
+                                                  </div>
+
+                           
+                                                 </div>
+                                             </div>
+                          <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Mother Status'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                    <input value="<?= (empty($userinfo->mother_status))? 'Not Available':$userinfo->mother_status; ?>" class="form-control" />
+                                                                                         
+                                                  </div>
+                                                  
+                                                   <?php if($userinfo->mother_status=="Passed Away"){?>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Mother Date of Death'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                   <input value="<?= (empty($userinfo->mother_dod))? 'Not Available':$userinfo->mother_dod; ?>  " class="form-control" />
+                                                                                         
+                                                  </div>
+                                                  <?php }?>
+                                                  
+                           
+                                                 </div>
+                                             </div>
+                         <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Mother House Address'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <TEXTAREA cols="20" class="form-control" rows="1"><?= (empty($userinfo->mother_house_address))? 'Not Available':$userinfo->mother_house_address; ?>
+                                                          </TEXTAREA>                               
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Father Office Address'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                    <TEXTAREA cols="20" class="form-control" rows="1"><?= (empty($userinfo->father_office_address))? 'Not Available':$userinfo->father_office_address; ?></TEXTAREA>  
+                                                                                         
+                                                  </div>
+
+                           
+                                                 </div>
+                                             </div>
+                          <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Mother Email'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                     <input value="<?= (empty($userinfo->mother_email))? 'Not Available':$userinfo->mother_email; ?>" class="form-control" />
+                                                                                         
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Mother Mobile'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                   <input value="<?= (empty($userinfo->mother_mobile))? 'Not Available':$userinfo->mother_mobile; ?> " class="form-control" />
+                                                                                         
+                                                  </div>
+
+                           
+                                                 </div>
+                                             </div>
+                          <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Mother Photo'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      <?php $imagePath = (empty($userinfo->mother_photo))? '/images/new-big.jpg' : $userinfo->mother_photo;?>
+                        <img src="<?= $this->basepath().$imagePath;?>" width="43" height="37" alt="">
+                                                                                         
+                                                  </div>
+                                                   
+
+                           
+                                                 </div>
+                                             </div>
+                          <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Spouse Name'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                     <input value=" <?= (empty($userinfo->spouse_name))? 'Not Available':$userinfo->spouse_name; ?>" class="form-control" />
+                                                                                         
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Spouse Date of Birth'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                   <input value="<?= (empty($userinfo->spouse_dob))? 'Not Available':$userinfo->spouse_dob; ?>" class="form-control" />
+                                                                                         
+                                                  </div>
+
+                           
+                                                 </div>
+                                             </div>
+                          <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Spouse Status'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <input value="<?= (empty($userinfo->spouse_status))? 'Not Available':$userinfo->spouse_status; ?>" class="form-control" />
+                                                                                         
+                                                  </div>
+                                                  <?php if($userinfo->spouse_status=="Passed Away"){?>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('spouse Date of Death'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                    <input value="<?= (empty($userinfo->spouse_died_on))? 'Not Available':$userinfo->spouse_died_on; ?> " class="form-control" />
+                                                                                         
+                                                  </div>
+                                                  <?php }?>
+                           
+                                                 </div>
+                                             </div>
+                         <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Spouse House Address'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <TEXTAREA cols="20" class="form-control" rows="1"><?= (empty($userinfo->spouse_house_address))? 'Not Available':$userinfo->spouse_house_address; ?>
+                                                          </TEXTAREA>                               
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Father Office Address'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                    <TEXTAREA cols="20" class="form-control" rows="1"><?= (empty($userinfo->spouse_office_address))? 'Not Available':$userinfo->spouse_office_address; ?></TEXTAREA>  
+                                                                                         
+                                                  </div>
+
+                           
+                                                 </div>
+                                             </div>
+                          <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Spouse Email'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                     <input value=" <?= (empty($userinfo->spouse_email))? 'Not Available':$userinfo->spouse_email; ?>" class="form-control" />
+                                                                                         
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Spouse Mobile'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                   <input value="<?= (empty($userinfo->spouse_mobile))? 'Not Available':$userinfo->spouse_mobile; ?> " class="form-control" />
+                                                                                         
+                                                  </div>
+
+                           
+                                                 </div>
+                                             </div>
+                          <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Spouse Photo'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      <?php $imagePath = (empty($userinfo->spouse_photo))? '/images/new-big.jpg' : $userinfo->spouse_photo;?>
+                        <img src="<?= $this->basepath().$imagePath;?>" width="43" height="37" alt="">
+                                                     
+
+                                                                                         
+                                                  </div>
+                                                   
+
+                           
+                                                 </div>
+                                             </div>
+						 <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Grand Father Name'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                     <input value="<?= (empty($userinfo->grand_father_name))? 'Not Available':$userinfo->grand_father_name; ?>" class="form-control" />
+                                                                                         
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Grand Father Date of Birth'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                    <input value="<?= (empty($userinfo->grand_father_dob))? 'Not Available':$userinfo->grand_father_dob; ?>  " class="form-control" />
+                                                                                         
+                                                  </div>
+
+                           
+                                                 </div>
+                                             </div>
+                          <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Grand Father Status'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                     <input value="<?= (empty($userinfo->grand_father_status))? 'Not Available':$userinfo->grand_father_status; ?>" class="form-control" />
+                                                                                         
+                                                  </div>
+                                                  <?php if($userinfo->grand_father_status=="Passed Away"){?>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Grand Father Date of Death'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                   <input value="<?= (empty($userinfo->grand_father_dod))? 'Not Available':$userinfo->grand_father_dod; ?>  " class="form-control" />
+                                                                                         
+                                                  </div>
+                                                  <?php }?>
+                           
+                                                 </div>
+                                             </div>
+                          
+                          
+                          <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Grand Father Photo'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      <?php $imagePath = (empty($userinfo->grand_father_photo))? '/images/new-big.jpg' : $userinfo->grand_father_photo;?>
+                        <img src="<?= $this->basepath().$imagePath;?>" width="43" height="37" alt="">
+                                                     
+
+                                                                                         
+                                                  </div>
+                                                   
+
+                           
+                                                 </div>
+                                             </div>
+                                             <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Grand Mother Name'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                     <input value="<?= (empty($userinfo->grand_mother_name))? 'Not Available':$userinfo->grand_mother_name; ?>" class="form-control" />
+                                                                                         
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Grand Mother Date of Birth'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                   <input value="<?= (empty($userinfo->grand_mother_dob))? 'Not Available':$userinfo->grand_mother_dob; ?>  " class="form-control" />
+                                                                                         
+                                                  </div>
+
+                           
+                                                 </div>
+                                             </div>
+                          <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Grand Mother Status'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                      <input value="<?= (empty($userinfo->grand_mother_status))? 'Not Available':$userinfo->grand_mother_status; ?>" class="form-control" />
+                                                                                         
+                                                  </div>
+                                                  <?php if($userinfo->grand_mother_status=="Passed Away"){?>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Grand Mother Date of Death'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      
+                                                     
+                                                    <input value="<?= (empty($userinfo->grand_mother_dod))? 'Not Available':$userinfo->grand_mother_dod; ?>  " class="form-control" />
+                                                                                         
+                                                  </div>
+                                                  <?php }?>
+                           
+                                                 </div>
+                                             </div>
+                          
+                          
+                          <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Grand Mother Photo'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      <?php $imagePath = (empty($userinfo->grand_mother_photo))? '/images/new-big.jpg' : $userinfo->grand_mother_photo;?>
+                        <img src="<?= $this->basepath().$imagePath;?>" width="43" height="37" alt="">
+                                                     
+
+                                                                                         
+                                                  </div>
+                                                   
+ <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                           
+                           </label>
+                                                  <div class="col-sm-3">
+                                                      <a href="#" class="btn btn-red defaultbtnsearch">Edit</a>
+                                                                                      
+                                                  </div>
+                           
+                                                 </div>
+                                             </div>
+                                                                                                                                                              
+                      </div>
+                      </div>
+                     
+                      </td>
+                  </tr>
+                  
+                  <tr class="dontshow" id="PostDetailTab<?php echo $i;?>">
+                        <td colspan="10" align="left">
+                      <div class="tabbable">
+                      <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab4">
+                        <li class="active">
+                          <a href="javascript:void(0);" >Post Details</a>
+                        </li>
+                      </ul>
+                      <div class="tab-content">
+                       						 <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           
+                                                  <div class="col-sm-3" style="margin-top:10px;">
+                                                      
+                                                     
+                                                    <img src="<?= $this->basepath().$imagePath;?>" alt="" style="width:100px; height:80px;">
+                                                                                         
+                                                  </div>
+                                                  
+                                                  <div class="col-sm-9" style="padding-top:10px;">
+                                                     <textarea class="form-control" col="100"> Born on Monday 17 October 2016 Born on Monday 17 October 2016 Born on Monday 17 October 2016 Born on Monday 17 October 2016 Born on Monday 17 October 2016 Born on Monday 17 October 2016 Born on Monday 17 October 2016 Born on Monday 17 October 2016 Born on Monday 17 October 2016 Born on Monday 17 October 2016 Born on Monday 17 October 2016 Born on Monday 17 October 2016 Born on Monday 17 October 2016 Born on Monday 17 October 2016 Born on Monday 17 October 2016 Born on Monday 17 October 2016 Born on Monday 17 October 2016 Born on Monday 17 October 2016 Born on Monday 17 October 2016</textarea>
+                                                                                         
+                                                  </div>
+                                                   
+                           
+                                                 </div>
+                                             </div>
+                                             
+                                            <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           
+                                                  <div class="col-sm-3" style="margin-top:10px;">
+                                                      
+                                                     
+                                                    <img src="<?= $this->basepath().$imagePath;?>" alt="" style="width:100px; height:80px;">
+                                                                                         
+                                                  </div>
+                                                  
+                                                  <div class="col-sm-9" style="padding-top:10px;">
+                                                     <textarea class="form-control" col="100"> Born on Monday 17 October 2016 Born on Monday 17 October 2016 Born on Monday 17 October 2016 Born on Monday 17 October 2016 Born on Monday 17 October 2016 Born on Monday 17 October 2016 Born on Monday 17 October 2016 Born on Monday 17 October 2016 Born on Monday 17 October 2016 Born on Monday 17 October 2016 Born on Monday 17 October 2016 Born on Monday 17 October 2016 Born on Monday 17 October 2016 Born on Monday 17 October 2016 Born on Monday 17 October 2016 Born on Monday 17 October 2016 Born on Monday 17 October 2016 Born on Monday 17 October 2016 Born on Monday 17 October 2016</textarea>
+                                                                                         
+                                                  </div>
+                                                   
+                           
+                                                 </div>
+                                             </div>
+                                             
+                                              <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                          
+                                                  <div class="col-sm-1 pull-right">
+                                                      
+                                                     
+                                                    <a href="#" class="btn btn-red defaultbtnsearch">Edit</a>
+                                                                                         
+                                                  </div>
+                                                  
+
+                           
+                                                 </div>
+                                             </div>
+                      </div>
+                      </div>
+                      </td>
+                  </tr>
+
+                  
+                      
+                      
+                      
+                      <?php 
+                    $i++;
+                    }
+                      ?>
+                      </tbody>
+                      </table>
+                    
+					  </div>
+                        </div>
+                        
+                        <div id="matrimony-members-tab" class="tab-pane showrusertypes">
+                          <h4 class="smaller lighter green"> <i class="ace-icon fa fa-list"></i> Matrimony Members </h4>
+                      
+                      
+                      
+                <!-- div.table-responsive --> 
+                
+                <!-- div.dataTables_borderWrap -->
+                <div>
+                  dftsrgsrsdfrggdfsdfsgdfsg
+                  <?php echo  "hello"; ?>
+                   
+                </div> 
+                        </div>
+                        <!-- /.#member-tab -->
+                        
+              <div id="latest-news-tab" class="tab-pane showrusertypes">
+                          <h4 class="smaller lighter green"> <i class="ace-icon fa fa-list"></i> Members </h4>
+                      
+                      
+                <!-- div.table-responsive --> 
+                
+                <!-- div.dataTables_borderWrap -->
+                <div id="Normal_members">
+                   sdfdsfdsf
+                   
+                </div> 
+            </div>
+            
+            
+                        <div id="latest-events-tab" class="tab-pane showrusertypes">
+                          <h4 class="smaller lighter green"> <i class="ace-icon fa fa-list"></i> Community Members
+
+ </h4>
+                        
+                        
+                
+                <!-- div.table-responsive --> 
+                
+                <!-- div.dataTables_borderWrap -->
+                <div>
+                   dfgdgdfgdfgdfgdfgdfgdfgdfgdgdgdfg
+                </div>
+                
+               
+               
+                        </div>
+                        
+                      </div>
+                    </div>
+                    <!-- /.widget-main --> 
+                  </div>
+                  <!-- /.widget-body --> 
+                </div>
+                <!-- /.widget-box --> 
+              </div>
+              <!-- /.col --> 
+              
+            </div>
+            
+             <div class="col-sm-12">
+             <div class="col-sm-12 marginbottom20">
+				<a id="delete_drivers_data" class="btn btn-primary marginright" href="#" data-toggle="modal" data-target="#myModal">
+					<i class="fa fa-envelope-o marginright"></i>
+					Send SMS
+				</a>
+<!--<a class="btn btn-default marginright" href="#">
+<i class="fa fa-download marginright"></i>
+Download CSV
+</a>-->
+</div>
+             
+             
+             </div>
+             
+        <div id="lightbox" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <div class="modal-content">
+            <div class="modal-body">
+               
+            </div>
+        </div>
+    </div>
+</div>    
+             
+  <div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content" style="width:250px;">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Send SMS</h4>
+      </div>
+      <div class="modal-body">
+      
+            <form>
+            <div>
+            <label class="col-sm-8">Message</label>
+            
+            	<textarea></textarea>
+                               
+               
+                <input type="submit" name="send" value="Send" />
+               
+                </div>
+            </form>    
+      </div>
+      <div class="modal-footer">
+        <button type="button"data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>     
+ <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                 
+   <script>
+        $(document).ready(function(){
+           $(".itarget").click(function(){
+               var user_id  =   $(this).attr('value');
+               var tab_id   =   $(this).attr('id');
+               var tab_id   =   tab_id.split("_",1);
+              //alert(tab_id);
+              
+               var dataString = {
+            user_id: user_id
+
+        }
+          if(tab_id=="PersonalDetailTab") {              
+              var function_name = "personalprofile";
+          }else if(tab_id=="EducationsTab"){
+              
+              var function_name = "educationAndCareer";
+          }else if(tab_id=="LocationTab"){
+//              alert(user_id);
+              var function_name = "locationDetail";
+          }else if(tab_id=="PostDetailTab"){
+//              alert(user_id);
+              var function_name = "postDetail";
+          }
+        
+        $.ajax({
+    type: "POST",
+    url:'<?php echo $this->basePath()?>'+'/admincontrol/matrimonyuser/'+function_name,
+    data: dataString,    
+    dataType: "html",    
+    success: function(result)
+    {   
+        //alert(result);
+    var resultDiv   =   tab_id + user_id;
+    $("#"+resultDiv).html(result).show();
+    //$("#EducationsTab"+user_id).html(result).show();
+    }
+    });
+               
+           });
+            
+            });
+        
+    </script>                     
+          <!-- /.col --> 
+                <!-- /.row --> 

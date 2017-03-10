@@ -1,0 +1,295 @@
+<style>
+    .custom_error ul li {
+    font-size: 0.9em !important;
+    }    
+    
+</style>
+<div class="col-sm-3 col-sm-3-new width20per">
+    <?php echo $this->partial('layout/sidebar-events') ?>
+</div>
+<div class="col-sm-9 width80per">
+    <h2 class="heading" style="margin-bottom:0;">Event Participation Form</h2>
+    <!--<form class="form-horizontal" role="form">-->
+    <?php
+    $form = $this->form;
+    $form->prepare();
+    $form->setAttribute('method', 'post');
+    $form->setAttribute("id","eventparticipationform");
+    $form->setAttribute("autocomplete","off");
+    echo $this->form()->openTag($form);
+    ?>
+    <strong>Please use the form below to participate for the Rustagi Events <?php echo date('Y'); ?>.<br></strong>
+
+    <div class="col-sm-8" style="padding:0">
+
+        <div class="form-group col-sm-12 no-border" style="border:none;">
+            <label  class="col-sm-12" for="inputEmail3"><?php echo $this->translate('Event') ?></label>
+            <div class="col-sm-12" style="font-size:11px;">
+                Which Event are you participating for?*<br>
+                <?php echo $this->formRow($form->get('event_id')); ?>
+            </div>
+        </div>
+
+<img src="<?php echo $this->basePath() ?>/img/loadingmap.gif" id="Loading_Request" style="position:absolute;display:none;z-index: 9;margin-left: 31%;margin-top: 8%;width: 80px;"/>
+
+        <div class="form-group col-sm-12 no-border" style="border:none;">
+            <label  class="col-sm-12" for="inputEmail3"><?php echo $this->translate('Sub-Event') ?></label>
+            <div class="col-sm-12" style="font-size:11px;">
+                Which Sub-Event are you participating for?(Select Multiple)*<br>
+                <?php echo $this->formRow($form->get('subevent_id')); ?>
+            </div>
+        </div>
+
+
+
+        <div class="form-group col-sm-12" style="border:none;">
+
+            <label  class="col-sm-6"for="inputEmail3"><?php echo $this->translate('Name of Participant') ?></label>
+            <label  class="col-sm-6" for="inputEmail3"><?php echo $this->translate('Date Of Birth') ?></label>
+            <div class="col-sm-6">
+                <?php echo $this->formRow($form->get('participant_name')); ?>
+            </div>
+
+            <div class="col-sm-6">
+                <?php echo $this->formRow($form->get('participant_dob')); ?>
+            </div>
+
+        </div>
+
+        <div class="form-group col-sm-12" style="border:none;">
+
+            <label  class="col-sm-6" for="inputEmail3"><?php echo $this->translate('Father`s Name') ?></label>
+            <label  class="col-sm-6" for="inputEmail3"><?php echo $this->translate('Grand Father`s Name') ?></label>
+            <div class="col-sm-6">
+                <?php echo $this->formRow($form->get('participant_father_name')); ?>
+            </div>
+
+            <div class="col-sm-6">
+                <?php echo $this->formRow($form->get('participant_grandfather_name')); ?>
+            </div>
+
+        </div>
+
+        <div class="form-group col-sm-12" style="border:none;">
+
+            <label  class="col-sm-12" for="inputEmail3"><?php echo $this->translate('Address') ?></label>
+            <div class="col-sm-12">
+                <?php echo $this->formRow($form->get('participant_address')); ?>
+            </div>
+
+        </div>
+
+        <div class="form-group col-sm-12" style="border:none;">
+            <div  class="col-sm-4 paddin0" style="padding-left:0;">
+                <label  class="col-sm-12" for="inputEmail3"><?php echo $this->translate('Phone (Res)') ?></label>
+                <div class="col-sm-12">
+                    <?php echo $this->formRow($form->get('participant_phone_no')); ?>
+                </div>
+            </div>
+            <div class="col-sm-4 paddin0" style="padding-left:0;">
+                <label  class="col-sm-12" for="inputEmail3"><?php echo $this->translate('Mobile') ?></label>
+                <div class="col-sm-12">
+                    <?php echo $this->formRow($form->get('participant_mobile_no')); ?>
+                </div>
+            </div>
+
+            <div  class="col-sm-4" style="padding:0">
+                <label  class="col-sm-12" for="inputEmail3"><?php echo $this->translate('E-Mail') ?></label>
+                <div class="col-sm-12">
+                    <?php echo $this->formRow($form->get('participant_email')); ?>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group col-sm-12" style="border:none;">
+
+
+        </div>
+
+        <div class="form-groupn col-sm-12" style="border:none;">
+            <div class="col-sm-offset-2 col-sm-10">
+                <?php  echo $this->formRow($form->get('submit'));?>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-sm-4" align="center">
+        <img id="post_photo" src="<?php echo $this->basePath('img/default_user.png') ?>" style="width:121px; height:120px;"><br>
+        <span><a href="#"  data-toggle="modal" data-target="#avatar-modalpost_image"  class="cropimage">Upload Photo</a></span>
+        <input type="hidden" name="image" id="image" value="">
+        <input type="hidden" name="post_image_flag" id="post_image_flag" value="0">
+    </div>
+    
+    <?php echo $this->form()->closeTag(); ?>
+
+
+    <div class="clearfix"></div>
+
+    
+    
+<!-- Mohit Code for crop Image Starts Here -->
+
+
+
+
+<div class="modal fade" id="avatar-modalpost_image" tabindex="-1" role="dialog" aria-labelledby="avatar-modal-label" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form class="avatar-form" id="cropform_post" method="post" action="#" enctype="multipart/form-data" onsubmit="return croppostimage('<?= $this->serverurl() . $this->url() . "/croppostimage" ?>', croppostimageresults);">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h4 class="modal-title" id="avatar-modal-label">Post Picture</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="showloader_post" style="position:absolute;top:30%;left:0;width:100%;min-height:300px;display:none;z-index:1000;">
+                        <center><img src="<?= $this->basepath() ?>/img/loadingmap2.gif"></center>
+                    </div>
+
+
+                    <h4>Image:</h4>
+                    <input type="file" name="file" id="file_post"> 
+                    <div class="banner"><img class="cropper2" id="showimage_post" src="<?= $this->basepath() ?>/img/default_user.png"></div>
+
+                    <!--<input name="uid" id="uid" type="hidden">
+                    <input name="ref_no" id="ref_no" type="hidden">
+                    <input name="profile_photo_flag" id="profile_photo_flag" type="hidden">
+                    <input name="profile_photo" id="profile_photo" type="hidden">
+
+                    <input name="field_name" id="field_name1" type="hidden">
+
+                    <input name="table_name" id="table_name1" type="hidden">-->
+
+                    <input type="hidden" class="form-control" id="dataX11_post" placeholder="x1" name="x1">
+
+                    <input type="hidden" class="form-control" id="dataY11_post" placeholder="y1" name="y1">
+
+                    <input type="hidden" class="form-control" id="dataX21_post" placeholder="x2" name="x2">
+
+                    <input type="hidden" class="form-control" id="dataY21_post" placeholder="y2" name="y2">
+
+                    <input type="hidden" class="form-control" id="dataWidth1_post" placeholder="width" name="width">
+
+                    <input type="hidden" class="form-control" id="dataHeight1_post" placeholder="height" name="height">
+
+                    <input type="hidden" class="form-control" id="cropenabled2" name="cropenabled" value="Enable">
+                    <!--<div id="forprofile">
+                        <h5 style="font-weight:bold;color:cornflowerblue;">OR</h5>
+                        <a href="#" id="profileFrom_gallery" data-toggle="modal" data-target="#chooseGallery" style="font-weight:bold;font-size:14px;color:chocolate;">Choose from Gallery</a>
+                    </div>-->
+                    <input type="hidden" id="actualimage_post" name="actualimage">
+                    <button id="cropper-enable_post" type="button" class="btn btn-success croptrigger2">Enable</button>
+                    <button id="cropper-disable_post" type="button" class="btn btn-danger croptrigger2">Disable</button>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
+                    <input class="btn btn-primary avatar-save" type="submit" value="Save">
+                </div>
+            </form>
+        </div>
+
+
+
+    </div>
+</div>
+
+
+<!-- Mohit Code for crop Image Ends Here -->
+
+</div>
+
+<script>
+
+    $(document).ready(function () {
+      $(function () {
+            $("#participant_dob").datepicker({dateFormat: "dd-mm-yy", changeYear: true, changeMonth: true});
+        });
+       /**************Get SubEvents on select Events***************/
+        $("#event_id").on('change', function () {
+            $("#subevent_id").html("");
+            var eventId = this.value;
+            $.ajax({
+                url: '<?php echo $this->basePath() ?>' + '/events/getSubEventName',
+                type: "POST",
+                dataType: "json",
+                data: {Event_ID: eventId},
+                beforeSend: function () {
+                    $('#Loading_Request').show();
+                },
+                complete: function () {
+                    $('#Loading_Request').hide();
+                },
+                success: function (resp) {
+                    if (resp.Status == 'Success') {
+                        $("#subevent_id").append("<option value=''>Please Select Sub-Event</option>");
+                        $.each(resp.subeventlist, function (idx, obj) {
+                            $("#subevent_id").append("<option value='" + idx + "'>" + obj + "</option>");
+                        });
+                    } else {
+
+                        alert("No Sub-Events are Available");
+                    }
+                },
+                error: function (error) {
+                    console.log(error);
+                    alert(error);
+                }
+            });
+        });
+        /*******************End******************/
+    });
+
+</script>
+
+
+
+<script>
+    $(function () {
+        var $cropper1 = $(".cropper2"),
+                $dataX1 = $("#dataX11_post"),
+                $dataY1 = $("#dataY11_post"),
+                $dataX2 = $("#dataX21_post"),
+                $dataY2 = $("#dataY21_post"),
+                $dataHeight = $("#dataHeight1_post"),
+                $dataWidth = $("#dataWidth1_post"),
+                cropper;
+
+        $cropper1.cropper({
+            aspectRatio: 16 / 9,
+            preview: ".extra-preview",
+            done: function (data) {
+                $dataX1.val(data.x1);
+                $dataY1.val(data.y1);
+                $dataX2.val(data.x2);
+                $dataY2.val(data.y2);
+                $dataHeight.val(data.height);
+                $dataWidth.val(data.width);
+            }
+        });
+
+        cropper1 = $cropper1.data("cropper");
+
+
+        $("#cropper-enable_post").click(function () {
+            $cropper1.cropper("enable");
+        });
+
+
+        $("#cropper-disable_post").click(function () {
+            cropper1.disable();
+        });
+
+        $(".croptrigger2").click(function () {
+            var x = $(this).text();
+            $("#cropenabled2").val(x);
+        });
+
+
+        $('#file_post').change(function (event) {
+            var tmppath = URL.createObjectURL(event.target.files[0]);
+            $("#showimage_post").attr("src", tmppath);
+            $("#actualimage_post").val(tmppath);
+        });
+
+    })
+</script>

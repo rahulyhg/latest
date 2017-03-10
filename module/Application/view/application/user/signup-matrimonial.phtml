@@ -1,0 +1,82 @@
+
+<div class="container">
+    <div class="row" align="center">
+        <div class="col-sm-4" align="left" style="float:none !important; box-shadow:0 0 2px 0; margin:10px 0; margin-bottom:100px; ">
+            <?php
+            $form = $this->form;
+            $form->prepare();
+            $form->setAttribute("id", "signupform");
+            $form->setAttribute("autocomplete", "off");
+            echo $this->form()->openTag($form);
+            ?>
+           
+                <div class="form-group">
+                    <div class="modal-header">
+
+                        <h2 class="modal-title" id="myModalLabel">Signup</h2>
+                    </div>
+                    <div class="modal-body">
+                        <?php
+                        if ($this->flashMessenger()->hasMessages()) {
+
+                            echo '<div style="color: #800">';
+
+                            $messages = $this->flashMessenger()->getMessages();
+                            foreach ($messages as $message) {
+                                echo $message[0];
+                            }
+
+                            echo '</div>';
+                        }
+                        ?>
+                        <div class="col-sm-12">
+                            User Name
+                            <?php echo $this->formRow($form->get('username')); ?>
+                            <span class="showerror"></span>
+                            
+                        </div>
+
+                        <div class="col-sm-12">
+                            Password
+                           <?php echo $this->formRow($form->get('password')); ?>
+                        </div>
+
+                        <div class="col-sm-12">
+                            Email ID
+                            <?php echo $this->formRow($form->get('email')); ?>
+                            <span id="emailerror" class="showerror"></span>
+                        </div>
+
+
+                        <div class="col-sm-12">
+                            Mobile
+                            <?php echo $this->formRow($form->get('mobile_no')); ?>
+                            <span class="showerror"></span>
+                        </div>
+
+
+
+                        <div class="col-sm-12 text-center">&nbsp;</div>
+
+                        <div class="col-sm-12">
+                            <?php echo $this->formRow($form->get('submit')); ?>
+                            <!--<a class="btn btn-default btn-block popuplogingbut" href="<?php echo $this->basePath() ?>/user/signup"><?php echo $this->translate('Signup') ?></a>-->
+
+                        </div>
+
+                        <div class="col-sm-12 text-center" style="height:10px;"> </div>  
+
+                    </div>
+                    <div class="clearfix"></div>
+
+                </div>
+           <?php echo $this->form()->closeTag(); ?>
+        </div> 
+    </div>
+
+</div>
+
+<?php $this->inlineScript()->appendFile('/js/signupMatrimonial.js') ;?>
+    
+
+

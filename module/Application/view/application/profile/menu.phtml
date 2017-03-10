@@ -1,0 +1,8 @@
+<ul class="nav nav-pills">
+        <li <?php echo $this->url=='about'?"class='active'":'' ?>><a href="<?php echo $this->url('profile', array('action'=>'about'))?>"><?php echo $this->translate('About') ?></a></li> 
+        <li <?php echo $this->url=='personal-profile'?"class='active'":'' ?>><a href="<?php echo $this->url('profile', array('action'=>'personal-profile')) ?>"><?php echo $this->translate('Personal Profile') ?></a></li>
+        <li <?php echo $this->url=='education-and-career'?"class='active'":'' ?>><a href="<?php echo $this->url('profile', array('action'=>'education-and-career')) ?>"><?php echo $this->translate('Education & Career') ?></a></li>  
+        <li <?php echo $this->url=='family-detail'?"class='active'":'' ?>><a href="<?php echo $this->url('profile', array('action'=>'family-detail')) ?>"><?php echo $this->translate('Family Details') ?></a></li>
+        <li <?php echo $this->url=='post'?"class='active'":'' ?>><a href="<?php echo $this->url('profile', array('action'=>'post')) ?>"><?php echo $this->translate('Post') ?></a></li>
+        <li <?php echo $this->url=='mygallery'?"class='active'":'' ?>><a href="<?php echo $this->url('profile', array('action'=>'mygallery')) ?>"><?php echo $this->translate('Gallery') ?></a></li>
+    </ul>

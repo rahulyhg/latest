@@ -1,0 +1,223 @@
+<div class="col-sm-3 col-sm-3-new width20per">
+    <?php echo $this->partial('layout/sidebar-events') ?>
+</div>
+
+<div class="col-sm-9 width80per">
+    <h2 class="heading" style="margin-bottom:0;">Upcoming Events</h2>
+
+    <div class="newsfull">
+        <div class="status" style="font-size:11px;">
+            <ul style="font-size:12px; padding:0;">
+                <li style="font-size:12px; padding:0;">
+                    <a href="#"> <?php echo $this->MyHelper()->getCountryNameById($Events->event_country)['country_name']; ?> </a>/
+                    <a href="#"> <?php echo $this->MyHelper()->getStateNameById($Events->event_state)['state_name']; ?> </a>/
+                    <a href="#"> <?php echo $this->MyHelper()->getCityNameById($Events->event_city)['city_name']; ?> </a>/
+                    <a href="#"> <?php echo $this->MyHelper()->getBranchNameById($Events->event_branch_id)[0]['branch_name']; ?> </a></li>
+
+            </ul>
+        </div>
+
+    </div>
+    <div class="col-sm-3 " style="padding-right:20px;">
+        
+        <?php
+    if (!empty($Events->image)) {
+        $imagepath = EVENTS_IMAGE_THUMB_PATH_FRONT . $Events->image;
+    } else {
+        $imagepath = '/images/lemon-img.jpg';
+    }
+    
+    ?>
+
+            <img src="<?php echo $this->basePath() . $imagepath ?>" width="" class="img-responsive"/>
+
+    </div>
+    <div class="col-sm-9 col-xs-11" style="padding:0; padding-top:10px; min-height:10px;">
+        <div class="row">
+
+            <div class="col-xs-3 eventline"><strong>Title:</strong></div>
+            <div class="col-sm-9 paddin0" style="min-height:5px; padding:0; padding-bottom:0;">
+                <div class="col-xs-6 eventline"><?php echo $Events->event_title; ?></div>
+                <div class="col-xs-6 eventline"><?php $timestamp = strtotime($Events->event_date);
+        echo date("d/m/Y", $timestamp); ?>, <?php echo date('H:i A', strtotime($Events->event_date)); ?></div>
+            </div>
+
+            <div class="col-xs-3 eventline"><strong>Organiser:</strong></div>
+                <?php $evntOrgan = $this->MyHelper()->getSubeventOrganiser($Events->event_id, 0); ?>
+            <div class="col-sm-9 paddin0" style="min-height:5px; padding:0; padding-bottom:0;">
+                <?php
+                if (count($evntOrgan) > 0) {
+                    foreach ($evntOrgan as $EvntOrgan) {
+                        ?>   
+                        <div>
+                            <div class="col-xs-6 eventline"><?php echo $EvntOrgan['full_name']; ?></div>
+                            <div class="col-xs-6 eventline"><?php echo $EvntOrgan['alternate_mobile_no']; ?>
+                                <?php if (!empty($EvntOrgan['image_path'])) { ?>
+                                    <img src="<?php echo $this->basePath('/uploads/') . $EvntOrgan ['image_path']; ?>" style="float:none; width:30px; height:28px; margin-left:50px;"/>
+                                <?php } else { ?>
+                                    <img src="<?php echo $this->basePath('img/default_user.png') ?>" style="float:none; width:30px; height:28px; margin-left:50px;"/>
+        <?php } ?>
+                            </div>
+                        </div>
+                        <?php }
+                } else {
+                    ?>
+                    <div>
+                        <div class="col-xs-6 eventline">NA</div>
+                    </div>
+<?php } ?>   
+            </div>
+
+
+            <div class="col-xs-3 eventline"><strong>Sponser:</strong></div>
+                <?php $evntSpons = $this->MyHelper()->getSubeventSponser($Events->event_id, 0); ?>
+            <div class="col-sm-9 paddin0" style="min-height:5px; padding:0; padding-bottom:0;">
+                <?php
+                if (count($evntSpons) > 0) {
+                    foreach ($evntSpons as $EvntSpons) {
+                        ?>   
+                        <div>
+                            <div class="col-xs-6 eventline"><?php echo $EvntSpons['spons_poc_name']; ?></div>
+                            <div class="col-xs-6 eventline"><?php echo $EvntSpons['spons_phone_no']; ?>
+                                <?php if (!empty($EvntSpons['spons_image'])) { ?>
+                                    <img src="<?php echo $this->basePath('/SponserImages/') . $EvntSpons['spons_image']; ?>" style="float:none; width:30px; height:28px; margin-left:50px;"/>
+                                <?php } else { ?>
+                                    <img src="<?php echo $this->basePath('img/default_user.png') ?>" style="float:none; width:30px; height:28px; margin-left:50px;"/>
+                        <?php } ?>
+                            </div>
+                        </div>
+        <?php }
+} else {
+    ?>
+                    <div>
+                        <div class="col-xs-6 eventline">NA</div>
+                    </div>
+<?php } ?>   
+            </div>
+
+
+            <div class="col-xs-8 eventline"> <a data-toggle="modal" data-target="#myModal2" class="eventlink">Be Sponser</a></div>
+            <div class="col-sm-4 eventline paddin0"><a href="<?php echo $this->basePath()?>/events/eventParticipation" class="eventlink">Participate Events</a>
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <div class="col-sm-12 paddin0" style="text-align:justify; padding:3px 0;"><?php echo $Events->event_desc; ?></div>
+
+
+    <div class="clearfix"></div>
+    <div class="table-responsive">
+        <table border="1" cellpadding="0" cellspacing="1" class="table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Venue</th>
+                    <th>Sponser</th>
+                    <th>Fee</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                if (count($AllSubEvents) > 0) {
+                    foreach ($AllSubEvents as $SubEvent) {
+                        $subevntSpons = $this->MyHelper()->getSubeventSponser($SubEvent->event_id, $SubEvent->subevent_id);
+                        ?>
+
+                        <tr>
+                            <td><?= $SubEvent->title ?></td>
+                            <td><?php echo date('d-m-Y', strtotime($SubEvent->start_date)); ?></td>
+                            <td><?php $timestamp = strtotime($SubEvent->start_time);
+                        echo date('H:i A', $timestamp); ?> To <?php $timestamp = strtotime($SubEvent->end_time);
+                        echo date('H:i A', $timestamp); ?></td>
+                            <td><?= $SubEvent->venue ?></td>
+                            <td>
+                                <?php
+                                if (count($subevntSpons) > 0) {
+                                    foreach ($subevntSpons as $SubEventSpons) {
+                                        echo $SubEventSpons['spons_poc_name'] . '<br>';
+                                        ?>
+                                <?php }
+                        } else {
+                            ?>NA<?php } ?>
+                            </td>
+                            <td><?php if ($SubEvent->fees != "") echo '<i class="fa fa-inr"></i>' . $SubEvent->fees;
+                else echo "Free"; ?></td>
+                        </tr>
+                        <?php
+                    }
+                }else {
+                    ?>
+                    <tr>
+                        <td>Currently No Data Available</td>
+                    </tr>
+<?php } ?>   
+
+            </tbody>
+        </table>
+    </div>
+
+    <div class="newsfull">
+        <div class="status" style="font-size:11px;">
+            <ul style="font-size:12px;">
+                <li style="font-size:12px;">Posted By : <?php echo $SubEvent->username; ?> </li>
+                <li style="font-size:12px;">Posted On : <?php echo date('d-m-Y', strtotime($Events->created_date)); ?></li>
+                <li style="font-size:12px;">Views: <?php echo $totalLikes->view_count; ?></li>
+                <li style="font-size:12px;"><span id="total_likes"><?php echo $totalLikes->like_count; ?></span> Likes </li>
+
+                <li style="font-size:12px;">
+                    <?php if ($this->authUser()->isLogin() === true) { ?>
+    <?php if ($totalCount->total_likes > 0) { ?>
+                            <a href="javascript:void(0)" class="like" id="like<?php echo $Events->event_id; ?>" title="Unlike" rel="Unlike"> Unlike </a>
+    <?php } else { ?>
+                            <a href="javascript:void(0)" class="like" id="like<?php echo $Events->event_id; ?>" title="Like" rel="Like"> Like </a>
+    <?php }
+} else { ?>
+                        <a href="javascript:void(0)" data-target="#loginPopUpModal" data-toggle="modal" title="Like"> Like </a>
+<?php } ?>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.like').click(function () {
+            var ID = $(this).attr("id");
+            var sid = ID.split("like");
+            var New_ID = sid[1];
+            var REL = $(this).attr("rel");
+            var dataString = 'event_id=' + New_ID + '&rel=' + REL;
+            $.ajax({
+                type: "POST",
+                url: '<?php echo $this->basePath() ?>' + '/events/changeLikeDislike',
+                cache: false,
+                data: dataString,
+                cache: false,
+                        success: function (data) {
+
+                            if (REL == 'Like')
+                            {
+                                $("#total_likes").text(data.data.like_count);
+                                $('#' + ID).html('Unlike').attr('rel', 'Unlike').attr('title', 'Unlike');
+                            }
+                            else
+                            {
+                                $("#total_likes").text(data.data.like_count);
+                                $('#' + ID).attr('rel', 'Like').attr('title', 'Like').html('Like');
+                            }
+
+                        }
+            });
+        });
+
+    });
+</script>

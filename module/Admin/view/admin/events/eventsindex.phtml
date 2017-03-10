@@ -1,0 +1,544 @@
+<?php 
+//  foreach ($events as $event) {
+
+//   echo $event->start_time."<br>";
+//  }
+// // print_r($events);
+// die; 
+?>
+
+<!--<div class="col-lg-2">
+                    <div class="delete">
+                      <a class="btn btn-red defaultbtnsearch searchBooking" data-toggle="modal"
+
+                      href="#myModal">Add New</a>                                    
+                    </div>
+                  </div>
+
+<div id="EditmyModal" class="modal fade" role="dialog">
+   
+</div>
+<div id="ViewmyModal" class="modal fade" role="dialog">
+   
+</div>-->
+
+<div id="myModal2" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+           <?php 
+
+                $form=$this->form; 
+                $form->prepare();
+
+
+        $form->setAttribute('action',$this->url('admin',array('controller'=>'events','action'=>'eventsadd')));
+        $form->setAttribute('id','EventsAddForm');
+        $form->setAttribute('onsubmit','return SubmitEventsForm($(this).attr("id"));');
+        $form->setAttribute('method','post');
+        $form->setAttribute('enctype','multipart/form-data');
+
+
+        echo $this->form()->openTag($form);
+// echo $this->formCollection($form);
+                ?>
+                <div class="alert_info">
+        <h3>Organizer Details</h3>
+      </div>
+          <div class="tab-pane fade active in" id="driver_tab">
+                                         <div class=" col-sm-col-sm-offset-1" >
+                    <div class="row">
+                                                <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?php //echo $this->translate($form->get('event_title')->getLabel()) ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     //echo $this->formHidden($form->get('event_id'));
+                                                     //echo $this->formElement($form->get('event_title'));
+                                                     ?>
+                                                     <span class="showerror"></span>                                    
+                                                  </div>
+                                                 
+                            <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?php //echo $this->translate($form->get('sponser_name')->getLabel()) ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     //echo $this->formElement($form->get('sponser_name'));
+                                                     ?> 
+                                                     <span class="showerror"></span>                                   
+                                                  </div>
+                                                 </div>
+                                             </div>
+                       
+                       <div class="row">
+                                                <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?php //echo $this->translate($form->get('event_organiser')->getLabel()) ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     //echo $this->formElement($form->get('event_organiser'));
+                                                     ?>   
+                                                     <span class="showerror"></span>                                 
+                                                  </div>
+                                                 
+                            <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?php //echo $this->translate($form->get('sponser_photo')->getLabel()) ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     //echo $this->formElement($form->get('sponser_photo'));
+                                                     ?>
+                                                     <span class="showerror"></span>                                    
+                                                  </div>
+                                                 </div>
+                                             </div>
+                        <div class="row">
+                                                <div class="form-group clearfix margintopbottom20">
+                          <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?php //echo $this->translate($form->get('organiser_photo')->getLabel()) ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     //echo $this->formElement($form->get('organiser_photo'));
+                                                     ?>
+                                                     <span class="showerror"></span>                                    
+                                                  </div>
+
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?php //echo $this->translate($form->get('organiser_contact')->getLabel()) ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     //echo $this->formElement($form->get('organiser_contact'));
+                                                     ?>
+                                                     <span class="showerror"></span>                                    
+                                                  </div>
+                           
+                                                 
+                            
+                                                   
+                                                 </div>
+                                                                                              
+                                             </div>
+
+                                              <div class="row">
+                                                <div class="form-group clearfix margintopbottom20">
+                           
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?php //echo $this->translate($form->get('sponser_contact')->getLabel()) ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     //echo $this->formElement($form->get('sponser_contact'));
+                                                     ?> 
+                                                     <span class="showerror"></span>                                   
+                                                  </div>
+
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?php //echo $this->translate($form->get('is_active')->getLabel()) ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     //echo $this->formElement($form->get('is_active'));
+                                                     ?> 
+                                                     <span class="showerror"></span>                                   
+                                                  </div>
+                           
+                                                 
+                            
+                                                   
+                                                 </div>
+                                                                                              
+                                             </div>
+                         
+                         
+                       
+                       
+                       
+                       
+                    </div>
+                                    </div>
+
+<div class="alert_info">
+        <h3>Event Graphics</h3>
+      </div>
+          <div class="tab-pane fade active in" id="driver_tab">
+                                         <div class=" col-sm-col-sm-offset-1" >
+                     
+                                             <div class="row">
+              <div class="col-xs-12">
+                 <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?php //echo $this->translate($form->get('event_desc')->getLabel()) ?>
+                           </label>
+                <div class="wysiwyg-editor" id="editor1"></div>
+                  
+              </div><!-- /.col -->
+            </div><!-- /.row --> 
+                                             <div class="row">
+                                                <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?php //echo $this->translate($form->get('image')->getLabel()) ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                      //echo $this->formElement($form->get('event_desc'));
+                                                     //echo $this->formElement($form->get('image'));
+                                                     ?>
+                                                     <span class="showerror"></span>                                    
+                                                  </div>
+                                                 
+                                                 </div>
+                                             </div>
+                       
+                       
+                    </div>
+                                    </div>
+                                    <div class="alert_info">
+        <h3>Location Details</h3>
+      </div>
+          <div class="tab-pane fade active in" id="driver_tab">
+                                         <div class=" col-sm-col-sm-offset-1" >
+                    <div class="row">
+                                                <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?php //echo $this->translate($form->get('country_id')->getLabel()) ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     //echo $this->formElement($form->get('country_id'));
+                                                     ?> 
+                                                     <span class="showerror"></span>                                   
+                                                  </div>
+                                                 
+                            <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?php //echo $this->translate($form->get('city_id')->getLabel()) ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     //echo $this->formElement($form->get('city_id'));
+                                                     ?>
+                                                     <span class="showerror"></span>                                    
+                                                  </div>
+                                                 </div>
+                                             </div>
+                       
+                       <div class="row">
+                                                <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?php //echo $this->translate($form->get('state_id')->getLabel()) ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     //echo $this->formElement($form->get('state_id'));
+                                                     ?>
+                                                     <span class="showerror"></span>                                    
+                                                  </div>
+                                                 
+                             
+                                                 </div>
+                                             </div>
+                         
+                         
+                       
+                       
+                       
+                       
+                    </div>
+                                    </div>
+                                    <div class="alert_info">
+        <h3>Event Timing Details</h3>
+      </div>
+          <div class="tab-pane fade active in" id="driver_tab">
+                                         <div class=" col-sm-col-sm-offset-1" >
+                    <div class="row">
+                                                <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?php //echo $this->translate($form->get('event_date')->getLabel()) ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <div class="input-group">
+                                   <?php 
+                                                     //echo $this->formElement($form->get('event_date'));
+                                                     ?><span class="showerror"></span>
+                                  
+                                  
+                                </div> 
+                                                     
+                                                                                        
+                                                  </div>
+                                                 
+                            <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?php //echo $this->translate($form->get('end_date')->getLabel()) ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     //echo $this->formElement($form->get('end_date'));
+                                                     ?> 
+                                                     <span class="showerror"></span>                                   
+                                                  </div>
+                                                 </div>
+                                             </div>
+                       
+                       <div class="row">
+                                                <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?php //echo $this->translate($form->get('start_time')->getLabel()) ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     //echo $this->formElement($form->get('start_time'));
+                                                     ?> 
+                                                     <span class="showerror"></span>                                   
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?php //echo $this->translate($form->get('end_time')->getLabel()) ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     //echo $this->formElement($form->get('end_time'));
+                                                     ?>
+                                                     <span class="showerror"></span>                                    
+                                                  </div>
+                                                 
+                             
+                                                 </div>
+                                             </div>
+                         
+                         
+                       <div class="row">
+                                                <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?php //echo $this->translate($form->get('venue')->getLabel()) ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     //echo $this->formElement($form->get('venue'));
+                                                     ?>
+                                                     <span class="showerror"></span>                                    
+                                                  </div>
+                                                   
+                             
+                                                 </div>
+                                             </div>
+                       
+                       
+                       
+                    </div>
+                                    </div>
+                                    <div class="alert_info">
+        <h3>Event Costing</h3>
+      </div>
+          <div class="tab-pane fade active in" id="driver_tab">
+                                         <div class=" col-sm-col-sm-offset-1" >
+                    <div class="row">
+                                                <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?php //echo $this->translate($form->get('event_cost')->getLabel()) ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     //echo $this->formElement($form->get('event_cost'));
+                                                     ?> 
+                                                     <span class="showerror"></span>                                   
+                                                  </div>
+                                                 
+                            <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?php //echo $this->translate($form->get('event_members')->getLabel()) ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     //echo $this->formElement($form->get('event_members'));
+                                                     ?> 
+                                                     <span class="showerror"></span>                                   
+                                                  </div>
+                                                 </div>
+                                             </div>
+                    </div>
+                                    </div>
+
+                                    <?php   
+                                    //echo $this->formElement($form->get('submit'));
+echo $this->form()->closeTag();
+
+        ?>       
+</div>
+</div>
+</div>
+
+<div id="editForm" class="tab-content dontshow">
+                </div>
+
+
+
+
+ 
+
+
+
+<div class="row">
+          <div class="col-xs-12"> 
+             
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                      <table id="dynamic-table" class="table table-striped table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th>S. No.</th>
+                        <th>Event Title </th>
+                        <!--<th>Event Organiser </th>-->
+                        <th>Event Date </th>
+                        <th>Description</th>
+                        <th>Event Picture</th>
+                        <th>Country</th>
+                        <th>City</th>
+                        <th>Venue</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <!--<th class="hidden-480">Created Date</th>-->
+                        <th class="hidden-480">Modified Date</th> 
+                        <!--<th class="hidden-480">Created By</th>-->
+                        <th class="hidden-480">Modified By</th>
+                        <th class="hidden-480">Status</th>
+                        
+                        <th><b>Actions</b></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <!--<input type="hidden" id="table_name" value="tbl_event">
+                            <input type="hidden" id="id_name" value="event_id">-->
+                      <?php 
+                      $i=1;
+                      
+                      foreach ($events as $event) {
+                          
+//                          echo   "<pre>";
+//                          print_r($events);exit;
+                      
+                      ?>
+                      <tr id="<?php //echo $event['event_id']; ?>" >
+                         
+                        <td><?= $i?></td>
+                        <td><?= $event['event_title']?></td>
+                        <!--<td><?php //echo empty($event->eventOrganiser)?'Not Given':$event->eventOrganiser;?></td>-->
+                        <!--<td><?php //echo  date("l d-m-y",strtotime($event->eventDate));?></td>-->
+                        <td><?php echo  $event['event_date'];?></td>
+                        <td class="shorttext"><div class="showshort"><?= $event['event_desc']?></div></td>
+                        <td><?php $imagePath = (empty($event['image']))? '/images/new-big.jpg' : $event['image'];?>
+                        <img src="<?= $this->basepath()."/EventsImages/".$imagePath;?>" width="43" height="37" alt="">
+                      </td>                       
+                        <td class="hidden-480"><?= $event['country_name']?></td>
+                        <td class="hidden-480"><?= $event['city_name']?></td>
+                        <!--<td class="hidden-480"><?php //echo  $event->venue?></td>-->
+                        <td class="shorttext"><div class="showshort"><?= $event['event_venue']?></div></td>
+                        <td class="hidden-480"><?= date('h:i A',strtotime($event[event_start_time]))?></td>
+                        <td class="hidden-480"><?= date('h:i A',strtotime($event['event_end_time']))?></td>
+                        <!--<td class="hidden-480"><?//= $event['created_date']?></td>-->
+                        <td class="hidden-480"><?= $event['modified_date']?></td>
+                        <!--<td class="hidden-480"><?php //echo $event['username']; ?></td>-->
+                        <td class="hidden-480"><?php echo $event['username']; ?></td>
+                        <td class="hidden-480">
+						<!--<?php echo ($event['is_active']==1)? 'Active': '<span class="label label-sm label-warning">In-Active</span>'; ?>-->
+                        <?php $status = ($event['is_active']==1)? 'Active': 'In-Active';
+                        $statuscolor = ($event['is_active']==1)? 'activestatus': 'de-activestatus';
+                         ?>
+                          <div name="ChangeStatus" id="changestatus<?=$i;?>" onclick="changestatuseventquick(<?=$event['event_id']?>,<?= ($event['is_active']==0)?0:1; ?>,'<?php echo $this->
+                                                                url('admin/events', array('action'=>
+                                                                    'changestatus')); ?>',changstatusresult);" class="<?=$statuscolor?>">
+                        </div>
+                        </td> 
+                        
+                        <td><div class="hidden-sm hidden-xs action-buttons"> 
+                          <!--<a class="blue" data-toggle="modal" href="#ViewmyModal" onclick="editbox
+                              (<?php //echo $event->id?>,'<?php //echo $this->serverurl().$this->url()."/events/eventsview";?>'
+                              ,showeventsview)"> <i class="ace-icon fa fa-search-plus bigger-130"></i> </a>-->
+                          
+                          <!--<a class="blue" style="cursor:pointer;" data-toggle="modal" data-target="#myModal"  
+                                                   tar="indview<?php //echo $i ?>"> <i onclick="findRowDataByEventsId('<?php //echo $this->url
+                                                           //('admin/events', array('action'=>'eventsview','id'=>$event->id)); ?>', 
+                                                                       viewRowDataById);" class="ace-icon fa fa-search-plus bigger-130">
+                                                    </i> </a>-->
+                                                           
+                          <a class="blue" href="<?php 
+                        echo $this->url('admin/events',array('action'=>'eventsview','id'=>$event['event_id'])); ?>"> <i 
+                         class="ace-icon fa fa-search-plus bigger-130"></i> </a>                               
+
+                           <!--<a class="green"  data-toggle="modal" href="#EditmyModal" onclick=
+                               "editbox(<?php //echo $event->id?>,'<?php //echo $this->serverurl().$this->url().
+                                                                   //"/events/eventsedit";?>',
+                                                                       showeventsedit)"> 
+                       <i class="ace-icon fa fa-pencil bigger-130"></i> </a> -->
+                       <a class="green" href="<?php echo $this->url('admin/events',array('action'=>'eventsedit','id'=>$event['event_id'])); ?>" > 
+                           <i class="ace-icon fa fa-pencil bigger-130"></i> </a>
+
+                           <a class="red" href="<?php echo $this->url('admin/events',array('action'=>'eventsdelete','id'=>$event['event_id'])); ?>" onclick="return confirm('are you sure you want to delete');"> <i class="ace-icon fa fa-trash-o bigger-130"></i> </a> </div>
+                          </td>
+                      </tr>
+                      <?php 
+                      $i++;
+                    }
+                      ?>
+                    </tbody>
+                  </table>
+                      
+                      
+                      
+                      
+                    </div>
+                 </div>
+              </div>
+              <div class="col-sm-12"> 
+                <!-- /.widget-box -->
+                <!--<div  style="margin-top:20px;"> <a href="#" class="btn btn-red defaultbtnsearch searchBooking"><i class="fa fa-search" id="search_me" style="color:#fff; margin:5px"></i>Refresh</a> </div>-->
+              </div>
+            </div>
+            <!-- /.col --> 
+<!-- <div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+            <?php 
+
+        // print_r($countries);
+
+        ?>         
+      </div>
+      <div class="modal-footer">
+        <button type="button"data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+            
+            <!-- /.row -->
+            
+            <div class="hr hr-18 dotted hr-double"></div>
+            <div class="row">
+              <div class="col-xs-12">
+                
+                <div> 
+         
+                </div>
+      <!-- /.page-content --> 
+              </div>
+          </div>
+  <!-- /.main-content -->
+  
+     
+  <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse"> <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i> </a> </div>
+<!-- /.main-container --> 
+
+<!-- basic scripts --> 
+
+<!--[if !IE]> -->
+<div id="viewEventsModel"></div>
+<?php echo $this->inlineScript()->prependFile($this->basePath('/assets/js/event.js')); ?>
+<!-- <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+<script src="<?php //echo $this->basePath(); ?>/assets/js/jquery-1.10.2.js"></script> 
+<script src="<?php //echo $this->basePath(); ?>/assets/js/jquery-ui-1.10.4.custom.min.js"></script> 
+<script src="<?php //echo $this->basePath(); ?>/assets/js/script.js"></script>  -->

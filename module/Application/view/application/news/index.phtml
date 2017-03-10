@@ -1,0 +1,121 @@
+<style>
+    .news
+    {
+        height:;
+    }
+</style>
+
+<div class="col-sm-3 col-sm-3-new width20per">
+    <?php echo $this->partial('layout/sidebar-news') ?>
+</div>
+
+<img src="<?php echo $this->basePath() ?>/img/loadingmap.gif" id="Loading_Request" style="position:absolute;display:none;z-index: 9;margin-left: 31%;margin-top: 8%;width: 80px;"/>
+
+<div id="newsContainer"> 
+    <div class="col-sm-9 width80per">
+
+        <h2 class="heading">Latest News</h2>
+        <ul id="items">
+            <?php
+            if (count($this->NewsData > 0))
+                foreach ($NewsData as $Ndata) {
+                    ?>
+                    <li>
+                        <div class="col-md-6 news col-xs-12">
+                            <div class="col-md-3 col-sm-2 col-xs-2 img">
+                                <?php
+                                if (!empty($Ndata->image_path))
+                                    $path = $Ndata->image_path;
+                                else
+                                    $path = "/images/new-big.jpg";
+                                ?>
+                                <a href="<?php echo $this->basePath() ?>/news/view/<?= $Ndata->id ?>">
+                                    <img src="<?php echo $this->basePath($path) ?>" class="img-responsive" style="height:88px; width:100%;" /></a>
+                            </div>
+                            <div class="col-md-9 col-sm-10 col-xs-10 content">
+                                <h4><a href="<?php echo $this->basePath() ?>/news/view/<?= $Ndata->id ?>"><?php echo $Ndata->title; ?></a></h4>
+                                <p>
+                                    <label style="height:23px;">
+                                        <?php $this->MyHelper()->ContentLength($Ndata->description); ?>...
+                                    </label>
+                               
+                                <strong>Category:</strong> <?= $Ndata->category_name ?>
+                                <strong>Posted By:</strong> <?= $Ndata->username ?><br>
+                                <strong>Posted Date:</strong> <?php echo date('d-m-Y H:i:s', strtotime($Ndata->created_date)); ?>
+                                <a href="<?php echo $this->basePath() ?>/news/view/<?= $Ndata->id ?>"><span class="pull-right">Read Full Story >></span></a>
+                                 </p>
+                            </div>
+                        </div>
+                    </li>
+                    <?php
+                }
+            else {
+                ?>
+                <h2> No Data Available </h2>
+                <?php
+            }
+            ?>
+
+        </ul>
+        <div class="clearfix"></div>
+
+        <!--<nav>
+          <ul class="pagination">
+          <li class="disabled"><a href="#">Pages:</a></li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">6</a></li>
+            <li><a href="#">7</a></li>
+            <li class="disabled"><a href="#">.....</a></li>
+          </ul>
+        </nav>-->
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        $('input[type=checkbox]').on('change', function () {
+            var checkValues = [];
+            if ($(this).is(':checked')) {
+                $(':checkbox:checked').each(function () {
+                    checkValues.push($(this).val());
+                });
+            }
+            if ($(this).is(':unchecked')) {
+                $(':checkbox:checked').each(function () {
+                    checkValues.push($(this).val());
+                });
+            }
+            //console.log(val);
+            var newsCat = checkValues.join(",");
+            $.ajax({
+                url: '<?php echo $this->basePath() ?>' + '/news/newsfiltersbycat',
+                type: "POST",
+                dataType: "html",
+                data: {
+                    newsCat: newsCat
+                },
+                beforeSend: function () {
+                    $('#Loading_Request').show();
+                },
+                complete: function () {
+                    $('#Loading_Request').hide();
+                },
+                success: function (resp) {
+                    //alert(resp);
+                    $("#newsContainer").empty();
+                    $("#newsContainer").append(resp);
+                },
+                error: function (error) {
+                    console.log(error);
+                    alert(error);
+                }
+            });
+        });
+    });
+</script>

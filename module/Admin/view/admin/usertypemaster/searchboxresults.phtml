@@ -1,0 +1,22 @@
+<table  width="100%" style="border:none !important;">
+<tbody>
+<?php
+if(count($usertypemasters)>0){
+	$i=1;
+ foreach ($usertypemasters as $usertypemaster) {
+?>
+
+
+<tr>
+<td>
+<a href="javascript:void(0);" id="usertypemastersearch<?=$i;?>" onclick="grabvalues2('<?=$usertypemaster->user_type?>','<?=$usertypemaster->id?>','<?=$parentname?>');"><?= $usertypemaster->user_type?></a>
+</td>
+</tr>
+<?php
+$i++;
+}
+}
+else echo "<p>No matched search</p>";
+?>
+</tbody>
+</table>

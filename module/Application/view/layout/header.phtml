@@ -1,0 +1,379 @@
+<?php
+$session = new Zend\Session\Container('user');
+// print_r($session);
+// echo $session->offsetGet('email');
+?>
+<div class="col-xs-3 width20per col-sm-mobile" align="center">
+    <a href="<?php echo $this->url('home') ?>">
+        <img src="<?php echo $this->basePath('images/logo_rustagisamaj.png') ?>" class="img-responsive imgheight"  />
+    </a>
+</div>
+<div class="col-xs-6 width60per col-sm-mobile1">
+
+    <center>
+        <ul class="rslides">
+            <li><img src="<?php echo $this->basePath('images/RUSTAGI_SAMAJ_ADD.jpg') ?>" class="img-responsive imgheight" /></li>
+            <li><img src="<?php echo $this->basePath('images/rustagi_ad.jpg') ?>" class="img-responsive imgheight" /></li>
+          
+        </ul>
+    </center>
+
+
+</div>
+<div class="col-xs-3 width20per col-sm-mobile">
+    <ul class="nav-top">
+        <li>
+
+
+            <div class="popover-markup"> 
+
+                <?php if ($this->authUser()->isLogin() === true) { ?>
+                    <?php echo $this->getUser()->name('username')?><span></span>
+                    <a href="<?php echo $this->basePath() ?>/user/logout"><?php echo $this->translate('Logout') ?></a>
+                <?php } else { ?>
+                    <span><?php echo $this->translate('Already Member') ?></span>
+                    <a href="#" class="trigger" data-placement="bottom"><?php echo $this->translate('Login') ?></a>
+                <?php } ?>
+
+
+
+
+                <div class="head hide"><?php echo $this->translate('Enter Login Details') ?></div>
+
+                <div class="content hide"  >
+                    <!--change password start here-->
+                    <div   id="chgpassbypop" style="display:none;">
+                        <h4 class="header red lighter bigger">
+                            <i class="ace-icon fa fa-key"></i>
+                            Retrieve Password
+                        </h4>
+
+                        <div class="space-6"></div>
+                        <p>
+                            Create your new password 
+                        </p>
+                        <form method="post" action="#" id="chgpassform" onsubmit="return changePasswordByPop(this.id, '<?= $this->serverUrl() . $this->url('application/default', array('controller' => 'user', 'action' => 'changePasswordByPop'));
+                ?>');">
+                            Enter new password <input type="password" name="pass"><br>
+                            Retype new password  <input type="password" name="rpass">
+                            <span class="showerror"></span><br>
+                            <input type="hidden" name="userid"><br>
+                            <input type="hidden" name="mobile"><br>
+                            <input type="hidden" name="user_type"><br>
+                            <input type="submit" value="submit" name="sendotp">
+                        </form>	
+                    </div>
+                    <!--end-->
+                    <!--submit or confirm otp start here-->
+                    <div id="otpformConfirm" style="display:none;">
+                        <h4 class="header red lighter bigger">
+                            <i class="ace-icon fa fa-key"></i>
+                            Retrieve Password
+                        </h4>
+
+                        <div class="space-6"></div>
+                        <p>
+                            Enter otp to receive instructions
+                        </p>
+                        <form method="post" id="formotpConfirm" onsubmit="return confirmotpByPopUps(this.id, '<?= $this->serverUrl() . $this->url('application/default', array('controller' => 'user', 'action' => 'confirmotpPop'));
+                ?>', 0);">
+                            Enter otp <input type="number" name="otp">
+                            <span class="showerror"></span><br>
+                            <input type="hidden" name="userid"><br>
+                            <input type="hidden" name="number"><br>
+                            <input type="hidden" name="user_type_data"><br>
+                            <input type="submit" value="submit" name="sendotpconfirm">
+                        </form>	
+                    </div>
+                    <!--end-->
+                    <!--send otp start here-->
+                    <div id="forgotform" style="position:relative;top:0;left:0;height:100%;width:100%;display:none;">
+                        <div id="mobileform">
+                            <h4 class="header red lighter bigger">
+                                <i class="ace-icon fa fa-key"></i>
+                                Retrieve Password
+                            </h4>
+
+                            <div class="space-6"></div>
+                            <p>
+                                Enter your Mobile Number to receive instructions
+                            </p>
+
+                            <form method="post" action="#" id="forgotform" onsubmit="return sendOtpByPop(this.id, '<?= $this->serverUrl() . $this->url('application/default', array('controller' => 'user', 'action' => 'sendOtpByPop'));
+                ?>');">
+                                <div class="form-group">
+                                    
+                                    <label class="block clearfix">
+                                        <span class="block input-icon input-icon-right" style="color:#000;">
+                                            <input type="radio" name="user_type" checked="" value="member_user"/>Member
+                                            <input type="radio" name="user_type" value="matrimonial_user"/>Matrimonial
+                                            <span class="showerror"></span>
+                                        </span>
+                                    </label>
+                                    
+                                    <label class="block clearfix">
+                                        <span class="block input-icon input-icon-right">
+                                            <input type="number" class="form-control" placeholder="Number"/>
+                                            <span class="showerror"></span>
+                                        </span>
+                                    </label>
+
+                                    <div class="clearfix">
+                                        <button type="submit" class="width-35 pull-right btn btn-sm btn-danger">
+                                            <i class="ace-icon fa fa-lightbulb-o"></i>
+                                            <span class="bigger-110">Send Me!</span>
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div> 
+                    </div>
+                    <!--end-->
+
+
+                    <div id="frontform">
+                        <form id="loginForm" name="loginForm" action="<?php echo $this->url('user', array('action' => 'loginUser')) ?>" method="POST">
+
+                            <div class="form-group">
+                                <label for="email"><?php echo $this->translate('Email OR Mobile') ?></label>
+                                <input type="text" name="login_email" id="login_email" class="form-control" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password"><?php echo $this->translate('Password') ?></label>
+                                <input type="password" name="login_password" id="login_password" class="form-control" />
+                            </div> 
+
+                            <div class="form-group">
+                                <input type="checkbox" name="rember" /><label><em><?php echo $this->translate('Remember me') ?></em></label>
+                            </div>
+
+
+                            <div class="form-group">
+                                <button type="submit" name="login" id="login" class="btn btn-info btn-block"><?php echo $this->translate('Sign In') ?></button>
+                            </div>
+
+                        </form>
+
+
+
+                        <div class="form-group">
+                            <a href="javascript:void(0);" id="forgotlink" onclick="showform()" class="btn btn-default" style="line-height:20px;"><?php echo $this->translate('Forgot your password?') ?></a>
+                        </div>
+
+                        <div class="form-group text-center"><?php echo $this->translate('OR') ?></div>
+
+                        <div class="form-group"><?php echo $this->translate('New account?') ?>
+                            <a class="btn btn-info btn-block" href="<?php echo $this->basePath() ?>/user/signup" style="line-height:20px;"><?php echo $this->translate('Signup') ?></a>
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li>
+
+            <?php if ($this->authUser()->isLogin() === true) { ?>
+                <span><?php echo $this->translate('My Profile') ?></span>
+                <a href="<?php echo $this->url('profile', array('action'=>'personal-profile')) ?>"><?php echo $this->translate('Profile') ?></a>	
+            <?php } else { ?>
+                <span><?php echo $this->translate('Become Member') ?></span>
+                <a href="<?php echo $this->url('user', array('action'=>'signup')) ?>"><?php echo $this->translate('Signup') ?></a>
+            <?php } ?>
+        </li>
+
+        <div class="form-group googletranslate">
+
+            <!-- Begin TranslateThis Button -->
+
+            <!--<div id="translate-this"><a style="width:180px;height:18px;display:block;" class="translate-this-button" href="https://www.translatecompany.com/translate-this/">Translate Website</a></div>
+            
+            <script type="text/javascript" src="//x.translateth.is/translate-this.js"></script><script type="text/javascript">TranslateThis();</script>-->
+
+            <div id="google_translate_element"></div><script type="text/javascript">
+                function googleTranslateElementInit() {
+                    new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'af,hi,ko,ku', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false, multilanguagePage: true}, 'google_translate_element');
+                }
+            </script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+            <!-- End TranslateThis Button -->
+
+
+            <!--<div id="google_translate_element">
+               <div style="" dir="ltr" class="skiptranslate goog-te-gadget">
+               <div class="goog-te-gadget-simple" style="white-space: nowrap;" id=":0.targetLanguage">
+             
+               </div></div></div>-->
+
+        </div>
+
+    <!-- Brand and toggle get grouped for better mobile display -->
+    
+<div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed iconmenu" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
+        <span class="sr-only">Sub Page</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+<!-- Collect the nav links, forms, and other content for toggling -->
+
+
+    </ul>
+
+</div>
+
+<div style="width:100%; float:left;">
+
+
+<nav class="navbar navbar-default">
+<!-- Collect the nav links, forms, and other content for toggling -->
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+<ul class="nav navbar-nav mobilenew">
+<li><a href="<?php echo $this->basePath()?>/about">About Community</a></li>
+<li><a href="<?php echo $this->basePath()?>/matrimonial">Bride Groom Search</a></li>
+<!--<li><a href="<?php echo $this->basePath()?>/matrimonial/list-view?search_for=Female">Browse All Brides</a></li>
+<li><a href="<?php echo $this->basePath()?>/matrimonial/list-view?search_for=Male">Browse All Grooms</a></li>-->
+<li><a href="<?php echo urlencode($this->basePath().'health & food')?>">Health & Food</a></li>
+<li><a href="<?php echo urlencode($this->basePath().'Devotional Mythological')?>">Devotional / Mythology</a></li>
+<li><a href="<?php echo $this->basePath()?>/entertain">Jokes / SMS / Poems</a></li>
+<li><a href="<?php echo $this->basePath()?>/events">All Events</a></li>
+<li><a href="<?php echo $this->basePath()?>/community">All India Branches</a></li>
+
+</ul>
+</div>
+</nav>
+
+</div>
+
+
+<script>
+    function sendOtpByPop(id, action){
+        var input = $("#" + id).find("input[type=number]");
+        var usertype_val = $("#" + id).find("input[name=user_type]:checked");
+        //alert(user_type.val());
+        //return false;
+    if (input.val().length == 10) {
+        var user_type = usertype_val.val();
+        var num = input.val();
+        input.next("span").html("");
+        var queryString = "number=" + num+"&user_type=" + user_type;
+
+         $.ajax({
+         	url:action,
+         	type:"post",
+         	data:queryString,
+         	dataType:"JSON",
+         	success:function(data){
+         		var parsed = data;
+                        if(parsed.resp==1){
+                             
+         			var otp = $("#otpformConfirm");
+         			$("#mobileform").fadeOut();
+         			otp.fadeIn();
+         			otp.find("input[name=userid]").val(parsed.success.userid);
+         			otp.find("input[name=number]").val(parsed.success.mobile);
+                                otp.find("input[name=user_type_data]").val(user_type);
+         		}
+         		else {
+         				alert(parsed.error);
+         		}
+         	}
+         });
+    } else {
+        input.next("span").html("<p style='color:red;'>not a valid number</p>");
+    }
+
+    return false;
+    }
+    
+    function confirmotpByPopUps(id, action, is_reg) {
+   
+        var input = $("#" + id).find("input[name=otp]");
+        
+        if (input.val().length == 4) {
+      
+        input.next("span").html("");
+        
+
+         var queryString = $("#" + id).serialize() + "&is_reg=" + is_reg;
+
+            $.ajax({
+                url:action,
+                type:"post",
+                data:queryString,
+                dataType:"JSON",
+                success:function(data){
+                        var parsed = data;
+                      
+                        if(parsed.resp==1){
+
+                                var otp = $("#chgpassbypop");
+                                $("#otpformConfirm").fadeOut();
+                                otp.fadeIn();
+                                otp.find("input[name=userid]").val(parsed.success.userid);
+                                otp.find("input[name=mobile]").val(parsed.success.mobile);
+                                otp.find("input[name=user_type]").val(parsed.success.user_type);
+                               
+                        }
+                        else {
+                                        alert(parsed.error);
+                        }
+                }
+            });
+         } else {
+          input.next("span").html("<p style='color:red;'>not a valid number</p>");
+        }   
+            return false;
+   }
+   
+   function changePasswordByPop(id, action) {
+
+        var pass = $("#" + id).find("input[name=pass]");
+        var rpass = $("#" + id).find("input[name=rpass]");
+        
+        
+        if (pass.val() == rpass.val()) {
+      
+        rpass.next("span").html("");
+
+         var queryString = $("#" + id).serialize();
+
+            $.ajax({
+                url:action,
+                type:"post",
+                data:queryString,
+                dataType:"JSON",
+                success:function(data){
+                        var parsed = data;
+                      
+                        if(parsed.resp==1){
+
+                                var otp = $("#chgpassbypop");
+                                $("#chgpassbypop").fadeOut();
+                                otp.fadeIn();
+                                otp.find("input[name=userid]").val(parsed.success.userid);
+                                otp.find("input[name=mobile]").val(parsed.success.mobile);
+                                alert(parsed.success);
+                                $('.popover').removeClass('in');
+                                $('.popover').addClass('out');
+                        }
+                        else {
+                                        alert(parsed.error);
+                        }
+                }
+            });
+            
+         } else {
+          rpass.next("span").html("<p style='color:red;'>password and repassword should be same</p>");
+        }    
+            return false;
+   }
+   
+   
+</script>

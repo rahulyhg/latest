@@ -1,0 +1,68 @@
+<div class="table-responsive">
+  <table class="table">
+    	<tbody>
+        	  <tr>
+            	<td><strong>Institutions Name</strong> </td>
+                <td><strong>Purpose</strong></td>
+                <td><strong>Team Member</strong></td>
+            </tr>
+            
+           <?php 
+           $i = 1;
+           if(count($InstData)>0){
+
+            foreach ($InstData as $Idata) {
+
+            ?>
+            <tr>
+            	<td><span href="#" tar="inst<?php echo $i;?>" class="flipinstu itarget" ><?php echo $Idata->institute_name;?></span></td>
+                <td><span href="#" tar="purp<?php echo $i;?>" class="flippurpose itarget"><?php echo $Idata->institute_type;?></span></td>
+                <td> <span href="#" tar="team<?php echo $i;?>" class="flipteam itarget">Members</span>
+                
+                	
+                </td>
+            </tr>
+               
+                   
+            <tr class="dontshow" id="inst<?php echo $i;?>">
+            	<td colspan="3" align="left">
+                <ul class="ulclass">
+                <h5>Institutions:<?php echo $Idata->institute_name;?></h5>
+                <li class="liclass1"><?php echo $Idata->institute_address;?></li>
+                  
+          
+               </ul>
+                </td>
+            </tr>
+            
+            <tr class="dontshow" id="purp<?php echo $i;?>">
+            	<td colspan="3" align="left">
+                <ul class="ulclass">
+                <h5>Institutions:<?php echo $Idata->institute_name;?>:Purpose</h5>
+                <li class="liclass1"><?php echo $Idata->purpose;?></li>
+         
+               </ul>
+                </td>
+            </tr>
+            
+            <tr class="dontshow" id="team<?php echo $i;?>">
+            	<td colspan="3" align="left">
+                <ul class="ulclass">
+                <h5>Institutions:<?php echo $Idata->institute_name;?>:Team Member</h5>
+                <?php foreach ($CommunityData[$Idata->id] as $Mdata) {?>
+                  <li class="liclass"><?php echo $Mdata->member_name;?><br />President<br />+91-<?php echo $Mdata->contact_no;?><br /><?php echo $Mdata->email;?></li>
+                <?php
+                }?>
+               </ul>
+                </td>
+            </tr>
+            <?php 
+            $i++;
+            }
+            }
+            else{ ?> 
+        <span style="text-align:center;font-weight:bold;font-size:16px;color:cornflowerblue;">No Data available</span>
+      <?php } ?>
+        </tbody>
+  </table>
+</div>

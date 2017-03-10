@@ -1,0 +1,21 @@
+<table  width="100%" style="border:none !important;">
+<tbody>
+<?php
+if(count($Results)>0){
+	$i=1;
+ foreach ($Results as $result) {
+?>
+
+
+<tr>
+<td>
+<a href="javascript:void(0);" id="starsignsearch<?=$i;?>" onclick="putvalues4('<?=$result->starSignName?>','<?=$result->id?>');"><?= $result->starSignName?></a>
+</td>
+</tr>
+<?php
+}
+}
+else echo "<p>No matched search</p>";
+?>
+</tbody>
+</table>

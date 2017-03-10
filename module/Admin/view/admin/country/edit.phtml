@@ -1,0 +1,129 @@
+ 
+<?php
+$form = $this->form;
+$form->prepare();
+
+
+$form->setAttribute('action', $this->url('admin/country', array('action' => 'edit', 'id' => $id)));
+$form->setAttribute('method', 'post');
+$form->setAttribute('name', 'editform');
+$form->setAttribute('autocomplete', 'off');
+$form->setAttribute('id', 'CountryFormEdit');
+$action = $this->url('admin/country', array('action' => 'edit', 'id' => $id));
+$form->setAttribute('onSubmit', "return SubmitFormAction($(this).attr('id'),'" . $action . "',addformResp)");
+
+echo $this->form()->openTag($form);
+// echo $this->formCollection($form);
+?>
+
+<div class="tab-pane fade active in" id="driver_tab">
+    <div class="" style="">
+
+        <div class="" style="">
+            <div class="form-group clearfix margintopbottom20">
+                
+                <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                    <?= $this->translate($form->get('region_id')->getLabel()) ?>
+                </label>                
+                
+                <div class="col-sm-2">
+                    <?php
+                    echo $this->formHidden($form->get('id'));
+                    //echo $this->formElement($form->get('country_name'));
+                    echo $this->formElement($form->get('region_id'));
+                    ?> 
+                    <span class="showerror"></span>                       
+                                               
+                </div>
+                
+                <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                    <?= $this->translate($form->get('country_name')->getLabel()) ?>
+                </label>
+                <div class="col-sm-2" id="editparent">
+                    <?php
+                    //echo $this->formHidden($form->get('id'));
+                    echo $this->formElement($form->get('country_name'));
+                    //echo $this->formElement($form->get('country_id'));
+                    ?> 
+                    <input id="country_name"  class="form-control inputchange" placeholder="Country Name" type="text" 
+                                                     onkeyup="keyupresults34($(this).val(),$('#CountryFormEdit :input[name=region_id]').val()
+                                                                        ,searchboxresults,'<?php echo $this->url("admin/country",
+                                                             array('action'=>'searchboxresults'))?>',CountryFormEdit)" value="" name="country_name"  >
+                    <span class="showerror"></span>   
+                    <div class="col-sm-3 searchboxresults" id="searchresults" style="position: absolute;
+                         overflow-y:scroll;
+                         background:#FFF;
+                         width:93%;
+                         height:auto;
+                         z-index: 9999;display:none;">
+                    </div>                                
+                </div>
+
+                <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                    <?= $this->translate($form->get('country_code')->getLabel()) ?>
+                </label>
+                <div class="col-sm-1">
+                    <?php
+                    echo $this->formElement($form->get('country_code'));
+                    ?>  
+                    <span class="showerror"></span>                                   
+
+                </div>
+
+                <label id="flight_nos" class="col-sm-1 control-label labelalign ">
+<?= $this->translate($form->get('dial_code')->getLabel()) ?>
+                </label>
+                <div class="col-sm-1">
+<?php
+echo $this->formHidden($form->get('master_country_id'));
+echo $this->formElement($form->get('dial_code'));
+?>  
+                    <span class="showerror"></span>                                   
+
+                </div>
+                <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                                        <?= $this->translate($form->get('currency')->getLabel()) ?>
+                                    </label>
+
+                                    <div class="col-sm-1">
+                                        <?php
+                                        echo $this->formElement($form->get('currency'));
+                                        ?>  
+                                        <!--<span class="showerror"></span> -->                                  
+
+                                    </div>
+                <div class="col-sm-1 pull-left">
+<?php
+echo $this->formRow($form->get('submit'));
+?>                                    
+                </div>
+                <div class="col-sm-1 pull-left">
+                    <a class="btn btn-red defaultbtnsearch searchBooking" href="javascript:void(0);" onclick="location.reload();">Cancel</a>                              
+                </div>
+
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group clearfix margintopbottom20">
+
+
+                <!-- <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+<?= $this->translate($form->get('is_active')->getLabel()) ?>
+                </label>
+                                       <div class="col-sm-3">
+<?php
+echo $this->formElement($form->get('is_active'));
+?> 
+                                          <span class="showerror"></span>                                   
+                                                                             
+                                       </div>-->
+            </div>
+        </div>
+
+    </div>
+</div>
+<?php
+echo $this->form()->closeTag();
+?>
+           

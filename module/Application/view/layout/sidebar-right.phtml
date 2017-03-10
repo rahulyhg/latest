@@ -1,0 +1,248 @@
+<?php
+$session = new Zend\Session\Container('user');
+// print_r($session);
+// echo $session->offsetGet('email');
+$userTypeId=$session->offsetGet('user_type_id');
+
+if($userTypeId==1){
+    $action_type="profile-view-member";
+    $action_type_id="member_id";
+    $action_accepted="member-accepted";
+    $action_pending="member-pending";
+    $action_selected="member-selected";
+    //$action
+}elseif($userTypeId==2){
+    $action_type="profile-view-matrimony";
+    $action_type_id="matrimony_id";
+    $action_accepted="matrimony-accepted";
+    $action_pending="matrimony-pending";
+    $action_selected="matrimony-selected";
+}
+?>
+<style>
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted #ccc;
+	opacity:10;
+	cursor:pointer;
+	padding:0 !important;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width:350px;
+    background-color: black;
+    color: #333;
+    text-align: center;
+    border-radius: 2px;
+    padding: 5px 0;
+	box-shadow:0 0 2px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: -5px;
+    right: 100%
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+.tooltip-left::after {
+    border-color: transparent transparent transparent #555;
+    border-style: solid;
+    border-width: 5px;
+	border:solid;
+    content: "";
+    left: 100%;
+    margin-top: -5px;
+    position: absolute;
+    top: 50%;
+}
+
+</style>
+ 
+ <div class="mid_box">
+                <div id="myshaadi-banner">
+                    <a href="#" target=""><img src="<?php echo $this->basePath() ?>/images/slide1.jpg" alt="" title="" width="100%" height="100%" border="0"></a>
+                </div>
+
+            </div>
+
+            <div class="mid_box" id="my_feeds_content_div">
+                <div class="mid_box_header">
+                    <p>Accepted</p>
+                </div>
+                <div class="recent_updated_wrap over_y_s">
+                    <?php //\Zend\Debug\Debug::dump($this->acceptedMember);?>
+                  <?php foreach($this->acceptedMember as $acceptedMembers){ 
+     
+                      ?>
+                    <div class="profile_compact_view profile_compact_viewn">
+                        <?php
+                       /* if(!empty($acceptedMembers['image_path'])){
+                        $imagepath='/uploads/'.$acceptedMembers['image_path'];
+                        }else{
+                            $imagepath='/images/beby.jpg';
+                        }*/
+                        ?>
+                        <!--<span class="thumbnail thumbnailnew"><a href="#" target="_blank"><img src="<?php echo $imagepath?>"  alt="" title="" ondragstart="return false;" ondragenter="return false;" ondragover="return false;" ondrop="return false;" onmousedown="return false;" oncontextmenu="return false;" height="27" width="27"></a>
+                        </span>-->
+                        <!--<div class="user_info user_infon">
+                            <span>
+                                <a id="feeds_mini_profile" href="#" onmouseover="#" class="light_blue"><?php echo $acceptedMembers['full_name'];?></a>
+                            </span><br>
+                            <span>
+                                <?php echo $acceptedMembers['about_yourself_partner_family']?></span>
+
+                           
+                        </div>--><!--end of user_info-->
+
+
+                    </div>
+                    
+                    <div class="tooltip">
+                     <?php
+                        if(!empty($acceptedMembers['image_path'])){
+                        $imagepath='/uploads/'.$acceptedMembers['image_path'];
+                        }else{
+                            $imagepath='/images/beby.jpg';
+                        }
+                        ?>
+                    
+                     <span class="thumbnail thumbnailnew"><a href="#" target="_blank"><img src="<?php echo $imagepath?>"  alt="" title="" ondragstart="return false;" ondragenter="return false;" ondragover="return false;" ondrop="return false;" onmousedown="return false;" oncontextmenu="return false;" height="27" width="27"></a>
+                        </span>
+                    
+                    <span>
+                                <a id="feeds_mini_profile" href="<?php echo $this->url('profile', array('action'=>$action_type),array('query'=>array($action_type_id=>$acceptedMembers['user_id']))) ?>" onmouseover="#" class="light_blue" style="line-height:30px;"><?php echo $acceptedMembers['full_name'];?> (<?php echo $acceptedMembers['ref_no']; ?>)</a>
+                            </span>
+                    
+ 
+  <div  class="tooltiptext" style="background:#fff;">
+  <div class="col-sm-5" style="font-size:11px; padding-left:5px;" align="left">
+  	<img src="<?php echo $imagepath;?>" width="140" height="160" />
+  </div>
+  <div class="col-sm-7" style="padding:0; font-size:11px; text-align:left; line-height:23px; float:right;">
+  <ul class="member_details">
+  						<li><h2><?php echo $acceptedMembers['full_name'];?>-<?php echo $acceptedMembers['ref_no']; ?></h2></li>
+        				<li class="matrimony_icon1"><?php echo $acceptedMembers['age']; ?> Yrs, <?php if($acceptedMembers['height']!="")echo $this->MyHelper()->getHeightById($acceptedMembers['height'])['height']; ?> <?php if($acceptedMembers['zodiac_sign_raasi']!="")echo $this->MyHelper()->getZodiacSignRassiById($acceptedMembers['zodiac_sign_raasi'])['zodiac_sign_name']; ?></li>
+                        <li class="matrimony_icon2"><?php echo $acceptedMembers['marital_status']; ?></li>
+                        <li class="matrimony_icon3"><?php if($acceptedMembers['religion']!="")echo $this->MyHelper()->getReligionNameById($acceptedMembers['religion'])['religion_name']; ?> <?php if($acceptedMembers['mother_tongue_id']!="") echo $this->MyHelper()->getMotherTongueById($acceptedMembers['mother_tongue_id'])['mother_tongue']; ?></li>
+                        <li class="matrimony_icon4"><?php if($acceptedMembers['caste']!="")echo $this->MyHelper()->getCasteNameById($acceptedMembers['caste'])['caste_name']; ?>, <?php echo $acceptedMembers['caste_other']; ?></li>
+                        <li class="matrimony_icon5"><?php if($acceptedMembers['profession']!="")echo $this->MyHelper()->getProfession($acceptedMembers['profession'])['profession']; ?></li>
+                        <li class="matrimony_icon6">Lives in <?php if($acceptedMembers['city']!="")echo $this->MyHelper()->getCityNameById($acceptedMembers['city'])['city_name']; ?> , <?php if($acceptedMembers['country']!="")echo $this->MyHelper()->getCountryNameById($acceptedMembers['country'])['country_name']; ?></li>
+                        <li> <a href="#" class="btn btn-default">Chat Now</a></li>
+       						 </ul>
+  
+   <!--<span class="col-sm-12" style="font-size:11px; padding:0;"> Invitation Sent <span  style="font-size:10px;">(Awaiting response)</span></span>-->
+  </div>
+  </div>
+  
+
+</div>
+                    <?php } ?>
+
+                </div><!--end recent_updated_wrap-->
+                <p class="mid_box_footer">
+                    <?php if ($this->authUser()->isLogin() === true) {?><a href="<?php echo $this->url('profile',array('action'=>$action_accepted))?>" class="light_link_blue" target="">View all</a><?php }?>
+                </p></div>
+
+            <div class="mid_box" id="my_feeds_content_div">
+                <div class="mid_box_header">
+                    <p>Pending</p>
+                </div>
+                <div class="recent_updated_wrap over_y_s">
+                   <?php 
+                                    
+                    foreach($this->receivedMember->receivedMember as $receivedMember){ 
+                        if(!empty($receivedMember['image_path'])){
+                        $imagepath='/uploads/'.$receivedMember['image_path'];
+                        }else{
+                            $imagepath='/images/beby.jpg';
+                        }
+                    ?>
+                    <div class="profile_compact_view profile_compact_viewn">
+                        <span class="thumbnail thumbnailnew"><a href="#" target="_blank"><img src="<?php echo $this->basePath().$imagepath ?>" alt="My Matches" title="My Matches" ondragstart="return false;" ondragenter="return false;" ondragover="return false;" ondrop="return false;" onmousedown="return false;" oncontextmenu="return false;" width="27" height="27"></a>
+                        </span>
+                        <div class="user_info user_infon">
+                            <span>
+                                <a id="feeds_mini_profile" href="#" onmouseover="#" class="light_blue"><?php echo $receivedMember['full_name'];?></a>
+                            </span><br>
+                            <span>
+                                <?php echo $receivedMember['about_yourself_partner_family']?></span>
+
+                            <!--<span class="last_updated">few hours ago</span>-->
+
+
+                        </div><!--end of user_info-->
+
+
+                    </div>
+                    
+                    
+								
+                    <?php } ?>
+
+
+
+                </div><!--end recent_updated_wrap--><p class="mid_box_footer">
+                    <?php if ($this->authUser()->isLogin() === true) {?><a href="<?php echo $this->url('profile',array('action'=>$action_pending))?>" class="light_link_blue" target="">View all</a><?php }?>
+                </p></div>
+
+
+            <div class="mid_box" id="my_feeds_content_div">
+                <div class="mid_box_header">
+                    <p>Selected</p>
+                </div>
+                <?php foreach($this->selectedMemberInfo as $selectedMemberInfos){?>
+                <div class="tooltip">
+                <div class="recent_updated_wrap over_y_s">
+                    
+                        <?php if(!empty($selectedMemberInfos['image_path'])){
+                        $imagepath='/uploads/'.$selectedMemberInfos['image_path'];
+                        }else{
+                            $imagepath='/images/beby.jpg';
+                        }
+                      ?>
+                    <div class="profile_compact_view profile_compact_viewn">
+                        <span class="thumbnail thumbnailnew"><a href="#" target="_blank"><img src="<?php echo $this->basePath().$imagepath ?>"></a>
+                        </span>
+                        <div class="user_info user_infon">
+                            <span>
+                                <a id="feeds_mini_profile" href="<?php echo $this->url('profile', array('action'=>$action_type),array('query'=>array($action_type_id=>$selectedMemberInfos['user_id']))) ?>" onmouseover="#" class="light_blue"><?php echo $selectedMemberInfos['full_name']?> (<?php echo $selectedMemberInfos['ref_no']; ?>)</a>
+                            </span><br>
+                            <span>
+                                  <div  class="tooltiptext" style="background:#fff;">
+  <div class="col-sm-5" style="font-size:11px; padding-left:5px;" align="left">
+  	<img src="<?php echo $imagepath;?>" width="140" height="160" />
+  </div>
+  <div class="col-sm-7" style="padding:0; font-size:11px; text-align:left; line-height:23px; float:right;">
+  <ul class="member_details">
+  						<li><h2><?php echo $selectedMemberInfos['full_name'];?>-<?php echo $selectedMemberInfos['ref_no']; ?></h2></li>
+        				<li class="matrimony_icon1"><?php echo $selectedMemberInfos['age']; ?> Yrs, <?php if($selectedMemberInfos['height']!="")echo $this->MyHelper()->getHeightById($selectedMemberInfos['height'])['height']; ?> <?php if($selectedMemberInfos['zodiac_sign_raasi']!="")echo $this->MyHelper()->getZodiacSignRassiById($selectedMemberInfos['zodiac_sign_raasi'])['zodiac_sign_name']; ?></li>
+                        <li class="matrimony_icon2"><?php echo $selectedMemberInfos['marital_status']; ?></li>
+                        <li class="matrimony_icon3"><?php if($selectedMemberInfos['religion']!="")echo $this->MyHelper()->getReligionNameById($selectedMemberInfos['religion'])['religion_name']; ?> <?php if($selectedMemberInfos['mother_tongue_id']!="") echo $this->MyHelper()->getMotherTongueById($selectedMemberInfos['mother_tongue_id'])['mother_tongue']; ?></li>
+                        <li class="matrimony_icon4"><?php if($selectedMemberInfos['caste']!="")echo $this->MyHelper()->getCasteNameById($selectedMemberInfos['caste'])['caste_name']; ?>, <?php echo $selectedMemberInfos['caste_other']; ?></li>
+                        <li class="matrimony_icon5"><?php if($selectedMemberInfos['profession']!="")echo $this->MyHelper()->getProfession($selectedMemberInfos['profession'])['profession']; ?></li>
+                        <li class="matrimony_icon6">Lives in <?php if($selectedMemberInfos['city']!="")echo $this->MyHelper()->getCityNameById($selectedMemberInfos['city'])['city_name']; ?> , <?php if($selectedMemberInfos['country']!="")echo $this->MyHelper()->getCountryNameById($selectedMemberInfos['country'])['country_name']; ?></li>
+                        <li> <a href="#" class="btn btn-default">Chat Now</a></li>
+       						 </ul>
+  
+   <!--<span class="col-sm-12" style="font-size:11px; padding:0;"> Invitation Sent <span  style="font-size:10px;">(Awaiting response)</span></span>-->
+  </div>
+  </div>
+                        </div><!--end of user_info-->
+
+
+                    </div>
+                    
+                  
+                </div>
+                </div><!--end recent_updated_wrap-->
+                 <?php } ?>
+                <p class="mid_box_footer">
+                  
+                    <?php if ($this->authUser()->isLogin() === true) {?><a href="<?php echo $this->url('profile',array('action'=>$action_selected))?>" class="light_link_blue" target="">View all</a><?php }?>
+                </p></div>

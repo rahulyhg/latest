@@ -1,0 +1,90 @@
+
+
+<style>
+
+
+.news
+{
+	height:180px;
+}
+</style>
+
+
+
+<div class="col-sm-3 col-sm-3-new width20per">
+<?php echo $this->partial('layout/sidebar-events') ?>
+</div>
+
+<div id="event_container"> 
+<div id="profile"> 
+<div class="col-sm-9 width80per">
+
+<div class="clearfix"></div>
+<h2 class="heading">UpComing Events</h2>
+    
+<ul id="items">
+ <?php 
+ 
+ if(count($this->EventsData>0)){
+
+  foreach ($EventsData as $Edata) {
+  ?>   
+  <li>
+<div class="col-md-6 news col-xs-12">
+<div class="col-md-4 col-sm-2 col-xs-2 img">
+    <?php
+    if (!empty($Edata->image)) {
+        $imagepath = EVENTS_IMAGE_THUMB_PATH_FRONT . $Edata->image;
+    } else {
+        $imagepath = '/images/lemon-img.jpg';
+    }
+    
+    ?>
+        
+    <a href="<?php echo $this->basePath()?>/events/view">
+<img src="<?php echo $this->basePath() . $imagepath ?>" class="img-responsive" style="max-height:150px;"/>
+    </a>
+</div>
+<div class="col-md-8 col-sm-10 col-xs-10 content">
+<h4><a href="<?php echo $this->basePath()?>/events/view/<?=$Edata->event_id?>"><?php echo $Edata->event_title;?></a></h4>
+<p>Presented By : <?php echo $this->MyHelper()->getBranchNameById($Edata->event_branch_id)[0]['branch_name']; ?></p>
+<p><?php $timestamp = strtotime($Edata->event_date); echo date("d-m-y / l",$timestamp);?></p>
+<p>Time : <?php $timestamp = strtotime($Edata->event_start_time); echo date("h-i",$timestamp);?> AM To 
+<?php $timestamp = strtotime($Edata->event_end_time); echo date("h-i",$timestamp);?> PM</p>
+<p>Venue :<?php echo $Edata->event_venue?></p>
+<p><a href="<?php echo $this->basePath()?>/events/view/<?=$Edata->event_id?>">Read Full Story >></a></p>
+</div>
+</div>
+</li>
+
+ <?php 
+}
+}
+
+else "<h2> No Upcoming Events</h2>";
+
+ ?>
+</ul>
+
+    <div class="clearfix"></div>
+    
+    <!--<nav>
+  <ul class="pagination">
+  <li class="disabled"><a href="#">Pages:</a></li>
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li><a href="#">6</a></li>
+    <li><a href="#">7</a></li>
+    <li class="disabled"><a href="#">.....</a></li>
+    
+  </ul>
+</nav>-->
+     <div class="clearfix"></div> 
+
+  
+</div>
+</div>
+</div>

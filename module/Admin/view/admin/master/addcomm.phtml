@@ -1,0 +1,37 @@
+<?php 
+
+// echo $id;
+
+if(isset($id) && !empty($id)){
+  // echo"dsds";
+?>
+
+<form method="post" action="<?=$this->url('admin', array('controller' => 'master', 'action' => 'addnewcomm'))?>">
+<input type="text" name="newdir">
+<input type="hidden" name="parent_id" value="<?=$id?>" required>
+<input type="submit" name="submit" value="create">
+</form>
+<hr>
+<?=$links?>
+<hr>
+
+<?php
+if(count($Comm)>0){
+
+  foreach ($Comm as $comms) {
+
+      echo "<a href='".$this->url('admin', array('controller' => 'master', 'action' => 'addcomm', 'id' => $comms->id))
+                ."'>$comms->category_name</a><br>";
+
+
+    }
+  }
+  else echo "no category available";
+}
+else echo "<a href='".$this->url('admin', array('controller' => 'master', 'action' => 'addcomm', 'id' => 1))
+                ."'>Communities</a>";
+
+
+
+?>
+

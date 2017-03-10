@@ -1,0 +1,311 @@
+<ul class="nav nav-pills">
+    <li id="abouttab" class="lilink" <?php echo $this->url == 'about' ? "class='active'" : '' ?> onclick="return about()"><?php echo $this->translate('About') ?></li> 
+    <li id="profiletab" class="lilink linikactive" <?php echo $this->url == 'personal-profile' ? "class='active'" : '' ?> onclick="return personalProfile()"><?php echo $this->translate('Personal Profile') ?></li>
+    <li id="eduncarr" class="lilink" <?php echo $this->url == 'education-and-career' ? "class='active'" : '' ?> onclick="return educationAndCareer()"><?php echo $this->translate('Education & Career') ?></li>  
+    <li id="familydetail" class="lilink" <?php echo $this->url == 'family-detail' ? "class='active'" : '' ?> onclick="return familyDetails()"><?php echo $this->translate('Family Details') ?></li>
+    <li id="gallery" class="lilink" <?php echo $this->url == 'mygallery' ? "class='active'" : '' ?> onclick="return gallery()"><?php echo $this->translate('Gallery') ?></li>
+</ul>
+
+<script>
+    $(document).ready(function () {
+        $("#abouttab").removeClass("linikactive");
+        $("#profiletab").addClass("linikactive");
+
+
+        $.ajax({
+            url: '<?php echo $this->url('profile', array('action' => 'personal-profile')) ?>',
+            //type: "POST",
+            dataType: "html",
+            // data: {Country_ID: countryId},
+            beforeSend: function () {
+                $('#Loading_Request').show();
+            },
+            complete: function () {
+                $('#Loading_Request').hide();
+            },
+            success: function (resp) {
+                //console.log(resp);
+                $("#profile").empty();
+                $("#profile").append(resp);
+                debugger;
+//                    if (resp.Status == 'Success') {
+//                            $("#profile").empty();
+//                            $("#state").append(resp);
+//                          
+//                    } else {
+//                    $("#state").empty();
+//                            $("#city").empty();
+//                            alert("No States are available");
+//                    }
+            },
+            error: function (error) {
+                console.log(error);
+                // alert(error);
+            }
+        });
+    });
+</script>
+<script>
+
+    function about() {
+        $("#eduncarr").removeClass("linikactive");
+        $("#familydetail").removeClass("linikactive");
+        $("#post").removeClass("linikactive");
+        $("#gallery").removeClass("linikactive");
+        $("#profiletab").removeClass("linikactive");
+        $("#abouttab").addClass("linikactive");
+
+        $.ajax({
+            url: '<?php echo $this->url('profile', array('action' => 'about')) ?>',
+            //type: "POST",
+            dataType: "html",
+            // data: {Country_ID: countryId},
+            beforeSend: function () {
+                $('#Loading_Request').show();
+            },
+            complete: function () {
+                $('#Loading_Request').hide();
+            },
+            success: function (resp) {
+                //console.log(resp);
+                $("#profile").empty();
+                $("#profile").append(resp);
+                debugger;
+//                    if (resp.Status == 'Success') {
+//                            $("#profile").empty();
+//                            $("#state").append(resp);
+//                          
+//                    } else {
+//                    $("#state").empty();
+//                            $("#city").empty();
+//                            alert("No States are available");
+//                    }
+            },
+            error: function (error) {
+                console.log(error);
+                // alert(error);
+            }
+        });
+
+    }
+
+    function personalProfile() {
+
+        $("#abouttab").removeClass("linikactive");
+        $("#eduncarr").removeClass("linikactive");
+        $("#familydetail").removeClass("linikactive");
+        $("#post").removeClass("linikactive");
+        $("#gallery").removeClass("linikactive");
+        $("#profiletab").addClass("linikactive");
+
+
+        $.ajax({
+            url: '<?php echo $this->url('profile', array('action' => 'personal-profile')) ?>',
+            //type: "POST",
+            dataType: "html",
+            // data: {Country_ID: countryId},
+            beforeSend: function () {
+                $('#Loading_Request').show();
+            },
+            complete: function () {
+                $('#Loading_Request').hide();
+            },
+            success: function (resp) {
+                //console.log(resp);
+                $("#profile").empty();
+                $("#profile").append(resp);
+                debugger;
+//                    if (resp.Status == 'Success') {
+//                            $("#profile").empty();
+//                            $("#state").append(resp);
+//                          
+//                    } else {
+//                    $("#state").empty();
+//                            $("#city").empty();
+//                            alert("No States are available");
+//                    }
+            },
+            error: function (error) {
+                console.log(error);
+                // alert(error);
+            }
+        });
+
+    }
+    
+    function educationAndCareer() {
+
+        $("#abouttab").removeClass("linikactive");
+        $("#profiletab").removeClass("linikactive");
+        $("#familydetail").removeClass("linikactive");
+        $("#post").removeClass("linikactive");
+        $("#gallery").removeClass("linikactive");
+        $("#eduncarr").addClass("linikactive");
+
+
+        $.ajax({
+            url: '<?php echo $this->url('profile', array('action' => 'educationAndCareer')) ?>',
+            //type: "POST",
+            dataType: "html",
+            // data: {Country_ID: countryId},
+            beforeSend: function () {
+                $('#Loading_Request').show();
+            },
+            complete: function () {
+                $('#Loading_Request').hide();
+            },
+            success: function (resp) {
+                //console.log(resp);
+                $("#profile").empty();
+                $("#profile").append(resp);
+                debugger;
+//                    if (resp.Status == 'Success') {
+//                            $("#profile").empty();
+//                            $("#state").append(resp);
+//                          
+//                    } else {
+//                    $("#state").empty();
+//                            $("#city").empty();
+//                            alert("No States are available");
+//                    }
+            },
+            error: function (error) {
+                console.log(error);
+                // alert(error);
+            }
+        });
+
+    }
+    
+    function familyDetails() {
+
+       
+        $("#abouttab").removeClass("linikactive");
+        $("#profiletab").removeClass("linikactive");
+        $("#gallery").removeClass("linikactive");
+        $("#post").removeClass("linikactive");
+        $("#eduncarr").removeClass("linikactive");
+        $("#familydetail").addClass("linikactive");
+
+
+        $.ajax({
+            url: '<?php echo $this->url('profile', array('action' => 'family-detail')) ?>',
+            //type: "POST",
+            dataType: "html",
+            // data: {Country_ID: countryId},
+            beforeSend: function () {
+                $('#Loading_Request').show();
+            },
+            complete: function () {
+                $('#Loading_Request').hide();
+            },
+            success: function (resp) {
+                
+                $("#profile").empty();
+                $("#profile").append(resp);
+                debugger;
+//                    if (resp.Status == 'Success') {
+//                            $("#profile").empty();
+//                            $("#state").append(resp);
+//                          
+//                    } else {
+//                    $("#state").empty();
+//                            $("#city").empty();
+//                            alert("No States are available");
+//                    }
+            },
+            error: function (error) {
+                console.log(error);
+                // alert(error);
+            }
+        });
+
+    }
+    
+    function post() {
+
+        $("#abouttab").removeClass("linikactive");
+        $("#profiletab").removeClass("linikactive");
+        $("#familydetail").removeClass("linikactive");
+        $("#gallery").removeClass("linikactive");
+        $("#eduncarr").removeClass("linikactive");
+        $("#post").addClass("linikactive");
+
+        $.ajax({
+            url: '<?php echo $this->url('profile', array('action' => 'post')) ?>',
+            //type: "POST",
+            dataType: "html",
+            // data: {Country_ID: countryId},
+            beforeSend: function () {
+                $('#Loading_Request').show();
+            },
+            complete: function () {
+                $('#Loading_Request').hide();
+            },
+            success: function (resp) {
+                //console.log(resp);
+                $("#profile").empty();
+                $("#profile").append(resp);
+                debugger;
+//                    if (resp.Status == 'Success') {
+//                            $("#profile").empty();
+//                            $("#state").append(resp);
+//                          
+//                    } else {
+//                    $("#state").empty();
+//                            $("#city").empty();
+//                            alert("No States are available");
+//                    }
+            },
+            error: function (error) {
+                console.log(error);
+                // alert(error);
+            }
+        });
+
+    }
+    
+    function gallery() {
+
+       $("#abouttab").removeClass("linikactive");
+        $("#profiletab").removeClass("linikactive");
+        $("#familydetail").removeClass("linikactive");
+        $("#post").removeClass("linikactive");
+        $("#eduncarr").removeClass("linikactive");
+        $("#gallery").addClass("linikactive");
+
+
+        $.ajax({
+            url: '<?php echo $this->url('profile', array('action' => 'gallery-matrimonial')) ?>',
+            //type: "POST",
+            dataType: "html",
+            // data: {Country_ID: countryId},
+            beforeSend: function () {
+                $('#Loading_Request').show();
+            },
+            complete: function () {
+                $('#Loading_Request').hide();
+            },
+            success: function (resp) {
+                //console.log(resp);
+              $("#profile").empty();
+                $("#profile").append(resp);
+                debugger;
+//                    if (resp.Status == 'Success') {
+//                            $("#profile").empty();
+//                            $("#state").append(resp);
+//                          
+//                    } else {
+//                    $("#state").empty();
+//                            $("#city").empty();
+//                            alert("No States are available");
+//                    }
+            },
+            error: function (error) {
+                console.log(error);
+                // alert(error);
+            }
+        });
+
+    }
+</script>

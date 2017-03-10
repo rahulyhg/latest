@@ -1,0 +1,22 @@
+<table  width="100%" style="border:none !important;">
+<tbody>
+<?php
+if(count($designations)>0){
+	$i=1;
+ foreach ($designations as $designation) {
+?>
+
+
+<tr>
+<td>
+<a href="javascript:void(0);" id="designationsearch<?=$i;?>" onclick="grabvalues7('<?=$designation->designation?>','<?=$designation->id?>','<?=$parentname?>');"><?= $designation->designation?></a>
+</td>
+</tr>
+<?php
+$i++;
+}
+}
+else echo "<p>No matched search</p>";
+?>
+</tbody>
+</table>

@@ -1,0 +1,19 @@
+<div class="col-sm-3 col-sm-3-new width20per">
+<?php echo $this->partial('layout/sidebar-about') ?>
+</div>
+
+<div class="col-sm-9 width80per">
+    <h2 class="heading">Our Vision</h2>
+    
+    <div class="col-sm-12" align="center" style="margin-top:15px; margin-bottom:30px;">
+    <img src="add/visson.jpg" width="95%" height="90" />
+    
+    </div>
+    
+ <?php
+ if($data->description){
+  echo $data->description;
+ }
+  ?>
+
+  </div>

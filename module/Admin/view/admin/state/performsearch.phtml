@@ -1,0 +1,93 @@
+
+                    <div class="table-responsive">
+                      <table id="dynamic-table" class="table table-striped table-bordered table-hover">
+                    <thead>
+                      <tr>
+                         
+                           <th><input type="checkbox" value="" id="checkAll" onclick="checkall(this.id)" > </th>
+                         <th> Sr. No. </th>
+                        <th>State Name</th>
+                        <th>Country Name</th>
+                        <th class="hidden-480">Modified Date</th>
+                        <th class="hidden-480">Created Date</th>
+                        <th class="hidden-480">Status</th>
+                        <th class="hidden-480">Modified By</th>
+                        <th><b>Actions</b></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php 
+                      $i=1;
+                      if(count($results)>0){
+//                          echo "<pre>";print_r($results);exit;
+                      foreach ($results as $state) {
+                      
+                      ?>
+                      <tr>
+                            <td><input type="checkbox" value="<?=$state->id?>" class="checkme" name="checkme[]"> </td>  
+                        <td> <?=$i?></td>
+                        <td><?= $state->stateName?></td>                       
+                        <td class="hidden-480"><?= $state->countryName?></td>
+                        <td class="hidden-480"><?= $state->modifiedDate?></td>
+                        <td class="hidden-480"><?= $state->createdDate?></td>
+                        
+                        <td class="hidden-480" align="center">
+
+    <?php
+    $status = ($state->isActive == 1) ? 'Active' : 'In-Active';
+    $statuscolor = ($state->isActive == 1) ? 'activestatus' : 'de-activestatus';
+    ?>
+                                            <div name="ChangeStatus" id="changestatus<?= $i; ?>" onclick=
+                                                "changestatusquick(<?= $state->id ?>,<?= ($state->
+                                                        isActive == 0) ? 0 : 1; ?>, '<?php echo $this->
+                                                                url('admin/state', array('action'=>
+                                                                    'changestatus')); ?>', 
+                                                                        changstatusresult);" class="<?= 
+                                                        $statuscolor ?>">
+                                            </div>
+
+                                        </td>
+                        <td class="hidden-480"><?php echo ($state->modifiedBy==1)? 'Admin': 'NotByAdmin'; ?></td>
+                        <td aria-expanded="false" class="accordion1">
+                        <div class="hidden-sm hidden-xs action-buttons">                        
+                         <a class="blue" style="cursor:pointer;" data-toggle="modal" data-target="#myModal" tar="indview<?=$i?>
+                            "> <i onclick="findRowDataByStateId('<?php echo $this->url
+                                                           ('admin/state', array('action'=>'viewById','id'=>$state->id)); ?>', 
+                                                                       viewRowDataById);" class="ace-icon fa fa-search-plus bigger-130">
+                                                    </i> </a>
+                        
+                         
+                        
+                        <a class="green" href="javascript:void(0);" onclick="editbox(<?= $state->id ?>, '<?php echo 
+                                        $this->url('admin/state', array('action' => 'edit', 'id' => $state->id));
+                                        ?>', editformresp);" > <i class="ace-icon fa fa-pencil bigger-130"></i> </a>
+
+                         
+                        
+                        <a class="red" 
+                                           href="<?php echo $this->url('admin/state', array('action' => 'delete', 'id' => 
+                                               $state->id)); ?>" onclick="return confirm('are you sure you want to delete');"> 
+                                            <i class="ace-icon fa fa-trash-o bigger-130"></i> </a>
+                        </div>
+                          </td>
+                      </tr>
+                      
+                       
+                      
+                      <?php 
+                      $i++;
+                    }
+                   }
+                  else echo" <tr>
+                         
+                       <td colspan=8><center><h2>No data available</h2></center></td></tr>";
+                      ?>
+                    </tbody>
+                  </table>
+                      
+                      
+                      
+                      
+                    </div>
+
+                 

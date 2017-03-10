@@ -1,0 +1,234 @@
+
+<style>
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted #ccc;
+	opacity:10;
+	cursor:pointer;
+	padding:0 !important;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width:350px;
+    background-color: black;
+    color: #333;
+    text-align: center;
+    border-radius: 2px;
+    padding: 5px 0;
+	box-shadow:0 0 2px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: -5px;
+    right: 100%
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+.tooltip-left::after {
+    border-color: transparent transparent transparent #555;
+    border-style: solid;
+    border-width: 5px;
+	border:solid;
+    content: "";
+    left: 100%;
+    margin-top: -5px;
+    position: absolute;
+    top: 50%;
+}
+
+</style> 
+
+<div class="mid_box">
+                <div id="myshaadi-banner">
+                    <a href="#" target=""><img src="<?php echo $this->basePath() ?>/images/slide1.jpg" alt="" title="" width="100%" height="100%" border="0"></a>
+                </div>
+
+            </div>
+
+<div class="mid_box" id="my_feeds_content_div">
+    <div class="mid_box_header">
+        <p>Accepted</p>
+    </div>
+    <div class="recent_updated_wrap over_y_s">
+     <?php if(isset($this->acceptedMember) && !empty($this->acceptedMember)): ?>   
+      <?php foreach($this->acceptedMember as $acceptedMembers){?>
+        <div class="tooltip">
+            <?php
+            if(!empty($acceptedMembers['image_path'])){
+            $imagepath='/uploads/'.$acceptedMembers['image_path'];
+            }else{
+                $imagepath='/images/beby.jpg';
+            }
+            ?>
+            <span class="thumbnail thumbnailnew">
+                <img src="<?php echo $imagepath?>"  alt="" title="" ondragstart="return false;" ondragenter="return false;" ondragover="return false;" ondrop="return false;" onmousedown="return false;" oncontextmenu="return false;" height="27" width="27">
+            </span>
+
+             <span>
+                 <a id="feeds_mini_profile" href="<?php echo $this->url('membership', array('action'=>'profile-view'),array('query'=>array('member_id'=>$acceptedMembers['user_id']))) ?>" class="light_blue" style="line-height:30px;"><?php echo $acceptedMembers['full_name'];?> (<?php echo $acceptedMembers['ref_no']; ?>)</a>
+             </span>
+                
+                
+            <div  class="tooltiptext" style="background:#fff;">
+  <div class="col-sm-5" style="font-size:11px; padding-left:5px;" align="left">
+      <a href="<?php echo $this->url('membership', array('action'=>'profile-view'),array('query'=>array('member_id'=>$acceptedMembers['user_id']))) ?>"><img src="<?php echo $imagepath;?>" width="140" height="160" /></a>
+  </div>
+  <div class="col-sm-7" style="padding:0; font-size:11px; text-align:left; line-height:23px; float:right;">
+  <ul class="member_details">
+      <li><h2><a href="<?php echo $this->url('membership', array('action'=>'profile-view'),array('query'=>array('member_id'=>$acceptedMembers['user_id']))) ?>"><?php echo $acceptedMembers['full_name'];?>-<?php echo $acceptedMembers['ref_no']; ?></a></h2></li>
+        				<li class="matrimony_icon1"><?php echo $acceptedMembers['age']; ?> Yrs, <?php if($acceptedMembers['height']!="")echo $this->MyHelper()->getHeightById($acceptedMembers['height'])['height']; ?> <?php if($acceptedMembers['zodiac_sign_raasi']!="")echo $this->MyHelper()->getZodiacSignRassiById($acceptedMembers['zodiac_sign_raasi'])['zodiac_sign_name']; ?></li>
+                        <li class="matrimony_icon2"><?php echo $acceptedMembers['marital_status']; ?></li>
+                        <li class="matrimony_icon3"><?php if($acceptedMembers['religion']!="")echo $this->MyHelper()->getReligionNameById($acceptedMembers['religion'])['religion_name']; ?> <?php if($acceptedMembers['mother_tongue_id']!="") echo $this->MyHelper()->getMotherTongueById($acceptedMembers['mother_tongue_id'])['mother_tongue']; ?></li>
+                        <li class="matrimony_icon4"><?php if($acceptedMembers['caste']!="")echo $this->MyHelper()->getCasteNameById($acceptedMembers['caste'])['caste_name']; ?>, <?php echo $acceptedMembers['caste_other']; ?></li>
+                        <li class="matrimony_icon5"><?php if($acceptedMembers['profession']!="")echo $this->MyHelper()->getProfession($acceptedMembers['profession'])['profession']; ?></li>
+                        <li class="matrimony_icon6">Lives in <?php if($acceptedMembers['city']!="")echo $this->MyHelper()->getCityNameById($acceptedMembers['city'])['city_name']; ?> , <?php if($acceptedMembers['country']!="")echo $this->MyHelper()->getCountryNameById($acceptedMembers['country'])['country_name']; ?></li>
+                        <li> <a href="#" class="btn btn-default">Chat Now</a></li>
+       						 </ul>
+  </div>
+  </div>
+
+</div>
+        <?php } ?>
+     <?php endif; ?>   
+
+    </div><!--end recent_updated_wrap--><p class="mid_box_footer">
+        <a href="<?php echo $this->url('profile',array('action'=>'member-accepted', 'slug' => 'accepted'))?>" class="light_link_blue" target="">View all</a>
+    </p></div>
+
+<div class="mid_box" id="my_feeds_content_div">
+                <div class="mid_box_header">
+                    <p>Preferred</p>
+                </div>
+                
+                <div class="recent_updated_wrap over_y_s">
+                    <?php if(isset($this->preferredMemberInfo->preferredMembers) && !empty($this->preferredMemberInfo->preferredMembers)) :?>
+                   <?php foreach($this->preferredMemberInfo->preferredMembers as $preferredMemberInfo){
+                       foreach ($this->preferredMemberInfo->preferredmemInfo as $preferredmemInfo){
+if($preferredmemInfo['sent']==$preferredMemberInfo['user_id']){
+$preferredmeid=$preferredmemInfo['id'];
+}elseif($preferredmemInfo['sent']==$user_id && $preferredmemInfo['user_id']==$preferredMemberInfo['user_id']){
+$preferredmeid=$preferredmemInfo['id'];   
+}
+           
+        }
+
+                       
+                       ?>
+                    <div class="tooltip">
+                    <?php 
+                    if(!empty($preferredMemberInfo['image_path'])){
+                        $imagepath='/uploads/'.$preferredMemberInfo['image_path'];
+                        }else{
+                            $imagepath='/images/beby.jpg';
+                        }
+                    
+                    ?>
+                 <span class="thumbnail thumbnailnew"><img src="<?php echo $this->basePath().$imagepath ?>"></span>
+                        
+                            <span>
+                                <a id="feeds_mini_profile" href="<?php echo $this->url('membership', array('action'=>'profile-view'),array('query'=>array('member_id'=>$preferredMemberInfo['user_id']))) ?>" class="light_blue"><?php echo $preferredMemberInfo['full_name']?> (<?php echo $preferredMemberInfo['ref_no'];?>)</a>
+                            </span><br>
+                            <span>
+                                  <div  class="tooltiptext" style="background:#fff;">
+  <div class="col-sm-5" style="font-size:11px; padding-left:5px;" align="left">
+      <a href="<?php echo $this->url('membership', array('action'=>'profile-view'),array('query'=>array('member_id'=>$preferredMemberInfo['user_id']))) ?>"><img src="<?php echo $imagepath;?>" width="140" height="160" /></a>
+  </div>
+  <div class="col-sm-7" style="padding:0; font-size:11px; text-align:left; line-height:23px; float:right;">
+  <ul class="member_details">
+      <li><h2><a href="<?php echo $this->url('membership', array('action'=>'profile-view'),array('query'=>array('member_id'=>$preferredMemberInfo['user_id']))) ?>"><?php echo $preferredMemberInfo['full_name'];?>-<?php echo $preferredMemberInfo['ref_no']; ?></a></h2></li>
+        				<li class="matrimony_icon1"><?php echo $preferredMemberInfo['age']; ?> Yrs, <?php if($preferredMemberInfo['height']!="")echo $this->MyHelper()->getHeightById($preferredMemberInfo['height'])['height']; ?> <?php if($preferredMemberInfo['zodiac_sign_raasi']!="")echo $this->MyHelper()->getZodiacSignRassiById($preferredMemberInfo['zodiac_sign_raasi'])['zodiac_sign_name']; ?></li>
+                        <li class="matrimony_icon2"><?php echo $preferredMemberInfo['marital_status']; ?></li>
+                        <li class="matrimony_icon3"><?php if($preferredMemberInfo['religion']!="")echo $this->MyHelper()->getReligionNameById($preferredMemberInfo['religion'])['religion_name']; ?> <?php if($preferredMemberInfo['mother_tongue_id']!="") echo $this->MyHelper()->getMotherTongueById($preferredMemberInfo['mother_tongue_id'])['mother_tongue']; ?></li>
+                        <li class="matrimony_icon4"><?php if($preferredMemberInfo['caste']!="")echo $this->MyHelper()->getCasteNameById($preferredMemberInfo['caste'])['caste_name']; ?>, <?php echo $preferredMemberInfo['caste_other']; ?></li>
+                        <li class="matrimony_icon5"><?php if($preferredMemberInfo['profession']!="")echo $this->MyHelper()->getProfession($preferredMemberInfo['profession'])['profession']; ?></li>
+                        <li class="matrimony_icon6">Lives in <?php if($preferredMemberInfo['city']!="")echo $this->MyHelper()->getCityNameById($preferredMemberInfo['city'])['city_name']; ?> , <?php if($preferredMemberInfo['country']!="")echo $this->MyHelper()->getCountryNameById($preferredMemberInfo['country'])['country_name']; ?></li>
+                        <li> 
+                            <!--<a href="javascript:void(0)" class="btn btn-default" style="margin-right:2px;" onclick="acceptYesRequest(<?php echo $preferredmeid; ?>, <?php echo $preferredMemberInfo['user_id']; ?>, '6')">Un-match</a>&nbsp;
+                            <a href="javascript:void(0)" class="btn btn-default" style="margin-right:2px;" onclick="acceptYesRequest(<?php echo $preferredmeid; ?>, <?php echo $preferredMemberInfo['user_id']; ?>, '5')">De-Preferred</a>&nbsp;-->
+                            <a href="<?php echo $this->url('membership', array('action'=>'profile-view'),array('query'=>array('member_id'=>$preferredMemberInfo['user_id']))) ?>" class="btn btn-default">More</a></li>
+                        <li> </li>
+       						 </ul>
+  
+  </div>
+  </div>
+  </div>
+                   <?php } ?>
+                    
+                    <?php endif;?>
+               
+                </div><!--end recent_updated_wrap--><p class="mid_box_footer">
+                    <a href="<?php echo $this->url('profile',array('action'=>'member-preferred','slug' => 'preferred'))?>" class="light_link_blue" target="">View all</a>
+                </p></div>
+
+
+
+
+
+
+
+
+<div class="mid_box" id="my_feeds_content_div">
+                <div class="mid_box_header">
+                    <p>Selected</p>
+                </div>
+                
+                <div class="recent_updated_wrap over_y_s">
+                   <?php if(isset($this->selectedMemberInfo->selectedMembers) && !empty($this->selectedMemberInfo->selectedMembers)):?> 
+                   <?php foreach($this->selectedMemberInfo->selectedMembers as $selectedMemberInfos){
+                       
+                       foreach ($this->selectedMemberInfo->memInfo as $memInfo){
+                                           if($memInfo['sent']==$selectedMemberInfos->user_id){
+                                               $meid=$memInfo['id'];
+                                               $type=$memInfo['type'];
+                                           }
+                                       }
+                       
+                       ?>
+                    <div class="tooltip">
+                    <?php 
+                    if(!empty($selectedMemberInfos['image_path'])){
+                        $imagepath='/uploads/'.$selectedMemberInfos['image_path'];
+                        }else{
+                            $imagepath='/images/beby.jpg';
+                        }
+                    
+                    ?>
+                 <span class="thumbnail thumbnailnew"><img src="<?php echo $this->basePath().$imagepath ?>"></span>
+                        
+                            <span>
+                                <a id="feeds_mini_profile" href="<?php echo $this->url('membership', array('action'=>'profile-view'),array('query'=>array('member_id'=>$selectedMemberInfos['user_id']))) ?>" class="light_blue"><?php echo $selectedMemberInfos['full_name']?> (<?php echo $selectedMemberInfos['ref_no'];?>)</a>
+                            </span><br>
+                            <span>
+                                  <div  class="tooltiptext" style="background:#fff;">
+  <div class="col-sm-5" style="font-size:11px; padding-left:5px;" align="left">
+      <a href="<?php echo $this->url('membership', array('action'=>'profile-view'),array('query'=>array('member_id'=>$selectedMemberInfos['user_id']))) ?>"><img src="<?php echo $imagepath;?>" width="140" height="160" /></a>
+  </div>
+  <div class="col-sm-7" style="padding:0; font-size:11px; text-align:left; line-height:23px; float:right;">
+  <ul class="member_details">
+      <li><h2><a href="<?php echo $this->url('membership', array('action'=>'profile-view'),array('query'=>array('member_id'=>$selectedMemberInfos['user_id']))) ?>"><?php echo $selectedMemberInfos['full_name'];?>-<?php echo $selectedMemberInfos['ref_no']; ?></a></h2></li>
+        				<li class="matrimony_icon1"><?php echo $selectedMemberInfos['age']; ?> Yrs, <?php if($selectedMemberInfos['height']!="")echo $this->MyHelper()->getHeightById($selectedMemberInfos['height'])['height']; ?> <?php if($selectedMemberInfos['zodiac_sign_raasi']!="")echo $this->MyHelper()->getZodiacSignRassiById($selectedMemberInfos['zodiac_sign_raasi'])['zodiac_sign_name']; ?></li>
+                        <li class="matrimony_icon2"><?php echo $selectedMemberInfos['marital_status']; ?></li>
+                        <li class="matrimony_icon3"><?php if($selectedMemberInfos['religion']!="")echo $this->MyHelper()->getReligionNameById($selectedMemberInfos['religion'])['religion_name']; ?> <?php if($selectedMemberInfos['mother_tongue_id']!="") echo $this->MyHelper()->getMotherTongueById($selectedMemberInfos['mother_tongue_id'])['mother_tongue']; ?></li>
+                        <li class="matrimony_icon4"><?php if($selectedMemberInfos['caste']!="")echo $this->MyHelper()->getCasteNameById($selectedMemberInfos['caste'])['caste_name']; ?>, <?php echo $selectedMemberInfos['caste_other']; ?></li>
+                        <li class="matrimony_icon5"><?php if($selectedMemberInfos['profession']!="")echo $this->MyHelper()->getProfession($selectedMemberInfos['profession'])['profession']; ?></li>
+                        <li class="matrimony_icon6">Lives in <?php if($selectedMemberInfos['city']!="")echo $this->MyHelper()->getCityNameById($selectedMemberInfos['city'])['city_name']; ?> , <?php if($selectedMemberInfos['country']!="")echo $this->MyHelper()->getCountryNameById($selectedMemberInfos['country'])['country_name']; ?></li>
+                        <li><!--<a href="javascript:void(0)" class="btn btn-default" style="margin-right:2px;" onclick="acceptYesRequest(<?php echo $selectedMemberInfos['user_id']; ?>,<?php echo $meid; ?>,<?php echo $type; ?>)">Yes</a>-->&nbsp;<a href="<?php echo $this->url('membership', array('action'=>'profile-view'),array('query'=>array('member_id'=>$selectedMemberInfos['user_id']))) ?>" class="btn btn-default">More</a></li>
+                        <li> </li>
+       						 </ul>
+  
+  </div>
+  </div>
+  </div>
+                   <?php } ?>
+                    
+                    <?php endif; ?>
+               
+                </div><!--end recent_updated_wrap--><p class="mid_box_footer">
+                    <a href="<?php echo $this->url('profile',array('action'=>'member-selected'))?>" class="light_link_blue" target="">View all</a>
+                </p></div>

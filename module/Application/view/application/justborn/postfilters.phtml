@@ -1,0 +1,37 @@
+<h2 class="heading">All Listings for Just Born Baby</h2>
+<ul id="items">
+ <?php 
+if(count($AllPosts)>0){
+foreach ($AllPosts as $Posts) {
+?>
+<li>
+<div class="col-md-6 news col-xs-12">
+<div class="col-md-3 col-sm-2 col-xs-2 img">
+   
+<img src="<?= empty($Posts->image)? $this->basePath()."/img/default_user.png":$this->basePath()."/PostsImages/".$Posts->image; ?>" class="img-responsive" style="height:90px; width:100%;" />
+</div>
+<div class="col-md-9 col-sm-10 col-xs-10 content">
+<h4><?=substr($Posts->title,0,20);?></h4>
+
+<p>
+<label style="height:23px;">
+<?php $this->MyHelper()->ContentLength($Posts->description); ?>
+</label>
+<br /> 
+<strong>Posted By:</strong> <?=$Posts->full_name?><br>
+<strong>Posted Date:</strong> <?php echo date('d-m-Y H:i:s', strtotime($Posts->postdate)); ?><br />
+<span class="pull-right">
+<a href="<?php echo $this->basePath()?>/justborn/view/<?=$Posts->postid?>">Read Full Story >></a>
+</span>
+</p>
+
+</div>
+</div>
+</li> 
+ <?php 
+}
+}
+else echo '<h4>Currently No Data Available</h4>';
+ ?>
+</ul>
+<div class="clearfix"></div>

@@ -1,0 +1,70 @@
+<div class="col-sm-3 col-sm-3-new width20per">
+<?php echo $this->partial('layout/sidebar-news') ?>
+</div>
+<div id="newsContainer"> 
+<div class="col-sm-9 width80per">
+<?php 
+$imgpath = (empty($news->image_path))?"/images/new-big.jpg":$news->image_path;
+?>
+<h2 class="heading">Latest News</h2>
+<div class="newsfull">
+<img src="<?php echo $this->basePath().$imgpath ?>" class=" img-responsive pull-left" />
+<h3><?=$news->title?></h3>
+<p><?=$news->description?></p>
+
+<div class="status">
+<ul>
+<li>Posted By : <?=$news->username?></li>
+<li>Posted On : <?=date("d/m/y",strtotime($news->created_date));?></li>
+</ul>
+</div>
+
+<div class="clearfix"></div>
+</div>
+</div>
+</div>
+
+
+<script>
+$(document).ready(function(){
+
+ $('input[type=checkbox]').on('change', function() {
+     var checkValues = [];
+    if($(this).is(':checked')){
+     $(':checkbox:checked').each(function(){
+          checkValues.push($(this).val());
+        });
+    }
+     if($(this).is(':unchecked')){
+     $(':checkbox:checked').each(function(){
+          checkValues.push($(this).val());
+        });
+    }
+     //console.log(val);
+     var newsCat = checkValues.join(",");
+        $.ajax({
+            url: '<?php echo $this->basePath() ?>' + '/news/newsfiltersbycat',
+            type: "POST",
+            dataType: "html",
+            data: {
+                newsCat: newsCat
+            },
+            beforeSend: function () {
+                $('#Loading_Request').show();
+            },
+            complete: function () {
+                $('#Loading_Request').hide();
+            },
+            success: function (resp) {
+                //alert(resp);
+                $("#newsContainer").empty();
+                $("#newsContainer").append(resp);
+            },
+            error: function (error) {
+                console.log(error);
+                alert(error);
+            }
+        });
+    });
+});
+</script>

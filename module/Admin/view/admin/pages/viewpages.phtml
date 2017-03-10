@@ -1,0 +1,104 @@
+ <div >
+            <p>
+              <a href="<?= $this->url('admin/pages',array('action'=>'pagesindex'));?>"><button class="btn btn-warning btn-xlg">Go Back</button></a>
+            </p>
+          </div>
+<div class="panel-body">
+          <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active in" id="driver_tab">
+              <div class="container col-sm-col-sm-offset-1" style="margin: 10px auto 0px !important;padding: 0 10px;">
+                <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Title'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     echo $Info->title;
+                                                     ?>                                    
+                                                  </div>
+                       <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                                                    <?= $this->translate('Page Name') ?>
+                                                </label>
+                                                <div class="col-sm-3">
+                        
+                                                    <?php
+                                                        // echo $this->formHidden($form->get('id'));
+                                                         //echo $this->formElement($form->get('title'));
+                                                        echo $Info->page_name;
+                                                        ?> 
+                                                    <!--<span class="showerror"></span> -->  
+
+                                            </div>
+                                                 </div>
+                                             </div>
+                                             <div class="row">
+                                                <div class="form-group clearfix margintopbottom20">
+                                                    
+                                                 <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Content'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     echo $Info->description;
+                                                     ?>                                    
+                                                  </div>   
+                                                    
+                        <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Modified By'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     echo ($Info->modified_by==1)?'Admin':'Not Available Now';
+                                                     ?>                                    
+                                                  </div>
+                                                 
+                            
+                                                 </div>
+                                             </div>
+
+                                          <div class="row">
+                                                <div class="form-group clearfix margintopbottom20">
+                          <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Created Date'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     echo date('l d-m-Y',strtotime($Info->created_date));
+                                                     ?>                                    
+                                                  </div>
+                                                 
+                            <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Modified Date'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     echo date('l d-m-Y',strtotime($Info->modified_date));
+                                                     ?>                                    
+                                                  </div>
+                                                 </div>
+                                             </div>  
+                  <div class="row">
+                      <div class="form-group clearfix margintopbottom20">
+                          
+                          <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Status'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     echo ($Info->is_active==1)? 'Active':'In-Active';
+                                                     ?>                                    
+                                                  </div>
+                          
+                          <p class="pull-left newsimg"  ><?php $image = (empty($Info->image))?'/images/new-big.jpg' : 
+                                  $Info->image;?><img src="<?= $this->basepath()."/PagesImages/".$image;?>" width="257"  height="257" 
+                                       alt=""></p>
+                          
+                      </div>
+                      </div>
+                                             
+              </div>
+            </div>
+          </div>
+      </div>

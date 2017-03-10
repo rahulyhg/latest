@@ -1,0 +1,255 @@
+
+<div class="table-responsive">
+                        <table id="dynamic-table" class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+
+                                    <th><input type="checkbox" value="" id="checkAll" onclick="checkall(this.id)" ></th>
+                                    <th>S. No. </th>
+                                    <th>Country Name</th>
+                                    <th>Currency</th>
+                                    <th>Dial Code</th>
+                                    <th class="hidden-480">Country Code</th> 
+                                    <!--<th class="hidden-480">Created Date</th>-->
+                                    <th class="hidden-480">Modified Date</th> 
+                                    <!--<th class="hidden-480">Created By</th> -->
+                                    <th class="hidden-480">Modified By</th>
+                                    <th class="hidden-480">Status</th>                                    
+                                    <th><b>Actions</b></th>
+                                </tr>
+                            </thead>
+                            <tbody id="sortable">
+                            <input type="hidden" id="table_name" value="tbl_country">
+                            <input type="hidden" id="id_name" value="id">
+<!--                                <ul id="sortable">-->
+<?php
+$i = 1;
+if (count($countries) > 0) {  
+foreach ($countries as $country) {
+    
+//    echo  "<pre>";
+//    print_r($country);exit;
+    ?>                                  
+<!--                                        <ul id="sortable">-->
+<!--                                    <div id="sortable" >-->
+                                    <tr id="<?php echo $country['id']; ?>" >
+                                        
+                                        <td ><input type="checkbox" value="<?= $country['id'] ?>" class="checkme" name="checkme[]" ></td> 
+                                        <td ><?= $i ?></td>
+                                        <td ><?= $country['country_name'] ?></td>
+                                        <td ><?= $country['currency'] ?></td>
+
+                                        <td class="hidden-480"><?= $country['dial_code'] ?></td>
+                                        <td><?= $country['country_code'] ?></td>
+                                        <!--<td class="hidden-480"><?//= $country['created_date'] ?></td>-->
+                                        <td class="hidden-480"><?= $country['modified_date'] ?></td>
+                                        <!--<td class="hidden-480"><?php //echo ($country['modified_by'] == 1) ? 'Admin' : 'NotByAdmin'; ?></td>-->
+                                        <!--<td class="hidden-480"><?php //echo $country['username']; ?></td>-->
+                                        <td class="hidden-480"><?php echo $country['username'];?></td>
+                                                                                
+                                        <td class="hidden-480" align="center">
+
+    <?php
+    $status = ($country['is_active'] == 1) ? 'Active' : 'In-Active';
+    $statuscolor = ($country['is_active'] == 1) ? 'activestatus' : 'de-activestatus';
+    ?>
+                                            <div name="ChangeStatus" id="changestatus<?= $i; ?>" onclick=
+                                                "changestatusquick(<?= $country['id'] ?>,<?= ($country['is_active'] == 0) ? 0 : 1; ?>, '<?php echo $this->
+                                                                url('admin/country', array('action'=>
+                                                                    'changestatus')); ?>', 
+                                                                        changstatusresult);" class="<?= 
+                                                        $statuscolor ?>">
+                                            </div>
+
+                                        </td>
+                                        
+                                        <td aria-expanded="false" class="accordion1"><div class="hidden-sm hidden-xs action-buttons"> 
+                                                <a class="blue" style="cursor:pointer;" data-toggle="modal" data-target="#myModal"  
+                                                   tar="indview<?= $i ?>"> <i onclick="findRowDataByCountryId('<?php echo $this->url
+                                                           ('admin/country', array('action'=>'viewById','id'=>$country['id'])); ?>', 
+                                                                       viewRowDataById);" class="ace-icon fa fa-search-plus bigger-130">
+                                                    </i> </a> <a class="green" href="javascript:void(0);" onclick="editbox(<?= 
+                                                   $country['id'] ?>, '<?php echo $this->url('admin/country', array('action' => 
+                                                       'edit', 'id' => $country['id']));
+                                        ?>', editformresp);" > <i class="ace-icon fa fa-pencil bigger-130"></i> </a> <a class="red" href="<?php echo $this->url('admin/country', array('action' => 'delete', 'id' => $country['id'])); ?>" onclick="return confirm('are you sure you want to delete');"> <i class="ace-icon fa fa-trash-o bigger-130"></i> </a> </div>
+                                        </td>
+                                    </tr>
+<!--                                    </div>-->
+<!--                                    </ul>-->
+
+                                    <!-- <?php echo $this->url('admin', array('controller' => 'country', 'action' => 'edit', 'id' => $country->id)); ?> -->
+
+
+
+
+
+
+
+    <?php
+    $i++;
+}} else{
+                        //Zend\Debug\Debug::dump($religions);
+                        echo" <tr><td colspan=9><center><h2>No data available</h2></center></td></tr>";
+                    }
+?>
+                                    
+<!--                             </ul>       -->
+                            </tbody>
+                        </table>
+
+
+
+
+                    </div>
+<?php 
+
+if($this->action!='index'){
+    ?>
+<script src="<?php echo $this->basePath(); ?>/assets/js/jquery.2.1.1.min.js"></script>
+<script src="<?php echo $this->basePath(); ?>/assets/js/jquery.dataTables.min.js"></script> 
+<script src="<?php echo $this->basePath(); ?>/assets/js/jquery.dataTables.bootstrap.min.js"></script> 
+<script src="<?php echo $this->basePath(); ?>/assets/js/dataTables.tableTools.min.js"></script> 
+<script src="<?php echo $this->basePath(); ?>/assets/js/dataTables.colVis.min.js"></script>
+<script src="<?php echo $this->basePath(); ?>/assets/js/table.js"></script> 
+<script src="<?php echo $this->basePath(); ?>/assets/js/jquery-1.3.2.min.js"></script> 
+<script src="<?php echo $this->basePath(); ?>/assets/js/jquery-ui-1.7.2.custom.min.js"></script> 
+<?php
+}
+?>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+<script src="<?php echo $this->basePath(); ?>/assets/js/jquery-1.10.2.js"></script> 
+<script src="<?php echo $this->basePath(); ?>/assets/js/jquery-ui-1.10.4.custom.min.js"></script> 
+<script src="<?php echo $this->basePath(); ?>/assets/js/script.js"></script> 
+<!--<script type="text/javascript">
+    
+    var tableName = $('#table_name').attr('value');
+    var idName = $('#id_name').attr('value');
+   
+    $(function() {
+    $('#sortable').sortable({
+        // axis: 'y',
+        // opacity: 0.7,
+        // handle: 'span',
+        update: function(event, ui) {
+            //var list_sortable = $(this).sortable('toArray').toString();
+            var list_sortable = $(this).sortable('toArray').toString();
+    		// change order in the database using Ajax
+            $.ajax({
+                url: '/admincontrol/'+'country/updateOrder',
+                type: 'POST',
+                data: {list_order:list_sortable,
+                table_name:tableName,
+                id_name:idName,
+            },
+                success: function(data) {
+                    //finished
+                }
+            });
+        }
+    }); // fin sortable
+});
+
+</script>-->
+<!--<script type="text/javascript">
+    //var someVar = 'tbl_country';
+    var myVar = $('#table_name').attr('value');
+    //alert(myVar);
+    $(function() {
+        //alert('hello');
+        $("#sortable").sortable({            
+            placeholder: 'ui-state-highlight',
+            //appendTo: $("#table_name").val(), 
+            stop: function(i) {
+                placeholder: 'ui-state-highlight'
+                $.ajax({
+                    type: "POST",
+                    url: '/admincontrol/'+'country/updateOrder,
+                    //data: $("#sortable").sortable("serialize")});
+                    
+            }                                                       
+        });
+        $("#sortable").disableSelection();
+    });
+</script>-->
+<!--<script>
+        (function () {
+            
+            var id_ = 'boxes-example';
+            var boxes_ = document.querySelectorAll('#' + id_ + ' .box');
+            //var ids = document.querySelectorAll('#' + id_ + ' .box'+td.value[]);
+            //var IDs = [];
+            //$(".box").find("td>input").each(function(){ IDs.push(this.value); });
+            //alert(IDs);
+            var dragSrcEl_ = null;
+
+            this.handleDragStart = function (e) {
+                e.dataTransfer.effectAllowed = 'move';
+                e.dataTransfer.setData('text/html', this.innerHTML);
+
+                dragSrcEl_ = this;
+
+                this.style.opacity = '0.5';
+
+                // this/e.target is the source node.
+                this.addClassName('moving');
+            };
+
+            this.handleDragOver = function (e) {
+                if (e.preventDefault) {
+                    e.preventDefault(); // Allows us to drop.
+                }
+
+                e.dataTransfer.dropEffect = 'move';
+
+                return false;
+            };
+
+            this.handleDragEnter = function (e) {
+                this.addClassName('over');
+            };
+
+            this.handleDragLeave = function (e) {
+                // this/e.target is previous target element.
+
+                this.removeClassName('over');
+            };
+
+            this.handleDrop = function (e) {
+                // this/e.target is current target element.
+
+                if (e.stopPropagation) {
+                    e.stopPropagation(); // stops the browser from redirecting.
+                }
+
+                // Don't do anything if we're dropping on the same box we're dragging.
+                if (dragSrcEl_ != this) {
+                    dragSrcEl_.innerHTML = this.innerHTML;
+                    this.innerHTML = e.dataTransfer.getData('text/html');
+                }
+
+                return false;
+            };
+
+            this.handleDragEnd = function (e) {
+                // this/e.target is the source node.
+                this.style.opacity = '1';
+
+                [ ].forEach.call(boxes_, function (box) {
+                    box.removeClassName('over');
+                    box.removeClassName('moving');
+                });
+            };
+
+            [ ].forEach.call(boxes_, function (box) {
+                box.setAttribute('draggable', 'true');  // Enable boxes to be draggable.
+                box.addEventListener('dragstart', this.handleDragStart, false);
+                box.addEventListener('dragenter', this.handleDragEnter, false);
+                box.addEventListener('dragover', this.handleDragOver, false);
+                box.addEventListener('dragleave', this.handleDragLeave, false);
+                box.addEventListener('drop', this.handleDrop, false);
+                box.addEventListener('dragend', this.handleDragEnd, false);
+            });
+            
+        })();
+        //alert('hello');exit;
+    </script>-->

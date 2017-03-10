@@ -1,0 +1,72 @@
+ <div >
+            <p>
+              <a href="<?= $this->url('admin',array('controller'=>'master','action'=>'indexdesignation'));?>"><button class="btn btn-warning btn-xlg">Go Back</button></a>
+            </p>
+          </div>
+<div class="panel-body">
+          <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active in" id="driver_tab">
+              <div class="container col-sm-col-sm-offset-1" style="margin: 10px auto 0px !important;padding: 0 10px;">
+                <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Designation Name'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     
+                                                     echo $Info->designation;
+                                                     ?>                                    
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Created Date'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     echo date('l d-m-Y',strtotime($Info->created_date));
+                                                     ?>                                    
+                                                  </div>
+                           
+                                                 </div>
+                                             </div>
+                                             <div class="row">
+                                                <div class="form-group clearfix margintopbottom20">
+                        <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Modified By'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     echo ($Info->modified_by==1)?'Admin':'Not Available Now';
+                                                     ?>                                    
+                                                  </div>
+                                                 
+                            <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Status'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     echo ($Info->IsActive==1)? 'Active':'In-Active';
+                                                     ?>                                    
+                                                  </div>
+                                                 </div>
+                                             </div>
+
+                                          <div class="row">
+                                                <div class="form-group clearfix margintopbottom20">
+                          
+                                                 
+                            <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Modified Date'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     echo date('l d-m-Y',strtotime($Info->modified_date));
+                                                     ?>                                    
+                                                  </div>
+                                                 </div>
+                                             </div>  
+                                             
+              </div>
+            </div>
+          </div>
+      </div>

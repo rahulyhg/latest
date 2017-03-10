@@ -1,0 +1,22 @@
+<table  width="100%" style="border:none !important;">
+<tbody>
+<?php
+if(count($religions)>0){
+	$i=1;
+ foreach ($religions as $religion) {
+?>
+
+
+<tr>
+<td>
+<a href="javascript:void(0);" id="newscategorysearch<?=$i;?>" onclick="grabvalues12('<?=$religion->category_name?>','<?=$religion->id?>','<?=$parentname?>');"><?= $religion->category_name?></a>
+</td>
+</tr>
+<?php
+$i++;
+}
+}
+else echo "<p>No matched search</p>";
+?>
+</tbody>
+</table>

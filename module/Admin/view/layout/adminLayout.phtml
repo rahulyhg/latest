@@ -1,0 +1,102 @@
+<?php echo $this->doctype(); ?>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <?php
+        echo $this->headMeta()
+                ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+                ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+        ?>
+        <?php echo $this->headTitle(' ' . $this->translate('Dashboard - Rustagi Samaj'))->setSeparator(' - ')->setAutoEscape(false) ?>
+        <?php
+        echo $this->headMeta()
+                ->appendName('description', 'overview &amp; stats')
+        ?>
+        <link rel="stylesheet" href="<?php echo $this->basePath(); ?>/assets/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="<?php echo $this->basePath(); ?>/assets/font-awesome/4.2.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="<?php echo $this->basePath(); ?>/assets/fonts/fonts.googleapis.com.css" />
+        <link rel="stylesheet" href="<?php echo $this->basePath(); ?>/assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+        <link rel="stylesheet" href="<?php echo $this->basePath(); ?>/assets/css/custom.css"/>
+        <link rel="stylesheet" href="<?php echo $this->basePath(); ?>/css/topnavstyles.css">
+        <link rel="stylesheet" href="<?php echo $this->basePath(); ?>/assets/css/adminStyle.css">
+
+        <link rel="stylesheet" href="<?php echo $this->basePath(); ?>/assets/css/crop-avatar.css">
+        <link rel="stylesheet" href="<?php echo $this->basePath(); ?>/assets/css/cropper.css">
+
+
+        <!-- Scripts -->
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>-->
+
+        <?php
+//        echo $this->headScript()
+//                ->prependFile($this->basePath() . '/js/topmenuscript.js')  //datepicker
+//                //->prependFile('http://code.jquery.com/jquery-latest.min.js')
+//                ->prependFile('topmenuscript.js')
+//                ->prependFile($this->basePath() . '/assets/js/ace-extra.min.js')
+//                ->prependFile($this->basePath() . '/assets/js/custom.js')
+//
+//        ;
+        ?>
+
+
+    </head>
+
+    <body class="no-skin">
+        <div id="navbar" class="navbar navbar-default"> 
+            <?php include('notificationsbar.phtml'); ?>  
+        </div>
+        <!--  Top navigation start-->  
+        <div id='cssmenu' class="csszindex">
+            <?php include('menu.phtml'); ?>  
+
+        </div>
+        <!--  Top navigation End-->
+        <div class="main-container" id="main-container"> 
+            <?php include('sidebarNav.phtml'); ?>  
+
+        </div>
+        <div class="main-content">
+            <div class="main-content-inner">
+                <div class="breadcrumbs" id="breadcrumbs"> 
+                    <script type="text/javascript">
+                        try {
+                            ace.settings.check('breadcrumbs', 'fixed')
+                        } catch (e) {
+                        }
+                    </script>
+                    <ul class="breadcrumb">
+                        <li> <i class="ace-icon fa fa-home home-icon"></i> <a href="#">Home</a> </li>
+                        <li class="active">Dashboard</li>
+                    </ul>
+                    <!-- /.breadcrumb -->
+
+                    <div class="nav-search" id="nav-search">
+                        <form class="form-search">
+                            <span class="input-icon">
+                                <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+                                <i class="ace-icon fa fa-search nav-search-icon"></i> </span>
+                        </form>
+                    </div>
+                    <!-- /.nav-search --> 
+                </div>
+                <div class="page-content">
+                    <?php echo $this->content; ?>
+                </div>
+                <!-- /.page-content -->
+            </div>
+        </div>
+        <!-- /.main-content -->
+        <div class="defaultheight"></div>
+        <div class="footer">
+            <?php include('footer.phtml'); ?>  
+        </div>
+        <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse"> <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i> </a> </div>
+    <!-- /.main-container --> 
+
+    <!-- basic scripts --> 
+
+    <!--[if !IE]> -->
+    <?php include('footerscript.phtml'); ?>  
+
+</body>
+</html>

@@ -1,0 +1,367 @@
+<div class="row">
+          <div class="col-xs-12"> 
+            <!-- PAGE CONTENT BEGINS -->
+         
+            <div class="row">
+              <div class="col-xs-12">
+                <h3  >Add Designations Master</h3>
+                <div class="filter">
+                <div class="panel-body" style="padding:0 !important;">
+                  <div class="col-lg-6">View Records>></div>
+                  </div>
+                </div>
+                <div class="portlet-body">
+                  <form id="bookingFilter">
+                    <div id="myTabContent" class="tab-content">
+                      <div class="tab-pane fade active in" id="home">
+                        <div class="col-sm-col-sm-offset-1" style="margin: 10px auto 0px !important;padding: 0 10px;">
+                          <div class="row">
+                                                <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">Country</label>
+                                                  <div class="col-sm-2 ">
+                                                     <input id="Classic Dance" class=" form-control inputchange" placeholder="India" type="text">                                    
+                                                  </div>
+                                                 
+                             <div class="col-sm-1 ">
+                                                     <input class="btn btn-red defaultbtnsearch searchBooking"  type="submit" name="submit" value="Search">
+                                                     </div>
+                                                     <div class="col-sm-1 ">
+                                                     <!--<input class="btn btn-red defaultbtnsearch"  type="submit" name="submit" value="Add">-->
+                                                     <a href="#" id="showaddform" class="btn btn-red defaultbtnsearch searchBooking">
+                         							 Add</a> </div>
+                                                 </div>
+                                             </div>
+                          
+
+                          
+                          
+                        </div>
+                      </div>
+
+                    </div>
+                  </form>
+   
+                </div>
+                
+                 
+                  <div class="filter">
+                   <div class="panel-body" style="padding:0 !important; cursor:pointer;">
+                  <div class="col-lg-6">Add Update Records>>
+                  </div>
+  
+                  </div>
+   
+                </div>
+                
+                <div id="addForm" class="tab-content dontshow">
+                    
+               <?php 
+
+                $form=$this->form; 
+                $form->prepare();
+
+
+        $form->setAttribute('action',$this->url('admin',array('controller'=>'master','action'=>'adddesignation')));
+        $form->setAttribute('method','post');
+
+        echo $this->form()->openTag($form);
+// echo $this->formCollection($form);
+                ?>
+          <div id="myTabContent">
+            
+            
+            <div class="tab-pane fade active in" id="driver_tab">
+              <div class="container col-sm-col-sm-offset-1" style="margin: 10px auto 0px !important;padding: 0 10px;">
+                
+                <div class="row">
+                                                <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate($form->get('designation')->getLabel()) ?>
+                           </label>
+                                                  <div class="col-sm-2">
+                                                     <?php 
+                                                     echo $this->formHidden($form->get('id'));
+                                                     echo $this->formElement($form->get('designation'));
+                                                     ?>                                    
+                                                  </div>
+                                                   <label id="flight_nos" class="col-sm-1 control-label labelalign ">
+                            <?= $this->translate($form->get('IsActive')->getLabel()) ?>
+                           </label>
+                                                  <div class="col-sm-1">
+                                                     <?php 
+                                                     echo $this->formElement($form->get('IsActive'));
+                                                     ?>                                    
+                                                  </div>
+                                                  
+                                                  <div class="col-sm-1">
+                                                     <?php 
+                                                     echo $this->formRow($form->get('submit'));
+                                                     ?>                                    
+                                                  </div>
+                         
+                                                 </div>
+                                             </div>
+                                        
+              </div>
+            </div>
+          </div>
+        <?php   
+echo $this->form()->closeTag();
+
+        ?>
+                                                  </div>
+                                                  
+                    <div class="clearfix"></div>
+                  
+                <div class="col-lg-12" style="background-color:#FFF;">
+                  
+                  <div class="col-lg-1"><div class="radio">
+                                                <label>
+                                                    <input type="radio" checked="" value="option1" id="optionsRadios1" name="optionsRadios"><strong>Active</strong>
+                                                </label>
+                                                <br>
+ 
+                                            </div>
+                  
+                  
+                  
+                  
+                  </div>
+                  
+                  
+                   <div class="col-lg-1"><div class="radio">
+                                                <label>
+                                                    <input type="radio" checked="" value="option1" id="optionsRadios1" name="optionsRadios"><strong>In-Active</strong>
+                                                </label>
+                                                
+                                              
+                                            </div>
+                  
+                  
+                  
+                  
+                  </div>
+                  
+                  
+                  
+                  
+                  
+                  <div class="col-lg-2 pull-right">
+                    <div class="delete">
+                      <button class="btn btn-red defaultbtnsearch searchBooking" onclick="statuschangeall('<?= $this->serverUrl().$this->url().'/country/statuschangeall';?>',statuschangeallresp,0)">De-Activate Selected</button>                                    
+                    </div>
+                  </div>
+                  
+                  <div class="col-lg-2 pull-right">
+                    <div class="delete">
+                      <button class="btn btn-red defaultbtnsearch searchBooking" onclick="statuschangeall('<?= $this->serverUrl().$this->url().'/country/statuschangeall';?>',statuschangeallresp,1)">Activate Selected</button>                                    
+                    </div>
+                  </div>
+                  
+                   <div class="col-lg-2 pull-right">
+                    <div class="delete">
+                      <button class="btn btn-red defaultbtnsearch searchBooking" onclick="delselected('<?= $this->serverUrl().$this->url().'/country/delmultiple';?>',delmultipleresp)">Delete Selected</button>                                              
+                    </div>
+                  </div>
+                  </div>
+                  
+                  <div class="col-sm-12">
+
+                   
+</div>
+                  
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                      <table id="dynamic-table" class="table table-striped table-bordered table-hover">
+                    <thead>
+                      <tr>
+                          <th><input type="checkbox" value="" id="checkAll" onclick="checkall(this.id)" > </th>
+                        <th>SR.No.</th>
+                        <th>Designation Name</th>
+                        <th class="hidden-480">Modified Date</th>
+                        <th class="hidden-480">Created Date</th>
+                        <th class="hidden-480">Status</th>
+                        <th class="hidden-480">Modified By</th>
+                        <th><b>Actions</b></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php 
+                      $i =1;
+                      foreach ($designations as $designation) {
+                      
+                      ?>
+                      <tr>
+                         
+                       <td><input type="checkbox" value="<?=$designation->id?>" class="checkme" name="checkme[]"> </td>
+                        <td><?= $i?></td>                       
+                        <td><?= $designation->designation?></td>                       
+                        <td class="hidden-480"><?= date('l d-m-y',strtotime($designation->created_date))?></td>
+                        <td class="hidden-480"><?= date('l d-m-y',strtotime($designation->modified_date))?></td>
+                        <td class="hidden-480">
+						
+						<!--<?php echo ($designation->IsActive==1)? 'Active': '<span class="label label-sm label-warning">In-Active</span>'; ?>-->
+                        
+                        <?php $status = ($designation->IsActive==1)? 'Active': 'In-Active';
+                        $statuscolor = ($designation->IsActive==1)? 'activestatus': 'de-activestatus';
+                         ?>
+                          <div name="ChangeStatus" id="changestatus<?=$i;?>" onclick="changestatusquick(<?=$designation->id?>,<?= ($designation->IsActive==0)?0:1; ?>,'<?= $this->serverUrl().$this->url().'/designation/changestatus';?>',changstatusresult);" class="<?=$statuscolor?>">
+                        </div>
+                        
+                        </td>
+                        <td class="hidden-480"><?php echo ($designation->modified_by==1)? 'Admin': 'NotByAdmin'; ?></td>
+                        <td><div class="hidden-sm hidden-xs action-buttons"> 
+                       <!-- <a class="blue" href="<?php echo $this->url('admin',array('controller'=>'master','action'=>'viewdesignation','id'=>$designation->id)); ?>">
+                         <i class="ace-icon fa fa-search-plus bigger-130"></i> </a> -->
+                         
+                          <a class="blue" style="cursor:pointer;" tar="indview<?=$i?>"> <i class="ace-icon fa fa-search-plus bigger-130"></i> </a>
+                         
+                         <a class="green" href="<?php echo $this->url('admin',array('controller'=>'master','action'=>'editdesignation','id'=>$designation->id)); ?>" > 
+                         <i class="ace-icon fa fa-pencil bigger-130"></i> </a> <a class="red" href="<?php echo $this->url('admin',array('controller'=>'master','action'=>'deletedesignation','id'=>$designation->id)); ?>" onclick="return confirm('are you sure you want to delete');"> 
+                         <i class="ace-icon fa fa-trash-o bigger-130"></i> </a> </div>
+                          </td>
+                      </tr>
+                      
+                      <tr class="dontshow" id="indview<?=$i?>" aria-expanded="true">
+                     
+                	<td colspan="7">
+                    <div aria-expanded="true" class="panel-body accordion-body packageDetails1 collapse in" id="accordion1">
+               
+                          <div class="tab-content" id="myTabContent">
+        
+              <div class="col-sm-col-sm-offset-1" style="margin: 10px auto 0px !important;padding: 0 10px;">
+                <div class="row">
+                   <div class="form-group clearfix margintopbottom20 col-sm-12">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Designation Name'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     
+                                                     echo $Info->designation;
+                                                     ?>                                    
+                                                  </div>
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Created Date'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     echo date('l d-m-Y',strtotime($Info->created_date));
+                                                     ?>                                    
+                                                  </div>
+                           
+                                                 </div>
+                                             </div>
+                                             <div class="row">
+                                                <div class="form-group clearfix margintopbottom20 col-sm-12">
+                        <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Modified By'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     echo ($Info->modified_by==1)?'Admin':'Not Available Now';
+                                                     ?>                                    
+                                                  </div>
+                                                 
+                            <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Status'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     echo ($Info->IsActive==1)? 'Active':'In-Active';
+                                                     ?>                                    
+                                                  </div>
+                                                 </div>
+                                             </div>
+
+                                          <div class="row">
+                                                <div class="form-group clearfix margintopbottom20 col-sm-12">
+                          
+                                                 
+                            <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Modified Date'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     echo date('l d-m-Y',strtotime($Info->modified_date));
+                                                     ?>                                    
+                                                  </div>
+                                                 </div>
+                                             </div>  
+                                             
+              </div>
+           
+          </div>
+      </div>
+                    
+                                             
+                       </td>
+                    </tr>
+                      
+                      <?php 
+                      $i++;
+                    }
+                      ?>
+                    </tbody>
+                  </table>
+                      
+                      
+                      
+                      
+                    </div>
+                 </div>
+              </div>
+              
+              
+              
+              
+              
+              <div class="col-sm-12"> 
+                
+                <!-- /.widget-box -->
+                <!--<div  style="margin-top:20px;"> <a href="#" class="btn btn-red defaultbtnsearch searchBooking"><i class="fa fa-search" id="search_me" style="color:#fff; margin:5px"></i>Refresh</a> </div>-->
+              </div>
+            </div>
+            <!-- /.col --> 
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+            <?php 
+
+        // print_r($countries);
+
+        ?>         
+      </div>
+      <div class="modal-footer">
+        <button type="button"data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+            
+            <!-- /.row -->
+            
+            <div class="hr hr-18 dotted hr-double"></div>
+            <div class="row">
+              <div class="col-xs-12">
+                
+                <div> 
+         
+      </div>
+      <!-- /.page-content --> 
+    </div>
+  </div>
+  <!-- /.main-content -->
+  
+     
+  <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse"> <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i> </a> </div>
+<!-- /.main-container --> 
+
+<!-- basic scripts --> 
+
+<!--[if !IE]> -->

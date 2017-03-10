@@ -1,0 +1,22 @@
+<table  width="100%" style="border:none !important;">
+<tbody>
+<?php
+if(count($educationfields)>0){
+	$i=1;
+ foreach ($educationfields as $educationfield) {
+?>
+
+
+<tr>
+<td>
+<a href="javascript:void(0);" id="educationfieldsearch<?=$i;?>" onclick="grabvalues8('<?=$educationfield->education_field?>','<?=$educationfield->id?>','<?=$parentname?>');"><?= $educationfield->education_field?></a>
+</td>
+</tr>
+<?php
+$i++;
+}
+}
+else echo "<p>No matched search</p>";
+?>
+</tbody>
+</table>

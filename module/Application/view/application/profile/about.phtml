@@ -1,0 +1,88 @@
+<div class="col-sm-3 col-sm-3-new">
+    <?php echo $this->partial('layout/sidebar') ?>
+</div>
+
+
+<div class="col-sm-9">
+
+    <?php include('main_info.phtml'); ?>
+
+    <div class="clearfix"></div>
+    <?php include('menu.phtml'); ?>
+
+
+    <div class="tab-content">	
+        <div id="about" class="tab-pane fade in active" >
+            <table>
+                <tr>
+                    <td>
+                        <div class="col-sm-4" style="width:100%;">
+                            <?php
+                            //$form->setAttribute('action', $this->url('application/default', array('controller' => 'Account', 'action' => 'post')));
+                            $form->setAttribute('method', 'post');
+                            //$form->setAttribute('autocomplete', 'off');
+                            $form->setAttribute('id', 'AboutYourself');
+                            //$form->setAttribute('enctype', 'multipart/form-data');
+                            // $action = $this->serverUrl().$this->url().'/country/add';
+                            //$form->setAttribute('onSubmit', "return SubmitPost($(this).attr('id'))");
+
+                            echo $this->form()->openTag($form);
+                            echo $this->formHidden($form->get('id'));
+                          
+                            ?>
+                        
+                            <fieldset class="form-group">
+                                <label for="About Yourself"><?php echo $this->translate('About Yourself') ?></label>
+                                <?php
+                                echo $this->formElement($form->get('about_me'));
+                                ?>
+                            </fieldset>
+                            <fieldset class="form-group">
+                                <input type="submit" name="about_meSave" value="Save" class="btn btn-lg btn-default">
+                                <input type="submit" name="about_meSave" value="Save & Next" class="btn btn-lg btn-default">
+                            </fieldset>
+                            <?php
+                            echo $this->form()->closeTag();
+                            ?>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#edit_aboutForm").validate({
+            rules: {
+                about_Yourself:
+                        {
+                            required: true,
+                            minlength: 50,
+                            maxlength: 350
+                        }
+            },
+            messages: {
+                about_Yourself: {
+                    required: "Please write something about you"
+                }
+            }
+        });
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

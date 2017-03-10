@@ -1,0 +1,243 @@
+<?php $session = new \Zend\Session\Container('user'); ?>
+<?php $user_id=$session->offsetGet('id');
+$searchFor=$user_id;
+$declines = array_filter($invitationRows, function($element) use($searchFor) {
+    if (($element['sent'] == $searchFor) && $element['type'] === '4') {
+        return $element;
+    }
+});
+
+?>
+<style>
+    /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+    .show {display:block;}
+
+    label {
+
+        margin-bottom: 0;
+
+    }
+
+    
+    .grid-view ul li .col-xs-2 .btn {
+        border: 0 none;
+        border-radius: 3px;
+        display: table;
+        font-size: 10px;
+        font-weight: 700;
+        line-height: 1.1;
+        margin: 0 auto;
+        padding: 4px 5px;
+        float:right;
+    }
+
+    .list-view ul li .col-xs-10 .col-xs-8 {
+        font-size: 11px;
+        font-weight: normal;
+        margin: 0;
+        padding: 0 0 0;
+
+    }
+
+
+    .grid-view ul li {
+        color: #636363;
+        float: left;
+        font-size: 11px;
+        margin: 0 7px 20px;
+    }
+
+.list-view ul li {
+       
+	   width:97%;
+    }
+
+
+</style>
+
+<?php
+echo $this->headLink()
+
+        ->prependStylesheet($this->basePath() . '/css/componant-vs-14.css')
+?>
+<div class="container orange-panelbg">
+    <div class="col-sm-3 col-sm-3-new width20per">
+       <?php echo $sidebarLeft;?>
+
+    </div>
+    
+    <div class="col-sm-9 width80per">
+<div class="myshaadi_wrap">
+	<div class="welcome_screen"></div>
+	
+
+    <div class="clear"></div>
+</div>
+
+<!--MY SHAADI LEFT-->
+<div class="col-sm-9" style="padding-top:0; padding-left:0;">
+
+<!--MIDDLE SECTION-->
+<div id="my_rustagi_middle">
+    	<!--Pin Interest render-->
+    
+    <div id="recently_joined" style="display: block;">
+    <div class="mid_box">
+    <img src="<?php echo $this->basePath()?>/images/add.jpg">
+</div>
+</div>
+  
+   
+ 
+  <!-- request pending  -->
+    <div id="recently_joined" style="display: block;">
+    <div class="mid_box">
+    <div class="mid_box_header">
+        Declined <span class="recently_joined_count">(<?php echo count($declines); ?>)</span>
+         <div class="col-xs-3 pull-right">
+            <ul class="prof-view pull-right">
+                <li><a href="#" id="list"><span class="glyphicon glyphicon-th-list"></span><span class="sr-only">List View</span></a></li>
+                <li><a href="#" id="grid"><span class="glyphicon glyphicon-th"></span><span class="sr-only">Grid View</span></a></li>
+            </ul>
+            
+        </div>
+                  </div>
+    <div class="row">
+        <div class="col-xs-9">
+            
+        </div>
+       
+    </div>
+        
+         <div class="clearfix"></div>
+    <!-- <div class="filters_loader_box">
+            <div id="filters_data_loader"><h1>Loading...</h1></div>
+    </div> -->
+    <div id="profile">
+
+        <div class="commen-list grid-view">
+            <ul id="items">
+                <li>
+                    <div class="col-xs-2"></div>
+                    <div class="col-xs-10">
+                        <div class="col-xs-2">Name</div>
+                        <div class="col-xs-3">F.Name</div>
+                        <div class="col-xs-3">Occupation</div>
+                        <div class="col-xs-2">Area</div>
+                        <div class="col-xs-2">Branch</div>
+                    </div>
+                </li>
+<?php 
+
+foreach($declines as $decline){ 
+    $declinedMembers = $this->MyHelper()->userSummaryByIdMatrimonial($decline['user_id']);
+        //\Zend\Debug\Debug::dump($declinedMembers);
+     if(!empty($declinedMembers['image_path'])){
+  $imagepath='/matrimonial/'.$declinedMembers['image_name'];
+  }else{
+      $imagepath='/images/default_user.png';
+  }
+                                   ?>
+<li class="li_listmember" id="<?php echo 'invitation_declined_'.$decline['id'];?>">
+                            <div class="col-xs-2">
+                                <div class="profile-pic">
+                                <div class="row_box">
+                                     <div style="opacity: 1; display: block;" class="item tr big">
+                                <img src="<?php echo $imagepath;?>">
+                                </div></div>
+                                </div>
+                                <h3><?php echo $declinedMembers['name_title_user']?> <?php echo $declinedMembers['full_name']?> <?php echo $declinedMembers['last_name']?></h3>
+                                <h3><?php echo $this->MyHelper()->ageByDob($declinedMembers['dob'])?>, <?php if($declinedMembers['height']!='') echo $this->MyHelper()->getHeightById($declinedMembers['height'])['height']; ?></h3>
+                                <h4><?php echo $this->MyHelper()->getCityNameById($declinedMembers['city'])['city_name']; ?></h4>
+                                 <h3> 
+                                 <a href="<?php echo $this->url('profile', array('action'=>'profile-view-matrimony'),array('query'=>array('matrimony_id'=>$decline['user_id']))) ?>" class="btn btn-default" >View</a>                                 
+                                 <a href="javascript:void(0)" class="btn btn-default" style="margin-right:2px;" onclick="acceptsenddeclineRequest(<?php echo $decline['id'];?>, <?php echo $decline['user_id']; ?>, <?php echo $decline['type'];?>, 'accept')">Accept</a>                                 
+                                 </h3>
+                                 <h6> 
+                                 <a href="javascript:void(0)" class="btn btn-default" style="float:left;" onclick="acceptsenddeclineRequest(<?php echo $decline['id'];?>, <?php echo $decline['user_id']; ?>, <?php echo $decline['type'];?>, 'accept')">Accept</a>                          
+                                 <a href="<?php echo $this->url('profile', array('action'=>'profile-view-matrimony'),array('query'=>array('matrimony_id'=>$decline['user_id']))) ?>" class="btn btn-default" style="margin-left:2px; float:left;" >View</a>
+                               </h6>
+                            </div>
+                            <div class="col-xs-10">
+                                <div class="col-xs-8">
+                                    <div class="col-xs-2 col-xs-2-member">Name</div>
+                                    <div class="col-xs-3 col-xs-3-member"><?php echo $declinedMembers['name_title_user']?> <?php echo $declinedMembers['full_name']?> <?php echo $declinedMembers['last_name']?></div>
+                                    <div class="col-xs-2 col-xs-2-member">Age</div>
+                                    <div class="col-xs-3 col-xs-3-member"><?php echo $this->MyHelper()->ageByDob($declinedMembers['dob']).' Yrs' ?></div>
+                                    <div class="col-xs-2 col-xs-2-member">Height</div>
+                                    <div class="col-xs-3 col-xs-3-member"><?php if($declinedMembers['height']!='') echo $this->MyHelper()->getHeightById($declinedMembers['height'])['height']; ?></div>
+                                    <div class="col-xs-2 col-xs-2-member">Religion</div>
+                                    <div class="col-xs-3 col-xs-3-member"><?php if($declinedMembers['religion']!="") echo $declinedMembers['religion_name'];//echo $this->MyHelper()->getReligionNameById($declinedMembers['religion'])['religion_name']; ?></div>
+                                    <div class="col-xs-2 col-xs-2-member">Location</div>
+                                    <div class="col-xs-3 col-xs-3-member"><?php echo $declinedMembers['address']; ?> <?php echo $this->MyHelper()->getCityNameById($declinedMembers['city'])['city_name']; ?></div>
+                                    <div class="col-xs-2 col-xs-2-member">Education</div>
+                                    <div class="col-xs-3 col-xs-3-member"><?php if($declinedMembers['education_level']!="") echo $declinedMembers['education_level']; //echo $this->MyHelper()->getEducationLevelNameById($declinedMembers['education_level'])['education_level']; ?></div> 
+                                    <div class="col-xs-2 col-xs-2-member">Profession</div>
+                                    <div class="col-xs-3 col-xs-3-member"><?php if($declinedMembers['profession']!="") echo $this->MyHelper()->getProfession($declinedMembers['profession'])['profession']; ?></div>  
+                                </div>
+                                <div class="clearfix"></div>
+                                
+                                <div class="col-xs-4" style="padding:0 0;">
+                                    <div style="">
+                                        <span>Follow : -</span>
+                                        <ul class="follow">
+                                            <li style="width:32%; min-height:auto !important;"><a href="#" class="facebook"></a></li>
+                                            <li style="width:32%; min-height:auto !important;"><a href="#" class="twitter"></a></li>
+                                            <li style="width:32%; min-height:auto !important;"><a href="#" class="gplus"></a></li>
+                                            <li style="width:32%; min-height:auto !important;"><a href="#" class="linkedin"></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="col-xs-12" style="display:none;">
+                                    <p></p>
+                                </div>
+                            </div>
+                        </li>               
+             
+                        
+                        <?php } ?>
+            </ul>
+        </div>
+    </div>
+</div>
+</div>
+    <!-- request pending --> 
+    
+   
+    
+</div>
+</div>
+<!--MY rustagi RIGHT-->
+<div id="my_rustagi_right" class="col-sm-3 col-sm-3new pull-right">
+	<?php echo $sidebarRight;?>
+</div>
+<!--end right_half-->
+<br class="clear">
+	</div>
+    
+    
+</div>
+
+<script>
+    function acceptsenddeclineRequest(id, uid, type, request_type){
+        var url='<?php echo $this->url('profile', array('action'=>'acceptSendDeclineRequestMatrimonial'))?>';
+         $.ajax({
+                url: url,
+                data: {
+                    id: id, uid: uid, type: type, request_type: request_type,
+                },
+                error: function (request, status, error) {
+                    console.log(status);
+                },
+                success: function (data) {
+                    $('#invitation_declined_'+id).hide();
+                    console.log(data);
+                },
+                type: 'POST'
+            });
+    }
+</script>
+
+
+

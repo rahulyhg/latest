@@ -1,0 +1,116 @@
+<style>
+
+.news
+{
+	height:150px;
+}
+</style>
+
+
+<?php 
+if(isset($message) && !empty($message)){
+  $disp = "display:block;";
+}
+else $disp = "display:none;";
+?>
+<div class="col-sm-3 col-sm-3-new width20per">
+<?php echo $this->partial('layout/sidebar-post') ?>
+</div>
+
+<div class="alert alert-block alert-success" style="<?=$disp?>">
+              <button type="button" class="close" data-dismiss="alert"> <i class="ace-icon fa fa-times"></i> </button>
+              <i class="ace-icon fa fa-check green"></i> Thank you for sharing your valuable time with us. We will take this in consideration as soon as possible. </div>
+
+<img src="<?php echo $this->basePath() ?>/img/loadingmap.gif" id="Loading_Request" style="position:absolute;display:none;z-index: 9;margin-left: 31%;margin-top: 8%;width: 80px;"/>
+
+<div id="postContainer"> 
+<div class="col-sm-9 width80per">
+<div class="filtersresults">
+
+<h2 class="heading">Latest Post</h2>
+<ul id="items">
+ <?php 
+if(count($AllPosts)>0){
+foreach ($AllPosts as $Posts) {
+
+?>
+
+<li>
+<div class="col-md-6 news col-xs-12">
+<div class="col-md-3 col-sm-2 col-xs-2 img">
+   
+<img src="<?= empty($Posts->image)? $this->basePath()."/img/default_user.png":$this->basePath()."/PostsImages/".$Posts->image; ?>" class="img-responsive postimages" style="height:90px; width:100%;" />
+</div>
+<div class="col-md-9 col-sm-10 col-xs-10 content">
+<h4><?=substr($Posts->title,0,20);?></h4>
+
+<p>
+<label style="height:23px;">
+<?php $this->MyHelper()->ContentLength($Posts->description); ?>
+</label>
+<br />
+<strong>Category Name:</strong> <?=$Posts->category_name?> 
+<strong>Posted By:</strong> <?=$Posts->full_name?><br>
+<strong>Posted Date:</strong> <?php echo date('d-m-Y H:i:s', strtotime($Posts->postdate)); ?><br />
+<span class="pull-right">
+<a href="<?php echo $this->basePath()?>/posts/view/<?=$Posts->postid?>">Read Full Story >></a>
+</span>
+</p>
+
+</div>
+</div>
+</li> 
+ <?php 
+}
+}
+else echo '<h4>Currently No Data Available</h4>';
+ ?>
+</ul>
+<div class="clearfix"></div>
+</div>
+</div>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        $('input[type=checkbox]').on('change', function () {
+            var checkValues = [];
+            if ($(this).is(':checked')) {
+                $(':checkbox:checked').each(function () {
+                    checkValues.push($(this).val());
+                });
+            }
+            if ($(this).is(':unchecked')) {
+                $(':checkbox:checked').each(function () {
+                    checkValues.push($(this).val());
+                });
+            }
+            //console.log(val);
+            var postCat = checkValues.join(",");
+            $.ajax({
+                url: '<?php echo $this->basePath() ?>' + '/posts/postfiltersbycat',
+                type: "POST",
+                dataType: "html",
+                data: {
+                    postCat: postCat
+                },
+                beforeSend: function () {
+                    $('#Loading_Request').show();
+                },
+                complete: function () {
+                    $('#Loading_Request').hide();
+                },
+                success: function (resp) {
+                    //alert(resp);
+                    $("#postContainer").empty();
+                    $("#postContainer").append(resp);
+                },
+                error: function (error) {
+                    console.log(error);
+                    alert(error);
+                }
+            });
+        });
+    });
+</script>

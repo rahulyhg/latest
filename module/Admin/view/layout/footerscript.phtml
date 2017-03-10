@@ -1,0 +1,289 @@
+<script src="<?php echo $this->basePath(); ?>/assets/js/jquery.2.1.1.min.js"></script>
+<script src="<?php echo $this->basePath(); ?>/assets/js/bootstrap.min.js"></script> 
+<script src="<?php echo $this->basePath(); ?>/assets/js/bootstrap-wysiwyg.min.js"></script>
+<script src="<?php echo $this->basePath(); ?>/assets/js/jquery.hotkeys.min.js"></script>
+<?php
+echo $this->headScript()
+        ->prependFile($this->basePath() . '/js/topmenuscript.js')  //datepicker
+        //->prependFile('http://code.jquery.com/jquery-latest.min.js')
+        ->prependFile('topmenuscript.js')
+        ->prependFile($this->basePath() . '/assets/js/ace-extra.min.js')
+        ->prependFile($this->basePath() . '/assets/js/custom.js')
+
+;
+?>
+
+
+
+<script src="<?php echo $this->basePath(); ?>/assets/js/ace-elements.min.js"></script> 
+<script src="<?php echo $this->basePath(); ?>/assets/js/ace.min.js"></script>
+
+
+<script src="<?php echo $this->basePath(); ?>/assets/js/crop-avatar.js"></script> 
+<script src="<?php echo $this->basePath(); ?>/assets/js/cropper.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+    jQuery(function ($) {
+        function showErrorAlert(reason, detail) {
+            var msg = '';
+            if (reason === 'unsupported-file-type') {
+                msg = "Unsupported format " + detail;
+            }
+            else {
+                //console.log("error uploading file", reason, detail);
+            }
+            $('<div class="alert"> <button type="button" class="close" data-dismiss="alert">&times;</button>' +
+                    '<strong>File upload error</strong> ' + msg + ' </div>').prependTo('#alerts');
+        }
+        $('#editor1').ace_wysiwyg({
+            toolbar:
+                    [
+                        'font',
+                        null,
+                        'fontSize',
+                        null,
+                        {name: 'bold', className: 'btn-info'},
+                        {name: 'italic', className: 'btn-info'},
+                        {name: 'strikethrough', className: 'btn-info'},
+                        {name: 'underline', className: 'btn-info'},
+                        null,
+                        {name: 'insertunorderedlist', className: 'btn-success'},
+                        {name: 'insertorderedlist', className: 'btn-success'},
+                        {name: 'outdent', className: 'btn-purple'},
+                        {name: 'indent', className: 'btn-purple'},
+                        null,
+                        {name: 'justifyleft', className: 'btn-primary'},
+                        {name: 'justifycenter', className: 'btn-primary'},
+                        {name: 'justifyright', className: 'btn-primary'},
+                        {name: 'justifyfull', className: 'btn-inverse'},
+                        null,
+                        {name: 'createLink', className: 'btn-pink'},
+                        {name: 'unlink', className: 'btn-pink'},
+                        null,
+                        {name: 'insertImage', className: 'btn-success'},
+                        null,
+                        'foreColor',
+                        null,
+                        {name: 'undo', className: 'btn-grey'},
+                        {name: 'redo', className: 'btn-grey'}
+                    ],
+            'wysiwyg': {
+                fileUploadError: showErrorAlert
+            }
+        }).prev().addClass('wysiwyg-style2');
+    });
+
+    function SubmitNewsForm() {
+        var x = $("#editor1").html();
+        var y = $("#image_path").val();
+
+        if (x.length < 20) {
+            alert("Description cant be empty.Please describe yor news in minimum 20 characters");
+            return false;
+        }
+        // else if(y.length==0){
+        // 	alert("File cant be empty. Please upload");
+        // 	return false;
+        // }
+        else {
+            $("#description").val(x);
+
+            return true;
+        }
+    }
+    
+    function SubmitSponsermasterForm() {
+        var x = $("#editor1").html();
+        var y = $("#image_path").val();
+
+        if (x.length < 20) {
+            alert("Description cant be empty.Please describe yor news in minimum 20 characters");
+            return false;
+        }
+        // else if(y.length==0){
+        // 	alert("File cant be empty. Please upload");
+        // 	return false;
+        // }
+        else {
+            $("#spons_desc").val(x);
+
+            return true;
+        }
+    }
+    function SubmitAddPagesForm() {
+        var x = $("#editor1").html();
+        var y = $("#image_path").val();
+
+        if (x.length < 20) {
+            alert("Description cant be empty.Please describe yor news in minimum 20 characters");
+            return false;
+        }
+        // else if(y.length==0){
+        // 	alert("File cant be empty. Please upload");
+        // 	return false;
+        // }
+        else {
+            $("#description").val(x);
+
+            return true;
+        }
+    }
+
+</script>
+<!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
+
+<script type="text/javascript" src="<?php echo $this->basePath(); ?>/assets/js/jquery.timepicker.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo $this->basePath(); ?>/assets/css/jquery.timepicker.css" />
+
+<script type="text/javascript" src="<?php echo $this->basePath(); ?>/assets/js/bootstrap-datepicker.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo $this->basePath(); ?>/assets/css/bootstrap-datepicker.css" />
+<script>
+   $(function () {
+       $('#start_date').datepicker({format: 'mm-dd-yyyy'});
+       $('#end_date').datepicker({format: 'mm-dd-yyyy'});
+       $('#event_start_time').timepicker();
+       $('#event_end_time').timepicker();
+       $('#start_time').timepicker();
+       $('#end_time').timepicker();
+   });
+</script>
+
+
+
+<script>
+    $(document).ready(function () {
+        var $lightbox = $('#lightbox');
+
+        $('[data-target="#lightbox"]').on('click', function (event) {
+            var $img = $(this).find('img'),
+                    src = $img.attr('src'),
+                    alt = $img.attr('alt'),
+                    css = {
+                        'maxWidth': $(window).width() - 100,
+                        'maxHeight': $(window).height() - 100
+                    };
+
+            $lightbox.find('.close').addClass('hidden');
+            $lightbox.find('img').attr('src', src);
+            $lightbox.find('img').attr('alt', alt);
+            $lightbox.find('img').css(css);
+        });
+
+        $lightbox.on('shown.bs.modal', function (e) {
+            var $img = $lightbox.find('img');
+
+            $lightbox.find('.modal-dialog').css({'width': $img.width()});
+            $lightbox.find('.close').removeClass('hidden');
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $('.thumbnail').click(function () {
+            $('.modal-body').empty();
+            var title = $(this).parent('a').attr("title");
+            $('.modal-title').html(title);
+            $($(this).parents('div').html()).appendTo('.modal-body');
+            $('#myModal').modal({show: true});
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function(){
+        //alert(1);
+        var $cropper1 = $(".cropper2"),
+                $dataX1 = $("#dataX11_post"),
+                $dataY1 = $("#dataY11_post"),
+                $dataX2 = $("#dataX21_post"),
+                $dataY2 = $("#dataY21_post"),
+                $dataHeight = $("#dataHeight1_post"),
+                $dataWidth = $("#dataWidth1_post"),
+                cropper;
+
+        $cropper1.cropper({
+            aspectRatio: 16 / 9,
+            preview: ".extra-preview",
+            done: function (data) {
+                $dataX1.val(data.x1);
+                $dataY1.val(data.y1);
+                $dataX2.val(data.x2);
+                $dataY2.val(data.y2);
+                $dataHeight.val(data.height);
+                $dataWidth.val(data.width);
+            }
+        });
+
+        cropper1 = $cropper1.data("cropper");
+
+        
+        $("#cropper-enable_post").click(function () {
+            $cropper1.cropper("enable");
+        });
+
+
+        $("#cropper-disable_post").click(function () {
+            cropper1.disable();
+        });
+
+        $(".croptrigger2").click(function () {
+            var x = $(this).text();
+            $("#cropenabled2").val(x);
+        });
+       
+        $('#file_post').change(function (event) {
+            //alert(2);
+            var tmppath = URL.createObjectURL(event.target.files[0]);
+            $("#showimage_post").attr("src", tmppath);
+            $("#actualimage_post").val(tmppath);
+        });
+    });
+</script>
+
+<?php
+// echo $this->headScript()
+// 					->prependFile($this->basePath() . '/assets/js/jquery.2.1.1.min.js')  
+// 					->prependFile($this->basePath() . '/assets/js/bootstrap.min.js')  //datepicker
+// 					->prependFile($this->basePath() . '/assets/js/jquery-ui.custom.min.js')
+// 					->prependFile($this->basePath() . '/assets/js/jquery.ui.touch-punch.min.js')
+// 					->prependFile($this->basePath() . '/assets/js/jquery.easypiechart.min.js')
+// 					->prependFile($this->basePath() . '/assets/js/jquery.sparkline.min.js')
+// 					->prependFile($this->basePath() . '/assets/js/jquery.flot.pie.min.js')
+// 					->prependFile($this->basePath() . '/assets/js/jquery.flot.min.js')
+// 					->prependFile($this->basePath() . '/assets/js/jquery.flot.resize.min.js')
+// 					->prependFile($this->basePath() . '/assets/js/ace-elements.min.js')
+// 					->prependFile($this->basePath() . '/assets/js/ace.min.js')
+// 					->prependFile($this->basePath() . '/assets/js/jquery.dataTables.min.js')
+// 					->prependFile($this->basePath() . '/assets/js/jquery.dataTables.bootstrap.min.js')
+// 					->prependFile($this->basePath() . '/assets/js/dataTables.tableTools.min.js')
+// 					->prependFile($this->basePath() . '/assets/js/dataTables.colVis.min.js')
+// 					->prependFile($this->basePath() . '/assets/js/table.js')
+// 					->prependFile($this->basePath() . '/assets/js/piechart.js');
+?>
+
+<script src="<?php echo $this->basePath(); ?>/assets/js/jquery-ui.custom.min.js"></script> 
+<script src="<?php echo $this->basePath(); ?>/assets/js/jquery.ui.touch-punch.min.js"></script> 
+<script src="<?php echo $this->basePath(); ?>/assets/js/jquery.easypiechart.min.js"></script> 
+<script src="<?php echo $this->basePath(); ?>/assets/js/jquery.sparkline.min.js"></script> 
+<script src="<?php echo $this->basePath(); ?>/assets/js/jquery.flot.min.js"></script> 
+<script src="<?php echo $this->basePath(); ?>/assets/js/jquery.flot.pie.min.js"></script> 
+<script src="<?php echo $this->basePath(); ?>/assets/js/jquery.flot.resize.min.js"></script>
+
+<script src="<?php echo $this->basePath(); ?>/assets/js/jquery.dataTables.min.js"></script> 
+<script src="<?php echo $this->basePath(); ?>/assets/js/jquery.dataTables.bootstrap.min.js"></script> 
+<script src="<?php echo $this->basePath(); ?>/assets/js/dataTables.tableTools.min.js"></script> 
+<script src="<?php echo $this->basePath(); ?>/assets/js/dataTables.colVis.min.js"></script>
+<script src="<?php echo $this->basePath(); ?>/assets/js/table.js"></script> 
+<script src="<?php echo $this->basePath(); ?>/assets/js/piechart.js"></script> 

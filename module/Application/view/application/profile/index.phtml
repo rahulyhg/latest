@@ -1,0 +1,1074 @@
+<?php $session = new \Zend\Session\Container('user'); ?>
+<?php $user_id=$session->offsetGet('id');
+//\Zend\Debug\Debug::dump($userSummary);
+?>
+<style>
+    /* Dropdown Button */
+    .dropbtn {
+
+        background:url(<?php echo $this->basePath() ?>/images/publicimg.jpg) no-repeat;
+        color: white;
+        padding: 0;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        width:88px; height:26px;
+    }
+
+    /* Dropdown button on hover & focus */
+    .dropbtn:hover, .dropbtn:focus {
+        background-color: #3e8e41;
+    }
+
+    /* The container <div> - needed to position the dropdown content */
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    /* Dropdown Content (Hidden by Default) */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 88px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index:9;
+    }
+
+    /* Links inside the dropdown */
+    .dropdown-content a {
+        color: black;
+        padding: 6px 10px;
+        text-decoration: none;
+        display: block;
+        text-align:left;
+
+    }
+
+    /* Change color of dropdown links on hover */
+    .dropdown-content a:hover {background-color: #f1f1f1}
+
+    /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+    .show {display:block;}
+
+    label {
+
+        margin-bottom: 0;
+
+    }
+
+    
+
+   
+    .grid-view ul li .col-xs-2 .btn {
+        border: 0 none;
+        border-radius: 3px;
+        display: table;
+        font-size: 9px;
+        font-weight: normal;
+        line-height: 1.1;
+        margin: 0 auto;
+        padding: 4px 5px;
+        float:right;
+    }
+
+   
+
+
+   
+.list-view ul li {
+       
+	   width:97%;
+    }
+
+
+</style>
+
+<?php
+echo $this->headLink()
+        ->prependStylesheet($this->basePath() . '/css/componant-vs-14.css')
+?>
+<div class="container orange-panelbg">
+    <div class="col-sm-3 col-sm-3-new width20per">
+        <?php include('sidebar_left_member.phtml');?>
+    </div>
+
+    <div class="col-sm-9 width80per">
+        <div class="myshaadi_wrap">
+            <div class="welcome_screen"></div>
+
+
+            <div class="clear"></div>
+        </div>
+
+        <!--MY SHAADI LEFT-->
+        <div class="col-sm-9" style="padding-top:0; padding-left:0;">
+
+            <!--<div id="my_rustagi_left">
+            
+            
+                    
+            
+            
+            </div>--><!--end left_half-->	
+
+            <!--MIDDLE SECTION-->
+            <div id="my_rustagi_middle">
+
+                <div id="pin_interest" style="display: block;">    
+                    <div class="pinned_wrap">
+                        <div class="pinned_shadow">
+
+                            <div class="pinned_profile_green">
+                                <p class="pinned_heading" style="font-size:13px;">
+                                    <span class="prof_name">Hello! <?php echo $this->userSummary->userInfo->getFullName(); ?></span><span class="prof_id">(<?php echo $session->offsetGet('ref_no') ?>) </span>                   
+                                </p>
+                                <form id="whats_your_mind_frm" method="post" name="form" action="post" enctype="multipart/form-data">
+                                    <input type="hidden" name="image" id="image" value="">
+                                    <input type="hidden" name="post_image_flag" id="post_image_flag" value="0">
+                                <div id="pin_interest_profile" class="pos_rel">
+
+                                    <div class="pinned_profile_wrap" rel="vSH87477335">
+                                        <div class="">
+
+                                            <label class="col-sm-2">
+                                                <span class="thumb60">
+                                                     <?php if (!empty($this->userSummary->profilePic['image_path'])) { ?>
+        <img  id="post_photo" src="<?php echo $this->basePath('uploads/') . $this->userSummary->profilePic['image_path']; ?>" width="40" height="40"/>
+    <?php } else { ?>
+        <img id="post_photo" src="<?php echo $this->basePath('img/default_user.png') ?>" width="40" height="40"/>
+    <?php } ?>
+                                                </span>
+                                            </label>
+                                            <div class="col-sm-10" style="padding-left:0; margin-bottom:5px; padding-right:5px;">
+                                                <textarea class="form-control" style="height:65px;" name="description" placeholder="What's on your mind?"></textarea>
+                                            </div>
+                                            <label class="col-sm-2" style="line-height:30px;">
+                                                Title
+                                            </label>
+                                            <div class="col-sm-4" style="padding-left:0;">
+                                                <input class="form-control" name="title" type="text">
+                                            </div>
+                                            <label class="col-sm-2" style="line-height:30px;">
+                                                Category
+                                            </label>
+                                            <div class="col-sm-4">
+                                                <select class="form-control" name="post_category">
+                                                    <?php foreach($postCategory as $kay=>$val) {?>
+                                                    <option value="<?php echo $kay?>"><?php echo $val ?></option>
+
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
+                                            <!-- <div class="col-sm-2" style="padding-left:0;">
+                                                    Upload 
+                                            </div>-->
+
+
+                                        </div>
+                                        <div class="pinned_info">
+
+
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="personal_msg">
+                                            <span id="min_profile_detail_profile_vSH87477335">
+                                                <div class="col-sm-3">
+                                                    <a href="" data-toggle="modal" data-target="#avatar-modalpost_image">
+                                                        <img src="<?php echo $this->basePath() ?>/images/cameraimg.jpg" style="float:left; padding-right:5px;">Photo / Video
+                                                    </a>
+                                                    
+                                                </div>
+                                                <div class="col-sm-2 pull-right" align="right"><a href="#" class="btn btn-default homemore" style="font-size:11px; border-radius:5px;" onclick="whatOnYourMind()">Post</a></div>
+
+                                                <div class="col-sm-3 pull-right" align="right">
+                                                  <!--  <div class="dropdown">
+                                                        <button onclick="myFunction()" class="dropbtn"></button>
+                                                        <div id="myDropdown" class="dropdown-content">
+                                                            <a href="#"><img src="<?php echo $this->basePath() ?>/images/public_icon.jpg" style="float:left; padding-right:5px;">Public</a>
+                                                            <a href="#"><img src="<?php echo $this->basePath() ?>/images/friend_icon.jpg" style="float:left; padding-right:10px;">Friends</a>
+                                                            <a href="#"><img src="<?php echo $this->basePath() ?>/images/onlyme_icon.jpg" style="float:left; padding-right:11px;">Only Me</a>
+                                                        </div>
+                                                    </div> -->
+
+                                                </div>       
+                                            </span></div>
+
+                                        <div class="clearfix"></div>
+                                    </div>                   
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Pin Interest render-->
+                <div id="pin_interest" style="display: block;">    
+                    <div class="pinned_wrap">
+                        <div class="pinned_shadow">
+
+                            <div class="pinned_profile_green">
+                                <p class="pinned_heading" style="font-size:13px;">
+                                    <label class="col-sm-4"> Your Profile is Now <?php echo $this->MyHelper()->getActiveStatusById($user_id); ?></label> <label> <input type="checkbox"></label><label> Catogary- Gold   </label>                
+                                </p>
+
+                                <div id="pin_interest_profile" class="pos_rel">
+
+                                    <div class="pinned_profile_wrap" rel="vSH87477335">
+                                        <div class="pinned_pic col-sm-1" style="padding:0; margin-right:5px;">
+                                            <span class="thumb60">
+
+                                                <a href="#" target="">
+                                                
+                                                    <?php if (!empty($this->userSummary->profilePic['image_path'])) { ?>
+                                                        <img   id="profile_photo" src="<?php echo $this->basePath('uploads/') . $this->userSummary->profilePic['image_path']; ?>" width="60" height="60" border="0"/>
+                                                    <?php } else { ?>
+                                                        <img src="<?php echo $this->basePath('img/default_user.png') ?>" width="60" height="60" border="0"/>
+                                                    <?php } ?> 
+                                                    
+                                                </a>
+
+                                            </span>
+                                        </div>
+                                        <div class="pinned_info col-sm-7">
+                                            <a href="#" class="pinned_pro_name" target="_blank"><?php echo $session->offsetGet('ref_no') ?></a>
+                                            <ul class="member_details">
+<?php        // var_dump($familyInfo->familyInfoArray); exit; ?>
+                                                <li><span class="category">Name</span><span>:</span><span class="category_info"><?php  echo $this->userSummary->userInfo->getFullName()." ".$this->userSummary->userInfo->getLastName(); ?></span></li>
+                                                <li><span class="category">Father's Name</span><span>:</span><span class="category_info"><?php echo $familyInfo->familyInfoArray['name_title_father'] . " " . $familyInfo->familyInfoArray['father_name']." " . $familyInfo->familyInfoArray['father_last_name'] ?></span></li>
+                                                <li><span class="category pull-left">Address</span><span class=" pull-left">:</span><span class="category_info col-sm-6"><?php echo $this->userSummary->userInfo->getAddress() ?></span></li>
+                                                <li><span class="category">Contact Number</span><span>:</span><span class="category_info"><?php echo $this->userSummary->user->getMobileNo() ?></span></li>
+                                                <li><span class="category">Profession</span><span>:</span><span class="category_info"><?php echo $this->userSummary->userInfo->getProfession() ?></span></li>
+                                                <li><span class="category">Email Id</span><span>:</span><span class="category_info"><?php echo $session->offsetGet('email') ?></span></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-3 pull-right" align="right">
+
+                                            <canvas id="demo-3" style="demo" width="102" height="102"></canvas>
+                                            <center style="text-align:right;"> <span><?= $percent[0] ?>% Completed</span></center>
+                                        </div>
+                                        
+                                        <div class="clearfix"></div>
+                                        <!--<div class="personal_msg">
+                                            <span id="min_profile_detail_profile_vSH87477335">
+                                                Hello, I have liked your profile and believe it to be good Match. If you like my sister's profile, k <a onclick="showMore('vSH87477335')" href="javascript:void(0)" class="secondary_link">Read more...</a>        </span>
+                                        </div>-->
+
+                                    </div>                   
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="recently_joined" style="display: block;">
+                    <div class="mid_box">
+                        <img src="<?php echo $this->basePath() ?>/images/add.jpg">
+                    </div>
+                </div>
+
+                <!-- Request Pending render -->
+                <div id="recently_joined" style="display: block;">
+                    <div class="mid_box">
+                        <div class="mid_box_header">
+                            New Post <span class="recently_joined_count"></span>
+                          <p class="view_all"><a href="#" class="light_link_blue" target="_blank">View all</a></p>
+
+                        </div>
+                        <div id="recently_joined_profiles" class="pos_rel">
+
+                            <?php foreach ($this->post as $posts) { ?>
+
+                                <div class="profile_compact_view">
+                                    <span class="thumbnail">
+                                        <a href="<?php echo $this->basePath() ?>/posts/view/<?= $posts['id'] ?>" target=""><div class="fl small-pic">
+                                                <?php if (!empty($posts['image'])) { ?>                
+                                                    <img src="<?php echo $this->basePath('/PostsImages/') . $posts['image'] ?>" width="100%" border="0">
+                                                <?php } else { ?>
+                                                    <img src="<?php echo $this->basePath() ?>/images/gallery-thumb.jpg" width="100%" border="0">
+                                                <?php } ?>  
+                                            </div></a>
+                                    </span>
+                                    <div class="user_info">
+                                        <p> <a href="<?php echo $this->basePath() ?>/posts/view/<?= $posts['id'] ?>" class="light_blue" target=""><?php echo $posts['title'] ?></a> </p>
+                                        <p><?php echo $posts['description'] ?></p><a href="<?php echo $this->basePath() ?>/posts/view/<?= $posts['id'] ?>" class="full_profile" target="">Full Profile</a>
+                                    </div>
+                                </div>
+
+                            <?php } ?>
+
+                            <a href="<?php echo $this->basePath() ?>/posts" class="pull-right">More...</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Request Pending render --> 
+
+
+                <!-- request pending  -->
+                <div id="recently_joined" style="display: block;">
+                    <div class="mid_box">
+                        <div class="mid_box_header">
+                           Request Pending <span class="recently_joined_count">  </span>
+                       <p class="view_all"><a href="#" class="light_link_blue" target="_blank">View all</a></p>
+                            <!--<div class="col-xs-3 pull-right">
+                                <ul class="prof-view pull-right">
+                                    <li><a href="#" id="list"><span class="glyphicon glyphicon-th-list"></span><span class="sr-only">List View</span></a></li>
+                                    <li><a href="#" id="grid"><span class="glyphicon glyphicon-th"></span><span class="sr-only">Grid View</span></a></li>
+                                </ul>
+                            </div>-->
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-9">
+
+                            </div>
+
+                        </div>
+
+                        <div class="clearfix"></div>
+                        <!-- <div class="filters_loader_box">
+                                <div id="filters_data_loader"><h1>Loading...</h1></div>
+                        </div> -->
+                        <div id="profile">
+
+                            <div class="commen-list grid-view">
+                                <ul id="items">
+                                    <li>
+                                        <div class="col-xs-2"></div>
+                                        <div class="col-xs-10">
+                                            <div class="col-xs-2">Name</div>
+                                            <div class="col-xs-3">F. Name</div>
+                                            <div class="col-xs-3">Occupation</div>
+                                            <div class="col-xs-2">Area</div>
+                                            <div class="col-xs-2">Branch</div>
+                                        </div>
+                                    </li>
+
+                                    <?php 
+                                    $count=count($this->receivedMember->receivedMember);
+                                
+                                    if($count==0){
+                                        echo 'No request is pending';
+                                    }
+                                    if(isset($this->receivedMember->receivedMember) && !empty($this->receivedMember->receivedMember)){
+                                    foreach($this->receivedMember->receivedMember as $receivedMember){ 
+                                        
+                                          foreach ($this->receivedMember->memInfo as $memInfos){
+                                                if($memInfos['received']==$receivedMember->user_id){
+                                                    $meid=$memInfos['id'];
+                                                }
+                                            }
+                                            
+//                                        foreach ($this->receivedMember->memInfo as $memInfos){
+                                            if(!empty($receivedMember['image_path'])){
+                                            $imagepath='uploads/'.$receivedMember['image_path'];
+                                            }else{
+                                                $imagepath='images/default_user.png';
+                                            }
+                       
+                                            //\Zend\Debug\Debug::dump($receivedMember);
+                                        ?>
+                                    <li class="li_listmember dashboardli" id="<?php echo 'satya_prakash_madheshiya_'.$receivedMember['user_id']?>">
+                                        <div class="col-xs-2">
+                                            <div class="profile-pic">
+                                            <div class="row_box">
+                                     <div style="opacity: 1; display: block;" class="item tr big">
+                                            <img src="<?php echo $imagepath?>">
+                                            </div></div>
+                                            </div>
+                                            <h3><?php echo $receivedMember['full_name']?></h3>
+                                            <h3><?php echo $receivedMember['address']?></h3>
+                                            <h4><?php echo $this->MyHelper()->getProfession($receivedMember['profession'])[0]['profession'];?></h4>
+                                            <h3> <a href="<?php echo $this->url('profile', array('action'=>'profile-view-member')) ?>" class="btn btn-default" style="margin-right:2px; float:left;">View</a>
+                                                 <a href="javascript:void(0)" class="btn btn-default" style="float:right;" onclick="acceptRequest(<?php echo $meid;?>, <?php echo $receivedMember['user_id']; ?>, 'accept')">Accept</a></h3><h3>
+                                            </h3><h6> 
+                                                <a href="javascript:void(0)" class="btn btn-default" style="float:left; margin-right:2px;" onclick="acceptRequest(<?php echo $meid;?>, <?php echo $receivedMember['user_id']; ?>, 'accept')">Accept</a>
+                                                <a href="<?php echo $this->url('profile', array('action'=>'profile-view-member')) ?>" class="btn btn-default" style="float:right;">View</a>
+                                            </h6><h6>
+                                            </h6></div>
+                                        <div class="col-xs-10">
+                                            <div class="col-xs-8">
+                                                <div class="col-xs-2 col-xs-2-member">Name</div>
+
+                                                <div class="col-xs-3 col-xs-3-member"><?php echo $receivedMember['full_name']?></div>
+                                                <div class="col-xs-2 col-xs-2-member">F. Name</div>
+                                                <div class="col-xs-2 col-xs-2-member">kdfdskfksd</div>
+                                                <div class="col-xs-2 col-xs-2-member">Occupation</div>
+
+                                                <div class="col-xs-3 col-xs-3-member"><?php echo $this->MyHelper()->getProfession($receivedMember['profession'])[0]['profession']?></div>
+                                                <div class="col-xs-2 col-xs-2-member">Address</div>
+                                                <div class="col-xs-3 col-xs-3-member"><?php echo $receivedMember['address']?></div>
+
+                                                <div class="col-xs-2 col-xs-2-member">Branch</div>
+                                                <div class="col-xs-3 col-xs-3-member"><?php echo $this->MyHelper()->getBranchNameById($receivedMember['branch_ids'])[0]['branch_name']?></div> 
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <div class="col-xs-8" style="padding:0 0;">Short Description : <?php echo $receivedMember['about_yourself_partner_family']?></div>
+                                            <div class="col-xs-4" style="padding:0 0;">
+                                                <div style="">
+                                                    <span>Follow : -</span>
+                                                    <ul class="follow">
+                                                        <li style="width:32%; min-height:auto !important;"><a href="#" class="facebook"></a></li>
+                                                        <li style="width:32%; min-height:auto !important;"><a href="#" class="twitter"></a></li>
+                                                        <li style="width:32%; min-height:auto !important;"><a href="#" class="gplus"></a></li>
+                                                        <li style="width:32%; min-height:auto !important;"><a href="#" class="linkedin"></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <div class="col-xs-12" style="display:none;">
+                                                <p></p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <?php }  }?>
+
+     
+
+
+
+
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- request pending --> 
+
+                <!-- new member -->
+                <div id="recently_joined" style="display: block;">
+                    <div class="mid_box">
+                        <div class="mid_box_header">
+                            New Member <span class="recently_joined_count">  </span>
+                            <p class="view_all"><a href="#" class="light_link_blue" target="_blank">View all</a></p>
+                            <div class="col-xs-3 pull-right">
+                                <ul class="prof-view pull-right">
+                                    <li><a href="#" id="list"><span class="glyphicon glyphicon-th-list"></span><span class="sr-only">List View</span></a></li>
+                                    <li><a href="#" id="grid"><span class="glyphicon glyphicon-th"></span><span class="sr-only">Grid View</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-9">
+
+                            </div>
+
+                        </div>
+
+                        <div class="clearfix"></div>
+                        <!-- <div class="filters_loader_box">
+                                <div id="filters_data_loader"><h1>Loading...</h1></div>
+                        </div> -->
+                        <div id="profile">
+
+                            <div class="commen-list grid-view">
+                                <ul id="items">
+                                    <li>
+                                        <div class="col-xs-2"></div>
+                                        <div class="col-xs-10">
+                                            <div class="col-xs-2">Name</div>
+                                            <div class="col-xs-3">F. Name</div>
+                                            <div class="col-xs-3">Occupation</div>
+                                            <div class="col-xs-2">Area</div>
+                                            <div class="col-xs-2">Branch</div>
+                                        </div>
+                                    </li>
+
+                                    <?php 
+                                    //\Zend\Debug\Debug::dump($newMemberInfo);
+                                    if(isset($newMemberInfo) && !empty($newMemberInfo)){
+                                    foreach($newMemberInfo as $newMemberInfo){ 
+                                     
+                                            if(!empty($newMemberInfo['image_path'])){
+                                            $imagepath='uploads/'.$newMemberInfo['image_path'];
+                                            }else{
+                                                $imagepath='images/default_user.png';
+                                            }
+                       
+                                        ?>
+                                    <li class="li_listmember dashboardli" id="<?php echo 'satya_prakash_madheshiya_'.$newMemberInfo['user_id']?>">
+                                        <div class="col-xs-2">
+                                            <div class="profile-pic">
+                                            <div class="row_box">
+                                     <div style="opacity: 1; display: block;" class="item tr big">
+                                            <img src="<?php echo $imagepath?>">
+                                            </div></div>
+                                            </div>
+                                            <h3><?php echo $newMemberInfo['full_name']?></h3>
+                                            <h3><?php echo $newMemberInfo['address']?></h3>
+                                            <h4><?php echo $this->MyHelper()->getProfession($newMemberInfo['profession'])[0]['profession']?></h4>
+                                            <h3> 
+                                                <a href="<?php echo $this->url('profile', array('action'=>'profile-view-member'),array('query'=>array('member_id'=>$newMemberInfo['user_id']))) ?>" style="margin-right:2px;" class="btn btn-default">View</a>
+                                                <a href="javascript:void(0)" class="btn btn-default" style="margin-right:2px;" onclick="sendRequest(<?php echo $newMemberInfo['user_id']?>, 'yes')">Request</a>
+                                                <a href="javascript:void(0)" class="btn btn-default" style="margin-right:2px;" onclick="sendRequest(<?php echo $newMemberInfo['user_id']?>, 'maybe')">May Be</a>
+                                            </h3><h6> 
+                                                <a href="#" class="btn btn-default" style="float:none;" onclick="sendRequest(<?php echo $newMemberInfo['user_id']?>, 'yes')">Request</a>
+                                                <a href="#" class="btn btn-default" style="float:none;" onclick="sendRequest(<?php echo $newMemberInfo['user_id']?>, 'maybe')">May Be</a>
+                                                <a href="<?php echo $this->url('profile', array('action'=>'profile-view-member'),array('query'=>array('member_id'=>$newMemberInfo['user_id']))) ?>" class="btn btn-default" style="float:none;">View</a>
+                                            </h6><h6>
+                                            </h6></div>
+                                        <div class="col-xs-10">
+                                            <div class="col-xs-8">
+                                                <div class="col-xs-2 col-xs-2-member">Name</div>
+
+                                                <div class="col-xs-3 col-xs-3-member"><?php echo $newMemberInfo['full_name']?></div>
+                                                  <div class="col-xs-2 col-xs-2-member">F. Name</div>
+                                                    <div class="col-xs-3 col-xs-3-member">kfdfkdkfjks</div>
+                                             
+                                                <div class="col-xs-2 col-xs-2-member">Occupation</div>
+
+                                                <div class="col-xs-3 col-xs-3-member"><?php echo $this->MyHelper()->getProfession($newMemberInfo['profession'])[0]['profession']?></div>
+                                                <div class="col-xs-2 col-xs-2-member">Address</div>
+                                                <div class="col-xs-3 col-xs-3-member"><?php echo $newMemberInfo['address']?></div>
+
+                                                <div class="col-xs-2 col-xs-2-member">Branch</div>
+                                                <div class="col-xs-3 col-xs-3-member"><?php echo $this->MyHelper()->getBranchNameById($newMemberInfo['branch_ids'])[0]['branch_name']?></div> 
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <div class="col-xs-8" style="padding:0 0;">Short Description : <?php echo $newMemberInfo['about_yourself_partner_family']?></div>
+                                            <div class="col-xs-4" style="padding:0 0;">
+                                                <div style="">
+                                                    <span>Follow : -</span>
+                                                    <ul class="follow">
+                                                        <li style="width:32%; min-height:auto !important;"><a href="#" class="facebook"></a></li>
+                                                        <li style="width:32%; min-height:auto !important;"><a href="#" class="twitter"></a></li>
+                                                        <li style="width:32%; min-height:auto !important;"><a href="#" class="gplus"></a></li>
+                                                        <li style="width:32%; min-height:auto !important;"><a href="#" class="linkedin"></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <div class="col-xs-12" style="display:none;">
+                                                <p></p>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <?php } } ?>
+                   
+
+
+
+
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- nw member  --> 
+                
+                
+                
+                <!--Invitation sent Starts Here -->
+    
+<!-- request pending  -->
+<div id="recently_joined" style="display: block;">
+<div class="mid_box">
+<div class="mid_box_header">
+   Invitation Sent <span class="recently_joined_count">(<?php echo count($this->sentInvitationList->inviteSentMembers);?>)</span>
+   <p class="view_all"><a href="<?php echo $this->url('profile',array('action'=>'member-invitation-sent', 'slug' => 'sent'))?>" class="light_link_blue">View More</a></p>         
+</div>
+    <div class="row">
+        <div class="col-xs-9">
+
+            </div>
+
+                   </div>
+
+                   <div class="clearfix"></div>
+                  
+                   <div id="profile">
+
+                       <div class="commen-list grid-view">
+                           <ul id="items">
+                               <li>
+                                   <div class="col-xs-2"></div>
+                                   <div class="col-xs-10">
+                                       <div class="col-xs-2">Name</div>
+                                       <div class="col-xs-3">F. Name</div>
+                                       <div class="col-xs-3">Occupation</div>
+                                       <div class="col-xs-2">Area</div>
+                                       <div class="col-xs-2">Branch</div>
+                                   </div>
+                               </li>
+
+                               <?php 
+                               
+                               foreach($this->sentInvitationList->inviteSentMembers as $inviteSentMembers){ 
+
+                                     foreach ($this->sentInvitationList->memInfoSent as $memInfoSent){
+                                           if($memInfoSent['sent']==$inviteSentMembers->user_id){
+                                               $meid=$memInfoSent['id'];
+                                               $type=$memInfoSent['type'];
+                                           }
+                                       }
+                                       if(!empty($inviteSentMembers['image_path'])){
+                                       $imagepath='/uploads/'.$inviteSentMembers['image_path'];
+                                       }else{
+                                           $imagepath='/images/default_user.png';
+                                       }
+
+                                       //\Zend\Debug\Debug::dump($receivedMember);
+                                   ?>
+                               <li class="li_listmember dashboardli" id="<?php echo 'invitation_sent_'.$meid;?>">
+                                   <div class="col-xs-2">
+                                       <div class="profile-pic">
+                                       <div class="row_box">
+                                     <div style="opacity: 1; display: block;" class="item tr big">
+                                       <img src="<?php echo $imagepath?>">
+                                       </div></div>
+                                       </div>
+                                       <?php //Zend\Debug\Debug::dump($inviteSentMembers['profession']); exit; ?>
+                                       <h3><?php echo $inviteSentMembers['full_name']?></h3>
+                                       <h3><?php echo $inviteSentMembers['address']?></h3>
+                                       <h4><?php $professionData= $this->MyHelper()->getProfession($inviteSentMembers['profession']);
+                                            if(isset($professionData)&& !empty($professionData)):
+                                                echo $professionData['profession']; 
+                                            endif;
+                                       ?></h4>
+                                       <h3> 
+                                            <a href="<?php echo $this->url('profile', array('action'=>'profile-view-member'),array('query'=>array('member_id'=>$inviteSentMembers['user_id']))) ?>" class="btn btn-default">View</a>
+                                            <a href="javascript:void(0)" class="btn btn-default" style="float:none" onclick="declineRequest(<?php echo $meid;?>, <?php echo $inviteSentMembers['user_id']; ?>, <?php echo $type;?>, 'sent_request')">Cancel</a></h3><h3>
+                                       </h3><h6> 
+                                           <a href="javascript:void(0)" class="btn btn-default" style="float:none;" onclick="declineRequest(<?php echo $meid;?>, <?php echo $inviteSentMembers['user_id']; ?>, <?php echo $type;?>, 'sent_request')">Cancel</a>
+                                           <a href="<?php echo $this->url('profile', array('action'=>'profile-view-member'),array('query'=>array('member_id'=>$inviteSentMembers['user_id']))) ?>" class="btn btn-default" style="margin-top:2px; float:none;">View</a>
+                                       </h6><h6>
+                                       </h6></div>
+                                   <div class="col-xs-10">
+                                       <div class="col-xs-8">
+                                           <div class="col-xs-2 col-xs-2-member">Name</div>
+
+                                           <div class="col-xs-3 col-xs-3-member"><?php echo $inviteSentMembers['full_name']?></div>
+                                           <div class="col-xs-2 col-xs-2-member">F. Name</div>
+                                           <div class="col-xs-2 col-xs-2-member">kdfdskfksd</div>
+                                           <div class="col-xs-2 col-xs-2-member">Occupation</div>
+
+                                           <div class="col-xs-3 col-xs-3-member"><?php echo $this->MyHelper()->getProfession($inviteSentMembers['profession'])[0]['profession']?></div>
+                                           <div class="col-xs-2 col-xs-2-member">Address</div>
+                                           <div class="col-xs-3 col-xs-3-member"><?php echo $inviteSentMembers['address']?></div>
+
+                                           <div class="col-xs-2 col-xs-2-member">Branch</div>
+                                           <div class="col-xs-3 col-xs-3-member"><?php echo $this->MyHelper()->getBranchNameById($inviteSentMembers['branch_ids'])[0]['branch_name']?></div> 
+                                       </div>
+                                       <div class="clearfix"></div>
+                                       <div class="col-xs-8" style="padding:0 0;">Short Description : <?php echo $inviteSentMembers['about_yourself_partner_family']?></div>
+                                       <div class="col-xs-4" style="padding:0 0;">
+                                           <div style="">
+                                               <span>Follow : -</span>
+                                               <ul class="follow">
+                                                   <li style="width:32%; min-height:auto !important;"><a href="#" class="facebook"></a></li>
+                                                   <li style="width:32%; min-height:auto !important;"><a href="#" class="twitter"></a></li>
+                                                   <li style="width:32%; min-height:auto !important;"><a href="#" class="gplus"></a></li>
+                                                   <li style="width:32%; min-height:auto !important;"><a href="#" class="linkedin"></a></li>
+                                               </ul>
+                                           </div>
+                                       </div>
+                                       <div class="clearfix"></div>
+                                       <div class="col-xs-12" style="display:none;">
+                                           <p></p>
+                                       </div>
+                                   </div>
+                               </li>
+                               <?php }  ?>
+
+
+
+
+
+
+
+                           </ul>
+                       </div>
+                   </div>
+               </div>
+           </div>
+           <!-- request pending --> 
+    
+    <!-- Invitation Sent Ends Here -->
+
+    <!-- new member -->
+    <div id="recently_joined" style="display: block;">
+    <div class="mid_box">
+    <div class="mid_box_header">
+        Invitation Received <span class="recently_joined_count"> (<?php echo count($this->receivedInvitationList->inviteReceivedMembers);?>) </span>
+        <p class="view_all"><a href="<?php echo $this->url('profile',array('action'=>'member-invitation-received', 'slug' => 'received'))?>" class="light_link_blue">View More</a></p>
+                  </div>
+    <div class="row">
+        <div class="col-xs-9">
+            
+        </div>
+       
+    </div>
+        
+         <div class="clearfix"></div>
+    
+    <div id="profile">
+
+        <div class="commen-list grid-view">
+            <ul id="items">
+                <li>
+                    <div class="col-xs-2"></div>
+                    <div class="col-xs-10">
+                        <div class="col-xs-2">Name</div>
+                        <div class="col-xs-3">F. Name</div>
+                        <div class="col-xs-3">Occupation</div>
+                        <div class="col-xs-2">Area</div>
+                        <div class="col-xs-2">Branch</div>
+                    </div>
+                </li>
+                
+                <?php 
+                                   if(isset($this->receivedInvitationList->inviteReceivedMembers) && !empty($this->receivedInvitationList->inviteReceivedMembers)){
+                                    if(count($this->receivedInvitationList->inviteReceivedMembers)==0){
+                                         //var_dump($this->receivedInvitationList); exit;
+                                        echo 'No request is Received';
+                                    }else{
+                                       
+                                            foreach($this->receivedInvitationList->inviteReceivedMembers as $inviReceivedMemberInfo){ 
+
+                                                    foreach ($this->receivedInvitationList->memInfoReceived as $memInfoReceived){
+                                                        if($memInfoReceived['user_id']==$inviReceivedMemberInfo->user_id){
+                                                            $meid_recevied=$memInfoReceived['id'];
+                                                            $type_received=$memInfoReceived['type'];
+                                                        }
+                                                    }
+                                                    if(!empty($invitationMemberInfo['image_path'])){
+                                                        $imagepath='/uploads/'.$invitationMemberInfo['image_path'];
+                                                   }else{
+                                                        $imagepath='/images/default_user.png';
+                                                        }
+                                                        ?>                       
+                       
+                        <li class="li_listmember dashboardli" id="<?php echo 'invitation_received_'.$meid_recevied;?>">
+                            <div class="col-xs-2">
+                                <div class="profile-pic"><img src="<?php echo $imagepath;?>"></div>
+                                <h3><?php echo $inviReceivedMemberInfo->name_title_user;?> <?php echo $inviReceivedMemberInfo['full_name']?></h3>
+                                <h3><?php echo $inviReceivedMemberInfo['age']?>, <?php if($inviReceivedMemberInfo['height']!='') echo $this->MyHelper()->getHeightById($inviReceivedMemberInfo['height'])['height']; ?></h3>
+                                <h4><?php echo $this->MyHelper()->getCityNameById($inviReceivedMemberInfo['city'])['city_name']; ?></h4>
+                                 <h3> 
+                                 <a href="<?php echo $this->url('profile', array('action'=>'profile-view-matrimony'),array('query'=>array('matrimony_id'=>$inviReceivedMemberInfo['user_id']))) ?>" class="btn btn-default" >View</a>
+                                 <a href="javascript:void(0)" class="btn btn-default" style="margin-bottom:2px; float:none;" onclick="acceptRequest(<?php echo $meid_recevied; ?>, <?php echo $inviReceivedMemberInfo['user_id']; ?>, <?php echo $type_received;?>)">Accept</a>
+                                  <a href="javascript:void(0)" class="btn btn-default" style="float:none;" onclick="declineRequest(<?php echo $meid_recevied; ?>, <?php echo $inviReceivedMemberInfo['user_id']; ?>, <?php echo $type_received;?>,'recevied_request')">Decline</a>
+                                 </h3>
+                                 <h6> 
+                                 <a href="javascript:void(0)" class="btn btn-default" style="float:none;" onclick="acceptRequest(<?php echo $meid_recevied; ?>, <?php echo $inviReceivedMemberInfo['user_id']; ?>, <?php echo $type_received;?>)">Accept</a>
+                                 <a href="javascript:void(0)" class="btn btn-default" style="float:none;" onclick="declineRequest(<?php echo $meid_recevied; ?>, <?php echo $inviReceivedMemberInfo['user_id']; ?>, <?php echo $type_received;?>,'recevied_request')">Decline</a>
+                                 <a href="<?php echo $this->url('profile', array('action'=>'profile-view-matrimony'),array('query'=>array('matrimony_id'=>$inviReceivedMemberInfo['user_id']))) ?>" class="btn btn-default" style="margin-top:2px; float:none;">View</a>
+                               </h6>
+                            </div>
+                            <div class="col-xs-10">
+                                <div class="col-xs-8">
+                                    <div class="col-xs-2 col-xs-2-member">Name</div>
+
+                                    <div class="col-xs-3 col-xs-3-member"><?php echo $inviReceivedMemberInfo->name_title_user;?> <?php echo $inviReceivedMemberInfo['full_name']?></div>
+                                    <div class="col-xs-2 col-xs-2-member">Age</div>
+                                    <div class="col-xs-3 col-xs-3-member"><?php echo $inviReceivedMemberInfo['age']?></div>
+                                    <div class="col-xs-2 col-xs-2-member">Height</div>
+                                    <div class="col-xs-3 col-xs-3-member"><?php if($inviReceivedMemberInfo['height']!='') echo $this->MyHelper()->getHeightById($inviReceivedMemberInfo['height'])['height']; ?></div>
+                                    <div class="col-xs-2 col-xs-2-member">Religion</div>
+                                    <div class="col-xs-3 col-xs-3-member"><?php if($inviReceivedMemberInfo['religion']!="") echo $this->MyHelper()->getReligionNameById($inviReceivedMemberInfo['religion'])['religion_name']; ?></div>
+
+                                    <div class="col-xs-2 col-xs-2-member">Location</div>
+                                    <div class="col-xs-3 col-xs-3-member"><?php echo $inviReceivedMemberInfo['address']; ?> <?php echo $this->MyHelper()->getCityNameById($inviReceivedMemberInfo['city'])['city_name']; ?></div>
+                                    <div class="col-xs-2 col-xs-2-member">Education</div>
+                                    <div class="col-xs-3 col-xs-3-member"><?php if($inviReceivedMemberInfo['education_level']!="") echo $this->MyHelper()->getEducationLevelNameById($inviReceivedMemberInfo['education_level'])['education_level']; ?></div> 
+                                    <div class="col-xs-2 col-xs-2-member">Profession</div>
+                                    <div class="col-xs-3 col-xs-3-member"><?php if($inviReceivedMemberInfo['profession']!="") echo $this->MyHelper()->getProfession($inviReceivedMemberInfo['profession'])[0]['profession']; ?></div>  
+                                </div>
+                                <div class="clearfix"></div>
+                                
+                                <div class="col-xs-4" style="padding:0 0;">
+                                    <div style="">
+                                        <span>Follow : -</span>
+                                        <ul class="follow">
+                                            <li style="width:32%; min-height:auto !important;"><a href="#" class="facebook"></a></li>
+                                            <li style="width:32%; min-height:auto !important;"><a href="#" class="twitter"></a></li>
+                                            <li style="width:32%; min-height:auto !important;"><a href="#" class="gplus"></a></li>
+                                            <li style="width:32%; min-height:auto !important;"><a href="#" class="linkedin"></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="col-xs-12" style="display:none;">
+                                    <p></p>
+                                </div>
+                            </div>
+                        </li>                        
+                                   <?php }} }?>
+            </ul>
+        </div>
+    </div>
+</div>
+</div>
+    <!-- nw member  --> 
+    
+    
+
+            </div>
+        </div>
+        <!--MY rustagi RIGHT-->
+        
+        <div id="my_rustagi_right" class="col-sm-3 col-sm-3new pull-right">
+           <?php include('sidebar_right_member.phtml');?>
+            <?php //echo $this->partial('layout/sidebar-right') ?>
+        </div>
+        <!--end right_half-->
+        <br class="clear">
+    </div>
+
+
+</div>
+
+<!--upload photo model start here-->
+
+<div class="modal fade" id="avatar-modalpost_image" tabindex="-1" role="dialog" aria-labelledby="avatar-modal-label" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form class="avatar-form" id="cropform_post" method="post" action="#" enctype="multipart/form-data" onsubmit="return croppostimage('<?= $this->serverurl() . $this->url() . "/croppostimage" ?>', croppostimageresults);">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h4 class="modal-title" id="avatar-modal-label">Post Picture</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="showloader_post" style="position:absolute;top:30%;left:0;width:100%;min-height:300px;display:none;z-index:1000;">
+                        <center><img src="<?= $this->basepath() ?>/img/loadingmap2.gif"></center>
+                    </div>
+
+
+                    <h4>Image:</h4>
+                    <input type="file" name="file" id="file_post"> 
+                    <div class="banner"><img class="cropper2" id="showimage_post" src="<?= $this->basepath() ?>/img/default_user.png"></div>
+
+                    <!--<input name="uid" id="uid" type="hidden">
+                    <input name="ref_no" id="ref_no" type="hidden">
+                    <input name="profile_photo_flag" id="profile_photo_flag" type="hidden">
+                    <input name="profile_photo" id="profile_photo" type="hidden">
+
+                    <input name="field_name" id="field_name1" type="hidden">
+
+                    <input name="table_name" id="table_name1" type="hidden">-->
+
+                    <input type="hidden" class="form-control" id="dataX11_post" placeholder="x1" name="x1">
+
+                    <input type="hidden" class="form-control" id="dataY11_post" placeholder="y1" name="y1">
+
+                    <input type="hidden" class="form-control" id="dataX21_post" placeholder="x2" name="x2">
+
+                    <input type="hidden" class="form-control" id="dataY21_post" placeholder="y2" name="y2">
+
+                    <input type="hidden" class="form-control" id="dataWidth1_post" placeholder="width" name="width">
+
+                    <input type="hidden" class="form-control" id="dataHeight1_post" placeholder="height" name="height">
+
+                    <input type="hidden" class="form-control" id="cropenabled2" name="cropenabled" value="Enable">
+                    <!--<div id="forprofile">
+                        <h5 style="font-weight:bold;color:cornflowerblue;">OR</h5>
+                        <a href="#" id="profileFrom_gallery" data-toggle="modal" data-target="#chooseGallery" style="font-weight:bold;font-size:14px;color:chocolate;">Choose from Gallery</a>
+                    </div>-->
+                    <input type="hidden" id="actualimage_post" name="actualimage">
+                    <button id="cropper-enable_post" type="button" class="btn btn-success croptrigger2">Enable</button>
+                    <button id="cropper-disable_post" type="button" class="btn btn-danger croptrigger2">Disable</button>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
+                    <input class="btn btn-primary avatar-save" type="submit" value="Save">
+                </div>
+            </form>
+        </div>
+
+
+
+    </div>
+</div>
+
+<!--upload end-->
+
+<script>
+            /* When the user clicks on the button, 
+             toggle between hiding and showing the dropdown content */
+                    function myFunction() {
+                        document.getElementById("myDropdown").classList.toggle("show");
+                    }
+
+// Close the dropdown if the user clicks outside of it
+            window.onclick = function (event) {
+                if (!event.target.matches('.dropbtn')) {
+
+                    var dropdowns = document.getElementsByClassName("dropdown-content");
+                    var i;
+                    for (i = 0; i < dropdowns.length; i++) {
+                        var openDropdown = dropdowns[i];
+                        if (openDropdown.classList.contains('show')) {
+                            openDropdown.classList.remove('show');
+                        }
+                    }
+                }
+            }
+</script>
+
+<script>
+    
+    function whatOnYourMind(){
+
+
+
+                var dataString=$("#whats_your_mind_frm").serialize();
+
+
+                var url='<?php echo $this->url('profile', array('action'=>'post'))?>';
+                $.ajax({
+                        url:url,
+                        type:'POST',
+                        data:dataString,
+                        success:function(result){
+                            console.log(result);
+                            //$("#response").text(result);
+
+                        }
+
+                });
+
+
+
+    }
+    
+    function sendRequest(uid, type){
+
+        var url='<?php echo $this->url('profile', array('action'=>'sendRequest'))?>';
+
+         $.ajax({
+                url: url,
+                data: {
+                    uid: uid, type: type
+                },
+                error: function (request, status, error) {
+                    console.log(status);
+                },
+                success: function (data) {
+                    $('#satya_prakash_madheshiya_'+uid).hide();
+                    console.log(data);
+                },
+                type: 'POST'
+            });
+    }
+
+    function acceptRequest(id, uid, type){
+             $.ajax({
+            url: '<?php echo $this->url('profile', array('action'=>'interestaccepted'))?>',
+            data: {
+                id:id, uid: uid, type: type
+            },
+            error: function (request, status, error) {
+                console.log(status);
+            },
+            success: function (data) {
+                $('#satya_prakash_madheshiya_'+uid).hide();
+                console.log(data);
+            },
+            type: 'POST'
+        });
+    }
+    
+    function declineRequest(id, uid, type, request_type){
+             $.ajax({
+            url: '<?php echo $this->url('profile', array('action'=>'interestdecline'))?>',
+            data: {
+                id: id, uid: uid, type: type, request_type:request_type
+            },
+            error: function (request, status, error) {
+                console.log(status);
+            },
+            success: function (data) {
+            if(request_type=="sent_request"){
+                $('#invitation_sent_'+id).hide();
+            }else if(request_type=="recevied_request"){
+                $('#invitation_received_'+id).hide();
+            }
+                console.log(data);
+            },
+            type: 'POST'
+        });
+    }
+    
+    function acceptYesRequest(uid, id, type){
+             $.ajax({
+            url: '<?php echo $this->url('profile', array('action'=>'interestacceptyes'))?>',
+            data: {
+                uid: uid, id: id, type: type
+            },
+            error: function (request, status, error) {
+                console.log(status);
+            },
+            success: function (data) {
+                $('#invitation_sent_'+id).hide();
+                console.log(data);
+            },
+            type: 'POST'
+        });
+    }
+</script>
+
+<script>
+    $(function () {
+        var $cropper1 = $(".cropper2"),
+                $dataX1 = $("#dataX11_post"),
+                $dataY1 = $("#dataY11_post"),
+                $dataX2 = $("#dataX21_post"),
+                $dataY2 = $("#dataY21_post"),
+                $dataHeight = $("#dataHeight1_post"),
+                $dataWidth = $("#dataWidth1_post"),
+                cropper;
+
+        $cropper1.cropper({
+            aspectRatio: 16 / 9,
+            preview: ".extra-preview",
+            done: function (data) {
+                $dataX1.val(data.x1);
+                $dataY1.val(data.y1);
+                $dataX2.val(data.x2);
+                $dataY2.val(data.y2);
+                $dataHeight.val(data.height);
+                $dataWidth.val(data.width);
+            }
+        });
+
+        cropper1 = $cropper1.data("cropper");
+
+        
+        $("#cropper-enable_post").click(function () {
+            $cropper1.cropper("enable");
+        });
+
+
+        $("#cropper-disable_post").click(function () {
+            cropper1.disable();
+        });
+
+        $(".croptrigger2").click(function () {
+            var x = $(this).text();
+            $("#cropenabled2").val(x);
+        });
+
+        
+        $('#file_post').change(function (event) {
+            var tmppath = URL.createObjectURL(event.target.files[0]);
+            $("#showimage_post").attr("src", tmppath);
+            $("#actualimage_post").val(tmppath);
+        });
+
+    })
+
+</script>
+
+<script>
+
+<?php echo $percent[1] ?>
+
+    $('#demo-3').waterbubble({txt: '<?php echo $percent[0] ?>%', });
+</script>

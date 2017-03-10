@@ -1,0 +1,93 @@
+                    <div class="table-responsive">
+                      <table id="dynamic-table" class="table table-striped table-bordered table-hover">
+                    <thead>
+                      <tr>
+                           <th><input type="checkbox" value="" id="checkAll" onclick="checkall(this.id)" > </th>
+                        <th>S. No.</th>
+                        <th>Eventmaster Name</th>
+                        <th class="hidden-480">Created Date</th>
+                        <th class="hidden-480">Modified Date</th> 
+                        <th class="hidden-480">Modified By</th>
+                        <th class="hidden-480">Status</th>
+                        
+                        <th><b>Actions</b></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php 
+					  $i=1;
+                      foreach ($eventmasters as $eventmaster) {
+                          
+//                          echo "<pre>";
+//                          print_r($eventmaster);exit;
+                      
+                      ?>
+                      <tr>
+                        <td><input type="checkbox" value="<?=$eventmaster->id?>" class="checkme" name="checkme[]"> </td> 
+                       <td><?= $i ?></td>  
+                        <td><?= $eventmaster->eventName?></td>            
+                        <td class="hidden-480"><?=$eventmaster->createdDate?></td>
+                        <td class="hidden-480"><?=$eventmaster->modifiedDate?></td>
+                        <td class="hidden-480"><?php echo ($eventmaster->modifiedBy==1)? 'Admin': 'NotByAdmin'; ?></td>
+                        
+                        
+                        <td class="hidden-480">
+						<!--<?php echo ($eventmaster->isActive==1)? 'Active': '<span class="label label-sm label-warning">In-Active</span>'; ?>-->
+                        <?php $status = ($eventmaster->isActive==1)? 'Active': 'In-Active';
+                        $statuscolor = ($eventmaster->isActive==1)? 'activestatus': 'de-activestatus';
+                         ?>
+                          <div name="ChangeStatus" id="changestatus<?=$i;?>" onclick="changestatusquick(<?=$eventmaster->id?>,<?= ($eventmaster->isActive==0)?0:1; ?>,'<?php echo $this->
+                                                                url('admin/eventmaster', array('action'=>
+                                                                    'changestatus')); ?>',changstatusresult);" class="<?=$statuscolor?>">
+                        </div>
+                        </td>
+                        
+                        <td><div class="hidden-sm hidden-xs action-buttons"> 
+                        <!--<a class="blue" href="<?php echo $this->url('admin',array('controller'=>'eventmaster','action'=>'view','id'=>$eventmaster->id)); ?>">
+                         <i class="ace-icon fa fa-search-plus bigger-130"></i> </a> -->
+                         <a class="blue" style="cursor:pointer;" data-toggle="modal" data-target="#myModal"  
+                                                   tar="indview<?= $i ?>"> <i onclick="findRowDataByEventmasterId('<?php echo $this->url
+                                                           ('admin/eventmaster', array('action'=>'viewById','id'=>$eventmaster->id)); ?>', 
+                                                                       viewRowDataById);" class="ace-icon fa fa-search-plus bigger-130">
+                                                    </i> </a>
+                         
+                         <a class="green" href="javascript:void(0);" onclick="editbox(<?= 
+                                                   $eventmaster->id ?>, '<?php echo $this->url('admin/eventmaster', array('action' => 
+                                                       'edit', 'id' => $eventmaster->id));
+                                        ?>', editformresp);" > <i class="ace-icon fa fa-pencil bigger-130"></i> </a> 
+                          <a class="red" href="<?php echo $this->url('admin/eventmaster',array('action'=>'delete','id'=>
+                              $eventmaster->id)); ?>" onclick="return confirm('are you sure you want to delete');"> <i class="ace-icon fa 
+                                                                                             fa-trash-o bigger-130"></i> </a> </div>
+                          </td>
+                      </tr>
+                      
+                      
+                      
+                      
+                      <?php 
+                      $i++;
+                    }
+                      ?>
+                    </tbody>
+                  </table>
+                      
+                      
+                      
+                      
+                    </div>
+                
+<?php 
+
+if($this->action!='index'){
+    ?>
+<script src="<?php echo $this->basePath(); ?>/assets/js/jquery.2.1.1.min.js"></script>
+<script src="<?php echo $this->basePath(); ?>/assets/js/jquery.dataTables.min.js"></script> 
+<script src="<?php echo $this->basePath(); ?>/assets/js/jquery.dataTables.bootstrap.min.js"></script> 
+<script src="<?php echo $this->basePath(); ?>/assets/js/dataTables.tableTools.min.js"></script> 
+<script src="<?php echo $this->basePath(); ?>/assets/js/dataTables.colVis.min.js"></script>
+<script src="<?php echo $this->basePath(); ?>/assets/js/table.js"></script> 
+<?php
+}
+?>
+            
+             

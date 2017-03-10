@@ -1,0 +1,41 @@
+<?php 
+
+// echo ;
+
+	// foreach ($categories[0] as $key => $value) {
+// echo $user_id;
+	?>
+
+	<p id='closeCatBox' onclick='closeme()'>X1</p>
+
+	<form id="choosecomm">
+		<input type="radio" name="C1" value="1" checked="checked" ret="headbox" onclick="showmybox($(this).attr('ret'))"> Head
+		<input type="radio" name="C1" value="0" ret="agentbox" onclick="showmybox($(this).attr('ret'))"> Agent
+	</form>
+	<br>
+	<div class="commcategories" id="headbox" style="display:block;">
+
+	<center>
+	<button type='button' onclick="updateuser('<?=$categories[0]["id"]?>','<?=$user['user_id']?>','<?=$this->serverUrl().$this->url().'/updateusercomm'?>',updcommresults)" class='CategoryNode'>
+		<?=$categories[0]['category_name']?>
+	</button><br>
+	</center>
+	</div>
+
+	<div class="commcategories" id="agentbox">
+
+	<?php 
+
+foreach ($categories[1] as $key => $value) {
+	?>
+		<button type='button' onclick="updateuser('<?=$value['id']?>','<?=$user['user_id']?>','<?=$this->serverUrl().$this->url().'/updateusercomm'?>',updcommresults)" class='CategoryNode'>
+		<?=$value['category_name']?>
+	</button><br>
+
+	<?php
+	}
+	?>
+	</div>
+	 
+
+	 

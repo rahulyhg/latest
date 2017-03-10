@@ -1,0 +1,286 @@
+                    <td colspan="13">
+                    
+                    	 <div class="tabbable">
+                         <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab4">
+                        <li class="active">
+                          <a href="javascript:void(0);" >Location</a>
+                        </li>
+                      </ul>
+                        <?php                        
+                        $form = $this->form;
+                        //\Zend\Debug\Debug::dump($form);exit;
+                        $form->prepare();
+                        //echo  "hello amir raza";exit;
+                        $form->setAttribute('action', $this->url('admin/matrimonyuser', array('action' => 'saveLocationDetail')));
+                        $form->setAttribute('method', 'post');
+                        $form->setAttribute('name', 'editform');
+                        $form->setAttribute('autocomplete', 'off');
+                        $form->setAttribute('id', 'LocationFormEdit');
+                        $action = $this->url('admin/matrimonyuser', array('action' => 'saveLocationDetail'));
+                        $form->setAttribute('onSubmit', "return SubmitFormAction($(this).attr('id'),'" . $action . "',addformResp)");
+                        
+                        echo $this->form()->openTag($form);
+                        echo $this->formHidden($form->get('id'));
+                        //echo  "hello amir raza";exit;
+                        ?>
+                        <div class="col-sm-4" style="width:100%;">
+                            
+                            <h3><?php echo $this->translate('Update Location Info'); ?></h3>
+                            
+                            <div class="form-group row">
+                                <label for="Country" class="col-sm-2 form-control-label edupading"><?php echo $this->translate('Country') ?></label>
+                                <div class="col-sm-3">
+                                    <?php
+                                    echo $this->formRow($form->get('country'));
+                                    ?>               
+                                </div>
+                                <label for="State" class="col-sm-2 form-control-label edupading"><?php echo $this->translate('State'); ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('state')); ?></div>                               
+                            </div>
+                            
+                            <div class="form-group row">
+                                <label for="City" class="col-sm-2 form-control-label edupading"><?php echo $this->translate('City'); ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('city')); ?></div>
+                                <label for="Native Place" class="col-sm-2 form-control-label edupading"><?php echo $this->translate('Native Place'); ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('native_place')); ?></div>
+                            </div>                           
+                            
+                            <div class="form-group row">
+                                <label for="Zip/Pin Code" class="col-sm-2 form-control-label edupading"><?php echo $this->translate('Zip/Pin'); ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('zip_pin_code')); ?></div>
+                                <label for="Address Line 1" class="col-sm-2 form-control-label edupading"><?php echo $this->translate('Address'); ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('address')); ?></div>
+                            </div>                           
+
+                            <div class="form-group row">
+                                <label for="Office Name" class="col-sm-2 form-control-label edupading"><?php echo $this->translate('Office Name') ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('office_name')); ?></div>
+                                <label for="Office Email" class="col-sm-2 form-control-label edupading"><?php echo $this->translate('Office Email'); ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('office_email')); ?></div>
+                             </div>
+
+
+                            <div class="form-group row">
+                                <label for="Office Country" class="col-sm-2 form-control-label edupading"><?php echo $this->translate('Office Country'); ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('office_country')); ?></div>
+                                <label for="Office Phone" class="col-sm-2 form-control-label edupading"><?php echo $this->translate('Office Phone'); ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('office_phone')); ?></div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="Office State" class="col-sm-2 form-control-label edupading"><?php echo $this->translate('Office State') ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('office_state')); ?></div>
+                                <label for="Office Zip/Pin" class="col-sm-2 form-control-label edupading"><?php echo $this->translate('Office Zip/Pin') ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('office_pincode')); ?></div>
+                            </div>
+                            
+                            <div class="form-group row">
+                                <label for="Office City" class="col-sm-2 form-control-label edupading"><?php echo $this->translate('Office City'); ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('office_city')); ?></div>
+
+                                <label for="Office Website" class="col-sm-2 form-control-label edupading"><?php echo $this->translate('Office Website') ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('office_website')); ?></div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="Office Address" class="col-sm-2 form-control-label edupading"><?php echo $this->translate('Office Address') ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('office_address')); ?></div>                           
+                            </div>
+
+                            <div class="form-group row" style="margin-top: 10px">
+                                <label class="col-sm-3 "></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('submit')); ?>
+                                    
+                                </div>
+                            </div>
+
+                        </div>
+                        </div>
+                        <?php echo $this->form()->closeTag(); ?>
+                    </td>
+                    
+    
+
+<script>
+
+            
+            /**************Get State on select Country***************/
+            $("#country").on('change', function () {
+    var countryId = this.value;
+            $.ajax({
+            url: '<?php echo $this->basePath() ?>' + '/account/getStateName',
+                    type: "POST",
+                    dataType: "json",
+                    data: {Country_ID: countryId},
+                    beforeSend: function () {
+                    $('#Loading_Request').show();
+                    },
+                    complete: function () {
+                    $('#Loading_Request').hide();
+                    },
+                    success: function (resp) {
+                    if (resp.Status == 'Success') {
+                    $("#state").empty();
+                            $("#city").empty();
+                            $("#state").append("<option value=''>Select State</option>");
+                            $.each(resp.statelist, function (idx, obj) {
+                            $("#state").append("<option value='" + obj["id"] + "'>" + obj["state_name"] + "</option>");
+                            });
+                    } else {
+                    $("#state").empty();
+                            $("#city").empty();
+                            alert("No States are available");
+                    }
+                    },
+                    error: function (error) {
+                    console.log(error);
+                            alert(error);
+                    }
+            });
+    });
+            /*******************End******************/
+            /*************Get City on Select State*************************************************/
+            $("#state").on('change', function () {
+    var stateId = this.value;
+            $.ajax({
+            url: '<?php echo $this->basePath() ?>' + '/account/getCityName',
+                    type: "POST",
+                    dataType: "json",
+                    data: {State_ID: stateId},
+                    beforeSend: function () {
+                    $('#Loading_Request').show();
+                    },
+                    complete: function () {
+                    $('#Loading_Request').hide();
+                    },
+                    success: function (resp) {
+                    if (resp.Status == 'Success') {
+                    $("#city").empty();
+                            $("#city").append("<option value=''>Select City</option>");
+                            $.each(resp.statelist, function (idx, obj) {
+                            $("#city").append("<option value='" + obj["id"] + "'>" + obj["city_name"] + "</option>");
+                            });
+                    } else {
+                    $("#city").empty();
+                            alert("No Cities are Available");
+                    }
+                    },
+                    error: function (error) {
+                    console.log(error);
+                            alert(error);
+                    }
+            });
+    });
+            /*******************End******************/
+            
+            /*************Get City on Select State*************************************************/
+//$("#city").on('change', function(){
+//var cityId=this.value;
+//$.ajax({
+//    url:'<?php //echo $this->basePath()?>'+'/user/getRustagiBranch',
+//    type:"POST",
+//dataType:"json",
+//    data:{City_ID:cityId},
+//    beforeSend: function(){
+//            $('#Loading_Request').show();
+//    },
+//    complete: function(){
+//            $('#Loading_Request').hide();
+//    },
+//    success:function(resp){
+//$("#branch_other").hide();
+//
+//if(resp.Status=='Success'){
+//$("#branch_ids").empty();
+//$("#branch_ids").append("<option value=''>Select Branch</option>");
+//$.each(resp.statelist, function(idx, obj) {                            
+//$("#branch_ids").append("<option value='"+obj["branch_id"]+"'>"+obj["branch_name"]+"</option>");
+//});
+//}else{
+//$("#branch_ids").empty();
+//alert("No Branches are Available");
+//$("#branch_other").show();
+//}
+//$("#branch_ids").append("<option value='Other'>Others</option>");
+//    },
+//    error:function(error){
+//            console.log(error);	
+//            alert(error);			
+//    }
+//});	
+//});
+/*******************End******************/
+</script>
+
+<script>
+    /**************Get State on select Country***************/
+    $("#office_country").on('change', function () {
+        var countryId = this.value;
+        $.ajax({
+            url: '<?php echo $this->basePath() ?>' + '/account/getStateName',
+            type: "POST",
+            dataType: "json",
+            data: {Country_ID: countryId},
+            beforeSend: function () {
+                $('#Loading_Request').show();
+            },
+            complete: function () {
+                $('#Loading_Request').hide();
+            },
+            success: function (resp) {
+                if (resp.Status == 'Success') {
+                    $("#office_state").empty();
+                    $("#office_city").empty();
+                    $("#office_state").append("<option value=''>Select State</option>");
+                    $.each(resp.statelist, function (idx, obj) {
+                        $("#office_state").append("<option value='" + obj["id"] + "'>" + obj["state_name"] + "</option>");
+                    });
+                } else {
+                    $("#office_state").empty();
+                    $("#office_city").empty();
+                    alert("No States are available");
+                }
+            },
+            error: function (error) {
+                console.log(error);
+                alert(error);
+            }
+        });
+    });
+    /*******************End******************/
+    /*************Get City on Select State*************************************************/
+    $("#office_state").on('change', function () {
+        var stateId = this.value;
+        $.ajax({
+            url: '<?php echo $this->basePath() ?>' + '/account/getCityName',
+            type: "POST",
+            dataType: "json",
+            data: {State_ID: stateId},
+            beforeSend: function () {
+                $('#Loading_Request').show();
+            },
+            complete: function () {
+                $('#Loading_Request').hide();
+            },
+            success: function (resp) {
+                if (resp.Status == 'Success') {
+                    $("#office_city").empty();
+                    $("#office_city").append("<option value=''>Select City</option>");
+                    $.each(resp.statelist, function (idx, obj) {
+                        $("#office_city").append("<option value='" + obj["id"] + "'>" + obj["city_name"] + "</option>");
+                    });
+                } else {
+                    $("#office_city").empty();
+                    alert("No Cities are Available");
+                }
+            },
+            error: function (error) {
+                console.log(error);
+                alert(error);
+            }
+        });
+    });
+    /*******************End******************/
+</script>
+                    
+    

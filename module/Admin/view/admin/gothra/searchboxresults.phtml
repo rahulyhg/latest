@@ -1,0 +1,22 @@
+<table  width="100%" style="border:none !important;">
+<tbody>
+<?php
+if(count($gothras)>0){
+	$i=1;
+ foreach ($gothras as $gothra) {
+?>
+
+
+<tr>
+<td>
+<a href="javascript:void(0);" id="gothrasearch<?=$i;?>" onclick="grabvalues3('<?=$gothra->gothra_name?>','<?=$gothra->id?>','<?=$parentname?>');"><?= $gothra->gothra_name?></a>
+</td>
+</tr>
+<?php
+$i++;
+}
+}
+else echo "<p>No matched search</p>";
+?>
+</tbody>
+</table>

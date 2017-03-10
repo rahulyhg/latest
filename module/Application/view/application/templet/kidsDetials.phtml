@@ -1,0 +1,91 @@
+<div class="form-group row"><label for="kids Name" class="col-sm-2 form-control-label edupading "><?php echo $this->translate('Name'); ?></label><div class="col-sm-3 coltilte" >
+        <select class="form-control" name="name_title_kids[]" style="padding:0;">
+            <option>Mr</option>
+            <option>Mrs</option>
+            <option>Miss</option>
+            <option>Dr</option>
+            <option>Mster</option>
+        </select>
+    </div>
+    <div class="col-sm-3 colname">
+        <input type="text" id="kids_name_' + i + '" name="kids_name[]" class="form-control" />
+            <input type="hidden" id="new_kids_id' + i + '" name="new_kids_id[]" class="form-control" />
+            <div id="result_kids_' + i + '" class="result"></div>
+        <input type="hidden" name="kids_id[]" class="form-control" />
+    </div>
+    <label for="last name" class="col-sm-2 form-control-label edupading"><?php echo $this->translate('Last Name') ?></label><div class="col-sm-3 colname"><input type="text" id="kids_last_name_' + i + '" name="kids_last_name[]" class="form-control" /></div>
+</div>
+<div class="form-group row">
+    <label for="Status" class="col-sm-2 form-control-label edupading">
+        <?php echo $this->translate('Status') ?>
+    </label>
+    <div class="col-sm-3">
+        <select id="kids_status_' + i + '" class="form-control" name="kids_status[]">
+            <option value="">Select</option>
+            <option value="Student">Student</option
+            <option value="Employed">Employed</option>
+            <option value="Not Employed">Not Employed</option>
+            <option value="Self Employed">Self Employed</option>
+            <option value="Govt Employed">Govt Employed</option>
+            <option value="Business">Business</option>
+            <option value="Home Maker">Home Maker</option>
+            <option value="Passed Away">Passed Away</option>
+        </select>
+    </div>
+</div>
+<div class="form-group row">
+    <label for="Dob" class="col-sm-2 form-control-label edupading">
+        <?php echo $this->translate('DOB'); ?>
+    </label>
+    <div class="col-sm-3"> 
+        <input type="text" name="kids_dob[]" class="form-control datepicker1" />
+    </div>
+    <div id="kids_PhotoInfoArea_' + i + '" style="display:none">
+        <label for="photo" class="col-sm-2 form-control-label edupading">
+            <?php echo $this->translate('Photo') ?>
+        </label>
+        <div class="col-sm-3">
+            <label>  <a href="#" name="kids_model[]" data-toggle="modal" data-target="#avatar-modal1">
+                    <img name="kids_image[]" src="/gallery/thumb/default_user.png" height="30" width="30" />Upload Photo</a>
+            </label>
+        </div>
+    </div>
+    
+</div>
+<div class="form-group row">
+    <label for="Marital Status" class="col-sm-2 form-control-label edupading">
+        <?php echo $this->translate('Marital Status'); ?>
+    </label>
+    <div class="col-sm-3">
+        <select class="form-control" name="marital_status_kids[]">
+            <option>Select</option>
+            <option>Married</option>
+            <option>Not-Married</option>
+        </select>
+    </div>
+    <label for="Gender Status" class="col-sm-2 form-control-label edupading">
+        <?php echo $this->translate('Gender'); ?>
+    </label>
+    <div class="col-sm-3">
+        <select class="form-control" name="gender_status_kids[]">
+            <option value="">Select</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select>
+    </div>
+</div>    
+<div class="form-group row" id="kidsDodInfo' + i + '" style="display:none">
+    <label for="DOD" class="col-sm-2 form-control-label edupading">
+        <?php echo $this->translate('DOD'); ?>
+    </label>
+    <div class="col-sm-3"><input type="text" name="kids_dod[]" class="form-control datepicker1" /></div>
+</div>
+<div class="form-group row">
+    <div id="about_kids">
+        <label for="About Kids" class="col-sm-2 form-control-label edupading">
+            <?php echo $this->translate('About') ?>
+        </label>
+    <div class="col-sm-9" style="padding:0;">
+        <textarea class="form-control" style="height:50px;" name="about_kids[]">About Kid</textarea></div>\n\
+    </div>
+</div>

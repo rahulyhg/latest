@@ -1,0 +1,38 @@
+  <?php foreach($this->acceptedMember as $acceptedMembers){
+                  
+                    ?>
+                <div id="pin_interest" style="display: block;margin-top: 20px;">    
+                    <div class="pinned_wrap">
+                        <div class="pinned_shadow">
+
+                            <div class="pinned_profile_green">
+                               
+
+                                <div id="pin_interest_profile" class="pos_rel">
+
+                                    <div class="pinned_profile_wrap" rel="vSH87477335">
+                                        <?php if(!empty($acceptedMembers['image_path'])){ ?>
+                                        <div class="pinned_pic">
+                                            <span class="thumb60">
+                                                <a href="#" target=""><img src="<?php echo $this->basePath('/uploads/').$acceptedMembers['image_path']?>" border="0" height="60" width="60"></a>
+
+                                            </span>
+                                        </div>
+                                        <?php } ?>
+                                        <div class="pinned_info">
+                                            <a href="#" class="pinned_pro_name" target="_blank"><?php echo $acceptedMembers['full_name']?></a>
+                                            
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="personal_msg" style="border-top: none">
+                                            <span id="min_profile_detail_profile_vSH87477335">
+                                                <?php echo $posts['description']?> 
+                                        </div>
+
+                                    </div>                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php } ?>

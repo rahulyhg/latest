@@ -1,0 +1,172 @@
+<?php
+$PopPosts = $this->MyHelper()->PopPosts('PostTable');
+
+$JustBorn = $this->MyHelper()->PostCat(1);
+
+$Obituary = $this->MyHelper()->PostCat(2);
+
+$CurrNews = $this->MyHelper()->CurrNews();
+
+
+ //echo "<pre>";
+ //print_r($CurrNews); die;
+?>
+
+
+
+<div class="col-sm-3 futtornew">
+    <h2>Current News</h2>
+    <div class="footer-panel">
+       <?php
+        foreach ($CurrNews as $value) { 
+		$imgpath = (empty($value['image'])) ? "img/default_user.png" : "/NewsImages/" . $value['image'];
+                $date = date("d/m/Y", strtotime($value['created_date']));
+                ?>
+        <span>
+        <div class="pull-left thumbnail"><img src="<?php echo $this->basePath() . $imgpath ?>" class="no-border footerthumb" style="width:50px; height:50px;" />
+        </div>
+        <p class="lead"><strong><?= substr($value['title'], 0, 20); ?></strong></p>
+        <p class="txt"><?= substr($value['description'], 0, 40); ?></p>
+        <p class="txt" style="text-align:right"><a href="<?php echo $this->basePath() ?>/news/view/<?= $value['id'] ?>">Read More..</a></p>
+        <div class="clearfix"></div>
+        <div class="status">
+            <span>Posted By: <?= $value['username'] ?></span><br/>
+            <span>Posted On: <?= $date; ?></span>
+        </div>
+
+        
+        </span>
+        <div class="clearfix"></div>
+        <?php
+        }
+        ?> 
+         <a href="<?php echo $this->basePath() ?>/news" class="btn btn-info">more..</a>
+          
+    </div>
+    
+   
+</div>
+
+
+
+
+<div class="col-sm-3 futtornew">
+    <h2>Popular Posts</h2>
+    <div class="footer-panel">
+       <?php
+        foreach ($PopPosts as $key => $value) {
+            $imgpath = (empty($value['image'])) ? "img/default_user.png" : "/PostsImages/" . $value['image'];
+            $date = date("d/m/Y", strtotime($value['created_date']));
+            ?>
+        <span>
+        <div class="pull-left thumbnail"><img src="<?php echo $this->basePath() . $imgpath ?>" class="no-border footerthumb" style="width:50px; height:50px;" /></div>
+        <p class="lead"><strong><?= substr($value['title'], 0, 20); ?></strong></p>
+        <p class="txt"><?= substr($value['description'], 0, 40); ?></p>
+        <p class="txt" style="text-align:right"><a href="<?php echo $this->basePath() ?>/posts/view/<?= $value['id'] ?>">Read More..</a></p>
+        <div class="clearfix"></div>
+        <div class="status">
+        <!-- <span>Likes: 75</span> -->
+            <span>Posted By: <?= $value['full_name'] ?></span><br/>
+            <span><?= $date; ?></span>
+            <span>Comments: <?= $this->MyHelper()->CommentCount($value['id']); ?></span>
+            <span>Visits: <?= $value['view_count'] ?></span>
+        </div>
+
+        
+        </span>
+        <div class="clearfix"></div>
+        <?php
+        }
+        ?> 
+         <a href="<?php echo $this->basePath() ?>/posts" class="btn btn-info">more..</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      
+    </div>
+    
+    
+   
+</div>
+
+
+<div class="col-sm-3 futtornew">
+    <div class="footer-panel">
+        <h3>Obituary</h3>
+        <?php
+        foreach ($Obituary as $key => $value) {
+            $imgpath = (empty($value['image'])) ? "img/default_user.png" : "/PostsImages/" . $value['image'];
+            $date = date("d/m/Y", strtotime($value['created_date']));
+        ?>
+        <span>
+        <div class="pull-left thumbnail"><img src="<?php echo $this->basePath() . $imgpath ?>"  class="no-border footerthumb" style="width:50px; height:50px;" /></div>
+        <p class="lead"><strong><?= substr($value['title'], 0, 20); ?></strong></p>
+
+        <p class="txt"><?= substr($value['description'], 0, 40); ?></p>
+        <p class="txt" style="text-align:right"><a href="<?php echo $this->basePath() ?>/obituary/view/<?= $value['id'] ?>">Read More..</a></p>
+        <div class="clearfix"></div>
+        <div class="status">
+            <span>Posted By: <?= $value['full_name'] ?></span><br/>
+            <span><?= $date; ?></span>
+            <span>Comments: <?= $this->MyHelper()->CommentCount($value['id']); ?></span>
+            <span>Visits: <?= $value['view_count'] ?></span>
+        </div>
+        </span>
+        <?php } ?>
+        <a href="<?php echo $this->basePath() ?>/obituary" class="btn btn-info">more.</a>
+        <div class="clearfix"></div>
+        
+       
+    </div>
+</div>
+
+
+
+
+<div class="col-sm-3 futtornew">
+    <div class="footer-panel">
+        <h3>Just Born</h3>
+       
+        <?php
+        foreach ($JustBorn as $key => $value) {
+            $imgpath = (empty($value['image'])) ? "img/default_user.png" : "/PostsImages/" . $value['image'];
+            $date = date("d/m/Y", strtotime($value['created_date']));
+        ?>
+        <span>
+        <div class="pull-left thumbnail"><img src="<?php echo $this->basePath() . $imgpath ?>" class="no-border footerthumb" style="width:50px; height:50px;" /></div>
+        <p class="lead"><strong><?= substr($value['title'], 0, 20); ?></strong></p>
+        <p class="txt"><?= substr($value['description'], 0, 40); ?></p>
+        <p class="txt" style="text-align:right"><a href="<?php echo $this->basePath() ?>/justborn/view/<?= $value['id'] ?>">Read More..</a></p>
+        <div class="clearfix"></div>
+        <div class="status">
+        <!-- <span>Likes: 75</span> -->
+            <span>Posted By: <?= $value['full_name'] ?></span><br/>
+            <span><?= $date ?></span>
+            <span>Comments: <?= $this->MyHelper()->CommentCount($value['id']); ?></span>
+            <span>Visits: <?= $value['view_count'] ?></span>
+        </div>
+        </span>
+        <?php }?>
+        <a href="<?php echo $this->basePath() ?>/justborn" class="btn btn-info">more.</a>
+        
+        <div class="clearfix"></div>
+        
+       
+    </div>
+    
+    
+</div>
+

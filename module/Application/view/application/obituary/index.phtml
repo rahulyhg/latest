@@ -1,0 +1,67 @@
+<div class="col-sm-3 col-sm-3-new width20per">
+<?php echo $this->partial('layout/sidebar-post') ?>
+</div>
+<img src="<?php echo $this->basePath() ?>/img/loadingmap.gif" id="Loading_Request" style="position:absolute;display:none;z-index: 9;margin-left: 31%;margin-top: 8%;width: 80px;"/>
+
+<div id="postContainer"> 
+<div class="col-sm-9 width80per">
+<div class="filtersresults">
+
+<h2 class="heading">All Listings for 'Obituary'</h2>
+<ul id="items">
+ <?php 
+if(count($AllPosts)>0){
+foreach ($AllPosts as $Posts) {
+
+?>
+
+<li>
+<div class="col-md-6 news col-xs-12">
+<div class="col-md-3 col-sm-2 col-xs-2 img">
+   
+<img src="<?= empty($Posts->image)? $this->basePath()."/img/default_user.png":$this->basePath()."/PostsImages/".$Posts->image; ?>" class="img-responsive" style="height:90px; width:100%;" />
+</div>
+<div class="col-md-9 col-sm-10 col-xs-10 content">
+<h4><?=substr($Posts->title,0,20);?></h4>
+
+<p>
+<label style="height:23px;">
+<?php $this->MyHelper()->ContentLength($Posts->description); ?>
+</label>
+<br />
+<strong>Posted By:</strong> <?=$Posts->full_name?><br>
+<strong>Posted Date:</strong> <?php echo date('d-m-Y H:i:s', strtotime($Posts->created_date)); ?><br />
+<span class="pull-right">
+<a href="<?php echo $this->basePath()?>/obituary/view/<?=$Posts->id?>">Read Full Story >></a>
+</span>
+</p>
+
+</div>
+</div>
+</li> 
+ <?php 
+}
+}
+else echo '<h4>Currently No Data Available</h4>';
+ ?>
+</ul>
+<div class="clearfix"></div>
+</div>
+</div>
+</div>
+
+<!--<nav>
+  <ul class="pagination">
+  <li class="disabled"><a href="#">Pages:</a></li>
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li><a href="#">6</a></li>
+    <li><a href="#">7</a></li>
+    <li class="disabled"><a href="#">.....</a></li>
+    
+  </ul>
+</nav>
+<div class="clearfix"></div>-->

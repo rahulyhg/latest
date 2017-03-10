@@ -1,0 +1,27 @@
+<?php
+echo $this->headLink()
+
+        ->prependStylesheet($this->basePath() . '/css/componant-vs-14.css')
+?>
+
+<div class="col-sm-3 col-sm-3-new width20per">
+    <?php //echo $this->partial('layout/sidebar-user') ?>
+    <?php //include('sidebar-left-matrimonial.phtml');?>
+    <?php echo $sidebarLeft; ?>
+</div>
+
+
+<div class="col-sm-9 width80per">
+    <?php include('main_info_matrimonial.phtml'); ?>
+
+    <div class="clearfix"></div>
+    <?php include('menu_matrimonial.phtml'); ?>
+
+
+    <div class="tab-content" id="profile">
+      
+    </div>
+</div>
+
+
+

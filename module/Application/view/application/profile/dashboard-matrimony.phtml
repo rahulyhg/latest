@@ -1,0 +1,724 @@
+<?php $session = new \Zend\Session\Container('user'); ?>
+<?php
+$user_id = $session->offsetGet('id');
+// $searchFor=2;
+//                            $sents=array_filter($invitationRows, function($element) use($searchFor){
+//                                     if($element['user_id']==$searchFor && $element['sent']!==NULL){
+//                                     return $element;
+//                                     }
+//                             });
+//                             
+//                              foreach ($sents as $sent) {
+//                                  //$profileSent=$this->MyHelper()->userSummaryByIdMatrimonial($sent['sent']);
+//                                  //\Zend\Debug\Debug::dump($profileSent);
+//                              }
+//\Zend\Debug\Debug::dump($this->MyHelper()->userSummaryByIdMatrimonial(1));
+//                              exit;
+?>
+
+<style>
+
+    /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+    .show {display:block;}
+
+    label {
+
+        margin-bottom: 0;
+
+    }
+
+    .grid-view ul li .col-xs-2 .btn {
+        border: 0 none;
+        border-radius: 3px;
+        display: table;
+        font-size: 9px;
+        font-weight: normal;
+        line-height: 1.1;
+        margin: 0 auto;
+        padding: 4px 5px;
+        float:right;
+    }
+
+    .list-view ul li .col-xs-10 .col-xs-8 {
+        font-size: 11px;
+        font-weight: normal;
+        margin: 0;
+        padding: 0 0 0;
+
+    }
+
+
+    .grid-view ul li {
+        color: #636363;
+        float: left;
+        font-size: 11px;
+        margin: 0 7px 20px;
+
+    }
+
+
+    .list-view ul li {
+
+        width:97%;
+    }
+</style>
+
+<?php
+echo $this->headLink()
+        ->prependStylesheet($this->basePath() . '/css/componant-vs-14.css')
+?>
+<div class="container orange-panelbg">
+    <div class="col-sm-3 col-sm-3-new width20per">
+        <?php //include('sidebar-left-matrimonial.phtml'); ?>
+        <?php echo $sidebarLeft; ?>
+        <?php echo $this->partial('layout/sidebar-matrimonial')?>
+    </div>
+
+    <div class="col-sm-9 width80per">
+        <div class="myshaadi_wrap">
+            <div class="welcome_screen"></div>
+
+
+            <div class="clear"></div>
+        </div>
+                <div class="row" id="listgrid" style="display: none">
+            <div class="col-xs-9">
+                <!--<ul class="view-menu">
+                <li>Sort By :</li>
+                <li class="active"><a href="#">New Joining</a></li>
+                <li><a href="#">Executive Communinty</a></li>
+                <li><a href="#">Senior Citizen</a></li>             
+                </ul>-->
+            </div>
+            <div class="col-xs-3">
+                <ul class="prof-view pull-right">
+                    <li><a href="#" id="grid"><span class="glyphicon glyphicon-th-list"></span><span class="sr-only">List View</span></a></li>
+                    <li><a href="#" id="list"><span class="glyphicon glyphicon-th"></span><span class="sr-only">Grid View</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div id="profile1"></div>
+        <!--MY SHAADI LEFT-->
+        <div class="col-sm-9" style="padding-top:0; padding-left:0;" id="profilepage">
+
+            <!--<div id="my_rustagi_left">
+            
+            
+                    
+            
+            
+            </div>--><!--end left_half-->	
+            <?php
+//\Zend\Debug\Debug::dump($this->userSummary);exit;
+            ?>
+            <!--MIDDLE SECTION-->
+            <div id="my_rustagi_middle">
+                <!--Pin Interest render-->
+                <div id="pin_interest" style="display: block;">    
+                    <div class="pinned_wrap">
+                        <div class="pinned_shadow">
+                            <a href="#" class="pinned_pro_name" target="_blank">Hello <?php echo $this->userSummary['full_name']; ?> <?php echo $session->offsetGet('ref_no'); ?></a>
+                            <div class="pinned_profile_green">
+                                <p class="pinned_heading" style="font-size:14px;">
+                                    <label class="col-sm-12" style="padding:0;"> Your Account in Now <span style="font-size:16px; color:#F90;"> <?php //echo $this->MyHelper()->getActiveStatusById($user_id);    ?> </span>! <?php echo $this->userSummary['full_name']; ?></label>                
+                                </p>
+
+                                <div id="pin_interest_profile" class="pos_rel">
+
+                                    <div class="pinned_profile_wrap" rel="vSH87477335">
+                                        <div class="pinned_pic">
+                                            <span class="thumb60">
+                                                <a href="<?php echo $this->url('profile', array('action' => 'view-profile')) ?>" target="">
+                                                    <?php if (!empty($this->userSummary['image_name'])) { ?>
+                                                        <img  src="<?php echo $this->basePath(MATRIMONIAL_IMAGE_PATH) . $this->userSummary['image_name']; ?>" border="0" height="60" width="60"/>
+                                                    <?php } else { ?>
+                                                        <img src="<?php echo $this->basePath('img/default_user.png') ?>" border="0" height="60" width="60"/>
+                                                    <?php } ?>
+                                                </a>             
+                                            </span>
+                                        </div>
+                                        <div class="pinned_info col-sm-10">
+                                            <span class="">Your Profile Completeness Bar <?= $percent[0] ?>/100</span><br />
+                                            <span class="" style="border-top:1px solid #ccc;">Complete Your Profile to 100% and get additional acces to 5 more Profiles</span>
+                                            <div class="clearfix"></div>
+                                            <ul class="member_details col-sm-6">
+
+                                                <li><span class="iconbullate">Photograph added <span class="orange">10 Points</span></span></li>
+
+                                                <li><span class="iconbullate">Mobile Number Verified  <span class="orange">20 Points</span></span></li>
+                                                <li><span class="iconbullate">Family details Added <span class="orange">10 Points</span></span></li>
+                                                <li><span class="iconbullate">Personality Detail Added <span class="orange">5 Points</span></span></li>
+                                                <li><span class="iconbullate">Address Detail Added <span class="orange">15 Points</span></span></li>
+
+                                                <li><span class="iconbullate">Education detail Added <span class="orange">5 Points</span></span></li>
+                                                <li><span class="iconbullate">Partner Preferences are set Added <span class="orange">10 Points</span></span></li>
+
+                                            </ul>
+                                            <div class="col-sm-3 pull-right" align="center">
+
+                                                <canvas id="demo-3" style="demo"></canvas>
+
+                                                <center> <span><?= $percent[0] ?>% Completed</span></center>
+                                            </div>
+
+                                        </div>
+
+
+
+
+
+                                        <div class="clearfix"></div>
+
+
+                                    </div>                   
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="recently_joined" style="display: block;">
+                    <div class="mid_box">
+                        <img src="<?php echo $this->basePath() ?>/images/add.jpg">
+                    </div>
+                </div>
+
+
+
+                <!-- request pending  -->
+                <div id="recently_joined" style="display: block;">
+                    <div class="mid_box">
+                        <div class="mid_box_header">
+                            New Matches <span class="recently_joined_count">(<?php echo count($newMemberInfo); ?>)</span>
+                            <p class="view_all"><a href="#" class="light_link_blue" target="_blank">View More</a></p>
+                            <div class="col-xs-3 pull-right">
+                                <ul class="prof-view pull-right">
+                                    <li><a href="#" id="list_newmatches"><span class="glyphicon glyphicon-th-list"></span><span class="sr-only">List View</span></a></li>
+                                    <li><a href="#" id="grid_newmatches"><span class="glyphicon glyphicon-th"></span><span class="sr-only">Grid View</span></a></li>
+                                </ul>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-9">
+
+                            </div>
+
+                        </div>
+
+                        <div class="clearfix"></div>
+                        <!-- <div class="filters_loader_box">
+                                <div id="filters_data_loader"><h1>Loading...</h1></div>
+                        </div> -->
+                        <div id="profile">
+
+                            <div class="commen-list grid-view">
+                                <ul id="items">
+                                    <li>
+                                        <div class="col-xs-2"></div>
+                                        <div class="col-xs-10">
+                                            <div class="col-xs-2">Name</div>
+                                            <div class="col-xs-3">F. Name</div>
+                                            <div class="col-xs-3">Occupation</div>
+                                            <div class="col-xs-2">Area</div>
+                                            <div class="col-xs-2">Branch</div>
+                                        </div>
+                                    </li>
+                                    <?php
+                                    //Zend\Debug\Debug::dump($newMemberInfo);
+                                    foreach ($newMemberInfo as $newMemberInfo) {
+                                        //\Zend\Debug\Debug::dump($newMemberInfo);
+
+                                        if (!empty($newMemberInfo['image_name'])) {
+                                            $imagepath = MATRIMONIAL_IMAGE_PATH . $newMemberInfo['image_name'];
+                                        } else {
+                                            $imagepath = '/images/default_user.png';
+                                        }
+                                        ?>
+
+
+                                        <li class="li_listmember dashboardli" id="<?php echo 'new_matches_' . $newMemberInfo['user_id'] ?>">
+                                            <div class="col-xs-2">
+                                                <div class="profile-pic">
+                                                    <div class="row_box">
+                                                        <div style="opacity: 1; display: block;" class="item tr big">
+                                                            <img src="<?php echo $imagepath; ?>">
+                                                        </div>
+                                                    </div>                                
+                                                </div>
+                                                <?php //\Zend\Debug\Debug::dump($newMemberInfo);   ?>
+                                                <h3><?php echo $newMemberInfo['name_title_user'] ?> <?php echo $newMemberInfo['full_name'] ?> <?php echo $newMemberInfo['last_name'] ?></h3>
+                                                <h3><?php echo $this->MyHelper()->ageByDob($newMemberInfo['dob'])." Yr"; ?>, <?php if ($newMemberInfo['height'] != '') echo $this->MyHelper()->getHeightById($newMemberInfo['height'])['height']; ?></h3>
+                                                <h4><?php $newMemberInfo['city'] != NULL ? $this->MyHelper()->getCityNameById($newMemberInfo['city'])['city_name'] : ''; ?></h4>
+                                                <h3> 
+                                                    <a href="javascript:void(0)" class="btn btn-default" style="margin-right:2px;" onclick="sendRequest(<?php echo $newMemberInfo['user_id'] ?>, 'yes')">Request</a>
+                                                    <a href="javascript:void(0)" class="btn btn-default" style="margin-right:2px;" onclick="sendRequest(<?php echo $newMemberInfo['user_id'] ?>, 'maybe')">May Be</a>
+                                                    <a href="<?php echo $this->url('profile', array('action' => 'profile-view-matrimony'), array('query' => array('matrimony_id' => $newMemberInfo['user_id']))) ?>" class="btn btn-default" style="margin-right:2px;">View</a>
+                                                </h3>
+                                                <h6> 
+                                                    <a href="#" class="btn btn-default" style="float:none;" onclick="sendRequest(<?php echo $newMemberInfo['user_id'] ?>, 'yes')">Request</a>
+                                                    <a href="#" class="btn btn-default" style="float:none;" onclick="sendRequest(<?php echo $newMemberInfo['user_id'] ?>, 'maybe')">May Be</a>
+                                                    <a href="<?php echo $this->url('profile', array('action' => 'profile-view-matrimony'), array('query' => array('matrimony_id' => $newMemberInfo['user_id']))) ?>" class="btn btn-default" style="float:none;">View</a>
+                                                </h6>
+                                            </div>
+                                            <div class="col-xs-10">
+                                                <div class="col-xs-8">
+                                                    <div class="col-xs-2 col-xs-2-member">Name</div>
+                                                    <div class="col-xs-3 col-xs-3-member"><?php echo $newMemberInfo['name_title_user'] ?> <?php echo $newMemberInfo['full_name'] ?> <?php echo $newMemberInfo['last_name']; ?></div>
+                                                    <div class="col-xs-2 col-xs-2-member">Age</div>
+                                                    <div class="col-xs-3 col-xs-3-member"><?php echo $this->MyHelper()->ageByDob($newMemberInfo['dob']) ?></div>
+                                                    <div class="col-xs-2 col-xs-2-member">Height</div>
+                                                    <div class="col-xs-3 col-xs-3-member"><?php if ($newMemberInfo['height'] != '') echo $this->MyHelper()->getHeightById($newMemberInfo['height'])['height']; ?></div>
+                                                    <div class="col-xs-2 col-xs-2-member">Religion</div>
+                                                    <div class="col-xs-3 col-xs-3-member"><?php if ($newMemberInfo['religion'] != "") echo $this->MyHelper()->getReligionNameById($newMemberInfo['religion'])['religion_name']; ?></div>
+                                                    <div class="col-xs-2 col-xs-2-member">Location</div>
+                                                    <div class="col-xs-3 col-xs-3-member"><?php echo $newMemberInfo['address']; ?> <?php $newMemberInfo['city'] != NULL ? $this->MyHelper()->getCityNameById($newMemberInfo['city'])['city_name'] : ''; ?></div>
+                                                    <div class="col-xs-2 col-xs-2-member">Education</div>
+                                                    <div class="col-xs-3 col-xs-3-member"><?php if ($newMemberInfo['education_level'] != "") echo $newMemberInfo['education_level']//echo $this->MyHelper()->getEducationLevelNameById($newMemberInfo['education_level'])['education_level'];  ?></div> 
+                                                    <div class="col-xs-2 col-xs-2-member">Profession</div>
+                                                    <div class="col-xs-3 col-xs-3-member"><?php if ($newMemberInfo['profession'] != "") echo $newMemberInfo['profession']//echo $this->MyHelper()->getProfession($newMemberInfo['profession'])[0]['profession'];  ?></div>  
+                                                </div>
+                                                <div class="clearfix"></div>
+
+                                                <div class="col-xs-4" style="padding:0 0;">
+                                                    <div style="">
+                                                        <span>Follow : -</span>
+                                                        <ul class="follow">
+                                                            <li style="width:32%; min-height:auto !important;"><a href="#" class="facebook"></a></li>
+                                                            <li style="width:32%; min-height:auto !important;"><a href="#" class="twitter"></a></li>
+                                                            <li style="width:32%; min-height:auto !important;"><a href="#" class="gplus"></a></li>
+                                                            <li style="width:32%; min-height:auto !important;"><a href="#" class="linkedin"></a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <div class="col-xs-12" style="display:none;">
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                    <?php } ?>
+
+
+
+
+
+
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- request pending --> 
+
+
+                <!--Invitation sent Starts Here -->
+
+                <!-- request pending  -->
+                <div id="recently_joined" style="display: block;">
+                    <div class="mid_box">
+                        <div class="mid_box_header">
+                            <?php
+                            $searchFor = $user_id;
+                            $sents = array_filter($invitationRows, function($element) use($searchFor) {
+                                if ($element['user_id'] == $searchFor && $element['sent'] !== NULL && $element['accepted'] === NULL && $element['type'] == '1') {
+
+                                    return $element;
+                                }
+                            });
+                            //\Zend\Debug\Debug::dump($sents);
+                            ?>
+                            Invitation Sent <span class="recently_joined_count">(<?php echo count($sents); ?>)</span>
+                            <p class="view_all"><a href="#" class="light_link_blue" target="_blank">View More</a></p>         
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-9">
+
+                            </div>
+
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        <div id="profile">
+
+                            <div class="commen-list grid-view">
+                                <ul id="items">
+                                    <li>
+                                        <div class="col-xs-2"></div>
+                                        <div class="col-xs-10">
+                                            <div class="col-xs-2">Name</div>
+                                            <div class="col-xs-3">F. Name</div>
+                                            <div class="col-xs-3">Occupation</div>
+                                            <div class="col-xs-2">Area</div>
+                                            <div class="col-xs-2">Branch</div>
+                                        </div>
+                                    </li>
+
+                                    <?php
+                                    foreach ($sents as $sent) {
+                                        $profileSent = $this->MyHelper()->userSummaryByIdMatrimonial($sent['sent']);
+                                        //\Zend\Debug\Debug::dump($profileSent);exit;
+//                                        foreach ($this->sentInvitationList->memInfoSent as $memInfoSent) {
+//                                            if ($memInfoSent['sent'] == $inviteSentMembers['user_id']) {
+//                                                $meid = $memInfoSent['id'];
+//                                                $type = $memInfoSent['type'];
+//                                            }
+//                                        }
+                                        if (!empty($profileSent['image_name'])) {
+                                            $imagepath = MATRIMONIAL_IMAGE_PATH . $profileSent['image_name'];
+                                        } else {
+                                            $imagepath = '/images/default_user.png';
+                                        }
+
+                                        //\Zend\Debug\Debug::dump($receivedMember);
+                                        ?>
+                                        <li class="li_listmember dashboardli" id="<?php echo 'invitation_sent_' . $sent['id']; ?>">
+                                            <div class="col-xs-2">
+                                                <div class="profile-pic">
+                                                    <div class="row_box">
+                                                        <div style="opacity: 1; display: block;" class="item tr big">
+                                                            <img src="<?php echo $imagepath ?>">
+                                                        </div></div>
+                                                </div>
+                                                <h3><?php echo $profileSent['full_name'] ?></h3>
+                                                <h3><?php echo $this->MyHelper()->ageByDob($profileSent['dob'])." Yr"; ?>, <?php if ($profileSent['height'] != '') echo $this->MyHelper()->getHeightById($profileSent['height'])['height']; ?></h3>
+                                                <h4><?php $profileSent['city'] != NULL ? $this->MyHelper()->getCityNameById($profileSent['city'])['city_name'] : ''; ?></h4>
+                                                <h3> <a href="<?php echo $this->url('profile', array('action' => 'profile-view-matrimony'), array('query' => array('matrimony_id' => $sent['sent']))) ?>" class="btn btn-default" style="float:left; margin-right:2px;">View</a>
+                                                    <a href="javascript:void(0)" class="btn btn-default" style="margin-right:2px;" onclick="declineRequest(<?php echo $sent['id']; ?>, <?php echo $sent['sent']; ?>, <?php echo $sent['type']; ?>, 'cancel')">Cancel</a></h3><h3>
+                                                </h3><h6> 
+                                                    <a href="javascript:void(0)" class="btn btn-default" style="float:right; margin-right:2px;" onclick="declineRequest(<?php echo $sent['id']; ?>, <?php echo $sent['sent']; ?>, <?php echo $sent['type']; ?>, 'cancel')">Cancel</a>
+                                                    <a href="<?php echo $this->url('profile', array('action' => 'profile-view-matrimony'), array('query' => array('matrimony_id' => $sent['sent']))) ?>" class="btn btn-default" style="float:none;">View</a>
+                                                </h6><h6>
+                                                </h6></div>
+                                            <div class="col-xs-10">
+                                                
+                                                <div class="col-xs-8">
+                                                    <div class="col-xs-2 col-xs-2-member">Name</div>
+                                                    <div class="col-xs-3 col-xs-3-member"><?php echo $profileSent['name_title_user'] ?> <?php echo $profileSent['full_name'] ?> <?php echo $profileSent['last_name']; ?></div>
+                                                    <div class="col-xs-2 col-xs-2-member">Age</div>
+                                                    <div class="col-xs-3 col-xs-3-member"><?php echo $this->MyHelper()->ageByDob($profileSent['dob']) ?></div>
+                                                    <div class="col-xs-2 col-xs-2-member">Height</div>
+                                                    <div class="col-xs-3 col-xs-3-member"><?php if ($profileSent['height'] != '') echo $this->MyHelper()->getHeightById($profileSent['height'])['height']; ?></div>
+                                                    <div class="col-xs-2 col-xs-2-member">Religion</div>
+                                                    <div class="col-xs-3 col-xs-3-member"><?php if ($profileSent['religion'] != "") echo $this->MyHelper()->getReligionNameById($profileSent['religion'])['religion_name']; ?></div>
+                                                    <div class="col-xs-2 col-xs-2-member">Location</div>
+                                                    <div class="col-xs-3 col-xs-3-member"><?php echo $profileSent['address']; ?> <?php $profileSent['city'] != NULL ? $this->MyHelper()->getCityNameById($profileSent['city'])['city_name'] : ''; ?></div>
+                                                    <div class="col-xs-2 col-xs-2-member">Education</div>
+                                                    <div class="col-xs-3 col-xs-3-member"><?php if ($profileSent['education_level'] != "") echo $this->MyHelper()->getEducationLevelNameById($profileSent['education_level_id'])['education_level'];  ?></div> 
+                                                    <div class="col-xs-2 col-xs-2-member">Profession</div>
+                                                    <div class="col-xs-3 col-xs-3-member"><?php if ($profileSent['profession'] != "") echo $this->MyHelper()->getProfession($profileSent['profession'])['profession'];  ?></div>  
+                                                </div>
+                 
+                                                
+                                                
+                                               
+                                                <div class="clearfix"></div>
+                                                <div class="col-xs-4" style="padding:0 0;">
+                                                    <div style="">
+                                                        <span>Follow : -</span>
+                                                        <ul class="follow">
+                                                            <li style="width:32%; min-height:auto !important;"><a href="#" class="facebook"></a></li>
+                                                            <li style="width:32%; min-height:auto !important;"><a href="#" class="twitter"></a></li>
+                                                            <li style="width:32%; min-height:auto !important;"><a href="#" class="gplus"></a></li>
+                                                            <li style="width:32%; min-height:auto !important;"><a href="#" class="linkedin"></a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <div class="col-xs-12" style="display:none;">
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    <?php } ?>
+
+
+
+
+
+
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- request pending --> 
+
+                <!-- Invitation Sent Ends Here -->
+
+                <!-- new member -->
+                <div id="recently_joined" style="display: block;">
+                    <div class="mid_box">
+                        <div class="mid_box_header">
+                            <?php
+                            $searchFor = $user_id;
+                            $receiveds = array_filter($invitationRows, function($element) use($searchFor) {
+                                if ($element['sent'] == $searchFor && $element['accepted'] === NULL && $element['type'] === '1') {
+                                    return $element;
+                                }
+                            });
+                            //\Zend\Debug\Debug::dump($sents);
+                            ?>
+                            Invitation Received <span class="recently_joined_count"> (<?php echo count($receiveds); ?>) </span>
+                            <p class="view_all"><a href="#" class="light_link_blue" target="_blank">View More</a></p>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-9">
+
+                            </div>
+
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        <div id="profile">
+
+                            <div class="commen-list grid-view">
+                                <ul id="items">
+                                    <li>
+                                        <div class="col-xs-2"></div>
+                                        <div class="col-xs-10">
+                                            <div class="col-xs-2">Name</div>
+                                            <div class="col-xs-3">F. Name</div>
+                                            <div class="col-xs-3">Occupation</div>
+                                            <div class="col-xs-2">Area</div>
+                                            <div class="col-xs-2">Branch</div>
+                                        </div>
+                                    </li>
+
+                                    <?php
+                                    if (count($receiveds) == 0) {
+                                        echo 'No request is Received';
+                                    } else {
+                                        foreach ($receiveds as $received) {
+                                            $profilereceived = $this->MyHelper()->userSummaryByIdMatrimonial($received['user_id']);
+//                                            foreach ($this->receivedInvitationList->memInfoReceived as $memInfoReceived) {
+//                                                if ($memInfoReceived['user_id'] == $inviReceivedMemberInfo['user_id']) {
+//                                                    $meid_recevied = $memInfoReceived['id'];
+//                                                    $type_received = $memInfoReceived['type'];
+//                                                }
+//                                            }
+                                            if (!empty($profilereceived['image_name'])) {
+                                                $imagepath = MATRIMONIAL_IMAGE_PATH . $profilereceived['image_name'];
+                                            } else {
+                                                $imagepath = '/images/default_user.png';
+                                            }
+                                            ?>                       
+
+                                            <li class="li_listmember" id="<?php echo 'invitation_received_' . $received['id']; ?>">
+                                                <div class="col-xs-2">
+                                                    <div class="profile-pic"><img src="<?php echo $imagepath; ?>"></div>
+                                                    <h3><?php echo $profilereceived['name_title_user']; ?> <?php echo $profilereceived['full_name'] ?></h3>
+                                                    <h3><?php echo $this->MyHelper()->ageByDob($profilereceived['dob']) . " Yr" ?>, <?php if ($profilereceived['height'] != '') echo $this->MyHelper()->getHeightById($profilereceived['height'])['height']; ?></h3>
+                                                    <h4><?php $profilereceived['city'] != null ? $this->MyHelper()->getCityNameById($profilereceived['city'])['city_name'] : ''; ?></h4>
+                                                    <h3> 
+                                                        <a href="javascript:void(0)" class="btn btn-default" style="margin-right:2px;" onclick="acceptRequest(<?php echo $received['id']; ?>, <?php echo $received['user_id']; ?>, <?php echo $received['type']; ?>)">Accept</a>
+                                                        <a href="javascript:void(0)" class="btn btn-default" style="margin-right:2px;" onclick="declineRequest(<?php echo $received['id']; ?>, <?php echo $received['user_id']; ?>, <?php echo $received['type']; ?>, 'decline')">Decline</a>
+                                                        <a href="<?php echo $this->url('profile', array('action' => 'profile-view-matrimony'), array('query' => array('matrimony_id' => $received['user_id']))) ?>" class="btn btn-default" style="margin-right:2px;">View</a>
+                                                    </h3>
+                                                    <h6> 
+                                                        <a href="javascript:void(0)" class="btn btn-default" style="float:none;" onclick="acceptRequest(<?php echo $received['id']; ?>, <?php echo $received['user_id']; ?>, <?php echo $received['type']; ?>)">Accept</a>
+                                                        <a href="javascript:void(0)" class="btn btn-default" style="float:none;" onclick="declineRequest(<?php echo $received['id']; ?>, <?php echo $received['user_id']; ?>, <?php echo $received['type']; ?>, 'decline')">Decline</a>
+                                                        <a href="<?php echo $this->url('profile', array('action' => 'profile-view-matrimony'), array('query' => array('matrimony_id' => $received['user_id']))) ?>" class="btn btn-default" style="float:none;">View</a>
+                                                    </h6>
+                                                </div>
+                                                <div class="col-xs-10">
+                                                    <div class="col-xs-8">
+                                                        <div class="col-xs-2 col-xs-2-member">Name</div>
+
+                                                        <div class="col-xs-3 col-xs-3-member"><?php echo $profilereceived->name_title_user; ?> <?php echo $profilereceived['full_name'] ?></div>
+                                                        <div class="col-xs-2 col-xs-2-member">Age</div>
+                                                        <div class="col-xs-3 col-xs-3-member"><?php echo $this->MyHelper()->ageByDob($profilereceived['dob']) . " Yr" ?></div>
+                                                        <div class="col-xs-2 col-xs-2-member">Height</div>
+                                                        <div class="col-xs-3 col-xs-3-member"><?php if ($profilereceived['height'] != '') echo $this->MyHelper()->getHeightById($profilereceived['height'])['height']; ?></div>
+                                                        <div class="col-xs-2 col-xs-2-member">Religion</div>
+                                                        <div class="col-xs-3 col-xs-3-member"><?php if ($profilereceived['religion'] != "") echo $this->MyHelper()->getReligionNameById($profilereceived['religion'])['religion_name']; ?></div>
+
+                                                        <div class="col-xs-2 col-xs-2-member">Location</div>
+                                                        <div class="col-xs-3 col-xs-3-member"><?php echo $profilereceived['address']; ?> <?php echo $this->MyHelper()->getCityNameById($profilereceived['city'])['city_name']; ?></div>
+                                                        <div class="col-xs-2 col-xs-2-member">Education</div>
+                                                        <div class="col-xs-3 col-xs-3-member"><?php if ($profilereceived['education_level'] != "") echo $this->MyHelper()->getEducationLevelNameById($profilereceived['education_level_id'])['education_level'];  ?></div> 
+                                                        <div class="col-xs-2 col-xs-2-member">Profession</div>
+                                                        <div class="col-xs-3 col-xs-3-member"><?php if ($profilereceived['profession'] != "") echo $this->MyHelper()->getProfession($profilereceived['profession'])['profession'];  ?></div>  
+                                                    </div>
+                                                    <div class="clearfix"></div>
+
+                                                    <div class="col-xs-4" style="padding:0 0;">
+                                                        <div style="">
+                                                            <span>Follow : -</span>
+                                                            <ul class="follow">
+                                                                <li style="width:32%; min-height:auto !important;"><a href="#" class="facebook"></a></li>
+                                                                <li style="width:32%; min-height:auto !important;"><a href="#" class="twitter"></a></li>
+                                                                <li style="width:32%; min-height:auto !important;"><a href="#" class="gplus"></a></li>
+                                                                <li style="width:32%; min-height:auto !important;"><a href="#" class="linkedin"></a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                    <div class="col-xs-12" style="display:none;">
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+
+                                        <?php
+                                        }
+                                    }
+                                    ?>
+
+
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- nw member  --> 
+
+
+            </div>
+        </div>
+        <!--MY rustagi RIGHT-->
+        <div id="my_rustagi_right" class="col-sm-3 col-sm-3new pull-right" id="profilepage">
+            <?php echo $sidebarRight ?>
+            <?php //echo $this->partial('layout/sidebar-right') ?>
+        </div>
+        <!--end right_half-->
+        <br class="clear">
+    </div>
+
+
+</div>
+
+<script>
+
+<?php echo $percent[1] ?>
+
+    $('#demo-3').waterbubble({txt: '<?php echo $percent[0] ?>%', });
+</script>
+
+
+<script>
+    $(document).ready(function () {
+        $("#contact_detail").click(function () {
+            $(".contactde").toggle();
+        });
+        
+        $('#list_newmatches').click(function (event) {
+            event.preventDefault();
+            $('#profile .commen-list').addClass('list-view');
+        });
+        $('#grid_newmatches').click(function (event) {
+            event.preventDefault();
+            $('#profile .commen-list').removeClass('list-view');
+            $('#profile .commen-list').addClass('grid-view');
+        });
+
+    });
+    
+    
+</script>
+
+<script>
+    function sendRequest(uid, type) {
+        var url = '<?php echo $this->url('profile', array('action' => 'sendRequestMatrimonial')) ?>';
+        $.ajax({
+            url: url,
+            data: {
+                uid: uid, type: type
+            },
+            error: function (request, status, error) {
+                console.log(status);
+            },
+            success: function (data) {
+                $('#new_matches_' + uid).hide();
+                console.log(data);
+            },
+            type: 'POST'
+        });
+    }
+
+    function acceptRequest(id, uid, type) {
+        $.ajax({
+            url: '<?php echo $this->url('profile', array('action' => 'matrimonyinterestaccepted')) ?>',
+            data: {
+                id: id, uid: uid, type: type
+            },
+            error: function (request, status, error) {
+                console.log(status);
+            },
+            success: function (data) {
+                $('#invitation_received_' + id).hide();
+                console.log(data);
+            },
+            type: 'POST'
+        });
+    }
+
+    function declineRequest(id, uid, type, request_type) {
+        $.ajax({
+            url: '<?php echo $this->url('profile', array('action' => 'interestDeclineMatrimonial')) ?>',
+            data: {
+                id: id, uid: uid, type: type, request_type: request_type
+            },
+            error: function (request, status, error) {
+                console.log(status);
+            },
+            success: function (data) {
+                if (request_type == "cancel") {
+                    $('#invitation_sent_' + id).hide();
+                } else if (request_type == "decline") {
+                    $('#invitation_received_' + id).hide();
+                }
+                console.log(data);
+            },
+            type: 'POST'
+        });
+    }
+
+    function acceptYesRequest(uid, id, type) {
+        $.ajax({
+            url: '<?php echo $this->url('profile', array('action' => 'interestAcceptYesMatrimonial')) ?>',
+            data: {
+                uid: uid, id: id, type: type
+            },
+            error: function (request, status, error) {
+                console.log(status);
+            },
+            success: function (data) {
+                $('#invitation_sent_' + id).hide();
+                console.log(data);
+            },
+            type: 'POST'
+        });
+    }
+</script>
+<script>
+    function sendInterest(uid,type){
+     $.ajax({
+      url: '/matrimonial/interest',
+      data: {
+         uid: uid,type: type
+      },
+     error: function (request, status, error) {
+        console.log(status);
+    },
+     
+      success: function(data) {
+         console.log(data);
+      },
+      type: 'POST'
+   });
+ }   
+</script>
+
+<?php echo $this->inlineScript()->prependFile($this->basePath('/js/matrimony_filters.js')); ?>

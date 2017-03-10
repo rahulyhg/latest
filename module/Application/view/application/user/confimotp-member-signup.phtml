@@ -1,0 +1,179 @@
+<div class="col-sm-3 col-sm-3-new width20per">
+    <?php echo $this->partial('layout/sidebar') ?>
+</div>
+<div class="col-sm-9" align="center" style="padding-top:100px;display: block" id="otpformss">
+    <div id="otpsentststus" style="color: red"></div>
+    <div class="col-sm-4" style="border:1px solid #ccc; padding-bottom:10px; padding-top:10px; float:none;">
+        <img src="<?php echo $this->basePath() ?>/img/loadingmap.gif" id="Loading_Request" style="position:absolute;display:none;z-index: 9;margin-left: 25%;width: 65px;"/>
+        <form method="post" action="#" id="formotp1" onsubmit="return confirmotpMemberSignup();">
+            <h2>Enter otp</h2>
+            <input required type="number" name="otp" class="form-control">
+            <input type="hidden" name="time" value="<?= $data['time'] ?>">
+            <input type="hidden" name="code" value="<?= $data['code'] ?>">
+            <input type="hidden" name="number" value="<?= $data['number'] ?>"><br />
+            <input type="submit" value="submit" class="btn btn-default" name="sendotp">
+
+        </form>	
+
+    </div>
+    <?php if ($data['resendButton']) { ?>
+        <div id="resend_otp" onclick="resendOtp()">Resend OTP</div>
+    <?php } ?>
+</div>
+
+
+<div class="col-sm-9" align="center" style="padding-top:100px;display: none" id="changepswd">
+    <div id="otpsentststus" style="color: red"></div>
+    <div class="col-sm-4" style="border:1px solid #ccc; padding-bottom:10px; padding-top:10px; float:none;">
+        <img src="<?php echo $this->basePath() ?>/img/loadingmap.gif" id="Loading_Request" style="position:absolute;display:none;z-index: 9;margin-left: 25%;width: 65px;"/>
+        <form method="post" action="#" id="formcpwd" onsubmit="return changePasswordMatrimonialSignup();">
+            <h2>Change password</h2>
+            <input required type="password" id="old_password" name="old_password" class="form-control" placeholder="Old Password"><br/>
+            <input required type="password" id="new_password" name="new_password" class="form-control" placeholder="New Password">
+            <input type="submit" value="Change password" class="btn btn-default" name="changepwd">
+
+        </form>	
+
+    </div>
+
+</div>
+
+
+
+<div class="col-sm-9" align="center" style="padding-top:100px;display: none" id="regthanks">
+
+    <div class="col-sm-4" style="border:1px solid #ccc; padding-bottom:10px; padding-top:10px; float:none;">
+        <h3 style="color: #18a665">Thanks for registration</h3>
+    </div>
+</div>
+
+<script>
+    function resendOtp() {
+
+        $.ajax({
+            url: '<?php echo $this->basePath() ?>' + '/user/resendOtpWithSession',
+            type: 'post',
+            beforeSend: function () {
+                $('#Loading_Request').show();
+            },
+            complete: function () {
+                $('#Loading_Request').hide();
+            },
+            success: function (result) {
+                console.log(result);
+                //document.getElementById("id").innerHTML = result;
+                document.getElementById("otpsentststus").innerHTML = 'OTP sent on your mobile';
+            },
+            error: function () {
+                //console.log(); 
+            }
+        });
+
+    }
+
+    function confirmotpMemberSignup() {
+        var queryString = $("#formotp1").serialize() + "&is_reg=1";
+        //alert(queryString);
+        //exit;
+
+        $.ajax({
+            url: '<?php echo $this->basePath() ?>' + '/user/confirmotpMember',
+            type: 'post',
+            dataType: "JSON",
+            data: queryString,
+            beforeSend: function () {
+                $('#Loading_Request').show();
+            },
+            complete: function () {
+                $('#Loading_Request').hide();
+            },
+            success: function (data) {
+                var parsed = data;
+                //console.log(parsed);exit;
+                if (parsed.resp == 1) {
+                    if (parsed.success.is_reg == 1) {
+                        document.getElementById('otpformss').style.display = "none";
+                        //document.getElementById('regthanks').style.display = "block";
+                        //document.getElementById('changepswd').style.display = "block";
+                        //$("#otpform").hide();
+                        //$("#regthanks").show();
+                        //alert(parsed.success.msg);
+                        document.getElementById('regthanks').style.display = "block";
+                        alert(parsed.success.msg);
+                        $("html, body").animate({
+                            scrollTop: 0
+                        }, 600);
+                        document.getElementsByClassName("trigger")[0].click();
+//            $("html, body").animate({
+//                scrollTop: 0
+//            }, 600);
+                        //document.getElementsByClassName("trigger")[0].click();
+                    } else {
+                        // 		var otp = $("#otpform");
+                        // 		var chgpass = $("#chgpass");
+                        // 		// $("#mobileform").fadeOut();
+                        // 		otp.fadeOut();
+                        // 		chgpass.fadeIn();
+                        // 		chgpass.find("input[name=userid]").val(parsed.success.userid);
+                        // 			// alert();
+                    }
+                } else {
+                    alert(parsed.error);
+                }
+            },
+            error: function () {
+                //console.log(); 
+            }
+        });
+        return false;
+    }
+
+    function changePasswordMatrimonialSignup() {
+
+        var queryString = $("#formcpwd").serialize();
+
+        $.ajax({
+            url: '<?php echo $this->basePath() ?>' + '/user/changePasswordMatrimonial',
+            type: 'post',
+            dataType: "JSON",
+            data: queryString,
+            beforeSend: function () {
+                $('#Loading_Request').show();
+            },
+            complete: function () {
+                $('#Loading_Request').hide();
+            },
+            success: function (data) {
+                var parsed = data;
+
+                if (parsed.resp == 1) {
+                    if (parsed.success.is_reg == 1) {
+                        document.getElementById('changepswd').style.display = "none";
+                        document.getElementById('regthanks').style.display = "block";
+                        alert(parsed.success.msg);
+                        $("html, body").animate({
+                            scrollTop: 0
+                        }, 600);
+                        document.getElementsByClassName("trigger")[0].click();
+                    } else {
+                        // 		var otp = $("#otpform");
+                        // 		var chgpass = $("#chgpass");
+                        // 		// $("#mobileform").fadeOut();
+                        // 		otp.fadeOut();
+                        // 		chgpass.fadeIn();
+                        // 		chgpass.find("input[name=userid]").val(parsed.success.userid);
+                        // 			// alert();
+                    }
+                } else {
+                    alert(parsed.error);
+                }
+            },
+            error: function () {
+                //console.log(); 
+            }
+        });
+        return false;
+
+    }
+
+</script>

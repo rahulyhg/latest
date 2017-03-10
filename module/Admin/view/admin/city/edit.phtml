@@ -1,0 +1,130 @@
+ 
+
+                   
+                <?php 
+
+                $form=$this->form; 
+                $form->prepare();
+
+
+//        $form->setAttribute('action',$this->url('admin',array('controller'=>'city','action'=>'edit','id'=>$id)));
+//        $form->setAttribute('method','post');
+        
+        $form->setAttribute('action', $this->url('admin/city', array('action' => 'edit', 'id' => $id)));
+        $form->setAttribute('method', 'post');
+        $form->setAttribute('name', 'editform');
+        $form->setAttribute('autocomplete', 'off');
+        $form->setAttribute('id', 'CityFormEdit');
+        $form->setAttribute('enctype','multipart/form-data');
+        $action = $this->url('admin/city', array('action' => 'edit', 'id' => $id));
+        $form->setAttribute('onSubmit', "return SubmitFormAction($(this).attr('id'),'" . $action . "',addformResp)");
+
+        echo $this->form()->openTag($form);
+                ?>
+                     
+            <div class="tab-pane fade active in" id="driver_tab">
+              <div class="container col-sm-col-sm-offset-1" style="margin: 10px auto 0px !important;padding: 0 10px;">
+                
+                <div class="row">
+                                                <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-1 control-label labelalign ">
+                            <?= $this->translate($form->get('state_id')->getLabel()) ?>
+                           </label>
+                                                   
+                                                    
+                                                     
+                                                  <div class="col-sm-2">
+                                                     <?php 
+                                                     echo $this->formHidden($form->get('id'));
+                                                     echo $this->formElement($form->get('state_id'));
+                                                     //echo $this->formElement($form->get('city_name'));
+                                                     ?>     
+                                                      <span class="showerror"></span>                                                       
+                                                  </div>
+                                                 
+                         					     <label id="flight_nos" class="col-sm-1 control-label labelalign ">
+                            <?php echo $this->translate($form->get('city_name')->getLabel()) ?>
+                           </label>
+                                                  <div class="col-sm-2" id="editparent">
+                    <?php
+                    //echo $this->formHidden($form->get('id'));
+                    echo $this->formElement($form->get('city_name'));
+                    //echo $this->formElement($form->get('country_id'));
+                    ?> 
+                    <input id="city_name"  class="form-control inputchange" placeholder="City Name" type="text" 
+                                                     onkeyup="keyupresults35($(this).val(),$('#CityFormEdit :input[name=state_id]').val()
+                                                                        ,searchboxresults,'<?php echo $this->url("admin/city",
+                                                             array('action'=>'searchboxresults'))?>',CityFormEdit)" value="" name="city_name"  >
+                    <span class="showerror"></span>   
+                    <div class="col-sm-3 searchboxresults" id="searchresults" style="position: absolute;
+                         overflow-y:scroll;
+                         background:#FFF;
+                         width:93%;
+                         height:auto;
+                         z-index: 9999;display:none;">
+                    </div>                                
+                </div>
+                                                    
+                                                    <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                    <?= $this->translate($form->get('city_code')->getLabel()) ?>
+                </label>
+                <div class="col-sm-1">
+                    <?php
+                    echo $this->formElement($form->get('city_code'));
+                    echo $this->formHidden($form->get('master_city_id'));
+                    ?>  
+                    <span class="showerror"></span>                                   
+
+                </div>
+                               <div class="col-sm-2">                     
+                      <a href="#"  data-toggle="modal" data-target="#avatar-modalpost_image"  class="cropimage">Upload Photo</a>
+                  <!--<img id="post_photo" src="<?php //echo $this->basePath('img/default_user.png') ?>" width="40" height="40"/>-->
+        <!--<input type="text" name="image" id="image" value="">-->
+        
+        <?php if (!empty( $form->get('image')->getValue())) { ?>
+        <img id="post_photo" src="<?php echo $this->basePath() .'/CityImages/'. $form->get('image')->getValue(); ?>" width="20" height="20"/>
+    <?php } else { ?>
+        <img id="post_photo" src="<?php echo $this->basePath('img/default_user.png') ?>" width="20" height="20"/>
+    <?php } ?>
+
+    <?php
+//echo $this->formElement($form->get('image'));
+?>
+<input type="text" name="post_image_update" value="<?php if (!empty($form->get('image')->getValue())) { echo $form->get('image')->getValue();}?>">
+<input type="text" name="image" id="image" value="<?php if (!empty($form->get('image')->getValue())) { echo $form->get('image')->getValue();}?>">
+<input type="text" name="post_image_flag" id="post_image_flag" value="0">
+                               </div>       
+                                                    <!--<label id="flight_nos" class="col-sm-1 control-label labelalign ">
+                            <?//= $this->translate($form->get('is_active')->getLabel()) ?>
+                           </label>
+                           
+                                                    <div class="col-sm-2">
+                                                     <?php 
+                                                     //echo $this->formElement($form->get('is_active'));
+                                                     ?>                                    
+                                                  </div>-->
+                                                   <div class="col-sm-1">
+                                                     <?php 
+                                                     echo $this->formRow($form->get('submit'));
+                                                     ?>                                    
+                                                  </div>
+                                                  <div class="col-sm-1 pull-left">
+                    <a class="btn btn-red defaultbtnsearch searchBooking" href="javascript:void(0);" onclick="location.reload();">Cancel</a>                              
+                </div>
+                                                 </div>
+                                             </div>
+                                             
+              </div>
+            </div>
+          
+        <?php   
+echo $this->form()->closeTag();
+
+        ?>
+
+<!-- added by amir  --->
+
+
+    
+     
+  

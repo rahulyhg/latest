@@ -1,0 +1,43 @@
+<div class="modal-dialog modal-dialogcnt" role="document">
+    <div class="modal-content gnt-pad15">
+      <form role="form">
+   		<div class="form-group">
+        <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title" id="myModalLabel">Find Us Here</h2>
+      </div>
+      <div class="modal-body">
+      <?php 
+            
+           if(count($InstData)>0){
+
+            foreach ($InstData as $Idata) {
+
+            ?> 
+       <div class="col-md-3 col-sm-6 col-xs-6">
+       <h3><?php echo $Idata->institute_name;?> - <?php echo $Idata->institute_type;?></h3>
+       <p><?php echo $Idata->institute_address;?></p>
+       <?php foreach ($CommunityData[$Idata->id] as $Mdata) {?>
+       <p>+91-<?php echo $Mdata->contact_no;?></p>
+       <p>Email: <?php echo $Mdata->email;?></p>
+       <?php
+                }?>
+       </div>
+       <?php }
+     }else{ ?> 
+        <div class="col-md-3 col-sm-6 col-xs-6">
+       <h3>Rustagi Sabha Rohini-Pitampura Kshetra (Regd.)</h3>
+       <p>C-384, Saraswati Vihar, Delhi-110034</p>
+       <p>Tel: 011-23670278</p>
+       <p>Email: info@rustagisabharohini.com</p>
+       </div>
+      <?php } ?>
+      </div>
+      <div class="clearfix"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">Close</button>
+      </div>
+      </div>
+        </form>
+    </div>
+  </div>

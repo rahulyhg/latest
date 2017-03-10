@@ -1,0 +1,81 @@
+                    <div class="table-responsive">
+                      <table id="dynamic-table" class="table table-striped table-bordered table-hover">
+                    <thead>
+                      <tr>
+                           <th><input type="checkbox" value="" id="checkAll" onclick="checkall(this.id)" > </th>
+                        <th>S. No.</th>
+                        <th>Cast Name</th>
+                        <th>Gothra Name</th>
+                        <th class="hidden-480">Modified Date</th>
+                        <th class="hidden-480">Created Date</th>
+                        <th class="hidden-480">Status</th>
+                        <th class="hidden-480">Modified By</th>
+                        <th><b>Actions</b></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php 
+					  $i=1;
+                      if (count($results) > 0) {                    
+                      foreach ($results as $gothra) {
+                      
+                      ?>
+                      <tr>
+                        <td><input type="checkbox" value="<?=$gothra->id?>" class="checkme" name="checkme[]"> </td> 
+                       <td><?= $i ?></td>  
+                       <td><?= $gothra->casteName?></td> 
+                        <td><?= $gothra->gothraName?></td>                       
+                        <td class="hidden-480"><?=$gothra->modifiedDate?></td>
+                        <td class="hidden-480"><?=$gothra->createdDate?></td>
+                        
+                        <td class="hidden-480">
+						<!--<?php echo ($gothra->isActive==1)? 'Active': '<span class="label label-sm label-warning">In-Active</span>'; ?>-->
+                        <?php $status = ($gothra->isActive==1)? 'Active': 'In-Active';
+                        $statuscolor = ($gothra->isActive==1)? 'activestatus': 'de-activestatus';
+                         ?>
+                          <div name="ChangeStatus" id="changestatus<?=$i;?>" onclick="changestatusquick(<?=$gothra->id?>,<?= ($gothra->isActive==0)?0:1; ?>,'<?php echo $this->
+                                                                url('admin/gothra', array('action'=>
+                                                                    'changestatus')); ?>',changstatusresult);" class="<?=$statuscolor?>">
+                        </div>
+                        </td>
+                        <td class="hidden-480"><?php echo ($gothra->modifiedBy==1)? 'Admin': 'NotByAdmin'; ?></td>
+                        <td><div class="hidden-sm hidden-xs action-buttons"> 
+                        <!--<a class="blue" href="<?php echo $this->url('admin',array('controller'=>'gothra','action'=>'view','id'=>$gothra->id)); ?>">
+                         <i class="ace-icon fa fa-search-plus bigger-130"></i> </a> -->
+                         <a class="blue" style="cursor:pointer;" data-toggle="modal" data-target="#myModal"  
+                                                   tar="indview<?= $i ?>"> <i onclick="findRowDataByGothraId('<?php echo $this->url
+                                                           ('admin/gothra', array('action'=>'viewById','id'=>$gothra->id)); ?>', 
+                                                                       viewRowDataById);" class="ace-icon fa fa-search-plus bigger-130">
+                                                    </i> </a>
+                         
+                         <a class="green" href="javascript:void(0);" onclick="editbox(<?= 
+                                                   $gothra->id ?>, '<?php echo $this->url('admin/gothra', array('action' => 
+                                                       'edit', 'id' => $gothra->id));
+                                        ?>', editformresp);" > <i class="ace-icon fa fa-pencil bigger-130"></i> </a> 
+                          <a class="red" href="<?php echo $this->url('admin/gothra',array('action'=>'delete','id'=>
+                              $gothra->id)); ?>" onclick="return confirm('are you sure you want to delete');"> <i class="ace-icon fa 
+                                                                                             fa-trash-o bigger-130"></i> </a> </div>
+                          </td>
+                      </tr>
+                      
+                      
+                      
+                      
+                      <?php 
+                      $i++;
+                    }
+                   } else
+        echo" <tr>
+                         
+                       <td colspan=9><center><h2>No data available</h2></center></td></tr>";
+                      ?>
+                    </tbody>
+                  </table>
+                      
+                      
+                      
+                      
+                    </div>
+
+
+                

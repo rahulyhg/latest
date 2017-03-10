@@ -1,0 +1,319 @@
+/*==============================================
+   DASHBOARD STYLES    
+    =============================================*/
+.panel-back {
+	background-color:#e2e1e1;
+}
+.noti-box {
+	min-height: 200px;
+	padding: 20px;
+}
+.noti-box .icon-box {
+	display: block;
+	float: left;
+	margin: 0 15px 10px 0;
+	
+		
+	vertical-align: middle;
+	text-align: center;	
+}
+.text-box {
+	clear:both;
+	position:relative;
+	display:block;	
+}
+.text-box p {
+	margin: 0 0 3px;
+}
+.main-text {
+	font-size: 14px !important;
+	font-weight:600;
+	text-align:center;
+	
+}
+
+.padleft{ padding-left:40px;}
+
+
+/*Five Column Grid
+--------------------------------------- */
+.col-xs-15,
+.col-sm-15,
+.col-md-15,
+.col-lg-15 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.col-xs-15 {
+    width: 20%;
+    float: left;
+}
+
+
+
+
+
+<!--CHART STYLE-->
+
+/*#region Organizational Chart*/
+.tree * {
+    margin: 0; padding: 0;
+		background:#00C;
+		width:30%;
+	
+}
+
+.tree ul {
+    padding-top: 20px; position: relative;
+
+    -transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+	
+}
+
+.tree li {
+    float: left; text-align: center;
+    list-style-type: none;
+    position: relative;
+    padding: 20px 5px 0 5px;
+
+
+    -transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+}
+
+/*We will use ::before and ::after to draw the connectors*/
+
+.tree li::before, .tree li::after{
+    content: '';
+    position: absolute; top: 0; right: 50%;
+    border-top: 2px solid #696969;
+    width: 50%; height: 20px;
+}
+.tree li::after{
+    right: auto; left: 50%;
+    border-left: 2px solid #696969;
+}
+
+/*We need to remove left-right connectors from elements without 
+any siblings*/
+.tree li:only-child::after, .tree li:only-child::before {
+    display: none;
+}
+
+/*Remove space from the top of single children*/
+.tree li:only-child{ padding-top: 0;}
+
+/*Remove left connector from first child and 
+right connector from last child*/
+.tree li:first-child::before, .tree li:last-child::after{
+    border: 0 none;
+}
+/*Adding back the vertical connector to the last nodes*/
+.tree li:last-child::before{
+    border-right: 2px solid #696969;
+    border-radius: 0 5px 0 0;
+    -webkit-border-radius: 0 5px 0 0;
+    -moz-border-radius: 0 5px 0 0;
+}
+.tree li:first-child::after{
+    border-radius: 5px 0 0 0;
+    -webkit-border-radius: 5px 0 0 0;
+    -moz-border-radius: 5px 0 0 0;
+}
+
+/*Time to add downward connectors from parents*/
+.tree ul ul::before{
+    content: '';
+    position: absolute; top: 0; left: 50%;
+    border-left: 2px solid #696969;
+    width: 0; height: 20px;
+}
+
+.tree li a{
+    height: 124px;
+    width: 200px;
+    padding: 5px 10px;
+    text-decoration: none;
+    background-color: white;
+    color: #8b8b8b;
+    font-family: arial, verdana, tahoma;
+    font-size: 11px;
+    display: inline-block;  
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+
+    -transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+}
+
+/*Time for some hover effects*/
+/*We will apply the hover effect the the lineage of the element also*/
+.tree li a:hover, .tree li a:hover+ul li a {
+    background: #cbcbcb; color: #000;
+}
+/*Connector styles on hover*/
+.tree li a:hover+ul li::after, 
+.tree li a:hover+ul li::before, 
+.tree li a:hover+ul::before, 
+.tree li a:hover+ul ul::before{
+    border-color:  #94a0b4;
+}
+/*#endregion*/
+
+.tree li li li a {
+    width: auto;
+}
+
+
+.tree > ul > li > a {
+    width: auto;
+}
+
+.tree > ul > li > ul > li > a {
+    width: auto;
+}
+
+
+/*profiledesigne style*/
+.profilesty{background-color:#bbbcbe; width:1325px; }
+.profilesty h5{ font-size:18px; font-style:normal; font-family:Arial, Helvetica, sans-serif; color:#333; padding-top:7px; padding-left:5px;}
+
+
+
+
+
+
+
+.filter2{background:#E2E2E2;padding:7px; margin:0;!important}
+
+.filter {
+   background:#E2E2E2; margin:0; padding:10px; border:1 px solid #666; overflow:hidden}
+
+.table2 {
+	border-collapse: collapse;
+	border-spacing: 0;
+	border:1px solid #333;
+}
+
+
+
+
+
+
+.btn2 {
+    -moz-user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1;
+    margin-bottom: 0;
+    padding: 6px 16px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+
+
+
+
+
+
+
+<!--masterpage css-->
+
+
+
+.panel-back {
+	background-color:#e2e1e1;
+}
+.noti-box2 {
+	
+	padding: 20px;
+}
+.noti-box2 .icon-box {
+	display: block;
+	float: left;
+	margin: 0 15px 10px 0;
+	
+		
+	vertical-align: middle;
+	text-align: center;	
+}
+.text-box2 {
+	clear:both;
+	position:relative;
+	display:block;
+		
+}
+.text-box p {
+	margin: 0 0 3px;
+}
+.main-text {
+	font-size: 14px !important;
+	font-weight:600;
+	text-align:center;
+	
+}
+
+.padleft{ padding-left:40px;}
+
+
+
+<!--masterpage End-->
+
+
+.col-xs-6new {
+    width: 100%!important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (min-width: 768px) {
+.col-sm-15 {
+        width: 20%;
+        float: left;
+    }
+}
+
+@media (min-width: 992px) {
+.col-md-15 {
+        width: 20%;
+        float: left;
+    }
+}
+
+@media (min-width: 1200px) {
+.col-lg-15 {
+        width: 20%;
+        float: left;
+    }

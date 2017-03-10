@@ -1,0 +1,22 @@
+<table  width="100%" style="border:none !important;">
+<tbody>
+<?php
+if(count($communitys)>0){
+	$i=1;
+ foreach ($communitys as $community) {
+?>
+
+
+<tr>
+<td>
+<a href="javascript:void(0);" id="communitysearch<?=$i;?>" onclick="grabvalues3('<?=$community->community_name?>','<?=$community->id?>','<?=$parentname?>');"><?= $community->community_name?></a>
+</td>
+</tr>
+<?php
+$i++;
+}
+}
+else echo "<p>No matched search</p>";
+?>
+</tbody>
+</table>

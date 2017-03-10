@@ -1,0 +1,47 @@
+<?php echo $this->doctype(); ?>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <?php echo $this->headTitle('Rustagi Admin Pannel')->setSeparator(' - ')->setAutoEscape(false) ?>
+        <?php
+        echo $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0')
+                ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+        ?>
+        <?php
+        echo $this->headLink()
+                ->prependStylesheet($this->basePath() . '/css/admin/bootstrap.min.css')
+                ->prependStylesheet($this->basePath() . '/css/admin/font-awesome/4.2.0/css/font-awesome.min.css')
+                ->prependStylesheet($this->basePath() . '/css/admin/fonts/fonts.googleapis.com.css')
+                ->prependStylesheet($this->basePath() . '/css/admin/css/ace.min.css')
+                ->prependStylesheet($this->basePath() . '/css/admin/css/ace-rtl.min.css')
+        ?>
+        <?php
+        echo $this->headScript()
+                ->prependFile('/assets/js/custom.js')
+                ->prependFile('/js/jquery.validate.min.js')
+                ->prependFile('/js/bootstrap.min.js')
+                ->prependFile('/js/jquery-1.11.1.min.js')
+        ?>
+    </head>
+    <body style="padding-top: 70px;" class="login-layout">
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <?php echo $this->content; ?>
+            <hr>
+            <footer>
+             <!-- <p>&copy; 2005 - <?php echo date('Y') ?> by Zend Technologies Ltd. All rights reserved.</p> -->
+            </footer>
+        </div> 
+        <?php echo $this->inlineScript(); ?>
+    </body>
+</html>

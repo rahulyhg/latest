@@ -1,0 +1,284 @@
+<style>
+    .modal-dialog {
+        width: 67%;
+    }
+
+    .activestatus{
+        color:green;
+        background:green;
+        border-radius:30px; width:15px; height:15px;
+        cursor:pointer
+
+    }
+
+    .de-activestatus{
+        color:green;
+        background:red;
+        border-radius:30px; width:15px; height:15px;
+        cursor:pointer;
+
+
+    }
+
+
+
+</style>
+
+
+<?php 
+
+// foreach ($educations as $education) {
+
+// echo  $education->education_name."<br>";
+
+// }
+
+// echo "<pre>";
+// print_r($educations);
+// die;
+
+?>
+<div class="row">
+          <div class="col-xs-12"> 
+            <!-- PAGE CONTENT BEGINS -->
+            <!--<div class="alert alert-block alert-success">
+              <button type="button" class="close" data-dismiss="alert"> <i class="ace-icon fa fa-times"></i> </button>
+              <i class="ace-icon fa fa-check green"></i>Add Religion Master</strong>, </div>-->
+            <!--<div class="row">
+              <div class="space-6"></div>
+              <div class="vspace-12-sm"></div>
+            </div>-->
+            <div class="row">
+              <div class="col-xs-12">
+                <h3  >Add Educationfield Master</h3>
+                <div class="filter">
+                 <div class="panel-body" style="padding:0 !important">
+                  <div class="col-lg-6">View Records>></div>
+                  </div>
+                </div>
+                <div class="portlet-body">
+                    <form id="bookingFilter" method="post" autocomplete="off" action="<?= $this->url
+        ('admin/education', array('action' => 'performsearch'))
+?>" onsubmit="return performsearch(this.id, '<?= $this->url('admin/education', array('action' => 'performsearch'))
+?>', performsearchresults)">
+                        <div id="myTabContent" class="tab-content">
+                            <div class="tab-pane fade active in" id="home">
+                                <div class="col-sm-col-sm-offset-1" style="margin: 10px auto 0px !important;padding: 0 10px;">
+                                    <div class="row">
+                                        <div class="form-group clearfix margintopbottom20">
+                                            <label id="flight_nos" class="col-sm-2 control-label labelalign ">Education Field Name</label>
+                                            <div class="col-sm-2 ">
+                                                <input id="search_educationfieldName" class=" form-control inputchange" placeholder="Education Name" type="text" 
+                                                       onkeyup="educationfieldsearchactions($(this).val(), '<?php echo $this->url('admin/education', array('action'=>'educationfieldsearch'))?>', educationfieldsearchresp, 'educationField')" name="education_field">
+                                                <div class="col-sm-3" id="educationfieldsearchresults" style="position: absolute;overflow-y:scroll;background:#FFF;width:93%;height:auto;z-index: 9999;display:none;">
+                                                </div>                                    
+                                            </div>                                           
+
+                                            <div class="col-sm-1 ">
+                                                <input class="btn btn-red defaultbtnsearch searchBooking"  type="submit" name="submit" value="Search">
+                                            </div>
+                                            <div class="col-sm-2 ">
+                                               <a id="showaddform" class="btn btn-red defaultbtnsearch searchBooking" href="#"> Add</a>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <!--<div class="form-group clearfix margintopbottom20">
+                   <label id="flight_nos" class="col-sm-2 control-label labelalign ">Dial Code</label>
+                                          <div class="col-sm-3 ">
+                                             <input id="search_dialCode" class=" form-control inputchange" placeholder="Country Code" type="number"
+                                            name="dial_code">
+                                             </div>  
+                                              <label id="flight_nos" class="col-sm-2 control-label labelalign "></label>
+                                          <div class="col-sm-1 ">
+                                             <input class="btn btn-red defaultbtnsearch searchBooking"  type="submit" name="submit" value="Search">
+                                             </div>
+                                             <div class="col-sm-2 ">
+                                             <input class="btn btn-red defaultbtnsearch" id="showaddform" style="background:#333 !important;"  type="submit" name="submit" value="Add Country">
+                                             </div>
+                                                                               
+                                          </div>-->
+
+
+                                        <div class="col-sm-3">
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+                 
+                  <div class="filter">
+                   <div class="panel-body " style="padding:0 !important;">
+                  <div class="col-lg-6" style="cursor:pointer;">Add Update Records>>
+                  </div>
+  
+                  </div>
+   
+                </div>
+                
+                
+                
+          <div id="addForm" class="tab-content dontshow">
+                    <?php 
+
+                $form=$this->form; 
+                $form->prepare();
+
+
+//        $form->setAttribute('action',$this->url('admin',array('controller'=>'education','action'=>'add')));
+//        $form->setAttribute('method','post');
+        
+        $form->setAttribute('action', $this->url('admin/education', array('action' => 'add')));
+        $form->setAttribute('method', 'post');
+        $form->setAttribute('autocomplete', 'off');
+        $form->setAttribute('id', 'EducationfieldForm');//care
+        $action = $this->url('admin/education', array('action' => 'add'));
+        $form->setAttribute('onSubmit', "return SubmitFormAction($(this).attr('id'),'" . $action . "',addformResp)");
+
+        echo $this->form()->openTag($form);
+// echo $this->formCollection($form);
+                ?>
+          
+            
+            
+            <div class="tab-pane fade active in" id="driver_tab">
+              <div class="container col-sm-col-sm-offset-1" style="margin: 10px auto 0px !important;padding: 0 10px;">
+                
+                <div class="row">
+                                                <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate($form->get('education_field')->getLabel()) ?>
+                           </label>
+                                                  <div class="col-sm-2">
+                                                     <?php 
+                                                     echo $this->formHidden($form->get('id'));
+                                                     echo $this->formElement($form->get('education_field'));
+                                                     ?>                                    
+                                                  </div>
+                                                   <label id="flight_nos" class="col-sm-1 control-label labelalign ">
+                            <?= $this->translate($form->get('is_active')->getLabel()) ?>
+                           </label>
+                                                  <div class="col-sm-2">
+                                                     <?php 
+                                                     echo $this->formElement($form->get('is_active'));
+                                                     ?>                                    
+                                                  </div>
+                                                  
+                                                   <div class="col-sm-1">
+                                                     <?php 
+                                                     echo $this->formRow($form->get('submit'));
+                                                     ?>                                    
+                                                  </div>
+                         
+                                                 </div>
+                                             </div>
+                                             
+                                             
+              </div>
+            </div>
+          
+        <?php   
+echo $this->form()->closeTag();
+
+        ?>
+                                                  </div>
+                <div id="editForm" class="tab-content dontshow">
+                </div>
+                                            
+                
+                    <div class="clearfix"></div>
+                  
+                <div class="col-lg-12" style="background-color:#FFF;" id="radiosearch" fld="tbl_education_field">
+                  
+                  <div class="col-lg-1"><div class="radio">
+                                                <label>
+                                                    <input type="radio" value="1" id="optionsRadios1" name="optionsRadios" 
+                                       onchange="RadioSearch($(this).val(), 'tbl_education_field', '<?php echo 
+                                       $this->url('admin/education', array('action'=>'ajaxradiosearch'))?>',
+                                                   radioSearchResult6)" ><strong>Active</strong>
+                                                </label>
+                                                <br>
+ 
+                                            </div>
+                  
+                  
+                  
+                  
+                  </div>
+                  
+                  
+                   <div class="col-lg-1"><div class="radio">
+                                                <label>
+                                                    <input type="radio" value="0" id="optionsRadios1" name="optionsRadios" onchange=
+                                    "RadioSearch($(this).val(), 'tbl_education_field', '<?php echo $this->url
+                                            ('admin/education', array('action'=>'ajaxradiosearch'))?>', 
+                                                        radioSearchResult6)"><strong>In-Active</strong>
+                                                </label>
+                                                
+                                              
+                                            </div>
+                  
+                  
+                  
+                  
+                  </div>
+                  
+                  
+                   <div class="col-lg-2 pull-right">
+                    <div class="delete">
+                      <button class="btn btn-red defaultbtnsearch searchBooking" onclick="delselected('<?php echo $this->url('admin/education', array('action'=>
+                                    'delmultiple'))?>',delmultipleresp)">Delete Selected</button>                                              
+                    </div>
+                  </div> 
+                  <div class="col-lg-2 pull-right">
+                    <div class="delete">
+                      <button class="btn btn-red defaultbtnsearch searchBooking" onclick="statuschangeall('<?php echo $this->url('admin/education', array
+                                    ('action'=>'changeStatusAll'))?>',statuschangeallresp,1)">Activate Selected</button>                                    
+                    </div>
+                  </div> 
+                    <div class="col-lg-2 pull-right">
+                        <div class="delete">
+                      <button class="btn btn-red defaultbtnsearch searchBooking" onclick="statuschangeall('<?php echo $this->url('admin/education', array
+                                    ('action'=>'changeStatusAll'))?>',statuschangeallresp,0)">De-Activate Selected</button>                                    
+                        </div>
+                    </div>
+                 
+                  
+                  
+                  </div>
+                  
+                  <div class="col-sm-12">
+
+
+                </div>
+                  
+                <div class="col-md-12"  id="educationfield_data_list">
+                    <?php echo $this->partial('admin/education/educationfieldList.phtml'); ?>
+                 </div>
+              </div>
+              
+              
+              
+              
+              
+              <div class="col-sm-12"> 
+                
+                <!-- /.widget-box -->
+                <!--<div  style="margin-top:20px;"> <a href="#" class="btn btn-red defaultbtnsearch searchBooking"><i class="fa fa-search" id="search_me" style="color:#fff; margin:5px"></i>Refresh</a> </div>-->
+              </div>
+            </div>
+            <!-- /.col --> 
+          
+  <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse"> <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i> </a>
+</div></div>
+<div id="vieweducationfieldModel"></div>
+<?php echo $this->inlineScript()->prependFile($this->basePath('/assets/js/educationfield.js')); ?>

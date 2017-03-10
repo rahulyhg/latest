@@ -1,0 +1,78 @@
+               
+                <?php 
+
+                $form=$this->form; 
+                $form->prepare();
+
+
+        //      $form->setAttribute('action',$this->url('admin',array('controller'=>'subcommunity','action'=>'edit','id'=>$id)));
+        //      $form->setAttribute('method','post');
+                $form->setAttribute('action', $this->url('admin/subcommunity', array('action' => 'edit', 'id' => $id)));
+                $form->setAttribute('method', 'post');
+                $form->setAttribute('name', 'editform');
+                $form->setAttribute('autocomplete', 'off');
+                $form->setAttribute('id', 'SubcommunityFormEdit');
+                $action = $this->url('admin/subcommunity', array('action' => 'edit', 'id' => $id));
+                $form->setAttribute('onSubmit', "return SubmitFormAction($(this).attr('id'),'" . $action . "',addformResp)");
+
+        echo $this->form()->openTag($form);
+// echo $this->formCollection($form);
+                ?>
+                      
+            
+            <div class="tab-pane fade active in" id="driver_tab">
+              <div class="container col-sm-col-sm-offset-1" style="margin: 10px auto 0px !important;padding: 0 10px;">
+                
+                <div class="row">
+                                                <div class="form-group clearfix margintopbottom20">
+                                                    
+                                                    <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?php echo $this->translate($form->get('community_id')->getLabel()) ?>
+                           </label>
+                                            <div class="col-sm-2 ">
+                                            
+                                            <?php  echo $this->formElement($form->get('community_id')); ?>
+                                                                                
+                                            </div>
+                                                    
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate($form->get('caste_name')->getLabel()) ?>
+                           </label>
+                                                  <div class="col-sm-2">
+                                                     <?php 
+                                                     echo $this->formHidden($form->get('id'));
+                                                     echo $this->formElement($form->get('caste_name'));
+                                                     ?>                                    
+                                                  </div>
+                                                 
+                            
+                                                  
+                                                 </div>
+                                             </div>
+                  
+                  <div class="row">
+                    <div class="form-group clearfix margintopbottom20">
+                        <label id="flight_nos" class="col-sm-1 control-label labelalign ">
+                            <?= $this->translate($form->get('is_active')->getLabel()) ?>
+                           </label>
+                                                  <div class="col-sm-2">
+                                                     <?php 
+                                                     echo $this->formElement($form->get('is_active'));
+                                                     ?>                                    
+                                                  </div>
+                                                  
+                                                  <div class="col-sm-1">
+                                                     <?php 
+                                                     echo $this->formRow($form->get('submit'));
+                                                     ?>                                    
+                                                  </div>
+                        </div>
+                                             </div>
+                                            
+                                             
+              </div>
+            </div>          
+        <?php   
+echo $this->form()->closeTag();
+
+        ?>

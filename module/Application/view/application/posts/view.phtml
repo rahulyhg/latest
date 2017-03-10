@@ -1,0 +1,205 @@
+<div class="col-sm-3 col-sm-3-new width20per">
+    <?php echo $this->partial('layout/sidebar-post') ?>
+</div>
+
+<img src="<?php echo $this->basePath() ?>/img/loadingmap.gif" id="Loading_Request" style="position:absolute;display:none;z-index: 9;margin-left: 31%;margin-top: 8%;width: 80px;"/>
+
+<div id="postContainer">
+<div class="col-sm-9 width80per">
+<div class="filtersresults">
+    <h2 class="heading">Latest Post</h2>
+    <div class="newsfull">
+
+        <?php if (!empty($data->image)) { ?>
+            <img src="<?php echo $this->basePath('/PostsImages/') . $data->image; ?>" class=" img-responsive pull-left"/>
+        <?php } else { ?>
+            <img src="<?php echo $this->basePath('img/default_user.png') ?>" class=" img-responsive pull-left"/>
+        <?php } ?>
+        <h3><?php echo $data->title ?></h3>
+        <p><?php echo $data->description ?></p>
+        <div class="clearfix"></div>
+        <div class="status" style="font-size:11px;">
+            <ul>
+                <li>Posted By : <?php echo $data->full_name; ?></li>
+                <li>Posted On : <?php echo date('d-m-Y', strtotime($data->created_date)); ?></li>
+                <?php if ($this->authUser()->isLogin() === true) { ?>
+                    <li><a href="javascript:void(0)" tar="panel" class="itarget">Add Comment</a></li>
+                <?php } else { ?>
+                    <li><a href="javascript:void(0)" data-target="#loginPopUpModal" data-toggle="modal" title="Add Comment"> Add Comment </a></li>
+                <?php } ?>
+                <li style="font-size:12px;">Views: <?php echo $totalLikes->view_count; ?></li>
+                <li style="font-size:12px;"><span id="total_likes"><?php echo $totalLikes->like_count; ?></span> Likes </li>
+                <li style="font-size:12px;">
+
+                    <?php if ($this->authUser()->isLogin() === true) { ?>
+                        <?php if ($totalCount->total_likes > 0) { ?>
+                            <a href="javascript:void(0)" class="like" id="like<?php echo $data->id; ?>" title="Unlike" rel="Unlike"> Unlike </a>
+                        <?php } else { ?>
+                            <a href="javascript:void(0)" class="like" id="like<?php echo $data->id; ?>" title="Like" rel="Like"> Like </a>
+                        <?php }
+                    } else {
+                        ?>
+                        <a href="javascript:void(0)" data-target="#loginPopUpModal" data-toggle="modal" title="Like"> Like </a>
+<?php } ?>
+
+                </li>
+            </ul>
+        </div>
+
+        <div id="panel" class="dontshow">
+
+            <div class="form-group">
+                <textarea id="commentBodyField" class="form-control" cols="50" rows="4" name="commentBody" placeholder="Enter your comment..."></textarea>
+                <span class="comment_error" style="display:none"></span>
+            </div>
+
+            <div class="form-group row">&nbsp;</div>
+
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <input type="hidden" id="post_id" value="<?php echo $data->id; ?>">
+                    <input id="postCommentSubmit" type="button" class="btn btn-info" value="Publish"  name="postCommentSubmit">
+                </div>
+
+            </div>
+
+        </div>
+        <div class="clearfix"></div>
+        <div class="related">
+        <?php
+        if (count($AllComments) > 0) {
+            foreach ($AllComments as $Comments) {
+                ?>
+                    <div class="col-md-12 news col-xs-12">
+                        <div class="col-md-2 col-sm-2 col-xs-3">
+                            <div class="related-img">
+                                <!--<div class="related-img"><img src="<?php echo $this->basePath('images/related-img.jpg') ?>" /></div>-->
+                                <img src="<?= empty($Comments->image_path) ? $this->basePath() . "/img/default_user.png" : $this->basePath() . "/uploads/" . $Comments->image_path; ?>"/>
+                            </div>
+                        </div>
+                        <div class="col-md-10 col-sm-10 col-xs-9 content">
+                            <h4><?= $Comments->full_name ?> </h4>
+                            <p><?= $Comments->comment_desc ?></p>
+                        </div>
+                    </div>
+                <?php
+            }
+        } else
+            echo '<h4>Currently No Comments Available</h4>';
+        ?>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+</div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.like').click(function () {
+            var ID = $(this).attr("id");
+            var sid = ID.split("like");
+            var New_ID = sid[1];
+            var REL = $(this).attr("rel");
+            var dataString = 'post_id=' + New_ID + '&rel=' + REL;
+            $.ajax({
+                type: "POST",
+                url: '<?php echo $this->basePath() ?>' + '/posts/changeLikeDislike',
+                cache: false,
+                data: dataString,
+                cache: false,
+                        success: function (data) {
+
+                            if (REL == 'Like')
+                            {
+                                $("#total_likes").text(data.data.like_count);
+                                $('#' + ID).html('Unlike').attr('rel', 'Unlike').attr('title', 'Unlike');
+                            }
+                            else
+                            {
+                                $("#total_likes").text(data.data.like_count);
+                                $('#' + ID).attr('rel', 'Like').attr('title', 'Like').html('Like');
+                            }
+
+                        }
+            });
+        });
+
+        $(".itarget").click(function () {
+            $('#commentBodyField').val('');
+            var id = $(this).attr("tar");
+            $("#" + id).fadeToggle("slow").siblings(".dontshow").fadeOut("fast");
+            $(".comment_error").css({'display': 'none'});
+        });
+
+
+        $('#postCommentSubmit').click(function () {
+            var comment = $('#commentBodyField').val();
+            var post_id = $('#post_id').val()
+            if (comment == "") {
+                $(".comment_error").text('Please enter comment..');
+                //$(".comment_error").css("display",'block');
+                $(".comment_error").css({'display': 'block', 'color': 'red'});
+            }
+            else {
+                var dataString = 'comment=' + comment + '&post_id=' + post_id;
+                $.ajax({
+                    type: "POST",
+                    url: '<?php echo $this->basePath() ?>' + '/posts/postComment',
+                    cache: false,
+                    data: dataString,
+                    cache: false,
+                            success: function (data) {
+                                if (data.status == 1) {
+                                    $(".comment_error").text('Commented Successfully');
+                                    //$(".comment_error").css("display",'block');   
+                                    $(".comment_error").css({'display': 'block', 'color': 'green'});
+                                    $("#panel").fadeToggle("slow").siblings(".dontshow").fadeOut("fast");
+                                }
+                            }
+                });
+
+            }
+        });
+        
+     $('input[type=checkbox]').on('change', function () {
+            var checkValues = [];
+            if ($(this).is(':checked')) {
+                $(':checkbox:checked').each(function () {
+                    checkValues.push($(this).val());
+                });
+            }
+            if ($(this).is(':unchecked')) {
+                $(':checkbox:checked').each(function () {
+                    checkValues.push($(this).val());
+                });
+            }
+            //console.log(val);
+            var postCat = checkValues.join(",");
+            $.ajax({
+                url: '<?php echo $this->basePath() ?>' + '/posts/postfiltersbycat',
+                type: "POST",
+                dataType: "html",
+                data: {
+                    postCat: postCat
+                },
+                beforeSend: function () {
+                    $('#Loading_Request').show();
+                },
+                complete: function () {
+                    $('#Loading_Request').hide();
+                },
+                success: function (resp) {
+                    //alert(resp);
+                    $("#postContainer").empty();
+                    $("#postContainer").append(resp);
+                },
+                error: function (error) {
+                    console.log(error);
+                    alert(error);
+                }
+            });
+        });
+
+    });
+</script>

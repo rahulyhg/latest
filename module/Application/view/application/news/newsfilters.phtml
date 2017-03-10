@@ -1,0 +1,41 @@
+<div class="col-sm-9 width80per">
+    <h2 class="heading">Latest News</h2>
+    <ul id="items">
+        <?php
+        if (count($this->NewsData) > 0) {
+            foreach ($NewsData as $Ndata) {
+                ?>
+                <li>
+                    <div class="col-md-6 news col-xs-12">
+                        <div class="col-md-3 col-sm-2 col-xs-2 img">
+                            <?php
+                                if (!empty($Ndata->image_path))
+                                    $path = $Ndata->image_path;
+                                else
+                                    $path = "/images/new-big.jpg";
+                                ?>
+                            <img src="<?php echo $this->basePath($path) ?>" class="img-responsive" />
+                        </div>
+                        <div class="col-md-9 col-sm-10 col-xs-10 content">
+                            <h4><?php echo $Ndata->title; ?></h4>
+                            <p>
+                            <label style="height:23px;">
+                            <?php $this->MyHelper()->ContentLength($Ndata->description); ?>...
+                             </label>
+                                <strong>Category:</strong> <?=$Ndata->category_name?>
+                                <strong>Posted By:</strong> <?=$Ndata->username?><br>
+                                <strong>Posted Date:</strong> <?php echo date('d-m-Y H:i:s', strtotime($Ndata->created_date)); ?><br>
+                                <a href="<?php echo $this->basePath() ?>/news/view/<?= $Ndata->id ?>"><span class="pull-right">Read Full Story >></span></a>
+                            </p>
+                        </div>
+                    </div>
+                </li>
+                <?php
+            }
+        }
+        else {
+            ?> 
+            <span style="text-align:center;font-weight:bold;font-size:16px;color:cornflowerblue;">No Data available</span>
+        <?php } ?>
+    </ul>
+</div>

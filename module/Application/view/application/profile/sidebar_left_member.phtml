@@ -1,0 +1,166 @@
+ <div id="tour_step1" data-step="1">
+            <div id="profile_info_widget" class="profile_info" style="display:block">
+
+                <div id="" class="my_rustagi_profile_info">
+                    <div class="my_rustagi_thumbnail"> <a href="#"> 
+                            <img src="<?php echo $this->basePath('/uploads/') . $userSummary->profilePic['image_path'] ?>" height="" width="100%"></a></div>
+                    <div class="manage_links_wrap">
+                        <a href="<?php echo $this->url('profile', array('action' => 'personal-profile')) ?>" class="light_blue">Edit Profile</a>
+                        <a href="<?php echo $this->url('profile', array('action' => 'mygallery')) ?>" class="light_blue">Manage Photos</a>
+                        <a href="<?php echo $this->url('profile', array('action'=>'profile-view')) ?>" class="light_blue">View Profile</a>
+                         <a href="<?php echo $this->url('profile', array('action'=>'change-password')) ?>" class="light_blue">Change Password</a>
+                         <a href="#" class="light_blue">Profile setting</a>
+                        <!-- <a href="#" class="light_blue">Edit Preferences</a>
+                                     <a href="#" class="light_blue">Privacy Options</a>-->
+                    </div><br class="clear"><div class="myshaadi_badge_bg " id="myshaadi_badge_bg">
+                        <div class="myshaadi_badges"><div class="contact_badge_active"></div><div id="social_tooltip">
+                                <div class="social_badge"></div>
+                                <div id="widget_tooltip" class="pop" style="width: 236px; display: none;">
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                        <tbody>
+                                            <tr>
+                                                <td class="pop_top_l" valign="top"></td>
+                                                <td class="pop_top_m">&nbsp;</td>
+                                                <td class="pop_top_r" valign="top"></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3" class="pop_middle" valign="top">
+                                                    <div id="pop_inner_content">
+                                                        <div>
+                                                            <span class="pop-pointer" style="left: 10px;"></span>
+                                                            <div id="widget_content" class="badge_tooltip_content">
+                                                                <div class="badge_tooltip_heading">
+                                                                    Social Profile Badge</div>
+
+                                                                Connect your social profile to activate this Badge. We will never post anything to your account.
+                                                                <div class="spacer_5"></div>
+                                                                <a class="unlock_tooltip" href="#">Unlock Now<span class="unlock_right_arrow"></span></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="pop_bot_l" nowrap="nowrap" valign="top"></td>
+                                                <td class="pop_bot_m">&nbsp;</td>
+                                                <td class="pop_bot_r" valign="top"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div><div id="offline_tooltip">
+                                <div class="offline_badge"></div>
+                                <div id="widget_tooltip" class="pop" style="width: 236px; display: none; position: absolute; top: 36px; left: -8px;">
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                        <tbody>
+                                            <tr>
+                                                <td class="pop_top_l" valign="top"></td>
+                                                <td class="pop_top_m">&nbsp;</td>
+                                                <td class="pop_top_r" valign="top"></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3" class="pop_middle" valign="top">
+                                                    <div id="pop_inner_content">
+                                                        <div>
+                                                            <span class="pop-pointer" style="left: 10px;"></span>
+                                                            <div id="widget_content" class="badge_tooltip_content">
+                                                                <div class="badge_tooltip_heading">
+                                                                    Offline ID Badge</div>
+
+                                                                Activate this Badge by sending us a copy of Driving 
+                                                                License, Passport or any other Govt. issued ID. Your ID will not be 
+                                                                shared with others.
+                                                                <div class="spacer_5"></div>
+                                                                <a class="unlock_tooltip" href="http://www.shaadi.com/my-shaadi/trust-badge">Unlock Now<span class="unlock_right_arrow"></span></a>
+                                                            </div>                                                       
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="pop_bot_l" nowrap="nowrap" valign="top"></td>
+                                                <td class="pop_bot_m">&nbsp;</td>
+                                                <td class="pop_bot_r" valign="top"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>	<div class="clearfix"></div>
+                        </div>
+
+                    </div></div>        </div>
+        </div>
+
+        <div class="inbox_widget">
+            <ul>
+
+                <li>
+                    <span class="ms_ln_heading">Inbox</span>
+                </li>  
+                <li class="default">
+
+                    <span class="ms_ln_heading">Inbox</span>
+                </li>
+                <li class="inner_list">
+                    <div class="inner_folders">
+
+            <a href="<?php echo $this->url('profile',array('action'=>'member-invitation-received', 'slug' => 'received'))?>">
+                            <span class="span_bold"><?php echo $this->invitation['invitation']; ?></span>                <span>Invitations</span>
+                            <span class="arrow_wrap"><span class="myshaadi_left_arrow"></span></span>            </a>
+                    </div>
+                </li>
+
+                <li>
+                    <span class="accepted_icon"></span>
+                    <span class="ms_ln_heading">Accepted</span>
+
+                </li>
+                <li class="inner_list">
+                    <div class="inner_folders">
+ <a href="<?php echo $this->url('profile', array('action' => 'member-accepted',  'slug' => 'accepted')); ?>">
+                        <span>Members</span>
+                            <span class=" num"><?php echo $this->accepted['accepted']; ?></span>
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <span class="sent_icon"></span>
+                    <span class="ms_ln_heading">Sent</span>
+                </li>
+                <li class="inner_list">
+                    <div class="inner_folders">
+
+<a href="<?php echo $this->url('profile',array('action'=>'member-invitation-sent', 'slug' => 'sent'))?>">
+                        
+                            <span>Invitations </span>
+                            <span class=" num"><?php echo $this->sent['sent']; ?></span></a>
+                    </div>
+                </li>
+                
+<li>
+<span class="sent_icon"></span>
+<span class="ms_ln_heading">Decline/Cancel</span>
+</li>
+<li class="inner_list">
+<div class="inner_folders">
+<a href="<?php echo $this->url('profile', array('action' => 'member-declined', 'slug' => 'interests')); ?>">
+<span>Invitations </span>
+<span class=" num"><?php echo $this->declineRequest['decline_request']; ?></span></a>
+</div>
+</li>
+                
+            </ul>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle" href="<?php echo $this->basePath() ?>/membership">
+                        <span class="pull-right glyphicon"></span>Member Directory</a>
+                </h4>
+            </div>
+
+        </div>
+
+<?php  echo $this->partial('layout/sidebar-slider')   ?>

@@ -1,0 +1,388 @@
+<style>
+	.modal-dialog {
+    width: 67%;
+}
+
+.activestatus{
+		color:green;
+		background:green;
+		border-radius:30px; width:15px; height:15px;
+		cursor:pointer
+		
+	}
+	
+	.de-activestatus{
+		color:green;
+		background:red;
+		border-radius:30px; width:15px; height:15px;
+		cursor:pointer;
+		
+		
+	}
+
+
+
+</style>
+
+<div class="row">
+          <div class="col-xs-12"> 
+            <!-- PAGE CONTENT BEGINS -->
+            <!--<div class="alert alert-block alert-success">
+              <button type="button" class="close" data-dismiss="alert"> <i class="ace-icon fa fa-times"></i> </button>
+              <i class="ace-icon fa fa-check green"></i>Add City Master</strong>, </div>-->
+            <!--<div class="row">
+              <div class="space-6"></div>
+              <div class="vspace-12-sm"></div>
+            </div>-->
+            <div class="row">
+              <div class="col-xs-12">
+                <h3  >Add City Master</h3>
+                <div class="filter">
+                 <div class="panel-body" style="padding:0 !important">
+                  <div class="col-lg-6">View Records>></div>
+                  </div>
+                </div>
+                <div class="portlet-body">
+                    
+                    <div id="myTabContent" class="tab-content">
+                            <div class="tab-pane fade active in" id="home">
+                                <div class="col-sm-col-sm-offset-1" style="margin: 10px auto 0px !important;padding: 0 10px;">
+                                    <div class="row">
+                                        <div class="form-group clearfix margintopbottom20">
+                                            <label id="flight_nos" class="col-sm-1 col-sm-1updated control-label labelalign ">Select Country</label>
+                                            <div class="col-sm-2 ">
+                                                <select class="form-control" id="filter_country2" ftype="country">
+                <option value="">Select country</option>
+                <?php
+                
+//               \Zend\Debug\Debug::dump($filters_data);
+//                    exit;
+                foreach ($filters_data as $GrData) {
+                    echo "<option value=" . $GrData->id . ">" . $GrData->countryName . "</option>";
+                }
+                ?>
+            </select>
+                                                
+                                                <div class="col-sm-3" id="countrysearchresults" style="position: absolute;overflow-y:scroll;background:#FFF;width:93%;height:auto;z-index: 9999;display:none;">
+                                                </div>                                    
+                                            </div>
+
+                                            <label id="point_airport" class="col-sm-1 col-sm-1updated control-label labelalign ">Select State
+                                            </label>
+                                            <div class="col-sm-2">
+                                                <select class="form-control" id="filter_state" ftype="state">
+                                                </select>
+                                            </div>
+
+                                            <label id="flight_nos" class="col-sm-1 col-sm-1updated control-label labelalign ">Select City</label>
+                                            <div class="col-sm-2 ">
+                                                <select class="form-control" id="filter_city" ftype="city">
+                                                </select>
+                                            </div>  
+
+                                            <div class="col-sm-1  ">
+                                                 <input class="btn btn-red defaultbtnsearch searchBooking"  type="submit" name="submit" value="Search"   onclick="filterData2();">
+                                            </div>
+                                            <div class="col-sm-1 ">
+                                               <a href="#" id="showaddform" class="btn btn-red defaultbtnsearch searchBooking">
+                                                   Add</a> 
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    
+   
+                </div>
+                
+                 
+                  <div class="filter">
+                   <div class="panel-body" style="padding:0 !important">
+                  <div class="col-lg-6"  >Add Update Records>>
+                  </div>
+  
+                  </div>
+
+                </div>
+                  
+                
+          <div id="addForm" class="tab-content dontshow">
+                  <?php 
+
+                $form=$this->form; 
+                $form->prepare();
+
+
+//        $form->setAttribute('action',$this->url('admin',array('controller'=>'city','action'=>'add')));
+//        $form->setAttribute('method','post');
+                
+                $form->setAttribute('action', $this->url('admin/city', array('action' => 'add')));
+                $form->setAttribute('method', 'post');
+                $form->setAttribute('autocomplete', 'off');
+                $form->setAttribute('id', 'CityForm');
+                $form->setAttribute('enctype','multipart/form-data');
+                $action = $this->url('admin/city', array('action' => 'add'));
+                $form->setAttribute('onSubmit', "return SubmitFormAction($(this).attr('id'),'" . $action . "',addformResp)");
+
+        echo $this->form()->openTag($form);
+// echo $this->formCollection($form);
+                ?>
+          
+            
+            
+            <div class="tab-pane fade active in" id="driver_tab">
+              <div class="col-sm-col-sm-offset-1" style="margin: 10px auto 0px !important;padding: 0 10px;">
+                
+                <div class="row">
+                                                <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?php echo $this->translate($form->get('state_id')->getLabel()) ?>
+                           </label>
+                                                  <div class="col-sm-2">
+                                                     <?php 
+                                                     echo $this->formHidden($form->get('id'));
+                                                     echo $this->formElement($form->get('state_id'));
+                                                     ?>                                    
+                                                  </div>
+                                                 
+                           <label id="flight_nos" class="col-sm-1 control-label labelalign ">
+                            <?= $this->translate($form->get('city_name')->getLabel()) ?>
+                           </label>
+                                                  <div class="col-sm-2" id="addparent">
+                                                     <?php 
+                                                     //echo $this->formHidden($form->get('id'));
+                                                     //echo $this->formElement($form->get('city_name'));
+                                                     echo $this->formHidden($form->get('master_city_id'));
+                                                     ?>  
+                                                      <input id="city_name" class=" form-control inputchange" placeholder="City Name" type="text" 
+                                                     onkeyup="keyupresults35($(this).val(),$('#CityForm :input[name=state_id]').val()
+                                                                        ,searchboxresults,'<?php echo $this->url("admin/city",
+                                                             array('action'=>'searchboxresults'))?>',CityForm)" name="city_name">
+                                                      <span class="showerror"></span> <div class="col-sm-3 searchboxresults" id="searchresults" style="position: absolute;
+                                                overflow-y:scroll;
+                                                background:#FFF;
+                                                width:93%;
+                                                height:auto;
+                                                z-index: 9999;display:none;">
+                                                     </div> 
+                                                  </div>
+                                                  
+                                                  <!--<label id="flight_nos" class="col-sm-1 control-label labelalign ">
+                            <?php //echo $this->translate($form->get('city_name')->getLabel()) ?>
+                           </label>
+                                                  <div class="col-sm-2">
+                                                     <?php 
+                                                     //echo $this->formElement($form->get('city_name'));
+                                                     ?>                                    
+                                                  </div>-->
+                           <label id="flight_nos" class="col-sm-1 control-label labelalign ">
+                            <?= $this->translate($form->get('city_code')->getLabel()) ?>
+                           </label>
+                                                  <div class="col-sm-2">
+                                                     <?php 
+                                                     echo $this->formElement($form->get('city_code'));
+                                                     ?>                                    
+                                                  </div>
+                                                  <a href="#"  data-toggle="modal" data-target="#avatar-modalpost_image"  class="cropimage">Upload Photo</a>
+                    
+        
+    
+        <img id="post_photo" src="<?php echo $this->basePath('img/default_user.png') ?>" width="40" height="40"/>
+        <input type="hidden" name="image" id="image" value="">
+                                                  
+                                                   <div class="col-sm-1">
+                                                     <?php 
+                                                     echo $this->formRow($form->get('submit'));
+                                                     ?>                                    
+                                                  </div>
+
+                                                  
+                                                 </div>
+                                             </div>
+                                             <!--<div class="row">
+                                                <div class="form-group clearfix margintopbottom20">
+                            					
+                                                  <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate($form->get('is_active')->getLabel()) ?>
+                           </label>
+                                                  <div class="col-sm-1">
+                                                     <?php 
+                                                     echo $this->formElement($form->get('is_active'));
+                                                     ?>                                    
+                                                  </div>
+                                                 </div>
+                                             </div>-->
+                                             <!--<div class="row">
+                                                <div class="form-group clearfix margintopbottom20">
+                                               
+                                             </div>
+                                             </div>-->
+              </div>
+            </div>
+          
+        <?php   
+echo $this->form()->closeTag();
+
+        ?>
+                   </div>
+                <div id="editForm" class="tab-content dontshow">
+                </div>
+                    <div class="clearfix"></div>
+                    
+                    <div class="col-lg-12" style="background-color:#FFF;" id="radiosearch" fld="tbl_city">
+                  
+                  <div class="col-lg-1"><div class="radio">
+                                                <label>
+                                                    <input type="radio" value="1" id="optionsRadios1" name="optionsRadios" onchange="RadioSearch($(this).val(),'tbl_city','<?php echo 
+                                       $this->url('admin/city', array('action'=>'ajaxradiosearch'))?>',radioSearchResult11)" ><strong>Active</strong>
+                                                </label>
+                                                <br>
+ 
+                                            </div>
+                  
+                  
+                  
+                  
+                  </div>
+                  
+                  
+                   <div class="col-lg-1">
+                    <div class="radio">
+                                                <label>
+                                                    <input type="radio" value="0" id="optionsRadios1" name="optionsRadios" onchange="RadioSearch($(this).val(),'tbl_city','<?php echo 
+                                       $this->url('admin/city', array('action'=>'ajaxradiosearch'))?>',radioSearchResult11)"><strong>In-Active</strong>
+                                                </label>
+                                                
+                                              
+                    </div>
+                  </div>
+                  
+                    
+                   
+                    <div class="delete pull-right">
+                      <button class="btn btn-red defaultbtnsearch searchBooking" onclick="statuschangeall('<?php echo $this->url('admin/city', array('action'=>
+                                    'changeStatusAll'))?>',statuschangeallresp,0)">De-Activate Selected</button>                                    
+                    </div>
+                    
+                    <div class="col-lg-2 pull-right">
+                    <div class="delete">
+                      <button class="btn btn-red defaultbtnsearch searchBooking" onclick="statuschangeall('<?php echo $this->url('admin/city', array('action'=>
+                                    'changeStatusAll'))?>',statuschangeallresp,1)">Activate Selected</button>                                    
+                    </div>
+                  </div>
+                  
+                 <div class="col-lg-2 pull-right">
+                    <div class="delete">
+                      <button class="btn btn-red defaultbtnsearch searchBooking" onclick="delselected('<?php echo $this->url('admin/city', array('action'=>
+                                    'delmultiple'))?>',delmultipleresp)">Delete Selected</button>                                              
+                    </div>
+                  </div>
+
+                  </div>
+                  
+                <div class="col-sm-12">
+
+                 
+                   
+            </div> 
+                <div class="col-md-12" id="city_data_list">
+                    
+                    <?php echo $this->partial('admin/city/cityList.phtml'); ?>
+               </div>
+                    <div class="col-md-12" id="city_search_list">
+                        
+                        
+                        
+                    </div>
+              </div>
+              
+              
+              
+              
+              
+              <div class="col-sm-12"> 
+                
+                
+              </div>
+            </div>
+            <!-- /.col --> 
+            <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse"> <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i> </a> </div>
+            
+            </div></div>
+        
+        <div id="viewCityModel"></div>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+        <?php echo $this->inlineScript()->prependFile($this->basePath('/assets/js/city.js')); ?>
+<!-- /.main-container --> 
+
+<!-- basic scripts --> 
+
+<!--[if !IE]> -->
+
+ <!--  added by amir -->
+<div class="modal fade" id="avatar-modalpost_image" tabindex="-1" role="dialog" aria-labelledby="avatar-modal-label" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form class="avatar-form" id="cropform_post" method="post" action="#" enctype="multipart/form-data" onsubmit="return croppostimage('<?= $this->serverurl() . $this->url() . "/croppostimage" ?>', croppostimageresults);">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h4 class="modal-title" id="avatar-modal-label">Post Picture</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="showloader_post" style="position:absolute;top:30%;left:0;width:100%;min-height:300px;display:none;z-index:1000;">
+                        <center><img src="<?= $this->basepath() ?>/img/loadingmap2.gif"></center>
+                    </div>
+
+
+                    <h4>Imageeee:</h4>
+                    <input type="file" name="file" id="file_post"> 
+                    <div class="banner"><img class="cropper2" id="showimage_post" src="<?= $this->basepath() ?>/img/default_user.png"></div>
+
+                    <!--<input name="uid" id="uid" type="hidden">
+                    <input name="ref_no" id="ref_no" type="hidden">
+                    <input name="profile_photo_flag" id="profile_photo_flag" type="hidden">
+                    <input name="profile_photo" id="profile_photo" type="hidden">
+
+                    <input name="field_name" id="field_name1" type="hidden">
+
+                    <input name="table_name" id="table_name1" type="hidden">-->
+
+                    <input type="hidden" class="form-control" id="dataX11_post" placeholder="x1" name="x1">
+
+                    <input type="hidden" class="form-control" id="dataY11_post" placeholder="y1" name="y1">
+
+                    <input type="hidden" class="form-control" id="dataX21_post" placeholder="x2" name="x2">
+
+                    <input type="hidden" class="form-control" id="dataY21_post" placeholder="y2" name="y2">
+
+                    <input type="hidden" class="form-control" id="dataWidth1_post" placeholder="width" name="width">
+
+                    <input type="hidden" class="form-control" id="dataHeight1_post" placeholder="height" name="height">
+
+                    <input type="hidden" class="form-control" id="cropenabled2" name="cropenabled" value="Enable">
+                    <!--<div id="forprofile">
+                        <h5 style="font-weight:bold;color:cornflowerblue;">OR</h5>
+                        <a href="#" id="profileFrom_gallery" data-toggle="modal" data-target="#chooseGallery" style="font-weight:bold;font-size:14px;color:chocolate;">Choose from Gallery</a>
+                    </div>-->
+                    <input type="hidden" id="actualimage_post" name="actualimage">
+                    <button id="cropper-enable_post" type="button" class="btn btn-success croptrigger2">Enable</button>
+                    <button id="cropper-disable_post" type="button" class="btn btn-danger croptrigger2">Disable</button>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
+                    <input class="btn btn-primary avatar-save" type="submit" value="Save">
+                </div>
+            </form>
+        </div>
+
+
+
+    </div>
+</div>

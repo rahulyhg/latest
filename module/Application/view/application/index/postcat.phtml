@@ -1,0 +1,68 @@
+
+
+<style>
+
+.news
+{
+	height:150px;
+}
+</style>
+
+<div class="col-sm-3 col-sm-3-new width20per">
+<?php echo $this->partial('layout/sidebar') ?>
+</div>
+
+
+<div class="col-sm-9 width80per">
+
+<h2 class="heading">All Listings for '<?=$category?>'</h2>
+<ul id="items">
+<?php 
+if(count($PostData)>0){
+foreach ($PostData as $Posts) {
+
+?>
+<li>
+<div class="col-md-6 news col-xs-12">
+<div class="col-md-3 col-sm-2 col-xs-2 img">
+   
+<img src="<?= empty($Posts->image)? $this->basePath()."/images/new-big.jpg":$this->basePath().$Posts->image; ?>" class="img-responsive" />
+</div>
+<div class="col-md-9 col-sm-10 col-xs-10 content">
+<h4 class="limits"><?=substr($Posts->title,0,20);?></h4>
+
+<p><p class="limits"><?=substr($Posts->description,0,50);?>...</p>
+<a href="<?php echo $this->basePath()?>/pages/postview/<?=$Posts->postid?>">Read Full Story >></a></p>
+
+</div>
+<p style="font-size:11px;">
+Sender: <?=$Posts->email?><br>
+Posted Date: <?=$Posts->postdate?></p>
+</div>
+ 
+ 
+ </li>
+ <?php 
+}
+}
+else echo '<h4>Currently No Data Available</h4>';
+ ?>
+</ul>
+<div class="clearfix"></div>
+
+<!-- <nav>
+  <ul class="pagination">
+  <li class="disabled"><a href="#">Pages:</a></li>
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li><a href="#">6</a></li>
+    <li><a href="#">7</a></li>
+    <li class="disabled"><a href="#">.....</a></li>
+    
+  </ul>
+</nav> -->
+<div class="clearfix"></div>
+</div>

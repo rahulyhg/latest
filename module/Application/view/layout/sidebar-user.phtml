@@ -1,0 +1,36 @@
+<?php $session=new Zend\Session\Container('user');	?>
+<nav class="navbar navbar-default">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
+        <span class="sr-only">Sub Page</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+<!-- Collect the nav links, forms, and other content for toggling -->
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+
+<ul class="nav navbar-nav">
+<?php 
+if($session->offsetGet('email')!="" && $session->offsetGet('user_type_id')==1)
+{ 
+?>
+	<li><a href="<?php echo $this->url('profile', array('action'=>'personal-profile'))?>"><?php echo $this->translate('Edit Profile') ?></a></li>
+	<li><a href="<?php echo $this->url('profile', array('action'=>'family-detail'))?>"><?php echo $this->translate('Edit Family Info') ?></a></li>
+<?php
+ }else{
+   ?>
+<!--    <li><a href="<?php echo $this->basePath()?>/account/matribasic"><?php echo $this->translate('Edit Profile') ?></a></li>
+    <li><a href="<?php echo $this->basePath()?>/account/matrifamily"><?php echo $this->translate('Edit Family Info') ?></a></li>  -->
+   
+   <?php 
+}?>
+</ul>
+
+</div>
+</nav>
+
+<?php echo $this->partial('layout/sidebar-slider') ?>

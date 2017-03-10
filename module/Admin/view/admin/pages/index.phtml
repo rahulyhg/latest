@@ -1,0 +1,205 @@
+
+<!-- /.page-header -->
+<?php 
+if($messages!="")
+echo "<script>alert('".$messages."');</script>" ;
+ 
+?>
+<div class="row">
+<div class="col-xs-12"> 
+  <div id="addForm" class="tab-content">
+            <?php 
+
+                $form=$this->form; 
+                $form->prepare();
+
+
+        $form->setAttribute('action',$this->url('admin',array('controller'=>'Pages','action'=>'add')));
+        $form->setAttribute('method','post');
+        $form->setAttribute('autocomplete','off');
+        $form->setAttribute('id','PagesForm');
+        $action = $this->serverUrl().$this->url().'/pages/add';
+        $form->setAttribute('onSubmit',"return SubmitpageForm($(this).attr('id'))");
+
+        echo $this->form()->openTag($form);
+// echo $this->formCollection($form);
+                ?>
+            
+            <div class="tab-pane fade active in" id="driver_tab">
+              <div class="container col-sm-col-sm-offset-1" style="margin: 10px auto 0px !important;padding: 0 10px;">
+                
+                <div class="row" style="position:relative;z-index:1;">
+                                                <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate($form->get('page_title')->getLabel()) ?>
+                           </label>
+                                                  <div class="col-sm-3" id="addparent" >
+                                                     <?php 
+                                                     echo $this->formHidden($form->get('id'));
+                                                     echo $this->formElement($form->get('page_title'));
+                                                     ?> 
+                                                     <span class="showerror"></span>   
+                                                                                    
+                                                  </div>
+                                                   <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate($form->get('tab_id')->getLabel()) ?>
+                           </label>
+                                                  <div class="col-sm-3" id="addparent" >
+                                                     <?php 
+                                                     // echo $this->formHidden($form->get('id'));
+                                                     echo $this->formElement($form->get('tab_id'));
+                                                     ?> 
+                                                     <span class="showerror"></span>   
+                                                                                    
+                                                  </div>
+
+                                                 
+                            
+                                                 </div>
+                                             </div>
+
+                                             <div class="row">
+                                                <div class="form-group clearfix margintopbottom20">
+                          
+                                                 
+                             <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate($form->get('page_content')->getLabel())?>
+                           </label>
+                            <div class="row">
+              <div class="col-xs-12">
+                
+                <div class="wysiwyg-editor" id="editor1"></div>
+
+                <span class="showerror"></span>   
+                 
+              </div><!-- /.col -->
+            </div><!-- /.row -->                
+                                                 </div>
+                                             </div>
+
+                                             <div class="row">
+                                                <div class="form-group clearfix margintopbottom20">
+                            <div class="col-sm-3">
+                                                     <?php 
+                                                     
+                                                     echo $this->formElement($form->get('page_content'));
+                                                     ?> 
+                                                     
+                                                                                    
+                                                  </div>
+                               <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate($form->get('IsActive')->getLabel()) ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     echo $this->formElement($form->get('IsActive'));
+                                                     ?> 
+                                                     <span class="showerror"></span>                                   
+                                                                                        
+                                                  </div>
+                                                  
+                                                 </div>
+                                             </div>
+
+                                             <div class="row">
+                                                <div class="form-group clearfix margintopbottom20">
+                                                <div class="col-sm-3 pull-right">
+                                                     <?php 
+                                                     echo $this->formRow($form->get('submit'));
+                                                     ?>                                    
+                                                  </div>
+                                                   <div class="col-sm-1 pull-right">
+                                                       <a class="btn btn-red defaultbtnsearch searchBooking" href="javascript:void(0);" onclick="location.reload();">Cancel</a>                              
+                                                  </div>
+                                             </div>
+                                             </div>
+              </div>
+            </div>
+            <?php   
+echo $this->form()->closeTag();
+
+        ?>
+          </div>
+  
+    
+     </div>
+               
+<div class="col-sm-12"> 
+                <div class="table-header"> Results for "Staic Page" </div>
+                
+                <!-- div.table-responsive --> 
+                
+                <!-- div.dataTables_borderWrap -->
+                <div>
+                  <table id="dynamic-table" class="table table-striped table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th class="center"> <label class="pos-rel">
+                            <input type="checkbox" class="ace" />
+                            <span class="lbl"></span> </label>
+                        </th>
+                        <th>Tab Id</th>
+                        <th>Title</th>
+                        <th style="width:40%;">Content</th>
+                        <th>Update By</th>
+                        <th >Update Date</th>
+                        <th >Status</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php 
+                      $i=1;
+                      foreach ($AllPages as $pages) {
+                      
+                      ?>
+                      <tr>
+                        <td class="center"><label class="pos-rel">
+                            <input type="checkbox" class="ace" />
+                            <span class="lbl"></span> </label></td>
+                        <td><?= (empty($pages->tab_id))? "Not Assigned": $pages->tab_id; ?></td>
+                        <td><?= $pages->page_title?></td>
+                        <td><?=  $pages->page_content;?></td>  
+                          <td><?= empty($pages->modified_by)?"Not By Admin": "Admin"; ?></td> 
+                            <td><?= $pages->modified_date?></td> 
+                              
+                        <td class="hidden-480"><?php $status = ($pages->is_active==1)? 'Active': 'In-Active';
+                        $statuscolor = ($pages->is_active==1)? 'activestatus': 'de-activestatus';
+                         ?>
+                          <div name="ChangeStatus" id="changestatus<?=$i;?>" onclick="changestatusquick(<?=$pages->id?>,<?= ($pages->is_active==0)?0:1; ?>,'<?= $this->serverUrl().$this->url().'/pages/changestatus';?>',changstatusresult);" class="<?=$statuscolor?>">
+                        </div></td>
+
+                        <td class="hidden-480">
+                        <div class="hidden-sm hidden-xs action-buttons"> 
+                        
+                        
+                        <a class="blue" style="cursor:pointer;" tar="indview<?=$i?>"> <i class="ace-icon fa fa-search-plus bigger-130"></i> </a>
+                        
+                        <!-- <a class="green" href="javascript:void(0);" onclick="editbox(<?=$pages->id?>,'<?= $this->serverUrl().$this->url('admin',array('controller'=>'pages','action'=>'edit','id'=>$pages->id));
+                        ?>',editpageformresp);" > <i class="ace-icon fa fa-pencil bigger-130"></i> </a>
+ -->
+                        <a class="green" href="<?php echo $this->url('admin',array('controller'=>'pages','action'=>'edit','id'=>$pages->id)); ?>" > <i class="ace-icon fa fa-pencil bigger-130"></i> </a>
+
+                         <a class="red" href="<?php echo $this->url('admin',array('controller'=>'pages','action'=>'delete','id'=>$pages->id)); ?>" onclick="return confirm('are you sure you want to delete');"> <i class="ace-icon fa fa-trash-o bigger-130"></i> </a> </div>
+                          </td>
+                      </tr>
+                      
+                      <?php 
+                      $i++;
+                    }
+                      ?>
+                     
+                    </tbody>
+                  </table>
+                </div>
+                </div>
+    
+    
+    
+    
+</div></div>
+<!-- /.main-container --> 
+
+<!-- basic scripts --> 
+
+<!--[if !IE]> -->

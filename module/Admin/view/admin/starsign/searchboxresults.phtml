@@ -1,0 +1,22 @@
+<table  width="100%" style="border:none !important;">
+<tbody>
+<?php
+if(count($starsigns)>0){
+	$i=1;
+ foreach ($starsigns as $starsign) {
+?>
+
+
+<tr>
+<td>
+<a href="javascript:void(0);" id="starsignsearch<?=$i;?>" onclick="grabvalues4('<?=$starsign->star_sign_name?>','<?=$starsign->id?>','<?=$parentname?>');"><?= $starsign->star_sign_name?></a>
+</td>
+</tr>
+<?php
+$i++;
+}
+}
+else echo "<p>No matched search</p>";
+?>
+</tbody>
+</table>

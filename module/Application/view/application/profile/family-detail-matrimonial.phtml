@@ -1,0 +1,819 @@
+<style>
+
+    .preview_img{width:150px; margin:auto 10px 10px 0px !important; float:left;}
+    .avatar-view img{height:110px!important;}
+    .table {float:left !important;}
+    .show_allocation_detail{margin-bottom:0px; cursor:pointer;color:#428bca;width:100%;}
+    .orange-panelbg .col-sm-9 {
+        background-color: #fff;
+        min-height: 75px;
+    }    
+
+</style>
+<div id="family_info" class="tab-pane fade in active" style="">
+    <table width="100%">
+        <tr>
+            <td>  
+                <?php
+                $form = $this->form;
+                $form->prepare();
+                $form->setAttribute('onSubmit', "return SubmitPost($(this).attr('id'))");
+                echo $this->form()->openTag($form);
+                echo $this->formHidden($form->get('id'));
+                ?>
+                <?php echo $this->formRow($form->get('father_id')); ?>
+                <?php echo $this->formRow($form->get('mother_id')); ?>
+
+                <div class="col-sm-4" style="width:100%;">
+                    <h3><?php echo $this->translate('Update About Family') ?></h3> 
+
+
+
+                    <div class="form-group row">
+                        <label for="Alt. Mobile No." class="col-sm-2 form-control-label edupading"><?php echo $this->translate('Family Values'); ?></label>
+                        <div class="col-sm-3"><?php echo $this->formRow($form->get('family_values')); ?></div>
+
+
+                        <div class="col-sm-3"></div>
+                    </div>
+
+              
+                    <!---******************************Father Info starts here*****************************************************-->
+
+                    <h3><strong><?php echo $this->translate('Father Details') ?></strong></h3>
+
+                    <div class="form-group row">
+                        <label for="Full Name" class="col-sm-2 form-control-label edupading"><?php echo $this->translate('Name'); ?></label>
+                        <div class="col-sm-3 coltilte" ><?php echo $this->formRow($form->get('name_title_father')); ?></div>
+                        <div class="col-sm-2 colname"><?php echo $this->formRow($form->get('father_name')); ?>
+                            <div id="result_father" class="result"></div>
+                        </div>
+                        <div class="col-sm-2 colname"><?php echo $this->formRow($form->get('father_last_name')); ?></div>
+                        <label for="Alt. Mobile No." class="col-sm-2 form-control-label edupading" style="width:15% !important;"><?php echo $this->translate('DOB'); ?></label>
+                        <div class="col-sm-2"> <?php echo $this->formRow($form->get('father_dob')); ?></div>
+                    </div>
+
+                    <div class="form-group row">		
+                        <label for="Gender" class="col-sm-2 form-control-label edupading"><?php echo $this->translate('Status') ?></label>
+                        <div class="col-sm-3"><?php echo $this->formRow($form->get('father_status')); ?></div>
+                        
+                    </div>
+
+
+
+                    <div class="form-group row" id="father_dod_row" style="display:none;">
+                        <label for="Phone No." class="col-sm-2 form-control-label edupading"><?php echo $this->translate('DOD') ?></label>
+                        <div class="col-sm-3"><?php echo $this->formRow($form->get('father_dod')); ?></div>
+                        <div class="col-sm-3"></div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label edupading" for="About Father">About</label>
+                        <div class="col-sm-9" style="padding:0;">
+                            <?php echo $this->formRow($form->get('about_father')); ?>
+                        </div>
+
+                    </div>
+
+
+
+                    <!---******************************Father Info ends here*****************************************************-->
+
+                    <!---******************************Mother Info starts here*****************************************************-->
+
+                    <h3><strong><?php echo $this->translate('Mother Details') ?></strong></h3>
+
+                    <div class="form-group row">
+                        <label for="Alt. Mobile No." class="col-sm-2 form-control-label edupading"><?php echo $this->translate('Name'); ?></label>        
+                        <div class="col-sm-3 coltilte" ><?php echo $this->formRow($form->get('name_title_mother')); ?></div>
+                        <div class="col-sm-2 colname"> <?php echo $this->formRow($form->get('mother_name')); ?>
+
+                            <div id="result_mother" class="result"></div>
+                        </div>
+                        <div class="col-sm-2 colname"><?php echo $this->formRow($form->get('mother_last_name')); ?></div>
+                        <label for="Alt. Mobile No." class="col-sm-2 form-control-label edupading" style="width:15% !important;"><?php echo $this->translate('DOB'); ?></label>
+                        <div class="col-sm-2"> <?php echo $this->formRow($form->get('mother_dob')); ?></div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="Phone No." class="col-sm-2 form-control-label edupading"><?php echo $this->translate('Status') ?></label>
+                        <div class="col-sm-3"><?php echo $this->formRow($form->get('mother_status')); ?></div>
+                        
+                    </div>
+
+
+
+
+                    <div class="form-group row" id="mother_dod_row" style="display:none;">
+                        <label for="Phone No." class="col-sm-2 form-control-label edupading"><?php echo $this->translate('DOD') ?></label>
+                        <div class="col-sm-3"><?php echo $this->formRow($form->get('mother_dod')); ?></div>
+                        <div class="col-sm-3"></div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label edupading" for="About"><?php echo $this->translate('About') ?></label>
+                        <div class="col-sm-9" style="padding:0; height: 35px;">
+                            <?php echo $this->formRow($form->get('about_mother')); ?>
+                        </div>
+                    </div>
+
+
+                    <!---******************************Mother Info ends here*****************************************************-->
+                    <!---******************************Brother Info start here*****************************************************-->
+
+                    <h3><strong><?php echo $this->translate('Brother Details') ?></strong></h3>
+
+                    <div class="input-group control-group after-add-more-brother">
+
+                        <div class="input-group-btn"> 
+                            <button class="btn btn-success add-more-brother" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
+                        </div>
+                    </div>
+
+                    <?php
+                    foreach ($brotherData as $brotherDatas) {
+                        $id = "delete_" . $brotherDatas['id'];
+                        ?>
+                        <input type="hidden" name="brother_id[]" class="form-control" id="brother_id[]" value="<?php echo $brotherDatas['id'] ?>">
+
+                        <div class="control-group input-group" style="margin-top:10px;" >
+                            <div class="form-group row">
+                                <label for="grand_fatherName" class="col-sm-2 form-control-label edupading">Name</label>
+                                <div class="col-sm-3 coltilte">
+                                    <select class="form-control" name="name_title_brother[]" style="padding:0;">
+                                        <option <?php if ($sisterDatas['title'] == 'Mr') { ?>selected="selected" <?php } ?>>Mr</option>
+                                        <option <?php if ($sisterDatas['title'] == 'Dr') { ?>selected="selected" <?php } ?>>Dr</option>
+                                        <option <?php if ($sisterDatas['title'] == 'Prof') { ?>selected="selected" <?php } ?>>Prof</option>
+                                        <option <?php if ($sisterDatas['title'] == 'Retd') { ?>selected="selected" <?php } ?>>Retd</option>
+                                        <option <?php if ($sisterDatas['title'] == 'Major') { ?>selected="selected" <?php } ?>>Major</option>
+                                        <option <?php if ($sisterDatas['title'] == 'Sh') { ?>selected="selected" <?php } ?>>Sh</option>
+                                        <option <?php if ($sisterDatas['title'] == 'Late Sh') { ?>selected="selected" <?php } ?>>Late Sh</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2 colname">
+                                    <input type="text" placeholder="First Name" id="brother_name_0" name="brother_name[]" class="form-control" value="<?php echo $brotherDatas['name'] ?>">
+
+                                </div>
+                                <div class="col-sm-2 colname">
+                                    <input type="text" placeholder="Last Name" id="brother_last_name_0" name="brother_last_name[]" class="form-control" value="<?php echo $brotherDatas['last_name'] ?>">
+
+                                </div>
+                                <label for="Phone No." class="col-sm-2 form-control-label edupading" style="width:15% !important;">Status</label>
+                                <div class="col-sm-2">
+                                    <select class="form-control" id="brother_status_<?php echo $brotherDatas['id'] ?>" name="brother_status[]">
+                                        <option value="">Select</option>
+                                        <option value="Employed" <?php if ($brotherDatas['status'] == 'Employed') { ?>selected="selected" <?php } ?>>Employed</option>
+                                        <option value="Not Employed" <?php if ($brotherDatas['status'] == 'Not Employed') { ?>selected="selected" <?php } ?>>Not Employed</option>
+                                        <option value="Self Employed" <?php if ($brotherDatas['status'] == 'Self Employed') { ?>selected="selected" <?php } ?>>Self Employed</option>
+                                        <option value="Govt Employed" <?php if ($brotherDatas['status'] == 'Govt Employed') { ?>selected="selected" <?php } ?>>Govt Employed</option>
+                                        <option value="Business" <?php if ($brotherDatas['status'] == 'Business') { ?>selected="selected" <?php } ?>>Business</option>
+                                        <option value="Home Maker" <?php if ($brotherDatas['status'] == 'Home Maker') { ?>selected="selected" <?php } ?>>Home Maker</option>
+                                        <option value="2" <?php if ($brotherDatas['status'] == '2') { ?>selected="selected" <?php } ?>>Passed Away</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="DOB" class="col-sm-2 form-control-label edupading">DOB</label>
+                                <div class="col-sm-3"> 
+                                    <input type="text" name="brother_dob[]" class="form-control datepicker1" value="<?php echo $this->MyHelper()->myDate($brotherDatas['dob']) ?>">
+                                </div>
+                               
+                            </div>
+                            <div class="form-group row">
+                                <label for="Marital Status" class="col-sm-2 form-control-label edupading">Marital Status</label>
+                                <div class="col-sm-3"> 
+                                    <select class="form-control" name="marital_status_brother[]">
+
+                                        <option <?php if ($brotherDatas['marital_status'] == 'Not-Married') { ?>selected="selected" <?php } ?>>Not-Married</option>
+                                        <option <?php if ($brotherDatas['marital_status'] == 'Married') { ?>selected="selected" <?php } ?>>Married</option>
+                                    </select>
+                                </div>
+                                <div class="" id="brotherDodInfo<?php echo $brotherDatas['id'] ?>" style="display:none">
+                                    <label for="DOD" class="col-sm-2 form-control-label edupading">DOD</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" name="brother_dod[]" class="form-control datepicker1" value="<?php echo $this->MyHelper()->myDate($brotherDatas['dod']) ?>">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div id="about_brother">
+                                    <label for="About Brother" class="col-sm-2 form-control-label edupading">About</label>
+                                    <div class="col-sm-9" style="padding:0;">
+                                        <textarea class="form-control" style="height:50px;" name="about_brother[]" placeholder="About Brother"><?php echo $brotherDatas['about'] ?></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-group-btn"> 
+                                <button class="btn btn-danger <?php echo $id ?>" type="button" onclick="return onClickDeleteBrother(<?php echo $brotherDatas['id'] ?>)"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+                            </div>
+                        </div>
+<?php } ?>
+
+                    <!---******************************Brother Info ends here*****************************************************-->
+                    <!---******************************Sister Info start here*****************************************************-->  
+                    <h3><strong><?php echo $this->translate('Sister Details') ?></strong></h3>
+
+                    <div class="input-group control-group after-add-more-sister">
+
+                        <div class="input-group-btn"> 
+                            <button class="btn btn-success add-more-sister" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
+                        </div>
+                    </div>
+
+                    <?php
+                    foreach ($sisterData as $sisterDatas) {
+                        $id = "delete_" . $sisterDatas['id'];
+                        ?>
+                        <input type="hidden" name="sister_id[]" class="form-control" id="sister_id[]" value="<?php echo $sisterDatas['id'] ?>">
+
+                        <div class="control-group input-group" style="margin-top:10px;" >
+                            <div class="form-group row">
+                                <label for="grand_fatherName" class="col-sm-2 form-control-label edupading">Name</label>
+                                <div class="col-sm-3 coltilte">
+                                    <select class="form-control" name="name_title_sister[]" style="padding:0;">
+                                        <option <?php if ($sisterDatas['title'] == 'Mrs') { ?>selected="selected" <?php } ?>>Mrs</option>
+                                        <option <?php if ($sisterDatas['title'] == 'Dr') { ?>selected="selected" <?php } ?>>Dr</option>
+                                        <option <?php if ($sisterDatas['title'] == 'Prof') { ?>selected="selected" <?php } ?>>Prof</option>
+                                        <option <?php if ($sisterDatas['title'] == 'Retd') { ?>selected="selected" <?php } ?>>Retd</option>
+                                        <option <?php if ($sisterDatas['title'] == 'Major') { ?>selected="selected" <?php } ?>>Major</option>
+                                        <option <?php if ($sisterDatas['title'] == 'Sh') { ?>selected="selected" <?php } ?>>Sh</option>
+                                        <option <?php if ($sisterDatas['title'] == 'Late Sh') { ?>selected="selected" <?php } ?>>Late Sh</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-3 colname">
+                                    <input type="text" placeholder="First Name" id="sister_name_0" name="sister_name[]" class="form-control" value="<?php echo $sisterDatas['name'] ?>">
+                                </div>
+                                <div class="col-sm-2 colname">
+                                    <input type="text" placeholder="Last Name" id="sister_last_name_0" name="sister_last_name[]" class="form-control" value="<?php echo $sisterDatas['last_name'] ?>">
+                                </div>
+                                <label for="Phone No." class="col-sm-2 form-control-label edupading" style="width:15% !important;">Status</label>
+                                <div class="col-sm-2">
+                                    <select class="form-control" id="sister_status_<?php echo $sisterDatas['id'] ?>" name="sister_status[]">
+                                        <option value="">Select</option>
+                                        <option value="Employed" <?php if ($sisterDatas['status'] == 'Employed') { ?>selected="selected" <?php } ?>>Employed</option>
+                                        <option value="Not Employed" <?php if ($sisterDatas['status'] == 'Not Employed') { ?>selected="selected" <?php } ?>>Not Employed</option>
+                                        <option value="Self Employed" <?php if ($sisterDatas['status'] == 'Self Employed') { ?>selected="selected" <?php } ?>>Self Employed</option>
+                                        <option value="Govt Employed" <?php if ($sisterDatas['status'] == 'Govt Employed') { ?>selected="selected" <?php } ?>>Govt Employed</option>
+                                        <option value="Business" <?php if ($sisterDatas['status'] == 'Business') { ?>selected="selected" <?php } ?>>Business</option>
+                                        <option value="Home Maker" <?php if ($sisterDatas['status'] == 'Home Maker') { ?>selected="selected" <?php } ?>>Home Maker</option>
+                                        <option value="2" <?php if ($sisterDatas['status'] == '2') { ?>selected="selected" <?php } ?>>Passed Away</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="DOB" class="col-sm-2 form-control-label edupading">DOB</label>
+                                <div class="col-sm-3"> 
+                                    <input type="text" name="sister_dob[]" class="form-control datepicker1" value="<?php echo $this->MyHelper()->myDate($sisterDatas['dob']) ?>">
+                                </div>
+                               
+                            </div>
+                            <div class="form-group row">
+                                <label for="Marital Status" class="col-sm-2 form-control-label edupading">Marital Status</label>
+                                <div class="col-sm-3"> 
+                                    <select class="form-control" name="marital_status_sister[]">
+
+                                        <option <?php if ($sisterDatas['marital_status'] == 'Not-Married') { ?>selected="selected" <?php } ?>>Not-Married</option>
+                                        <option <?php if ($sisterDatas['marital_status'] == 'Married') { ?>selected="selected" <?php } ?>>Married</option>
+                                    </select>
+                                </div>
+                                <div class="" id="sisterDodInfo<?php echo $sisterDatas['id'] ?>" style="display:none">
+                                    <label for="DOD" class="col-sm-2 form-control-label edupading">DOD</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" name="sister_dod[]" class="form-control datepicker1" value="<?php echo $this->MyHelper()->myDate($sisterDatas['dod']) ?>">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div id="about_brother">
+                                    <label for="About Brother" class="col-sm-2 form-control-label edupading">About</label>
+                                    <div class="col-sm-9" style="padding:0;">
+                                        <textarea class="form-control" style="height:50px;" name="about_sister[]" placeholder="About Brother"><?php echo $sisterDatas['about'] ?></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-group-btn"> 
+                                <button class="btn btn-danger <?php echo $id ?>" type="button" onclick="return onClickDeleteBrother(<?php echo $sisterDatas['id'] ?>)"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+                            </div>
+                        </div>
+                    <?php } ?>
+                    <!---******************************Sister Info ends here*****************************************************-->
+
+<?php include('clone.phtml'); ?>         
+
+
+
+                    <div class="form-group row">
+                        <label for="Submit" class="col-sm-2 form-control-label edupading"></label>
+                        <div class="col-sm-3"></div>
+                        <label for="Submit" class="col-sm-2 form-control-label edupading"></label>
+                        <div class="col-sm-3"><?php echo $this->formRow($form->get('submit')); ?>
+                            <input name="submit" id="submitnext" class="btn btn-default" value="Save & Next" type="submit"></div>
+                    </div>	  
+                </div>
+<?php echo $this->form()->closeTag(); ?>
+            </td>
+        </tr>
+    </table>
+</div>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+//      brother dynamic
+        $('body').on('focus', ".dateRangePicker", function () {
+            $(this).datepicker({
+                dateFormat: 'dd-mm-yy',
+                changeYear: true
+
+            });
+        });
+
+        $(".add-more-brother").click(function () {
+            var html = $(".copy-brother").html();
+            $(".after-add-more-brother").after(html);
+
+        });
+
+
+        $("body").on("click", ".remove", function () {
+            $(this).parents(".control-group").remove();
+        });
+
+        $("body").on('change', "#new_brother_status", function () {
+            //console.log(this.value);
+            //alert($(this).find("#brotherDodInfo").val());
+            if (this.value == "2") {
+                //alert('satya');
+                $(this).parents(".control-group").find("#brotherDodInfo").css('display', 'block');
+            } else {
+                $(this).parents(".control-group").find("#brotherDodInfo").css('display', 'none');
+            }
+        });
+
+//      Sister dynamic
+
+        $(".add-more-sister").click(function () {
+            var html = $(".copy-sister").html();
+            $(".after-add-more-sister").after(html);
+
+        });
+
+
+        $("body").on("click", ".remove", function () {
+            $(this).parents(".control-group").remove();
+        });
+
+        $("body").on('change', "#new_sister_status", function () {
+            //console.log(this.value);
+            //alert($(this).find("#brotherDodInfo").val());
+            if (this.value == "2") {
+                //alert('satya');
+                $(this).parents(".control-group").find("#sisterDodInfo").css('display', 'block');
+            } else {
+                $(this).parents(".control-group").find("#sisterDodInfo").css('display', 'none');
+            }
+        });
+
+
+        //kids dynamic
+
+        $(".add-more-kids").click(function () {
+            var html = $(".copy-kids").html();
+            $(".after-add-more-kids").after(html);
+
+        });
+
+
+        $("body").on("click", ".remove", function () {
+            $(this).parents(".control-group").remove();
+        });
+
+        $("body").on('change', "#new_kids_status", function () {
+            //console.log(this.value);
+            //alert($(this).find("#brotherDodInfo").val());
+            if (this.value == "2") {
+                //alert('satya');
+                $(this).parents(".control-group").find("#kidsDodInfo").css('display', 'block');
+            } else {
+                $(this).parents(".control-group").find("#kidsDodInfo").css('display', 'none');
+            }
+        });
+
+
+
+    });
+
+</script>
+
+<script type="text/javascript">
+
+    $(function () {
+        $(".datepicker1").datepicker({dateFormat: "dd-mm-yy", changeYear: true, });
+    });
+
+</script>
+
+<script type="text/javascript">
+
+    $("#father_status").on('change', function () {
+        var status_live = $(this).val();
+        if (status_live == "2") {
+            $("#father_dod_row").css('display', 'block');
+        } else {
+            $("#father_dod_row").css('display', 'none');
+        }
+    });
+    $("#mother_status").on('change', function () {
+        var status_live = $(this).val();
+        if (status_live == "2") {
+            $("#mother_dod_row").css('display', 'block');
+        } else {
+            $("#mother_dod_row").css('display', 'none');
+        }
+    });
+    $("#spouse_status").on('change', function () {
+        var status_live = $(this).val();
+        if (status_live == "2") {
+            $("#spouse_dod_row").css('display', 'block');
+        } else {
+            $("#spouse_dod_row").css('display', 'none');
+        }
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+
+//       brother
+        var broData =<?php echo json_encode($brotherData) ?>;
+        for (var i = 0; i < broData.length; i++) {
+
+            //console.log(broData[i].id);
+            if (broData[i].status == "2") {
+                $("#brotherDodInfo" + broData[i].id).css('display', 'block');
+                //console.log(broData[i].live_status);
+
+            }
+            $("#brother_status_" + broData[i].id).on('change', function () {
+
+                var strChosen = $(this).attr('id');
+                var lastItem = strChosen.split("_").pop();
+                var status_live_again = $(this).val();
+                //alert(status_live_again);
+                if (status_live_again == "2") {
+                    $("#brotherDodInfo" + lastItem).css('display', 'block');
+                } else {
+                    $("#brotherDodInfo" + lastItem).css('display', 'none');
+                }
+            });
+        }
+//     Sister   
+        var sisData =<?php echo json_encode($sisterData) ?>;
+        for (var i = 0; i < sisData.length; i++) {
+
+            //console.log(broData[i].id);
+            if (sisData[i].status == "2") {
+                $("#sisterDodInfo" + sisData[i].id).css('display', 'block');
+                //console.log(broData[i].live_status);
+
+            }
+            $("#sister_status_" + sisData[i].id).on('change', function () {
+
+                var strChosen = $(this).attr('id');
+                var lastItem = strChosen.split("_").pop();
+                var status_live_again = $(this).val();
+                //alert(status_live_again);
+                if (status_live_again == "2") {
+                    $("#sisterDodInfo" + lastItem).css('display', 'block');
+                } else {
+                    $("#sisterDodInfo" + lastItem).css('display', 'none');
+                }
+            });
+        }
+        
+ //     Kids   
+        var kidsData =<?php echo json_encode($kidsData) ?>;
+        for (var i = 0; i < kidsData.length; i++) {
+
+            //console.log(broData[i].id);
+            if (kidsData[i].status == "2") {
+                $("#kidsDodInfo" + kidsData[i].id).css('display', 'block');
+                //console.log(broData[i].live_status);
+
+            }
+            $("#kids_status_" + kidsData[i].id).on('change', function () {
+
+                var strChosen = $(this).attr('id');
+                var lastItem = strChosen.split("_").pop();
+                var status_live_again = $(this).val();
+                //alert(status_live_again);
+                if (status_live_again == "2") {
+                    $("#kidsDodInfo" + lastItem).css('display', 'block');
+                } else {
+                    $("#kidsDodInfo" + lastItem).css('display', 'none');
+                }
+            });
+        }       
+
+
+
+
+        //*************** add css to date fieds**********
+        $(".inputDate").css('cursor', 'pointer');
+        //***********************************************
+        var status_live = $('#spouse_status').val();
+        
+        if (status_live == "2") {
+            $("#spouse_dod_row").css('display', 'block');
+        } else {
+            $("#spouse_dod_row").css('display', 'none');
+        }
+        //***********************************************
+        var status_live = $('#father_status').val();
+        if (status_live == "2") {
+            $("#father_dod_row").css('display', 'block');
+        } else {
+            $("#father_dod_row").css('display', 'none');
+        }
+        //***********************************************
+        var status_live = $('#mother_status').val();
+        if (status_live == "2") {
+            $("#mother_dod_row").css('display', 'block');
+        } else {
+            $("#mother_dod_row").css('display', 'none');
+        }
+        //***********************************************
+        var status_live = $('#grand_father_status').val();
+        if (status_live == "2") {
+            $("#g_father_dod_row").css('display', 'block');
+        } else {
+            $("#g_father_dod_row").css('display', 'none');
+        }
+        //***********************************************
+        var status_live = $('#grand_mother_status').val();
+        if (status_live == "2") {
+            $("#g_mother_dod_row").css('display', 'block');
+        } else {
+            $("#g_mother_dod_row").css('display', 'none');
+        }
+        //***********************************************
+        var status_live = $('#grand_grand_father_status').val();
+        if (status_live == "2") {
+            $("#gg_father_dod_row").css('display', 'block');
+        } else {
+            $("#gg_father_dod_row").css('display', 'none');
+        }
+        //***********************************************
+        var status_live = $('#grand_grand_mother_status').val();
+        if (status_live == "2") {
+            $("#gg_mother_dod_row").css('display', 'block');
+        } else {
+            $("#gg_mother_dod_row").css('display', 'none');
+        }
+        //***********************************************
+        var status_live = $('#spouse_fatherStatus').val();
+        if (status_live == "Passed Away") {
+            $("#spouse_father_dod_row").css('display', 'block');
+        } else {
+            $("#spouse_father_dod_row").css('display', 'none');
+        }
+        //***********************************************
+        var status_live = $('#spouse_motherStatus').val();
+        if (status_live == "Passed Away") {
+            $("#spouse_mother_dod_row").css('display', 'block');
+        } else {
+            $("#spouse_mother_dod_row").css('display', 'none');
+        }
+
+    });
+
+
+    //***************hide spouse and kids if user is unmarried*********
+    var rdtype1 = '<?php echo $userInfo['marital_status']; ?>';
+// alert(rdtype1);
+    if (rdtype1 == "Single" || rdtype1 == "") {
+        $(".Family_Details_married").css('display', 'none');
+    }
+
+    $(".mrtlrd").on('click', function () {
+        var rdtype = $(this).val();
+        if (rdtype == "Never Married") {
+            $(".Family_Details_married").css('display', 'none');
+        } else {
+            $(".Family_Details_married").css('display', 'block');
+        }
+    });
+
+    if ($('input[name="marital_status"]').is(':checked')) {
+        //alert($('input[name="marital_status"]:checked').val());
+        $('input[name="marital_status"]:checked').trigger("click");
+    }
+</script>
+<!---****************************************************************************
+**********************************************************************************-->
+
+
+<script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36251023-1']);
+    _gaq.push(['_setDomainName', 'jqueryscript.net']);
+    _gaq.push(['_trackPageview']);
+
+    (function () {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+    })();
+
+</script>
+
+<script>
+    $(document).ready(function () {
+        $("#hide").on('click', function () {
+            $("#ggm").hide();
+        });
+
+        $("#show").on('click', function () {
+            $("#ggm").show();
+        });
+
+        $("#hide1").on('click', function () {
+            $("#ggf").hide();
+        });
+
+        $("#show1").on('click', function () {
+            $("#ggf").show();
+        });
+
+        $("#hidegm").on('click', function () {
+            $("#gm").hide();
+        });
+
+        $("#showgm").on('click', function () {
+            $("#gm").show();
+        });
+
+        $("#hidegf").on('click', function () {
+            $("#gf").hide();
+        });
+
+        $("#showgf").on('click', function () {
+            $("#gf").show();
+        });
+
+        $("#sfhide").on('click', function () {
+            $("#sfamily").hide();
+        });
+
+        $("#sfshow").on('click', function () {
+            $("#sfamily").show();
+        });
+
+
+    });
+
+
+    function onClickDeleteBrother(uid) {
+        if (confirm('Are you sure you want to delete this?')) {
+            //alert(uid);
+
+            $.ajax({
+                url: '<?php echo $this->url('profile', array('action' => 'family-detail')) ?>',
+                type: "POST",
+                dataType: "json",
+                data: "brother_id_delete=" + uid,
+                beforeSend: function () {
+                    $('#Loading_Request').show();
+                },
+                complete: function () {
+                    $('#Loading_Request').hide();
+                    $(".delete_" + uid).parents(".control-group").remove();
+                },
+                success: function (resp) {
+                    console.log(resp);
+                    //alert(resp);
+
+                    //$("#profile").empty();
+                    //$("#profile").append(resp);
+                    //debugger;
+//                    if (resp.Status == 'Success') {
+//                            $("#profile").empty();
+//                            $("#state").append(resp);
+//                          
+//                    } else {
+//                    $("#state").empty();
+//                            $("#city").empty();
+//                            alert("No States are available");
+//                    }
+                },
+                error: function (error) {
+                    console.log(error);
+                    // alert(error);
+                }
+            });
+            //debugger;
+            return false;
+        }
+    }
+
+    function showCropBoxMatrimonial(uid) {
+
+        //alert('satya');
+
+        $("#uid").val(uid);
+
+    }
+
+    function SubmitPost(data) {
+        //alert('satya');
+        //console.log);
+        var formdata = $("#" + data).serialize();
+        $.ajax({
+            url: '<?php echo $this->url('profile', array('action' => 'family-detail')) ?>',
+            type: "POST",
+            dataType: "json",
+            data: formdata,
+            beforeSend: function () {
+                $('#Loading_Request').show();
+            },
+            complete: function () {
+                $('#Loading_Request').hide();
+                familyDetailsResponse();
+            },
+            success: function (resp) {
+                console.log(resp);
+                //alert(resp);
+
+                //$("#profile").empty();
+                //$("#profile").append(resp);
+                //debugger;
+//                    if (resp.Status == 'Success') {
+//                            $("#profile").empty();
+//                            $("#state").append(resp);
+//                          
+//                    } else {
+//                    $("#state").empty();
+//                            $("#city").empty();
+//                            alert("No States are available");
+//                    }
+            },
+            error: function (error) {
+                console.log(error);
+                // alert(error);
+            }
+        });
+        //debugger;
+        return false;
+
+    }
+
+
+    function familyDetailsResponse() {
+
+
+        $("#abouttab").removeClass("linikactive");
+        $("#profiletab").removeClass("linikactive");
+        $("#gallery").removeClass("linikactive");
+        $("#post").removeClass("linikactive");
+        $("#eduncarr").removeClass("linikactive");
+        $("#familydetail").addClass("linikactive");
+
+
+        $.ajax({
+            url: '<?php echo $this->url('profile', array('action' => 'family-detail')) ?>',
+            //type: "POST",
+            dataType: "html",
+            // data: {Country_ID: countryId},
+            beforeSend: function () {
+                $('#Loading_Request').show();
+            },
+            complete: function () {
+                $('#Loading_Request').hide();
+            },
+            success: function (resp) {
+
+                $("#profile").empty();
+                $("#profile").append(resp);
+                debugger;
+//                    if (resp.Status == 'Success') {
+//                            $("#profile").empty();
+//                            $("#state").append(resp);
+//                          
+//                    } else {
+//                    $("#state").empty();
+//                            $("#city").empty();
+//                            alert("No States are available");
+//                    }
+            },
+            error: function (error) {
+                console.log(error);
+                // alert(error);
+            }
+        });
+
+    }
+
+</script>
+
+

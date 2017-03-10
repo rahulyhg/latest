@@ -1,0 +1,105 @@
+ <div >
+            <p>
+              <a href="<?= $this->url('admin/sponsermaster',array('action'=>'index'));?>"><button class="btn btn-warning btn-xlg">Go Back</button></a>
+            </p>
+          </div>
+<div class="panel-body">
+          <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active in" id="driver_tab">
+              <div class="container col-sm-col-sm-offset-1" style="margin: 10px auto 0px !important;padding: 0 10px;">
+                <div class="row">
+                   <div class="form-group clearfix margintopbottom20">
+                           
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Sponser Name'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     echo $Info->sponsName;
+                                                     ?>                                    
+                                                  </div>
+                       <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                                                    <?= $this->translate('Sponser Poc Name') ?>
+                                                </label>
+                                                <div class="col-sm-3">
+                        
+                                                    <?php
+                                                        // echo $this->formHidden($form->get('id'));
+                                                         //echo $this->formElement($form->get('title'));
+                                                    echo $Info->sponsPocName;
+                                                        //echo $Info->page_name;
+                                                        ?> 
+                                                    <!--<span class="showerror"></span> -->  
+
+                                            </div>
+                                                 </div>
+                                             </div>
+                                             <div class="row">
+                                                <div class="form-group clearfix margintopbottom20">
+                                                    
+                                                 <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Sponser Desc'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     echo $Info->sponsDesc;
+                                                     ?>                                    
+                                                  </div>   
+                                                    
+                        <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Modified By'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     echo ($Info->modifiedBy==1)?'Admin':'Not Available Now';
+                                                     ?>                                    
+                                                  </div>
+                                                 
+                            
+                                                 </div>
+                                             </div>
+
+                                          <div class="row">
+                                                <div class="form-group clearfix margintopbottom20">
+                          <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Created Date'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     echo date('l d-m-Y',strtotime($Info->createdDate));
+                                                     ?>                                    
+                                                  </div>
+                                                 
+                            <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Modified Date'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     echo date('l d-m-Y',strtotime($Info->modifiedDate));
+                                                     ?>                                    
+                                                  </div>
+                                                 </div>
+                                             </div>  
+                  <div class="row">
+                      <div class="form-group clearfix margintopbottom20">
+                          
+                          <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate('Status'); ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     echo ($Info->isActive==1)? 'Active':'In-Active';
+                                                     ?>                                    
+                                                  </div>
+                          
+                          <p class="pull-left newsimg"  ><?php $image = (empty($Info->sponsImage))?'/images/new-big.jpg' : 
+                                  $Info->sponsImage;?><img src="<?= $this->basepath()."/SponserImages/".$image;?>" width="257"  height="257" 
+                                       alt=""></p>
+                          
+                      </div>
+                      </div>
+                                             
+              </div>
+            </div>
+          </div>
+      </div>

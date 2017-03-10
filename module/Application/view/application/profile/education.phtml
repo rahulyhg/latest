@@ -1,0 +1,192 @@
+<div class="col-sm-3 col-sm-3-new width20per">
+    <?php echo $this->partial('layout/sidebar-user') ?>
+</div>
+
+
+<div class="col-sm-9 width80per">
+    <?php include('main_info.phtml'); ?>
+    <div class="col-sm-6" style="margin-top:22px; float:right; text-align:right;">
+        <p style="text-align:right;">Connected  9 Months ago</p>
+    </div>
+
+    <div class="clearfix"></div>
+    <?php include('menu.phtml'); ?>
+
+
+    <div class="tab-content">
+        <div id="education_info" class="tab-pane fade in active">
+
+            <table width="100%">
+                <tr>
+                    <td>
+                        <?php
+                        $form = $this->form;
+                        $form->prepare();
+                        echo $this->form()->openTag($form);
+                        ?>
+                        <div class="col-sm-4" style="width:100%;">
+                            <h3><?php echo $this->translate('Update Education Info') ?></h3>	  
+
+
+
+                            <div class="form-group row">
+                                <label for="Education Level" class="col-sm-3 form-control-label edupading"><?php echo $this->translate('Education Level') ?></label>
+                                <div class="col-sm-3">
+                                    <?php
+                                    echo $this->formHidden($form->get('id'));
+                                    echo $this->formRow($form->get('education_level'));
+                                    ?>               
+                                </div>
+                                <div id="edu_level_Others_row" style="display:none;">
+                                    <label for="Education Level" class="col-sm-3 form-control-label edupading"><?php echo $this->translate('Education Level Other') ?></label>
+                                    <div class="col-sm-3"><?php echo $this->formRow($form->get('education_level_other')); ?> </div>
+                                </div> 
+                            </div>
+
+                            <div class="form-group row">        
+                                <label for="Education Field" class="col-sm-3 form-control-label edupading"><?php echo $this->translate('Education Field') ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('education_field')); ?></div>
+                                <div id="edu_field_Others_row" style="display:none;">
+                                    <label for="Education Field" class="col-sm-3 form-control-label edupading"><?php echo $this->translate('Education Field Other') ?></label>
+                                    <div class="col-sm-3"><?php echo $this->formRow($form->get('education_field_other')); ?></div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">		
+                                <label for="Employment Status" class="col-sm-4 form-control-label edupading"><?php echo $this->translate('Employment Status') ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('employment_status')); ?></div>
+                                <div id="employement_Others_row" style="display:none;">
+                                    <label for="Education Field" class="col-sm-3 form-control-label edupading"><?php echo $this->translate('Employment Other') ?></label>
+                                    <div class="col-sm-3"><?php echo $this->formRow($form->get('employment_status_other')); ?></div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">		
+                                <label for="Profession" class="col-sm-3 form-control-label edupading"><?php echo $this->translate('Profession') ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('profession')); ?></div>
+                                <div id="profession_Others_row" style="display:none;">
+                                    <label for="Education Field" class="col-sm-3 form-control-label edupading"><?php echo $this->translate('Profession Other') ?></label>
+                                    <div class="col-sm-3"><?php echo $this->formRow($form->get('profession_other')); ?></div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="Specialization" class="col-sm-3 form-control-label edupading"><?php echo $this->translate('Specialization') ?></label>
+                                <div class="col-sm-3"><?php echo $this->formRow($form->get('specialization_major')); ?></div>		
+                                <label for="Profession" class="col-sm-3 form-control-label edupading"></label>
+                                <div class="col-sm-3">
+<?php echo $this->formRow($form->get('submit')); ?>
+                                    <input name="submit" id="submitnext" class="btn btn-default" value="Save & Next" type="submit">
+                                </div>
+                            </div> 
+
+                        </div>
+<?php echo $this->form()->closeTag(); ?>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        /* $("#EducationForm").validate({
+         rules: {                            
+         education_level:
+         {
+         required: true                                   
+         },					
+         education_field:
+         {
+         required: true
+         },
+         specialization_major:
+         {
+         required: true
+         },
+         employment_status:
+         {
+         required: true                                
+         },	
+         profession: 
+         {
+         required: true
+         }
+         },
+         messages: {                              
+         
+         }
+         }); */
+
+        //*****************
+        if ($("#education_level").val() == 11) {
+            $("#edu_level_Others_row").css('display', 'block');
+        } else {
+            $("#edu_level_Others_row").css('display', 'none');
+        }
+        if ($("#education_field").val() == 21) {
+            $("#edu_field_Others_row").css('display', 'block');
+        } else {
+            $("#edu_field_Others_row").css('display', 'none');
+        }
+        if ($("#employment_status").val() == "Others") {
+            $("#employement_Others_row").css('display', 'block');
+        } else {
+            $("#employement_Others_row").css('display', 'none');
+        }
+        if ($("#profession").val() == 12) {
+            $("#profession_Others_row").css('display', 'block');
+        } else {
+            $("#profession_Others_row").css('display', 'none');
+        }
+    });
+</script>
+
+
+<script>
+//*****************************Others info hide show********************/
+//*********apend education_level others info
+    $("#education_level").on('change', function () {
+        if ($("#education_level").val() == 11) {
+            $("#edu_level_Others_row").css('display', 'block');
+        } else {
+            $("#edu_level_Others_row").css('display', 'none');
+        }
+    });
+//*********apend education_field others info
+    $("#education_field").on('change', function () {
+        if ($("#education_field").val() == 21) {
+            $("#edu_field_Others_row").css('display', 'block');
+        } else {
+            $("#edu_field_Others_row").css('display', 'none');
+        }
+    });
+//*********apend employment_status  others info
+    $("#employment_status").on('change', function () {
+        if ($("#employment_status").val() == "Others") {
+            $("#employement_Others_row").css('display', 'block');
+        } else {
+            $("#employement_Others_row").css('display', 'none');
+        }
+    });
+//*********apend profession  others info
+    $("#profession").on('change', function () {
+        if ($("#profession").val() == 12) {
+            $("#profession_Others_row").css('display', 'block');
+        } else {
+            $("#profession_Others_row").css('display', 'none');
+        }
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+

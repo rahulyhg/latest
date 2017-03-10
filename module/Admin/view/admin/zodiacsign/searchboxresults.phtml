@@ -1,0 +1,22 @@
+<table  width="100%" style="border:none !important;">
+<tbody>
+<?php
+if(count($zodiacsigns)>0){
+	$i=1;
+ foreach ($zodiacsigns as $zodiacsign) {
+?>
+
+
+<tr>
+<td>
+<a href="javascript:void(0);" id="zodiacsignsearch<?=$i;?>" onclick="grabvalues5('<?=$zodiacsign->zodiac_sign_name?>','<?=$zodiacsign->id?>','<?=$parentname?>');"><?= $zodiacsign->zodiac_sign_name?></a>
+</td>
+</tr>
+<?php
+$i++;
+}
+}
+else echo "<p>No matched search</p>";
+?>
+</tbody>
+</table>

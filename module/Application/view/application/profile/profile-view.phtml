@@ -1,0 +1,858 @@
+<?php $session = new \Zend\Session\Container('user'); 
+$user_id=$session->offsetGet('id');
+?>
+<style>
+	 /* Dropdown Button */
+
+label {
+    
+    margin-bottom: 0;
+    
+}
+.col-sm-2n
+{
+margin-right:0;	
+}
+
+.col-sm-3lifestyale
+{
+	padding:0 15px 0 0 !important;
+	text-align:center;
+	
+}
+
+.col-sm-3lifestyale1
+{
+	border:1px solid #ccc;
+	width:100%;
+	text-align:center;
+	vertical-align:middle;
+	min-height:60px;
+	padding-top:5px;
+	
+}
+
+</style>
+
+<?php
+echo $this->headLink()
+
+        ->prependStylesheet($this->basePath() . '/css/componant-vs-14.css')
+?>
+<div class="container orange-panelbg">
+    <div class="col-sm-3 col-sm-3-new width20per">
+       <?php include('sidebar_left_member.phtml');?>
+
+    </div>
+    
+    <div class="col-sm-9 width80per">
+<div class="myshaadi_wrap">
+	<div class="welcome_screen"></div>
+	
+
+    <div class="clear"></div>
+</div>
+
+<!--MY SHAADI LEFT-->
+<div class="col-sm-9" style="padding-top:0; padding-left:0;">
+
+<!--<div id="my_rustagi_left">
+
+
+	
+
+
+</div>--><!--end left_half-->	
+
+<!--MIDDLE SECTION-->
+<div id="my_rustagi_middle">
+    
+
+
+	<!--Pin Interest render-->
+    <div id="pin_interest" style="display: block;">    
+    <div class="pinned_wrap">
+        <div class="pinned_shadow">
+           
+            <div class="pinned_profile_green">
+                <p class="pinned_heading" style="font-size:12px;">
+                   <label class="col-sm-4"> Your Profile is Now <?php echo $this->MyHelper()->getActiveStatusById($user_id); ?></label> <label> <input type="checkbox"></label><label> Catogary- Gold   </label>                
+                </p>
+
+                <div id="pin_interest_profile" class="pos_rel">
+                    
+                    <div class="pinned_profile_wrap" rel="vSH87477335">
+    <div class="pinned_pic col-sm-1" style="padding:0; margin-right:5px;">
+        <span class="thumb60">
+           
+        <a href="<?php echo $this->url('profile', array('action'=>'profile-view')) ?>" target="">
+            <?php if (!empty($this->userSummary->profilePic['image_path'])) { ?>
+        <img  src="<?php echo $this->basePath('uploads/') . $this->userSummary->profilePic['image_path']; ?>" border="0" height="60" width="60"/>
+        <?php } else { ?>
+        <img src="<?php echo $this->basePath('img/default_user.png') ?>" border="0" height="60" width="60"/>
+        <?php } ?>
+        </a>
+        </span>
+    </div>
+    <div class="pinned_info col-sm-7">
+        <a href="#" class="pinned_pro_name" target="_blank"><?php echo $session->offsetget('ref_no');?></a>
+        <ul class="member_details">
+            
+            <li><span class="category">Name</span><span>:</span><span class="category_info"><?php echo $this->userSummary->userInfo->getFullName().' '.$this->userSummary->userInfo->getLastName(); ?></span></li>
+            <li><span class="category">Father's Name</span><span>:</span><span class="category_info"><?php echo $familyInfo->familyInfoArray['name_title_father'] . " " . $familyInfo->familyInfoArray['father_name']." ".$familyInfo->familyInfoArray['father_last_name'] ?></span></li>
+            <li><span class="category">Address</span><span>:</span><span class="category_info"><?php echo $this->userSummary->userInfo->getAddress() ?></span></li>
+            <li><span class="category">Contact Number</span><span>:</span><span class="category_info"><?php echo $this->userSummary->user->getMobileNo() ?></span></li>
+            <li><span class="category">Profession</span><span>:</span><span class="category_info"><?php echo $this->userSummary->userInfo->getProfession() ?></span></li>
+            <li><span class="category">Email Id</span><span>:</span><span class="category_info"><?php echo $session->offsetGet('email') ?></span></li>
+        </ul>
+    </div>
+    <div class="col-sm-3 pull-right" align="right">
+
+    <canvas id="demo-3" style="demo"></canvas>
+    <center style="text-align:right;"> <span><?= $percent[0] ?>% Completed</span></center>
+    
+</div>
+
+    <div class="clearfix"></div>
+   
+    
+</div>                   
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+    
+    
+    <div id="recently_joined" style="display: block;">
+    <div class="mid_box">
+    <img src="<?php echo $this->basePath()?>/images/add.jpg">
+</div>
+</div>
+  
+  <!-- about member -->
+  <?php if($this->userSummary->userInfo->getaboutYourselfPartnerFamily()!=""){ ?>
+  <div id="recently_joined" style="display: block;">
+      <div class="profielvewheading">
+          About Member Name
+
+      </div>
+      <div class="viewprofielcontant"><?php echo $this->userSummary->userInfo->getaboutYourselfPartnerFamily(); ?></div>
+
+  </div>
+  <?php } ?>
+ <!-- about member  --> 
+ 
+  <!-- Prosnal detail  --> 
+
+	<div id="recently_joined" style="display: block;">
+    <div class="personalprofileheading">
+    Personal Details
+    
+</div>
+<div class="viewprofielcontant">
+     <div id="personal-info" class="tab-pane fade active in">
+         <div class="row divrow1">
+             <?php if($this->userSummary->userInfo->getProfileFor()!=""){ ?>
+             <span class="col-sm-2n col-sm-2profilevew pull-left">Profile Created by:</span>
+             <div class="col-sm-3 col-sm-3profileview nwclas" style="width:75%;"><?php echo $this->userSummary->userInfo->getProfileFor(); ?></div>
+             <?php } ?>
+             <?php if($this->userSummary->userInfo->getFullName()!=""){ ?>
+             <span class="col-sm-2n col-sm-2profilevew pull-left">Full Name</span>
+             <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $this->userSummary->userInfo->getFullName().''.$this->userSummary->userInfo->getLastName(); ?></div>
+             <?php } ?> 
+
+             <?php if($this->userSummary->userInfo->getGender()!=""){ ?>
+             <span class="col-sm-2n col-sm-2profilevew">Gender</span>
+             <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $this->userSummary->userInfo->getGender(); ?></div>
+             <?php } ?>
+
+
+         </div>
+         <div class="row divrow1">
+             <?php if($this->userSummary->userInfo->getAge()!=""){ ?>
+             <span class="col-sm-2n  col-sm-2profilevew">Age</span>
+             <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $this->userSummary->userInfo->getAge(); ?> Yrs.</div>
+             <?php } ?>
+
+             <?php if($this->userSummary->userInfo->getReligion()!=""){ ?>
+             <span class="col-sm-2n col-sm-2profilevew">Religion</span>
+             <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $this->MyHelper()->getReligionNameById($this->userSummary->userInfo->getReligion())['religion_name']; ?></div>
+             <?php } ?>
+
+         </div>
+         <div class="row divrow">
+             <?php if($this->userSummary->userInfo->getHeight()!=""){ ?>
+             <span class="col-sm-2n col-sm-2profilevew">Height.</span>
+             <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $this->MyHelper()->getHeightById($this->userSummary->userInfo->getHeight())['height']; ?></div>
+             <?php } ?>
+
+             <?php if($this->userSummary->userInfo->getBodyType()!=""){ ?>
+             <span class="col-sm-2n col-sm-2profilevew">Body Type</span>
+             <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $this->userSummary->userInfo->getBodyType(); ?></div>
+             <?php } ?>
+         </div>
+
+         <div class="row divrow">
+<?php if($this->userSummary->userInfo->getColorComplexion()!=""){ ?>
+             <span class="col-sm-2n col-sm-2profilevew">Skin Tone.</span>
+             <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $this->userSummary->userInfo->getColorComplexion(); ?></div>
+<?php } ?>
+             <?php if($this->userSummary->userInfo->getAnyDisability()!=""){ ?>
+             <span class="col-sm-2n col-sm-2profilevew">Any Disability?</span>
+             <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $this->userSummary->userInfo->getAnyDisability(); ?></div>
+             <?php } ?>
+
+
+
+         </div>
+
+         <div class="row divrow1">
+             <?php if($this->userSummary->userInfo->getBloodGroup()!=""){ ?>
+             <span class="col-sm-2n col-sm-2profilevew">Blood Group</span>
+             <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $this->userSummary->userInfo->getBloodGroup(); ?></div>
+             <?php } ?>
+             <?php if($this->userSummary->userInfo->getnativePlace()!=""){ ?>
+             <span class="col-sm-2n col-sm-2profilevew">Native Palace</span>
+             <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $this->userSummary->userInfo->getnativePlace(); ?></div>
+             <?php } ?>
+         </div>
+
+         <div class="row divrow1">
+             <?php if($this->userSummary->userInfo->getMotherTongueId()!=""){ ?>
+             <span class="col-sm-2n col-sm-2profilevew">Mother Tongue</span>
+             <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $this->MyHelper()->getMotherTongueById($this->userSummary->userInfo->getMotherTongueId())['mother_tongue']; ?></div>
+             <?php } ?>
+         </div>
+
+
+         <div class="row divrow1">
+             <div class="divmatrimon">
+
+                 <div class="col-sm-2n col-sm-2profilevew" style="width:100%;"><span id="contact_detail" class="btn btn-default contactdetail">Contact Detail</span></div>
+             </div>
+
+
+         </div>
+                
+                <div class="contactde" style="display:none;">
+                    
+                <div class="row divrow1">
+                <?php if($this->userSummary->userInfo->getMotherTongueId()!=""){ ?>
+                 <span class="col-sm-2n col-sm-2profilevew">Phone No.</span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $this->userSummary->user->getMobileNo() ?></div>
+                <?php } ?>
+                  <?php if($this->userSummary->userInfo->getaddress()!=""){ ?>          
+                            <span class="col-sm-2n col-sm-2profilevew">Address Line 1</span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas " style="line-height:18px;"><?php echo $this->userSummary->userInfo->getaddress(); ?></div>
+                  <?php } ?>    
+
+                    
+                </div>
+                <div class="row divrow1">
+                             <?php if($this->userSummary->userInfo->getCountry()!=""){ ?>               
+                            <span class="col-sm-2n col-sm-2profilevew">Country</span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $this->MyHelper()->getCountryNameById($this->userSummary->userInfo->getCountry())['country_name']; ?></div>
+                             <?php } ?>
+
+                             <?php if($this->userSummary->userInfo->getState()!=""){ ?>                  
+                            <span class="col-sm-2n col-sm-2profilevew">State</span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $this->MyHelper()->getStateNameById($this->userSummary->userInfo->getState())['state_name']; ?></div>
+                             <?php } ?>   
+                    
+                </div>
+                <div class="row divrow1">
+                               <?php if($this->userSummary->userInfo->getCity()!=""){ ?>             
+                            <span class="col-sm-2n col-sm-2profilevew">City</span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $this->MyHelper()->getCityNameById($this->userSummary->userInfo->getCity())['city_name']; ?></div>
+                               <?php } ?>
+
+                              <?php if($this->userSummary->userInfo->getZipPinCode()!=""){ ?>                
+                            <span class="col-sm-2n col-sm-2profilevew">Zip/Pin Code</span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $this->userSummary->userInfo->getZipPinCode(); ?></div>
+                              <?php } ?>
+                    
+                </div>
+                
+                </div>
+            </div>
+    
+</div>
+
+</div>
+    
+    <!-- Prosnal detail  --> 
+    
+     <!-- Lifestyle & apeperance-->
+    <div id="recently_joined" style="display: block;">
+    <div class="lifestyleheading">
+    Lifestyle & Apperance
+    
+</div>
+<div class="viewprofielcontant"  style="height:80px;">
+  <?php if($this->userSummary->userInfo->getmealPreference()!=""){ ?>
+  <?php $mealDetails= $this->MyHelper()->getVegetarianStatus($this->userSummary->userInfo->getmealPreference()); ?>
+  
+   <div class="col-sm-3 col-sm-3lifestyale">
+   	<div class="col-sm-3lifestyale1">
+    <img src="<?php echo $this->basePath('images/'.$mealDetails['imgName']) ?>" />
+    </div>
+    <?php echo $mealDetails['status']?>
+   </div>
+  <?php }?>
+    <?php if($this->userSummary->userInfo->getdrink()!=""){ ?>
+   <?php $drinkingDetails= $this->MyHelper()->getDrinkingStatus($this->userSummary->userInfo->getdrink()); ?>
+    
+    <div class="col-sm-3 col-sm-3lifestyale">
+   	<div class="col-sm-3lifestyale1">
+    <img src="<?php echo $this->basePath('images/'.$drinkingDetails['imgName']) ?>" />
+    </div>
+    <?php echo $drinkingDetails['status']?>
+   </div>
+    <?php } ?>
+    <?php if($this->userSummary->userInfo->getsmoke()!=""){ ?>
+   <?php $smokingDetails= $this->MyHelper()->getSmokingStatus($this->userSummary->userInfo->getsmoke()); ?>
+    
+   <div class="col-sm-3 col-sm-3lifestyale">
+   	<div class="col-sm-3lifestyale1">
+    <img src="<?php echo $this->basePath('images/'.$smokingDetails['imgName']) ?>" />
+    </div>
+    <?php echo $smokingDetails['status']?>
+   </div>
+    <?php } ?>
+    
+    <?php if($this->userSummary->userInfo->getbodyType()!=""){ ?>
+    <div class="col-sm-3 col-sm-3lifestyale">
+    	<div class="col-sm-3lifestyale1">
+    <img src="<?php echo $this->basePath('images/fariskinned_icon.jpg') ?>" />
+    </div>
+    <?php echo $this->userSummary->userInfo->getColorComplexion(); ?> Skinned, <?php echo $this->userSummary->userInfo->getbodyType(); ?> Build
+    </div>
+    <?php } ?>
+</div>
+
+</div>
+ <!-- Lifestyle & apeperance  --> 
+ 
+  <!-- Background --> 
+
+	<div id="recently_joined" style="display: block;">
+    <div class="backgroundheading">
+    Background
+    
+</div>
+<div class="viewprofielcontant">
+     <div id="personal-info" class="tab-pane fade active in">
+                <div class="row divrow1">
+                    <?php if ($this->userSummary->userInfo->getReligion() != "") { ?>
+                        <span class="col-sm-2n col-sm-2profilevew pull-left col-sm-12" style="width:100%;"><?php echo $this->MyHelper()->getReligionNameById($this->userSummary->userInfo->getReligion())['religion_name']; ?></span>
+                    <?php } ?>
+                    <?php if ($this->userSummary->userInfo->getCaste() != "") { ?>        
+                        <span class="col-sm-2n col-sm-2profilevew pull-left col-sm-12" style="width:100%;"><?php echo $this->MyHelper()->getCasteNameById($this->userSummary->userInfo->getCaste())['caste_name']; ?></span>
+                    <?php } ?>
+                    <?php if ($this->userSummary->userInfo->getsubCaste() != "") { ?>        
+                        <span class="col-sm-2n col-sm-2profilevew pull-left col-sm-12" style="width:100%;"><?php echo $this->userSummary->userInfo->getsubCaste(); ?></span>
+                    <?php } ?>
+                    <?php if ($this->userSummary->userInfo->getGothraGothram() != "") { ?>       
+                        <span class="col-sm-2n col-sm-2profilevew pull-left col-sm-12" style="width:100%;"><?php echo $this->MyHelper()->getGothraGothramNameById($this->userSummary->userInfo->getGothraGothram())['gothra_name']; ?></span>
+                    <?php } ?>
+                    <?php if ($this->userSummary->userInfo->getCity() != "") { ?>       
+                        <span class="col-sm-2n col-sm-2profilevew pull-left col-sm-12" style="width:100%;">Lives in <?php echo $this->MyHelper()->getCityNameById($this->userSummary->userInfo->getCity())['city_name']; ?></span>
+                    <?php } ?>
+                </div>
+            </div>    
+</div>
+</div>
+    
+    <!-- Background --> 
+    
+     <!-- Education & career detail  --> 
+
+	<div id="recently_joined" style="display: block;">
+    <div class="educatinheading">
+    Education & Career
+    
+</div>
+<div class="viewprofielcontant">
+     <div id="personal-info" class="tab-pane fade active in">
+                <div class="row divrow1">
+                
+               
+                            <?php if ($this->userSummary->userInfo->geteducationLevel() != "") { ?>               
+                            <span class="col-sm-2n col-sm-2profilevew pull-left">Education Level</span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $this->MyHelper()->getEducationLevelNameById($this->userSummary->userInfo->geteducationLevel())['education_level']; ?></div>
+                             <?php } ?>
+
+                              <?php if ($this->userSummary->userInfo->geteducationField() != "") { ?>                          
+                            <span class="col-sm-2n col-sm-2profilevew"> Education Field</span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $this->MyHelper()->getEducationFieldNameById($this->userSummary->userInfo->geteducationField())['education_field']; ?></div>
+                              <?php } ?>
+                    
+
+                </div>
+                <div class="row divrow1">
+                                            
+
+                            <?php if ($this->userSummary->userInfo->getworkingWith() != "") { ?>                    
+                            <span class="col-sm-2n  col-sm-2profilevew">Working With</span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $this->userSummary->userInfo->getworkingWith(); ?></div>
+                             <?php } ?>
+                        
+                            <?php if ($this->userSummary->userInfo->getdesignation() != "") { ?>  
+                            <span class="col-sm-2n col-sm-2profilevew">Designation</span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $this->MyHelper()->getDesignationNameById($this->userSummary->userInfo->getdesignation())['designation']; ?></div>
+                            <?php } ?>
+                    
+                </div>
+                <div class="row divrow">
+                            <?php if ($this->userSummary->userInfo->getspecializeProfession() != "") { ?>               
+                            <span class="col-sm-2n col-sm-2profilevew">Specialization.</span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $this->userSummary->userInfo->getspecializeProfession(); ?></div>
+                            <?php } ?>
+
+                            <?php if ($this->userSummary->userInfo->getannualIncome() != "") { ?>               
+                            <span class="col-sm-2n col-sm-2profilevew">Annual Income</span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $this->MyHelper()->getAnnualIncomeById($this->userSummary->userInfo->getannualIncome())['annual_income']; ?></div>
+                            <?php } ?>
+                </div>
+
+                <div class="row divrow">
+                
+                            <?php if ($this->userSummary->userInfo->getofficeName() != "") { ?>
+                	    <span class="col-sm-2n col-sm-2profilevew">Office Name</span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $this->userSummary->userInfo->getofficeName(); ?></div>
+                            <?php } ?>
+                            <?php if ($this->userSummary->userInfo->getofficeEmail() != "") { ?>
+                            <span class="col-sm-2n col-sm-2profilevew">Office Email</span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $this->userSummary->userInfo->getofficeEmail(); ?></div>
+                            <?php } ?>
+                            
+                       
+
+                </div>
+                
+                 <div class="row divrow1">
+                            <?php if ($this->userSummary->userInfo->getofficeCountry() != "") { ?>                
+                            <span class="col-sm-2n col-sm-2profilevew">Office Country</span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $this->MyHelper()->getCountryNameById($this->userSummary->userInfo->getofficeCountry())['country_name']; ?></div>
+                            <?php } ?>
+                            <?php if ($this->userSummary->userInfo->getofficeState() != "") { ?>
+ 			    <span class="col-sm-2n col-sm-2profilevew">Office State</span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $this->MyHelper()->getStateNameById($this->userSummary->userInfo->getofficeState())['state_name']; ?></div>
+                            <?php } ?>
+                </div>
+
+               
+               
+                
+                <div class="row divrow1">
+                                            
+ 
+                </div>
+                
+                
+                    
+                <div class="row divrow1">
+                <?php if ($this->userSummary->userInfo->getofficeCity() != "") { ?>
+                 <span class="col-sm-2n col-sm-2profilevew">Office City</span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $this->MyHelper()->getCityNameById($this->userSummary->userInfo->getofficeCity())['city_name']; ?></div>
+                <?php } ?>   
+                <?php if ($this->userSummary->userInfo->getofficeAddress() != "") { ?>
+                            <span class="col-sm-2n col-sm-2profilevew">Office Address</span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas " style="line-height:18px;"><?php echo $this->userSummary->userInfo->getofficeAddress(); ?></div>
+                <?php } ?>       
+
+                    
+                </div>
+                <div class="row divrow1">
+                            <?php if ($this->userSummary->userInfo->getofficePhone() != "") { ?>                
+                            <span class="col-sm-2n col-sm-2profilevew">Office Phone</span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $this->userSummary->userInfo->getofficePhone(); ?></div>
+                            <?php } ?>
+
+                            <?php if ($this->userSummary->userInfo->getofficePincode() != "") { ?>                
+                            <span class="col-sm-2n col-sm-2profilevew">Office Zip/Pin</span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $this->userSummary->userInfo->getofficePincode(); ?></div>
+                            <?php } ?>
+                    
+                </div>
+                <div class="row divrow1">
+                            <?php if ($this->userSummary->userInfo->getofficeWebsite() != "") { ?>               
+                            <span class="col-sm-2n col-sm-2profilevew">Office Website</span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $this->userSummary->userInfo->getofficeWebsite(); ?></div>
+                            <?php } ?>
+
+                                            
+                          
+                        
+                    
+                </div>
+                
+                </div>
+         
+    
+</div>
+
+</div>
+    
+    <!-- Education & career detail  --> 
+    
+    
+    
+     <!-- Marital detail  --> 
+
+	<div id="recently_joined" style="display: block;">
+    <div class="maritalheading">
+    Marital Detail
+    
+</div>
+<div class="viewprofielcontant">
+     <div id="personal-info" class="tab-pane fade active in">
+                <div class="row divrow1">
+                
+               
+                            <?php if ($this->userSummary->userInfo->getAge() != "") { ?>                
+                            <span class="col-sm-2n col-sm-2profilevew pull-left">Age</span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $this->userSummary->userInfo->getAge(); ?></div>
+                            <?php } ?>
+
+                            <?php if ($this->userSummary->userInfo->getReligion() != "") { ?>                    
+                            <span class="col-sm-2n col-sm-2profilevew"> Religion</span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $this->MyHelper()->getReligionNameById($this->userSummary->userInfo->getReligion())['religion_name']; ?></div>
+                            <?php } ?>
+                    
+
+                </div>
+                <div class="row divrow1">
+                                            
+
+                             <?php if ($this->userSummary->userInfo->getHeight() != "") { ?>               
+                            <span class="col-sm-2n  col-sm-2profilevew">Height</span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $this->MyHelper()->getHeightById($this->userSummary->userInfo->getHeight())['height']; ?></div>
+                             <?php } ?>
+                        
+                            <?php if ($this->userSummary->userInfo->getbodyType() != "") { ?> 
+                            <span class="col-sm-2n col-sm-2profilevew">Body Type</span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $this->userSummary->userInfo->getbodyType(); ?></div>
+                            <?php } ?>
+                    
+                </div>
+                <div class="row divrow">
+                            <?php if ($this->userSummary->userInfo->getColorComplexion() != "") { ?>               
+                            <span class="col-sm-2n col-sm-2profilevew">Skin Tone</span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $this->userSummary->userInfo->getColorComplexion(); ?></div>
+                            <?php } ?>
+
+                            <?php if ($this->userSummary->userInfo->getanyDisability() != "") { ?>               
+                            <span class="col-sm-2n col-sm-2profilevew">Any Disability?</span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $this->userSummary->userInfo->getanyDisability(); ?></div>
+                            <?php } ?>
+                </div>
+
+                <div class="row divrow">
+                            <?php if ($this->userSummary->userInfo->getbloodGroup() != "") { ?>
+                	    <span class="col-sm-2n col-sm-2profilevew">Blood Group</span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $this->userSummary->userInfo->getbloodGroup(); ?></div>
+                            <?php } ?>
+                            <?php if ($this->userSummary->userInfo->getnativePlace() != "") { ?>
+                            <span class="col-sm-2n col-sm-2profilevew">Native Place</span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $this->userSummary->userInfo->getnativePlace(); ?></div>
+                            <?php } ?>
+                            
+                       
+
+                </div>
+                
+                 <div class="row divrow1">
+                            <?php if ($this->userSummary->userInfo->getmaritalStatus() != "") { ?>                
+                            <span class="col-sm-2n col-sm-2profilevew">Marital Status</span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $this->userSummary->userInfo->getmaritalStatus(); ?></div>
+                            <?php } ?>
+                            <?php if ($this->userSummary->userInfo->getbodyWeight() != "") { ?>
+                            <span class="col-sm-2n col-sm-2profilevew">Body Weight</span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $this->userSummary->userInfo->getbodyWeight(); ?>&nbsp;<?php echo $this->userSummary->userInfo->getbodyWeightType(); ?></div>
+                            <?php } ?>
+                </div>
+
+               
+                </div>
+         
+    
+</div>
+
+</div>
+    
+    <!-- Marital detail  --> 
+    
+    
+     <!-- Horoscope detail  --> 
+
+	<div id="recently_joined" style="display: block;">
+    <div class="horoscopeheading">
+    Horoscope Detail
+    
+</div>
+<div class="viewprofielcontant">
+     <div id="personal-info" class="tab-pane fade active in">
+                <div class="row divrow1">
+                
+               
+                            <?php if ($this->userSummary->userInfo->getdob() != "") { ?>                
+                            <span class="col-sm-2n col-sm-2profilevew pull-left">Birth Date</span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo date('d-m-Y',strtotime($this->userSummary->userInfo->getdob())); ?></div>
+                            <?php } ?>
+
+                            <?php if ($this->userSummary->userInfo->getbirthTime() != "") { ?>                
+                            <span class="col-sm-2n col-sm-2profilevew"> Birth Time</span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo date('H:i A', strtotime($this->userSummary->userInfo->getbirthTime())); ?></div>
+                            <?php } ?>
+                    
+
+                </div>
+                <div class="row divrow1">
+                                            
+
+                             <?php if ($this->userSummary->userInfo->getbirthPlace() != "") { ?>               
+                            <span class="col-sm-2n  col-sm-2profilevew">Birth Place</span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $this->userSummary->userInfo->getbirthPlace();?></div>
+                             <?php } ?>
+                        
+                        <?php if ($this->userSummary->userInfo->getmanglikDossam() != "") { ?>
+                            <span class="col-sm-2n col-sm-2profilevew">Manglik Status</span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $this->userSummary->userInfo->getmanglikDossam(); ?></div>
+                        <?php } ?>
+                    
+                </div>
+                <div class="row divrow">
+                            <?php if ($this->userSummary->userInfo->getzodiacSignRaasi() != "") { ?>               
+                            <span class="col-sm-2n col-sm-2profilevew">Rashi</span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $this->MyHelper()->getZodiacSignRassiById($this->userSummary->userInfo->getzodiacSignRaasi())['zodiac_sign_name']; ?></div>
+                            <?php } ?>
+
+                            <?php if ($this->userSummary->userInfo->getstarSign() != "") { ?>               
+                            <span class="col-sm-2n col-sm-2profilevew">Nakshatra</span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $this->MyHelper()->getStarSignById($this->userSummary->userInfo->getstarSign())['star_sign_name']; ?></div>
+                            <?php } ?>
+                </div>
+
+                </div>
+         
+    
+</div>
+
+</div>
+    
+    <!-- Horoscope detail  --> 
+    
+     <!-- Family detail  --> 
+
+	<div id="recently_joined" style="display: block;">
+    <div class="horoscopeheading">
+    Family Detail
+    
+</div>
+<div class="viewprofielcontant">
+     <div id="personal-info" class="tab-pane fade active in">
+         
+<div class="row divrow1">
+
+<?php if($familyInfo->userInfo['family_values_status']!=""){?>
+<span class="col-sm-2n col-sm-2profilevew pull-left">Family Values</span>
+<div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $familyInfo->userInfo['family_values_status'];?></div>
+<?php }?>
+
+<span class="col-sm-2n col-sm-2profilevew"> </span>
+<div class="col-sm-3 col-sm-3profileview nwclas"></div>
+
+</div>
+         
+<div class="row divrow1">
+<?php if($familyInfo->familyInfoArray['father_name']!=""){?>
+<span class="col-sm-2n  col-sm-2profilevew">Father Name</span>
+<div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $familyInfo->familyInfoArray['name_title_father'] . " " . $familyInfo->familyInfoArray['father_name']. " " . $familyInfo->familyInfoArray['father_last_name'] ?></div>
+<?php }?>
+
+<?php if($familyInfo->familyInfoArray['father_status']!=""){?>
+<span class="col-sm-2n col-sm-2profilevew">Father Status</span>
+<div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $familyInfo->familyInfoArray['father_status'];?> </div>
+<?php }?>
+</div>
+
+<?php if($familyInfo->familyInfoArray['about_father']!=""){?>
+<div class="row divrow">
+<span class="col-sm-2n col-sm-2profilevew">Father's Detail</span>
+<div class="col-sm-3 col-sm-3profileview nwclas" style="width:75%;"><?php echo $familyInfo->familyInfoArray['about_father'];?></div>
+</div>
+<?php }?>
+         
+<div class="row divrow1">
+<?php if($familyInfo->familyInfoArray['mother_name']!=""){?>
+<span class="col-sm-2n col-sm-2profilevew">Mother Name</span>
+<div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $familyInfo->familyInfoArray['name_title_mother']." ". $familyInfo->familyInfoArray['mother_name']." ". $familyInfo->familyInfoArray['mother_last_name'] ?></div>
+<?php }?>
+
+<?php if($familyInfo->familyInfoArray['mother_status']!=""){?>
+<span class="col-sm-2n col-sm-2profilevew">Mother Status</span>
+<div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $familyInfo->familyInfoArray['mother_status'];?> </div>
+<?php }?>
+
+<?php if($familyInfo->familyInfoArray['about_mother']!=""){?>
+<span class="col-sm-2n col-sm-2profilevew">Mother's Detail</span>
+<div class="col-sm-3 col-sm-3profileview nwclas" style="width:75%;"><?php echo $familyInfo->familyInfoArray['about_mother'];?></div>           
+<?php }?>
+
+</div>
+                
+              
+                
+                
+               <?php if(count($familyInfo->brotherData)>0){?>
+                
+                  <div class="row divrow1">
+                                  
+                            <span class="col-sm-2n  col-sm-2profilevew">No of Brothers:</span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo count($familyInfo->brotherData);?></div>
+                       
+                        
+                        
+                            <span class="col-sm-2n col-sm-2profilevew"></span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas"> </div>
+                       
+                    
+                </div>
+                <?php //\Zend\Debug\Debug::dump($familyInfo->brotherData);?>
+                <?php foreach($familyInfo->brotherData as $brotherInfo){?>
+                <div class="row divrow1">
+                                            
+
+                                            
+                            <span class="col-sm-2n  col-sm-2profilevew">Brother  Name</span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $brotherInfo['name_title_user'];?> <?php echo $brotherInfo['brother_name']. ' ' .$brotherInfo['brother_last_name'];?></div>
+                       
+                        
+                        
+                            <span class="col-sm-2n col-sm-2profilevew">Brother Status</span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $brotherInfo['live_status'];?> </div>
+                            
+                             <span class="col-sm-2n col-sm-2profilevew">Brother's Detail</span>
+                           
+                            <div class="col-sm-3 col-sm-3profileview nwclas" style="width:75%;"><?php echo $brotherInfo['about_yourself_partner_family'];?> </div>           
+
+                                  
+                       
+                    
+                </div>
+                <?php }}?>
+                
+                
+                   <?php if(count($familyInfo->sisterData)>0){?>
+                 
+                  <div class="row divrow1">
+                                  
+                            <span class="col-sm-2n  col-sm-2profilevew">No of Sister:</span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo count($familyInfo->sisterData);?></div>
+                       
+                        
+                        
+                            <span class="col-sm-2n col-sm-2profilevew"></span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas"> </div>
+                       
+                    
+                </div>
+                 <?php foreach($familyInfo->sisterData as $sisterInfo){?>
+                <div class="row divrow1">
+                                            
+
+                                            
+                            <span class="col-sm-2n  col-sm-2profilevew">Sister  Name</span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $sisterInfo['name_title_user'];?> <?php echo $sisterInfo['sister_name'].' '.$sisterInfo['sister_last_name'];?></div>
+                       
+                        
+                        
+                            <span class="col-sm-2n col-sm-2profilevew">Sister Status</span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $sisterInfo['live_status'];?> </div>
+                            
+                             <span class="col-sm-2n col-sm-2profilevew">Sister's Detail</span>
+                           
+                            <div class="col-sm-3 col-sm-3profileview nwclas" style="width:75%;"><?php echo $sisterInfo['about_yourself_partner_family'];?></div>           
+
+                                  
+                       
+                    
+                </div>
+                  <?php }}?>
+                 
+                
+            <?php if($familyInfo->familyInfoArray['grand_father_name']!=""){?>
+            <div class="row divrow1">
+
+
+
+                        <span class="col-sm-2n  col-sm-2profilevew">Grand Father Name</span>
+                        <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $familyInfo->familyInfoArray['name_title_grand_father'];?> <?php echo $familyInfo->familyInfoArray['grand_father_name'].' '.$familyInfo->familyInfoArray['grand_father_last_name'];?></div>
+
+
+
+                        <span class="col-sm-2n col-sm-2profilevew">Grand Father Status</span>
+                        <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $familyInfo->familyInfoArray['grand_father_status'];?> </div>
+
+            </div>
+            <?php }?>
+                
+                <?php if($familyInfo->familyInfoArray['grand_mother_name']!=""){?>
+                <div class="row divrow1">
+                                            
+
+                                            
+                            <span class="col-sm-2n  col-sm-2profilevew">Grand Mother Name</span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $familyInfo->familyInfoArray['name_title_grand_mother'];?> <?php echo $familyInfo->familyInfoArray['grand_mother_name'].' '.$familyInfo->familyInfoArray['grand_mother_last_name'];?></div>
+                       
+                        
+                        
+                            <span class="col-sm-2n col-sm-2profilevew">Grand Mother Status</span>
+                            <div class="col-sm-3 col-sm-3profileview nwclas"><?php echo $familyInfo->familyInfoArray['grand_mother_status'];?> </div>
+                            
+                </div>
+                <?php }?>
+
+                </div>
+         
+    
+</div>
+
+</div>
+    
+    <!-- Family detail  -->  
+    
+</div>
+</div>
+<!--MY rustagi RIGHT-->
+<div id="my_rustagi_right" class="col-sm-3 col-sm-3new pull-right">
+	<?php include('sidebar_right_member.phtml');?>
+        <?php //echo $this->partial('layout/sidebar-right') ?>
+</div>
+<!--end right_half-->
+<br class="clear">
+	</div>
+    
+    
+</div>
+
+<script>
+
+<?php echo $percent[1] ?>
+
+    $('#demo-3').waterbubble({txt: '<?php echo $percent[0] ?>%', });
+</script>
+
+
+<script>
+$(document).ready(function(){
+$("#contact_detail").click(function(){
+    $(".contactde").toggle();
+});
+
+});
+</script>

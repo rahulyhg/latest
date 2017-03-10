@@ -1,0 +1,79 @@
+ <div >
+            <p>
+              <a href="<?= $this->url('admin',array('controller'=>'master','action'=>'indexedulevel'));?>"><button class="btn btn-warning btn-xlg">Go Back</button></a>
+            </p>
+          </div> 
+
+
+
+ 
+    
+      
+       
+   
+    
+ 
+      <div class="panel-body">
+               
+                <?php 
+
+                $form=$this->form; 
+                $form->prepare();
+
+
+        $form->setAttribute('action',$this->url('admin',array('controller'=>'master','action'=>'editedulevel','id'=>$id)));
+        $form->setAttribute('method','post');
+
+        echo $this->form()->openTag($form);
+// echo $this->formCollection($form);
+                ?>
+          <div id="myTabContent" class="tab-content">
+            
+            
+            <div class="tab-pane fade active in" id="driver_tab">
+              <div class="container col-sm-col-sm-offset-1" style="margin: 10px auto 0px !important;padding: 0 10px;">
+                
+                <div class="row">
+                                                <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate($form->get('education_level')->getLabel()) ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     echo $this->formHidden($form->get('id'));
+                                                     echo $this->formElement($form->get('education_level'));
+                                                     ?>                                    
+                                                  </div>
+                                                 
+                            <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate($form->get('IsActive')->getLabel()) ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     echo $this->formElement($form->get('IsActive'));
+                                                     ?>                                    
+                                                  </div>
+                                                 </div>
+                                             </div>
+                                            
+                                             <div class="row">
+                                                <div class="form-group clearfix margintopbottom20">
+                                                <div class="col-sm-3">
+                                                     <?php 
+                                                     echo $this->formRow($form->get('submit'));
+                                                     ?>                                    
+                                                  </div>
+                                             </div>
+                                             </div>
+              </div>
+            </div>
+          </div>
+        <?php   
+echo $this->form()->closeTag();
+
+        ?>
+      </div>
+    </div>
+    </div>
+     
+  <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse"> <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i> </a> </div>

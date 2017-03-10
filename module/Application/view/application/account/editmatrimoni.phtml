@@ -1,0 +1,125 @@
+<div class="col-sm-3 col-sm-3-new width20per">
+<?php echo $this->partial('layout/sidebar-user') ?>
+</div>
+
+
+<div class="col-sm-9 width80per">
+<?php include('main_info.phtml'); ?>
+<div class="col-sm-6" style="margin-top:22px; float:right; text-align:right;">
+<p style="text-align:right;">Connected  9 Months ago</p>
+</div>
+
+<div class="clearfix"></div>
+<ul class="nav nav-pills">
+<li><a href="<?php echo $this->basePath()?>/account/editabout"><?php echo $this->translate('About') ?></a></li> 
+<li><a href="<?php echo $this->basePath()?>/account/memberbasic"><?php echo $this->translate('Personal Details') ?></a></li>
+<li><a href="<?php echo $this->basePath()?>/account/editeducation"><?php echo $this->translate('Education') ?></a></li>  
+<li><a href="<?php echo $this->basePath()?>/account/editcareer"><?php echo $this->translate('Profession') ?></a></li>
+<li><a href="<?php echo $this->basePath()?>/account/editfamily"><?php echo $this->translate('Family Details') ?></a></li>
+<li class="active"><a href="#"><?php echo $this->translate('Marital Details') ?></a></li>
+<li><a href="<?php echo $this->basePath()?>/account/mygallery"><?php echo $this->translate('Gallery') ?></a></li>
+<li><a href="<?php echo $this->basePath()?>/account/post"><?php echo $this->translate('Post') ?></a></li>
+  </ul>
+ 
+  
+  <div class="tab-content">
+    <div id="matrimoni_info" class="tab-pane fade in active">
+	<table width="100%">
+	<tr>
+	<td>
+     <?php
+		$form = $this->form;
+		$form->prepare();
+		echo $this->form()->openTag($form);?>
+		  <div class="col-sm-4" style="width:100%;">
+		  
+		  <div class="form-group row">
+		<label for="Education Field" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Marital Status') ?></label>
+		<div class="col-sm-3"><?php 
+					echo $this->formHidden($form->get('id'));
+					echo $this->formHidden($form->get('user_id'));
+					echo $this->formRow($form->get('marital_status'));?></div>
+          
+         <label for="Education Field" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Caste') ?></label>
+		<div class="col-sm-3"><?php  echo $this->formRow($form->get('caste'));?></div>        
+		
+		</div>
+		  
+	         <div class="form-group row">
+		<label for="Education Field" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Caste Other') ?></label>
+		<div class="col-sm-3"><?php  echo $this->formRow($form->get('caste_other'));?></div>
+        
+        <label for="Education Field" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Religion') ?></label>
+		<div class="col-sm-3"><?php  echo $this->formRow($form->get('religion'));?></div>
+		</div> 
+			  
+			  <div class="form-group row">
+		<label for="Education Field" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Religion Other') ?></label>
+		<div class="col-sm-3"><?php  echo $this->formRow($form->get('religion_other'));?></div>
+        <label for="Education Field" class="col-sm-2 form-control-label lblline"><?php echo $this->translate('Blood Group') ?></label>
+		<div class="col-sm-3"><?php  echo $this->formRow($form->get('blood_group'));?></div>
+        
+		</div> 
+		
+		<div class="form-group row">
+         <label for="Education Field" class="col-sm-2 form-control-label lblline"></label>
+		<div class="col-sm-3">
+		
+		</div>
+         <label for="Education Field" class="col-sm-2 form-control-label lblline"></label>
+        <div class="col-sm-3">
+		<?php  echo $this->formRow($form->get('submit'));?>
+		</div>
+        
+		</div> 
+		  
+     </div> 
+		<?php echo $this->form()->closeTag(); ?>
+		
+		</td>
+		</tr>
+	</table>
+    </div>
+  </div>
+</div>
+
+
+<script>
+$( document ).ready(function() {
+   /* $("#MatrimonialForm").validate({
+			rules: {                            
+                    marital_status:
+						{
+						required: true                                   
+						},					
+					caste:
+						{
+						required: true
+						},					
+				    religion:
+						{
+						required: true                                
+						},	
+					blood_group: 
+						{
+						required: true
+						}
+			       },
+			messages: {                              
+                  					
+			        }
+		     }); */ 
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+

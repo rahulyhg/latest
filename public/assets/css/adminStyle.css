@@ -1,0 +1,46 @@
+.dontshow{
+	display:none;
+}
+
+.showerror{
+	color:red;
+	background: blue;
+}
+
+.styleforajax{
+	position: absolute;
+  overflow-y:scroll;
+  background:#FFF;
+  width:100%;
+  height:auto;
+  z-index: 9999;display:none;
+}
+.showshort{
+	text-align: justify;
+}
+.morecontent span{
+    display: none;
+}
+.morelink {
+    display: block;
+}
+
+.activestatus{
+    color:green;
+    background:green;
+    border-radius:30px; width:15px; height:15px;
+    cursor:pointer
+    
+  }
+  
+  .de-activestatus{
+    color:green;
+    background:red;
+    border-radius:30px; width:15px; height:15px;
+    cursor:pointer
+    
+  }
+
+  .commcategories{
+    display: none;
+  }

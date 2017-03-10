@@ -1,0 +1,22 @@
+<table  width="100%" style="border:none !important;">
+<tbody>
+<?php
+if(count($professions)>0){
+	$i=1;
+ foreach ($professions as $profession) {
+?>
+
+
+<tr>
+<td>
+<a href="javascript:void(0);" id="professionsearch<?=$i;?>" onclick="grabvalues6('<?=$profession->profession?>','<?=$profession->id?>','<?=$parentname?>');"><?= $profession->profession?></a>
+</td>
+</tr>
+<?php
+$i++;
+}
+}
+else echo "<p>No matched search</p>";
+?>
+</tbody>
+</table>

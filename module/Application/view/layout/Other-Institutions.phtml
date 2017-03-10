@@ -1,0 +1,53 @@
+<div class="panel-group" id="otherInstitution_accordion">
+ 
+      <ul class="newulclass">
+  <li>
+      <select class="form-control" id="filter_country" ftype="country">
+        <option>---Select---country---</option>
+        <?php 
+
+          foreach($filters_data["country"] as $GrData)
+            {
+                echo "<option value=".$GrData->id.">".$GrData->country_name."</option>";
+            }
+        ?>
+      </select>
+  </li>
+</ul>
+
+
+      <ul class="newulclass">
+<li><select class="form-control" ftype="state">
+    <option>---Select---state---</option>
+        <?php 
+          foreach($filters_data["state"] as $GrData)
+            {
+                echo "<option value=".$GrData->id.">".$GrData->state_name."</option>";
+            }
+        ?>
+</select></li>
+</ul>
+     
+
+  
+      <ul class="newulclass">
+        <li>
+          <?php 
+           // echo MembershipController::membercountAction();
+          // print_r($this);
+          ?>
+  <select class="form-control" ftype="city">
+       <option>---Select---city---</option>   
+    <?php 
+          foreach($filters_data["city"] as $GrData)
+            {
+                echo "<option value=".$GrData->id.">".$GrData->city_name."</option>";
+            }
+        ?>
+        
+  </select>
+</li>
+</ul>
+       
+   
+</div>

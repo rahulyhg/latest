@@ -1,0 +1,125 @@
+<style>
+    .tlable > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+        border-top: 1px solid #ddd;
+        line-height: 1.42857;
+        padding: 7px;
+        vertical-align: top;
+    }
+
+    .sidebar-nav li {
+        line-height: 32px;
+    }
+</style>
+
+<div class="col-sm-3 col-sm-3-new width20per">
+    <?php echo $this->partial('layout/sidebar') ?>
+
+
+</div>
+<?php //Zend\Debug\Debug::dump($packages); ?>
+
+
+<div class="col-sm-9 width80per">
+    <div class="upcoming-events"><!-- <span class="bar">&nbsp;</span>-->
+        <h2 class="text-left">Matrimoni Packages</h2>
+        <div class="col-lg-12"> 
+
+            <!--Sight Add-->
+            <div class="sightcont">
+                <div class="sightinc" style="">
+
+                    <!-- <div class="col-sm-3 pull-right"><a href="#" class="sadd">Compare Plan</a></div>
+                     </div>-->
+                    <div class="sightadd">
+
+
+                        <div class="col-lg-2 col-lg-2fee " style="margin-top:5px; border:none;" onClick="$(this).parent().find('.sdesc').fadeIn('medium')" align="center"> 
+
+
+
+                        </div>
+
+                        <?php foreach ($packages as $package) {
+                            ?>
+
+                            <div class="col-lg-2 col-lg-2fee col-lg3fee" style="margin-top:5px;" align="center"> 
+
+                                <a href="#" data-toggle="modal" data-target="#myModal" style="cursor:pointer;" ><img src="<?php echo $this->basePath() ?>/images/<?php echo $package['subpackage_image']; ?>" class="img-responsive"  alt=""></a>
+
+                                <h3 style="padding-bottom:0; padding-top:0;"><?php echo $package['subpackage_name']; ?></h3><br />
+
+                                <p align="center" style="text-align:center;"><?php echo $package['subpackage_desc']; ?></p>
+                                <!--  <div class="col-sm-6" onClick="addSightSeeing($(this).parent(),7)"><a class="sadd" href="#">Compare</a></div>-->
+                                <div class="col-sm-12 col-sm-12fee" align="center"><a href="#" class="sadd">Buy&nbsp;Now</a></div>
+                            </div>
+                        <?php } ?>
+                    </div>
+                </div>
+
+                <!--Sight Add End--> 
+
+                <div class="col-sm-12">
+                    <div class="row" id="package1">
+
+                        <!--right table price start--> 
+                        <div class="" style="padding:0;">
+                            <!--   Kitchen Sink -->
+                            <div class="panel panel-default">
+
+                                <div class="panel-body" style="padding:0 !important;">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered table-hover">
+
+                                            <tbody>
+                                                <?php
+                                                foreach ($features as $feature) {
+                                                    //Zend\Debug\Debug::dump($package['subpackage_id']);
+                                                    //Zend\Debug\Debug::dump($this->MyHelper()->getFeature($package['subpackage_id']));
+                                                    ?>
+                                                    <tr>
+                                                        <td align="left"> <a href="#"><?php echo $feature['feature_name'] ?></a></td>
+                                                        <?php
+                                                        foreach ($packages as $package) {
+                                                            $featureVal = $this->MyHelper()->getFeature($package['subpackage_id'], $feature['feature_id']);
+                                                            if ($featureVal['feature_status'] == '1' && !empty($featureVal['feature_value'])) {
+                                                                ?><td align="center"><?php echo $featureVal['feature_value'] ?></td><?php
+                                                            } elseif ($featureVal['feature_status'] == '1' && empty($featureVal['feature_value'])) {
+                                                                ?><td align="center" class="col-lg-2fee"><img src="images/cehck-box.png" width="15" height="15" alt=""></td><?php
+                                                                } else {
+                                                                    ?><td  align="center" class="col-lg-2fee"><img src="images/cros-box.jpg" width="15" height="15" alt=""></td><?php
+                                                                }
+                                                            }
+                                                            ?>
+                                                    </tr>
+
+
+                                                <?php } ?>
+
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End  Kitchen Sink -->
+                        </div>
+                        <!--End table price start--> 
+
+
+
+                    </div>
+
+
+
+
+
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>

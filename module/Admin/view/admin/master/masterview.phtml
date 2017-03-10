@@ -1,0 +1,232 @@
+<div class="page-content">
+    <div class="">
+          <div class="row"> 
+            <!-- PAGE CONTENT BEGINS -->
+            <!--<div class="alert alert-block alert-success">
+              <button type="button" class="close" data-dismiss="alert"> <i class="ace-icon fa fa-times"></i> </button>
+              <i class="ace-icon fa fa-check green"></i> Welcome to <strong class="green">RUSTAGI SAMAJ </strong>,
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo massa sed ipsum porttitor facilisis. </div>-->
+              <div class="row">
+              
+                   <?php 
+              
+              foreach ($locations as $key => $value) {
+                 
+                  if($key=='city'){ ?>
+                  
+                  <div class="col-md-3 col-sm-6 col-xs-6">
+              <div class="panel panel-back noti-box2">
+                  <?php //echo $this->url();exit; ?>
+             
+                  <p class="main-text" ><a href='<?= $this->url("admin/".$key)?>' style="color: red"><?= ucfirst($key)?> Master</a> </p>
+                <div class="text-box" >
+                    <p class="text-center"><?= $key?>   - <?= $value?></p>
+               
+              
+                </div>
+                </div>
+              </div>
+                      
+                <?php  }else{ ?>
+                      <div class="col-md-3 col-sm-6 col-xs-6">
+              <div class="panel panel-back noti-box2">
+                  <?php //echo $this->url();exit; ?>
+             
+                <p class="main-text"><a href='<?= $this->url("admin/".$key)?>'><?= ucfirst($key)?> Master</a> </p>
+                <div class="text-box" >
+                    <p class="text-center"><?= $key?>   - <?= $value?></p>
+               
+              
+                </div>
+                </div>
+              </div>
+               <?php   }
+              
+              
+            
+              
+                  
+               } ?>
+             
+             
+              
+          </div>
+           </div>
+    
+           
+              <div class="row"> 
+            
+              <div class="row">
+              
+                   <?php 
+              
+              foreach ($religions as $key => $value) {
+                 
+                  if($key=='subcommunity'){ ?>
+                  
+                  <div class="col-md-3 col-sm-6 col-xs-6">
+              <div class="panel panel-back noti-box2">
+                  <?php //echo $this->url();exit; ?>
+             
+                  <p class="main-text" ><a href='<?= $this->url("admin/".$key)?>'><?= ucfirst($key)?>(Caste)</a> </p>
+                <div class="text-box" >
+                    <p class="text-center"><?= $key?>   - <?= $value?></p>
+               
+              
+                </div>
+                </div>
+              </div>
+                      
+                <?php  }else{ ?>
+                      <div class="col-md-3 col-sm-6 col-xs-6">
+              <div class="panel panel-back noti-box2">
+                  <?php //echo $this->url();exit; ?>
+             
+                <p class="main-text"><a href='<?= $this->url("admin/".$key)?>'><?= ucfirst($key)?> Master</a> </p>
+                <div class="text-box" >
+                    <p class="text-center"><?= $key?>   - <?= $value?></p>
+               
+              
+                </div>
+                </div>
+              </div>
+               <?php   }
+              
+              
+            
+              
+                  
+               } ?>
+             
+             
+              
+          </div>
+           </div>
+    
+          <div class="row"> 
+            
+              <div class="row">
+              
+                   <?php 
+              
+              foreach ($educations as $key => $value) {
+                 
+              
+              ?>
+            
+              <div class="col-md-3 col-sm-6 col-xs-6">
+              <div class="panel panel-back noti-box2">
+                  <?php //echo $this->url();exit; ?>
+             
+                <p class="main-text"><a href='<?= $this->url("admin/".$key)?>'><?= ucfirst($key)?> Master</a> </p>
+                <div class="text-box" >
+                    <p class="text-center"><?= $key?>   - <?= $value?></p>
+               
+              
+                </div>
+                </div>
+              </div>
+                  
+              <?php } ?>
+             
+             
+              
+          </div>
+           </div>
+    
+          <div class="row"> 
+            
+              <div class="row">
+              
+                   <?php 
+              
+              foreach ($branchs as $key => $value) {
+                 
+                  if($key=='institute'){ ?>
+                  
+                  <div class="col-md-3 col-sm-6 col-xs-6">
+              <div class="panel panel-back noti-box2">
+                  <?php //echo $this->url();exit; ?>
+             
+                  <p class="main-text" ><a href='<?= $this->url("admin/".$key)?>' style="color: red"><?= ucfirst($key)?> Master</a> </p>
+                <div class="text-box" >
+                    <p class="text-center"><?= $key?>   - <?= $value?></p>
+               
+              
+                </div>
+                </div>
+              </div>
+                      
+                <?php  }else{ ?>
+                      <div class="col-md-3 col-sm-6 col-xs-6">
+              <div class="panel panel-back noti-box2">
+                  <?php //echo $this->url();exit; ?>
+             
+                <p class="main-text"><a href='<?= $this->url("admin/".$key)?>'><?= ucfirst($key)?> Master</a> </p>
+                <div class="text-box" >
+                    <p class="text-center"><?= $key?>   - <?= $value?></p>
+               
+              
+                </div>
+                </div>
+              </div>
+               <?php   }
+              
+              
+            
+              
+                  
+               } ?>
+             
+             
+              
+          </div>
+           </div>
+        
+        <div class="row"> 
+            
+              <div class="row">
+              
+                   <?php 
+              
+              foreach ($misclinous as $key => $value) {
+                 
+              
+              ?>
+            
+              <div class="col-md-3 col-sm-6 col-xs-6">
+              <div class="panel panel-back noti-box2">
+                  <?php //echo $this->url();exit; ?>
+             
+                <p class="main-text"><a href='<?= $this->url("admin/".$key)?>'><?= ucfirst($key)?> Master</a> </p>
+                <div class="text-box" >
+                    <p class="text-center"><?= $key?>   - <?= $value?></p>
+               
+              
+                </div>
+                </div>
+              </div>
+                  
+                  
+                  
+              <?php } ?>
+             
+             
+              
+          </div>
+           </div>
+           
+            
+            
+          
+            </div>
+             
+            
+            <div class="hr hr32 hr-dotted"></div>
+            
+            
+            
+            <!-- PAGE CONTENT ENDS --> 
+          </div>
+          <!-- /.col --> 
+        

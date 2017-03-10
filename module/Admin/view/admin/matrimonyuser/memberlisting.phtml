@@ -1,0 +1,22 @@
+<table  width="100%" style="border:none !important;">
+<tbody>
+<?php
+if(count($lists)>0){
+	$i=1;
+ foreach ($lists as $row) {
+?>
+
+
+<tr>
+<td>
+	<a href="">$row->$fieldname</a>
+</td>
+</tr>
+<?php
+$i++;
+}
+}
+else echo "<p>No matched search</p>";
+?>
+</tbody>
+</table>

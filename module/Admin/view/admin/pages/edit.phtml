@@ -1,0 +1,118 @@
+ <div >
+            <p>
+              <a href="<?= $this->url('admin',array('controller'=>'pages','action'=>'index'));?>"><button class="btn btn-warning btn-xlg">Go Back</button></a>
+            </p>
+          </div> 
+<?php 
+
+                $form=$this->form; 
+                $form->prepare();
+
+
+        $form->setAttribute('action',$this->url('admin',array('controller'=>'Pages','action'=>'edit')));
+        $form->setAttribute('method','post');
+        $form->setAttribute('autocomplete','off');
+        $form->setAttribute('id','PagesForm');
+        $action = $this->serverUrl().$this->url().'/pages/add';
+        $form->setAttribute('onSubmit',"return SubmitpageForm($(this).attr('id'))");
+
+        echo $this->form()->openTag($form);
+// echo $this->formCollection($form);
+                ?>
+            
+            <div class="tab-pane fade active in" id="driver_tab">
+              <div class="container col-sm-col-sm-offset-1" style="margin: 10px auto 0px !important;padding: 0 10px;">
+                
+                <div class="row" style="position:relative;z-index:1;">
+                                                <div class="form-group clearfix margintopbottom20">
+                           <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate($form->get('page_title')->getLabel()) ?>
+                           </label>
+                                                  <div class="col-sm-3" id="addparent" >
+                                                     <?php 
+                                                     echo $this->formHidden($form->get('id'));
+                                                     echo $this->formElement($form->get('page_title'));
+                                                     ?> 
+                                                     <span class="showerror"></span>   
+                                                                                    
+                                                  </div>
+                                                   <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate($form->get('tab_id')->getLabel()) ?>
+                           </label>
+                                                  <div class="col-sm-3" id="addparent" >
+                                                     <?php 
+                                                     // echo $this->formHidden($form->get('id'));
+                                                     echo $this->formElement($form->get('tab_id'));
+                                                     ?> 
+                                                     <span class="showerror"></span>   
+                                                                                    
+                                                  </div>
+
+                                                 
+                            
+                                                 </div>
+                                             </div>
+
+                                             <div class="row">
+                                                <div class="form-group clearfix margintopbottom20">
+                          
+                                                 
+                             <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate($form->get('page_content')->getLabel())?>
+                           </label>
+                            <div class="row">
+              <div class="col-xs-12">
+                
+                <div class="wysiwyg-editor" id="editor1"><?= $form->get('page_content')->getValue();?></div>
+
+                <span class="showerror"></span>   
+                 
+              </div><!-- /.col -->
+            </div><!-- /.row -->                
+                                                 </div>
+                                             </div>
+
+                                             <div class="row">
+                                                <div class="form-group clearfix margintopbottom20">
+                            <div class="col-sm-3">
+                                                     <?php 
+                                                     
+                                                     echo $this->formElement($form->get('page_content'));
+                                                     ?> 
+                                                     
+                                                                                    
+                                                  </div>
+                               <label id="flight_nos" class="col-sm-2 control-label labelalign ">
+                            <?= $this->translate($form->get('IsActive')->getLabel()) ?>
+                           </label>
+                                                  <div class="col-sm-3">
+                                                     <?php 
+                                                     echo $this->formElement($form->get('IsActive'));
+                                                     ?> 
+                                                     <span class="showerror"></span>                                   
+                                                                                        
+                                                  </div>
+                                                  
+                                                 </div>
+                                             </div>
+
+                                             <div class="row">
+                                                <div class="form-group clearfix margintopbottom20">
+                                                <div class="col-sm-3 pull-right">
+                                                     <?php 
+                                                     echo $this->formRow($form->get('submit'));
+                                                     ?>                                    
+                                                  </div>
+                                                   <div class="col-sm-1 pull-right">
+                                                    <a href="<?= $this->url('admin',array('controller'=>'pages','action'=>'index'));?>"><button class="btn btn-red defaultbtnsearch searchBooking">Cancel</button></a>
+
+                                                                                     
+                                                  </div>
+                                             </div>
+                                             </div>
+              </div>
+            </div>
+            <?php   
+echo $this->form()->closeTag();
+
+        ?>

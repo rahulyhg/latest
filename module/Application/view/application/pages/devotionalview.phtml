@@ -1,0 +1,37 @@
+<div class="col-sm-3 width20per">
+<?php echo $this->partial('layout/sidebar') ?>
+</div>
+ <div class="col-sm-3 width20per">
+  <a href="<?php echo $this->basePath()?>/pages/devotional" class="btn btn-info"> Back </a> 
+
+</div>
+<div class="col-sm-9 width80per">
+ 
+<h2 class="heading">
+<?=$posts['title'];?></h2>
+<div class="newsfull">
+ 
+<img src="<?= empty($posts['image'])? $this->basePath()."/images/new-big.jpg":$this->basePath().$posts['image']; ?>" class="img-responsive" />
+
+  <p> <?=$posts['description'];?></p>
+   
+ 
+<div class="clearfix"></div>
+
+<div class="status" style="font-size:11px;">
+<ul style="font-size:12px;">
+<li style="font-size:12px;">Posted By : <?=$posts['full_name'];?> </li>
+<li style="font-size:12px;">Posted On : <?=$posts['created_date'];?></li>
+<li style="font-size:12px;">Views: 2757</li>
+<li style="font-size:12px;"> 143 Likes </li>
+<li style="font-size:12px;"><a href="#"> Like it </a></li>
+
+</ul>
+</div>
+<?php include('comments.phtml'); ?>
+ 
+
+<div class="clearfix"></div>
+</div>
+</div>
+  

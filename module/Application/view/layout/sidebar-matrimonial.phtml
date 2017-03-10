@@ -1,0 +1,201 @@
+<?php $session=new \Zend\Session\Container('user');	?>
+<?php  $user_id=$session->offsetGet(id);
+if($user_id!=""){
+$gender= $this->MyHelper()->getGenderById($user_id); 
+}
+?>
+<div class="panel-group" id="matrimony_accordion">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a class="accordion-toggle" href="<?php echo $this->basePath() ?>/matrimonial">
+                    <span class="pull-right glyphicon"></span>Matrimonial Directory</a>
+            </h4>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                    <span class="pull-right glyphicon glyphicon-minus"></span>Looking For</a>
+            </h4>
+        </div>
+        <div id="collapseFour" class="panel-collapse collapse in">
+            <div class="panel-body">
+                <ul>
+                    <?php if($gender=="Male"){?>
+                    <li><input type="checkbox"  id="Female" value="Female" name="matrimony_gender[]" 
+                               onclick="filterData();"><label>Bride</label></li>
+                    <?php }elseif($gender=="Female"){?>
+                    <li><input type="checkbox" id="Male" value="Male" name="matrimony_gender[]"  
+                               onclick="filterData();"><label>Groom</label></li>
+                    <?php }else{?>
+                      <li><input type="checkbox"  id="Female" value="Female" name="matrimony_gender[]" 
+                               onclick="filterData();"><label>Bride</label></li>
+                       <li><input type="checkbox" id="Male" value="Male" name="matrimony_gender[]"  
+                               onclick="filterData();"><label>Groom</label></li>
+                   <?php }?>
+                       <input type="hidden" id="gender_type" value="<?php echo $gender;?>">
+                </ul>
+            </div>
+        </div>
+    </div>
+    <ul class="newulclass">
+        <li>
+            <select class="form-control" id="filter_country" ftype="country"  onchange="filterData();">
+                <option value="">---Select---country---</option>
+                <?php
+                foreach ($filters_data["country"] as $GrData) {
+                    echo "<option value=" . $GrData->id . ">" . $GrData->country_name . "</option>";
+                }
+                ?>
+            </select>
+        </li>
+    </ul>
+    <ul class="newulclass">
+        <li><select class="form-control" id="filter_state" ftype="state"  onchange="filterData();">
+            </select>
+        </li>
+    </ul>
+    <ul class="newulclass">
+        <li>
+            <select class="form-control" id="filter_city" ftype="city"  onchange="filterData();">
+            </select>
+        </li>
+    </ul>
+    <ul class="newulclass">
+        <li><input type="text" class="form-control" placeholder="---Pin---Code---" ftype="zip_pin_code" id="zip_pin_code"></li>
+    </ul>
+    <ul class="newulclass">
+        <li><input type="text" class="form-control" placeholder="---Enter---Phone---No" ftype="phone_no" id="phone_no"></li>
+    </ul>
+    <ul class="newulclass">
+        <li><input type="text" class="form-control" placeholder="---Name---" ftype="full_name" id="full_name"></li>
+    </ul>
+    <ul class="newulclass">
+        <li><input type="text" class="form-control" placeholder="---Email---" ftype="office_email" id="office_email"></li>
+    </ul>
+    <ul class="newulclass">
+        <li><input type="text" class="form-control" placeholder="---Enter---Profile---ID---" id="ref_no" ftype="ref_no"></li>
+    </ul>
+    <ul class="newulclass">
+        <li>
+            <div class="slider" id="matrimony_slider">
+                <b>Age:</b><br>
+                <input type="hidden" id="amount_age1_matrimony">
+                <input type="hidden" id="amount_age2_matrimony">
+                <input type="hidden" id="matrimony_age_change" value="0">
+                <span class="amount" id="age-amount_matrimony">0</span>
+                <div class="slider-range" id="slider_age_matrimony" ftype="age"></div> 
+            </div>
+        </li>
+    </ul>
+    <ul class="newulclass">
+        <li>
+            <div class="slider">
+                <b>Annual Income :</b><br>
+                <input type="hidden" id="amount_annual_income1_matrimony">
+                <input type="hidden" id="amount_annual_income2_matrimony">
+                <input type="hidden" id="matrimony_amount_change" value="0">
+                <span class="amount" id="income-amount_matrimony">0</span>
+                <div class="slider-range" id="slider_annual_income_matrimony" ftype="annual_income"></div> 
+            </div>
+        </li>
+    </ul>
+    <ul class="newulclass">
+        <li>
+            <select class="form-control" id="filter_height" ftype="height" onchange="filterData();">
+                <option value="">---Select---Height---</option>   
+                <?php
+                foreach ($filters_data["height"] as $GrData) {
+                    echo "<option value=" . $GrData->id . ">" . $GrData->height . "</option>";
+                }
+                ?>
+            </select>
+        </li>
+    </ul>
+    <ul class="newulclass">
+        <li>
+            <select class="form-control" id="filter_profession" ftype="profession" onchange="filterData();">
+                <option value="">---Select---Profession---</option>   
+                <?php
+                foreach ($filters_data["profession"] as $GrData) {
+                    echo "<option value=" . $GrData->id . ">" . $GrData->profession . "</option>";
+                }
+                ?>
+            </select>
+        </li>
+    </ul>
+    <ul class="newulclass">
+        <li>
+            <select class="form-control" id="filter_education" ftype="education_field" onchange="filterData();">
+                <option value="">---Select---Education---</option>   
+                <?php
+                foreach ($filters_data["education_level"] as $GrData) {
+                    echo "<option value=" . $GrData->id . ">" . $GrData->education_field . "</option>";
+                }
+                ?>
+            </select>
+        </li>
+    </ul>
+    <ul class="newulclass">
+        <li>
+            <select class="form-control" id="filter_designation" ftype="designation" onchange="filterData();">
+                <option value="">---Select---Designation---</option>   
+                <?php
+                foreach ($filters_data["designation"] as $GrData) {
+                    echo "<option value=" . $GrData->id . ">" . $GrData->designation . "</option>";
+                }
+                ?>
+            </select>
+        </li>
+    </ul>
+    <ul class="newulclass">
+        <li>
+            <select class="form-control" id="filter_mstatus" ftype="marital_status" onchange="filterData();">
+                <option value="">---Marital---Status---</option>   
+                <option value="Never Married">Never Married</option>   
+                <option value="Married">Married</option>   
+                <option value="Divorced">Divorced</option>   
+                <option value="Widowed">Widowed</option>   
+                <option value="Separated">Separated</option>   
+            </select>
+        </li>
+    </ul>
+    <ul class="newulclass">
+        <li>
+            <select class="form-control" id="filter_dossam" ftype="manglik_dossam" onchange="filterData();">
+                <option value="">---Manglik---Dosh---</option>
+                <option value="Manglik">Manglik</option>
+                <option value="Non Manglik">Non Manglik</option>
+            </select>
+        </li>
+    </ul>
+</div>
+<?php echo $this->partial('layout/sidebar-slider') ?>
+<script>
+    function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
+    ;
+    var maturl = window.location.href;
+    var maturlsplit = maturl.split("?");
+    if (maturlsplit[0].match(/list-view/g) != null) {
+
+        if (getUrlParameter('search_for') == 'Female') {
+            $("#Female").prop("checked", true);
+            $("#Male").prop("checked", false);
+
+        } else if (getUrlParameter('search_for') == 'Male') {
+            $("#Female").prop("checked", false);
+            $("#Male").prop("checked", true);
+        }
+
+    } else {
+        $("#Female").prop("checked", true);
+        $("#Male").prop("checked", true);
+    }
+</script>    

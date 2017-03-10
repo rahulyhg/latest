@@ -1,0 +1,547 @@
+/*==============================================
+   DASHBOARD STYLES    
+    =============================================*/
+.panel-back {
+	background-color:#e2e1e1;
+}
+.noti-box {
+	min-height: 200px;
+	padding: 20px 17px;
+}
+.noti-box .icon-box {
+	display: block;
+	float: left;
+	margin: 0 0 10px 0;
+	
+		
+	vertical-align: middle;
+	text-align: center;	
+}
+.text-box {
+	clear:both;
+	position:relative;
+	display:block;	
+}
+.text-box p {
+	margin: 0 0 3px;
+}
+.main-text {
+	font-size: 14px !important;
+	font-weight:600;
+	text-align:center;
+	
+}
+
+.padleft{ padding-left:40px;}
+
+
+/*Five Column Grid
+--------------------------------------- */
+.col-xs-15,
+.col-sm-15,
+.col-md-15,
+.col-lg-15 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.col-xs-15 {
+    width: 20%;
+    float: left;
+}
+
+
+
+
+
+<!--CHART STYLE-->
+
+/*#region Organizational Chart*/
+.tree * {
+    margin: 0; padding: 0;
+		background:#00C;
+		width:30%;
+	
+}
+
+.tree ul {
+    padding-top: 20px; position: relative;
+
+    -transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+	
+}
+
+.tree li {
+    float: left; text-align: center;
+    list-style-type: none;
+    position: relative;
+    padding: 20px 5px 0 5px;
+
+
+    -transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+}
+
+/*We will use ::before and ::after to draw the connectors*/
+
+.tree li::before, .tree li::after{
+    content: '';
+    position: absolute; top: 0; right: 50%;
+    border-top: 2px solid #696969;
+    width: 50%; height: 20px;
+}
+.tree li::after{
+    right: auto; left: 50%;
+    border-left: 2px solid #696969;
+}
+
+/*We need to remove left-right connectors from elements without 
+any siblings*/
+.tree li:only-child::after, .tree li:only-child::before {
+    display: none;
+}
+
+/*Remove space from the top of single children*/
+.tree li:only-child{ padding-top: 0;}
+
+/*Remove left connector from first child and 
+right connector from last child*/
+.tree li:first-child::before, .tree li:last-child::after{
+    border: 0 none;
+}
+/*Adding back the vertical connector to the last nodes*/
+.tree li:last-child::before{
+    border-right: 2px solid #696969;
+    border-radius: 0 5px 0 0;
+    -webkit-border-radius: 0 5px 0 0;
+    -moz-border-radius: 0 5px 0 0;
+}
+.tree li:first-child::after{
+    border-radius: 5px 0 0 0;
+    -webkit-border-radius: 5px 0 0 0;
+    -moz-border-radius: 5px 0 0 0;
+}
+
+/*Time to add downward connectors from parents*/
+.tree ul ul::before{
+    content: '';
+    position: absolute; top: 0; left: 50%;
+    border-left: 2px solid #696969;
+    width: 0; height: 20px;
+}
+
+.tree li a{
+    height: 124px;
+    width: 200px;
+    padding: 5px 10px;
+    text-decoration: none;
+    background-color: white;
+    color: #8b8b8b;
+    font-family: arial, verdana, tahoma;
+    font-size: 11px;
+    display: inline-block;  
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+
+    -transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+}
+
+/*Time for some hover effects*/
+/*We will apply the hover effect the the lineage of the element also*/
+.tree li a:hover, .tree li a:hover+ul li a {
+    background: #cbcbcb; color: #000;
+}
+/*Connector styles on hover*/
+.tree li a:hover+ul li::after, 
+.tree li a:hover+ul li::before, 
+.tree li a:hover+ul::before, 
+.tree li a:hover+ul ul::before{
+    border-color:  #94a0b4;
+}
+/*#endregion*/
+
+.tree li li li a {
+    width: auto;
+}
+
+
+.tree > ul > li > a {
+    width: auto;
+}
+
+.tree > ul > li > ul > li > a {
+    width: auto;
+}
+
+
+/*profiledesigne style*/
+.profilesty{background-color:#bbbcbe; width:1325px; }
+.profilesty h5{ font-size:18px; font-style:normal; font-family:Arial, Helvetica, sans-serif; color:#333; padding-top:7px; padding-left:5px;}
+
+
+
+
+
+
+
+.filter2{background:#E2E2E2;padding:7px; margin:0;!important}
+
+.filter {
+   background:#E2E2E2; margin:0; padding:5px 10px; border:0 px solid #666; overflow:;}
+
+.table2 {
+	border-collapse: collapse;
+	border-spacing: 0;
+	border:1px solid #333;
+}
+
+
+
+
+
+
+.btn2 {
+    -moz-user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1;
+    margin-bottom: 0;
+    padding: 6px 16px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+
+
+
+
+
+
+
+<!--masterpage css-->
+
+
+
+.panel-back {
+	background-color:#e2e1e1;
+}
+.noti-box2 {
+	
+	padding: 5px 20px;
+}
+.noti-box2 .icon-box {
+	display: block;
+	float: left;
+	margin: 0 15px 10px 0;
+	
+		
+	vertical-align: middle;
+	text-align: center;	
+}
+.text-box2 {
+	clear:both;
+	position:relative;
+	display:block;
+		
+}
+.text-box p {
+	margin: 0 0 3px;
+}
+.main-text {
+	font-size: 14px !important;
+	font-weight:600;
+	text-align:center;
+	
+}
+
+.padleft{ padding-left:40px;}
+
+
+
+<!--masterpage End-->
+
+
+.col-xs-6new {
+    width: 100%!important;
+}
+
+
+
+
+.dontshow{
+
+    display:none;
+    
+}
+
+.addressstyle{
+    position:relative;
+    width:400px;
+    
+}
+
+
+
+
+#lightbox .modal-content {
+    display: inline-block;
+    text-align: center;   
+}
+
+#lightbox .close {
+    opacity: 1;
+    color: rgb(255, 255, 255);
+    background-color: rgb(25, 25, 25);
+    padding: 5px 8px;
+    border-radius: 30px;
+    border: 2px solid rgb(255, 255, 255);
+    position: absolute;
+    top: -15px;
+    right: -55px;
+    
+    z-index:1032;
+}
+
+
+
+.modal-dialog {width:600px;}
+.thumbnail {margin-bottom:6px;}
+
+.iconsize
+{
+	border-radius:30px; width:11px; height:11px;
+		cursor:pointer;
+		margin:0 2px;
+}
+.iconsize1
+{
+	border-radius:30px; width:13px !important; height:13px !important;
+		cursor:pointer;
+		margin:0 2px;
+		float:left;
+		
+}
+
+.reffranaceicon
+{
+float:left;
+padding:0 5px 1px 0;
+font-size:11px;	
+}
+
+.activestatus{
+		color:green;
+		background:green;
+		
+		
+	}
+	
+	.de-activestatus{
+		color:green;
+		background:red;
+		
+		
+	}
+
+
+.matrimonistatus{
+		color:pink;
+		background:#eb0cce;
+		
+		float:left;
+		
+		
+	}
+	
+	.memberstatus{
+		color:blue;
+		background:blue;
+		float:left;
+		
+		
+	}
+
+.paidstatus{
+		color:green;
+		background:#4a1b73;
+		float:left;
+		
+		
+	}
+	
+	.unaprovestatus{
+		color:green;
+		background:#e2ab02;
+		float:left;
+		margin-left:;
+		
+		
+	}
+	
+	.blokedstatus{
+		color:green;
+		background:#660703;
+		float:left;
+		
+		
+		
+	}
+	
+	.onlinestatus{
+		color:green;
+		background:#122302;
+		float:left;
+		
+		
+		
+	}
+	
+	
+	
+	.recentupdatestatus{
+		color:green;
+		background:orange;
+		float:left;
+		
+		
+		
+	}
+	
+	.flagedstatus{
+		color:green;
+		background:#353534;
+		float:left;
+		
+		
+		
+	}
+	
+	.registeredstatus{
+		color:green;
+		background:#089ce1;
+		
+		cursor:pointer;
+		
+	}
+
+.expiringstatus{
+		
+		background:#7d02d2 !important;
+		
+		
+	}
+	
+	.plan1status{
+		color:green;
+		background:#5f411b;
+		float:left;
+		
+		
+	}
+	
+		.unpaidstatus{
+		
+		background:#fc0510 !important;
+		
+		/*background:#e2ab02 !important;*/
+		
+		
+	}
+	
+	.aprovestatus{
+		
+		background:#82af6f !important;
+		/*background:#e2ab02 !important;*/
+		
+		
+		
+		
+	}
+
+
+	.plan2status{
+		color:green;
+		background:#d06404;
+		
+		float:left;
+		
+		
+	}
+
+	.plan3status{
+		color:green;
+		background:#9c2404;
+		
+		float:left;
+		
+		
+	}
+	.plan4status{
+		color:green;
+		background:#e5caa8;
+		
+		float:left;
+		
+		
+	}
+	
+	.plan5status{
+		color:green;
+		background:#666564;
+		
+		float:left;
+		
+		
+	}
+
+
+ .userstatus{
+		color:pink;
+		background:#d15b47;
+		cursor:pointer;
+		float:left;
+		
+		
+		
+	}
+	
+	 .userstatus1{
+		color:pink;
+		background:#d15b47;
+		border-radius:30px; width:15px; height:15px;
+		cursor:pointer;
+		box-shadow:none;
+		border:none;
+		
+	}
+
+@media (min-width: 768px) {
+.col-sm-15 {
+        width: 20%;
+        float: left;
+    }
+}
+
+@media (min-width: 992px) {
+.col-md-15 {
+        width: 20%;
+        float: left;
+    }
+}
+
+@media (min-width: 1200px) {
+.col-lg-15 {
+        width: 20%;
+        float: left;
+    }

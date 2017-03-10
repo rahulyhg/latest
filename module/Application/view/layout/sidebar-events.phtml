@@ -1,0 +1,232 @@
+
+<nav class="navbar navbar-default">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
+        <span class="sr-only">Sub Page</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+<!-- Collect the nav links, forms, and other content for toggling -->
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+
+<ul class="nav navbar-nav">
+<li><a href="<?php echo $this->basePath()?>/events"><?php echo $this->translate('Upcoming Events') ?></a></li>
+<li><a href="<?php echo $this->basePath()?>/events/previous"><?php echo $this->translate('Previous Events') ?></a></li>
+</ul>
+
+</div>
+</nav>
+
+<div class="panel-group" id="eventsaccordion">
+<div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title"><span class="filter-heading">Filter</span></h4>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+     <div class="filter">
+	 <div class="col-xs-12" style="padding:0;">
+  <?php 
+  //$uri = $this->serverUrl();
+  //$uri = $this->userAgent()->getServerValue('request_uri');
+  //strrpos($_SERVER['REQUEST_URI'], '/rustagi/events') === strlen($_SERVER['REQUEST_URI']) - strlen('/rustagi/events')
+  //echo "<pre>";print_r($uri);
+  if(strrpos($_SERVER['REQUEST_URI'], '/rustagi/events/previous') === strlen($_SERVER['REQUEST_URI']) - strlen('/rustagi/events/previous')){ ?>
+     <label>From</label>
+     <form method="post" action="" onsubmit="return eventsdatevalidate('events/eventsfilters');">
+      <input type="text" name="dob" class="form-control inputDate" value= "" id="dobeventfrom" />
+    
+	 </div>
+	 
+	 <div class="col-xs-12" style="padding:0;" >
+     <label>To</label>
+      <input type="text" name="dob1" class="form-control inputDate" id="dobeventto" />
+	 </div>
+     <div class="col-xs-12" style="padding:0; margin-top:5px;">
+     
+      <input type="submit" class="btn btn-default" value="Search" />
+      </form>
+      <?php } else { ?>
+      <label>From</label>
+      <form method="post" action="" onsubmit="return eventsdatevalidate('events/eventsfilters');">
+      <input type="text" name="dob" class="form-control inputDate" value= "" id="dobeventfrom1" />
+    
+   </div>
+   
+   <div class="col-xs-12" style="padding:0;" >
+     <label>To</label>
+      <input type="text" name="dob1" class="form-control inputDate" id="dobeventto1" />
+   </div>
+     <div class="col-xs-12" style="padding:0; margin-top:5px;">
+     
+      <input type="submit" class="btn btn-default" value="Search" />
+      </form>
+
+     <?php } ?>
+	 </div>
+     </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+        <span class="pull-right glyphicon glyphicon-plus"></span>Orgnizer</a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse">
+      <div class="panel-body">
+      <ul class="newulclass">
+  <li>
+      <select class="form-control"  ftype="country_id">
+        <option>---Select---country---</option>
+        <?php 
+          foreach($filters_data["country"] as $GrData)
+            {
+                echo "<option value=".$GrData->id.">".$GrData->country_name."</option>";
+            }
+        ?>
+      </select>
+  </li>
+</ul>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+        <span class="pull-right glyphicon glyphicon-plus"></span>City</a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse">
+      <div class="panel-body">
+       <ul class="newulclass">
+        <li>
+          
+  <select class="form-control" ftype="city_id">
+       <option>---Select---city---</option>   
+    <?php 
+          foreach($filters_data["city"] as $GrData)
+            {
+                echo "<option value=".$GrData->id.">".$GrData->city_name."</option>";
+            }
+        ?>
+        
+  </select>
+</li>
+</ul>
+      </div>
+    </div>
+  </div>
+  
+  
+</div>
+
+
+<?php echo $this->partial('layout/sidebar-slider') ?>
+<script>
+     var obj = new Date();
+     var curr_year = obj.getFullYear()-10;
+     var curr_year1 = obj.getFullYear();
+
+	 var curr_month = obj.getMonth();
+   //alert(curr_month);exit; 
+	 var curr_date = obj.getDate();  
+    
+    var picker = new Pikaday(
+    {
+        field: document.getElementById('dobeventfrom'),
+        firstDay: 1,
+        minDate: new Date(curr_year),
+        maxDate: new Date(curr_year1, curr_month, curr_date),
+        yearRange: [curr_year,curr_year1],
+		format:'YYYY-MM-DD',
+		formatStrict: false
+    });
+	
+	
+	 var obj = new Date();
+     //var curr_year = obj.getFullYear()-10;//pass here first selected date
+     $(function() {
+    $("#dobeventfrom").datepicker();
+    $("#dobeventfrom").on("change",function(){
+        var curr_year2 = $(this).val();
+
+        var curr_year1 = obj.getFullYear();
+   var curr_month = obj.getMonth();
+   var curr_date = obj.getDate();    
+
+    
+    var picker = new Pikaday(
+    {
+        field: document.getElementById('dobeventto'),
+        firstDay: 1,
+        minDate: new Date(curr_year2),
+        maxDate: new Date(curr_year1, curr_month, curr_date),
+        yearRange: [curr_year2,curr_year1],
+    format:'YYYY-MM-DD',
+    formatStrict: false
+    });
+        
+    });
+});
+        
+
+      </script>
+
+      
+
+      <script>
+     var obj = new Date();
+     var curr_year = obj.getFullYear();
+     var curr_year1 = obj.getFullYear();
+
+   var curr_month = obj.getMonth();
+   //alert(curr_month);exit; 
+   var curr_date = obj.getDate();  
+    
+    var picker = new Pikaday(
+    {
+        field: document.getElementById('dobeventfrom1'),
+        firstDay: 1,
+        minDate: new Date(curr_year, curr_month, curr_date),
+        maxDate: new Date(curr_year1+10, curr_month, curr_date),
+        yearRange: [curr_year,curr_year1+10],
+    format:'YYYY-MM-DD',
+    formatStrict: false
+    });
+  
+  
+   var obj = new Date();
+     //var curr_year = obj.getFullYear()-10;//pass here first selected date
+     $(function() {
+    $("#dobeventfrom1").datepicker();
+    $("#dobeventfrom1").on("change",function(){
+        var curr_year2 = $(this).val();
+
+        var curr_year1 = obj.getFullYear()+10;
+   var curr_month = obj.getMonth();
+   var curr_date = obj.getDate();    
+
+    //alert(curr_year2);die;
+    var picker = new Pikaday(
+    {
+        field: document.getElementById('dobeventto1'),
+        firstDay: 1,
+        minDate: new Date(curr_year2),
+        maxDate: new Date(curr_year1+10, curr_month, curr_date),
+        yearRange: [curr_year2,curr_year1+10],
+    format:'YYYY-MM-DD',
+    formatStrict: false
+    });
+        
+    });
+});    
+
+      </script>

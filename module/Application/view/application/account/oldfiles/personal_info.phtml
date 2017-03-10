@@ -1,0 +1,162 @@
+<div class="col-sm-4" style="width:100%;">
+        <h3><?php echo $this->translate('Update Your Basic Info') ?></h3> 
+		<div class="row">
+			<div class="form-group">
+				<div class="col-md-2">
+					<label><?php echo $this->translate('Full Name');?></label>
+				</div>
+				<div class="col-md-"> 
+					<?php  
+					echo $this->formHidden($form->get('id'));
+					echo $this->formRow($form->get('full_name'));?>
+				</div>
+			</div>
+		</div>
+	   <div class="row">
+	     <div class="form-group">	
+	        <div class="col-md-2">
+			    <label><?php echo $this->translate('Date of Birth') ?></label>
+			</div>		
+	        <div class="col-md-10">
+	<!--<?php  //echo $this->formRow($form->get('dob'));?>-->
+				 <div class="col-md-3">
+				  <select name="" class="form-control"style="width: 75%;margin-left: -30px;" >
+					<option>Day</option>
+					<option>1</option>
+					<option>2</option>
+				  </select>
+				  </div>
+				 <div class="col-md-3">			  
+				<select name="" class="form-control" style="width: 75%;margin-left: -37px;">
+					<option>Month</option>
+					<option>1</option>
+					<option>2</option>
+				</select>
+				</div>
+				 <div class="col-md-3">
+				<select name="" class="form-control" style="width: 75%;margin-left: -47px;">
+					<option>Year</option>
+					<option>1</option>
+					<option>2</option>
+				</select>
+				</div> 
+			</div>
+		</div>
+	</div>
+
+          
+		  
+	 <div class="row">
+	     <div class="form-group">	
+	        <div class="col-md-2">
+                <label style="margin-top: 20px;"><?php echo $this->translate('Gender') ?></label>
+			</div>
+			</div>
+			<div class="form-group">
+			 <div class="col-md-">
+                <?php  echo $this->formRow($form->get('gender'));?>
+             </div>			 
+		</div>
+	 </div>
+
+		 
+     <div class="row">
+	     <div class="form-group">	
+	        <div class="col-md-2">
+            <label><?php echo $this->translate('Alternate Mobile No.') ?></label>
+			</div>
+			 <div class="col-md-">
+            <?php echo $this->formRow($form->get('alternate_mobile_no'));?>
+          </div>
+		</div>
+	 </div>
+
+	   <div class="row">
+	     <div class="form-group">	
+	        <div class="col-md-2">
+            <label><?php echo $this->translate('Phone No.') ?></label>
+			</div>
+			 <div class="col-md-">
+            <?php  echo $this->formRow($form->get('phone_no'));?>
+          </div>
+		</div>
+	 </div>
+	
+          <div class="row">
+	     <div class="form-group">	
+	        <div class="col-md-2">
+            <label><?php echo $this->translate('Address') ?></label>
+			</div>
+			 <div class="col-md-">
+            <?php  echo $this->formRow($form->get('address'));?>
+          </div>
+		</div>
+	 </div> 
+		  <div class="row">
+	     <div class="form-group">	
+	        <div class="col-md-2">
+            <label><?php echo $this->translate('Address Line 2') ?></label>
+			</div>
+			 <div class="col-md-">
+            <?php  echo $this->formRow($form->get('address_line2'));?>
+          </div>
+		</div>
+	 </div>
+	   
+     
+
+	 
+	 
+   <div class="row">
+	     <div class="form-group">	
+	        <div class="col-md-2">
+                <label style="margin-top: 20px;"><?php echo $this->translate('Country') ?></label>
+			</div>
+			</div>
+			<div class="form-group">
+			 <div class="col-md-">
+                <?php  echo $this->formRow($form->get('country'));?>
+             </div>			 
+		</div>
+	 </div>
+	 <div class="row">
+	     <div class="form-group">	
+	        <div class="col-md-2">
+                <label style="margin-top: 20px;"><?php echo $this->translate('State') ?></label>
+			</div>
+			</div>
+			<div class="form-group">
+			 <div class="col-md-">
+                <?php  echo $this->formRow($form->get('state'));?>
+             </div>			 
+		</div>
+	 </div>
+	 <div class="row">
+	     <div class="form-group">	
+	        <div class="col-md-2">
+                <label style="margin-top: 20px;"><?php echo $this->translate('City') ?></label>
+			</div>
+			</div>
+			<div class="form-group">
+			 <div class="col-md-">
+                <?php  echo $this->formRow($form->get('city'));?>
+             </div>			 
+		</div>
+	 </div>
+	 
+	 
+	 <div class="row">
+	     <div class="form-group">	
+	        <div class="col-md-2">
+            <label><?php echo $this->translate('Zip/Pin Code') ?></label>
+			</div>
+			 <div class="col-md-">
+            <?php  echo $this->formRow($form->get('zip_pin_code'));?>
+          </div>
+		</div>
+	 </div>
+          
+           <div class="form-group">			
+			<?php  echo $this->formRow($form->get('submit'));?>
+		  </div>		  
+      </div>

@@ -1,0 +1,80 @@
+                    <div class="table-responsive">
+                      <table id="dynamic-table" class="table table-striped table-bordered table-hover">
+                    <thead>
+                      <tr>
+                           <th><input type="checkbox" value="" id="checkAll" onclick="checkall(this.id)" > </th>
+                        <th>S. No.</th>
+                        <th>Education Name</th>
+                        <th class="hidden-480">Modified Date</th>
+                        <th class="hidden-480">Created Date</th>
+                        <th class="hidden-480">Status</th>
+                        <th class="hidden-480">Modified By</th>
+                        <th><b>Actions</b></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php 
+					  $i=1;
+                        if (count($results) > 0) {
+                      foreach ($results as $education) {
+                      
+                      ?>
+                      <tr>
+                        <td><input type="checkbox" value="<?=$education->id?>" class="checkme" name="checkme[]"> </td> 
+                       <td><?= $i ?></td>  
+                        <td><?= $education->educationLevel?></td>                       
+                        <td class="hidden-480"><?=$education->modifiedDate?></td>
+                        <td class="hidden-480"><?=$education->createdDate?></td>
+                        
+                        <td class="hidden-480">
+						<!--<?php echo ($education->isActive==1)? 'Active': '<span class="label label-sm label-warning">In-Active</span>'; ?>-->
+                        <?php $status = ($education->isActive==1)? 'Active': 'In-Active';
+                        $statuscolor = ($education->isActive==1)? 'activestatus': 'de-activestatus';
+                         ?>
+                          <div name="ChangeStatus" id="changestatus<?=$i;?>" onclick="changestatusquick(<?=$education->id?>,<?= ($education->isActive==0)?0:1; ?>,'<?php echo $this->
+                                                                url('admin/education', array('action'=>
+                                                                    'changestatuseduLevel')); ?>',changstatusresult);" class="<?=$statuscolor?>">
+                        </div>
+                        </td>
+                        <td class="hidden-480"><?php echo ($education->modifiedBy==1)? 'Admin': 'NotByAdmin'; ?></td>
+                        <td><div class="hidden-sm hidden-xs action-buttons"> 
+                        <!--<a class="blue" href="<?php echo $this->url('admin',array('controller'=>'education','action'=>'view','id'=>$education->id)); ?>">
+                         <i class="ace-icon fa fa-search-plus bigger-130"></i> </a> viewByIdeduLevel-->
+                         <a class="blue" style="cursor:pointer;" data-toggle="modal" data-target="#myModal"  
+                                                   tar="indview<?= $i ?>"> <i onclick="findRowDataByEducationlevelId('<?php echo $this->url
+                                                           ('admin/education', array('action'=>'view-by-id-edu-level','id'=>$education->id)); ?>', 
+                                                                       viewRowDataById);" class="ace-icon fa fa-search-plus bigger-130">
+                                                    </i> </a>
+                         
+                         <a class="green" href="javascript:void(0);" onclick="editbox(<?= 
+                                                   $education->id ?>, '<?php echo $this->url('admin/education', array('action' => 
+                                                       'edit-edu-level', 'id' => $education->id));
+                                        ?>', editformresp);" > <i class="ace-icon fa fa-pencil bigger-130"></i> </a> 
+                          <a class="red" href="<?php echo $this->url('admin/education',array('action'=>'deleteeduLevel','id'=>
+                              $education->id)); ?>" onclick="return confirm('are you sure you want to delete');"> <i class="ace-icon fa 
+                                                                                             fa-trash-o bigger-130"></i> </a> </div>
+                          </td>
+                      </tr>
+                      
+                      
+                      
+                      
+                      <?php 
+                      $i++;
+                    }
+                  } else
+                                    echo" <tr>
+                         
+                       <td colspan=9><center><h2>No data available</h2></center></td></tr>";
+                      ?>
+                    </tbody>
+                  </table>
+                      
+                      
+                      
+                      
+                    </div>
+                
+
+            
+             

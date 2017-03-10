@@ -1,0 +1,17 @@
+<div class="col-sm-3 col-sm-3-new width20per">
+<?php echo $this->partial('layout/sidebar-about') ?>
+</div>
+
+<div class="col-sm-9 width80per">
+    <?php 
+
+	foreach ($PageData as $page) {
+	
+	?>
+    <h2 class="heading"><?=$page->page_title?></h2>
+<p><?=$page->page_content?></p>
+
+	<?php 
+}
+	?>
+  </div>

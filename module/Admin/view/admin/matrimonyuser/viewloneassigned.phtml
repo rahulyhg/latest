@@ -1,0 +1,33 @@
+ <TABLE width="100%">
+<tr>
+<td>
+<p id='closeCatBox' onclick='closeme()'>X</p>
+
+	 
+	<br>
+	<div style="float:left;">
+
+		User <?=$Agentdetails['full_name']?> 
+		<?php $imagePath = (empty($Agentdetails['profile_photo']))? '/images/new-big.jpg' : $Agentdetails['profile_photo'];?>
+                      <p>  <img src="<?= $this->basepath().$imagePath;?>" width="43" height="37" alt=""></p>
+
+		<p>Position : <?=$Agentdetails['category_name']?> </p>
+		<p>Name : <?=$Agentdetails['full_name']?> </p>
+		<p>Email : <?=$Agentdetails['email']?> </p>
+		
+		is Sub agent for the category <br>
+			
+
+		 
+
+		<h3>Category : <?=$subagent['category_name']?> </h3>
+	 	
+	</div>
+
+	<div  style="float:right;">
+		<p>Unassign Designation</p>
+       <p>   <button type='button' id="UnAssignDesig" onclick='UnassignSubAgent("","<?=$Agentdetails['uid']?>","<?=$subagent['Head']?>","<?=$this->serverUrl().$this->url().'/matrimonyuser/UnassignCommPos'?>",UnassignCommPosRes)'> Un-Assign</button></p>
+	</div>
+	</td>
+</tr>
+ </TABLE>

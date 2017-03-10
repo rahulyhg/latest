@@ -1,0 +1,39 @@
+ <TABLE width="100%">
+<tr>
+<td>
+<p id='closeCatBox' onclick='closeme()'>X</p>
+<?php 
+
+$Member = ($UserRoles['IsMember']==0)? '':'checked="checked"';
+$Matrimonial = ($UserRoles['IsMatrimonial']==0)? '':'checked="checked"';
+$Executive = ($UserRoles['IsExecutive']==0)? '':'checked="checked"';
+$user_id = (empty($UserRoles['uid']))? 0:$UserRoles['uid'];
+$insert_id = (empty($UserRoles['id']))? 0:$UserRoles['id'];
+
+?>
+	 
+	<br>
+	<center>
+		<h3>Manage User Roles</h3>
+	<div >
+		<form method='post' id="ChangeUserRole" onsubmit="return ManageRole(this.id,'<?=$this->serverUrl().$this->url().'/managerole'?>',manageroleresults)" >
+			Member Permission :<input type='checkbox' name='IsMember' id="Member" onclick='ismember(this.id)'  <?=$Member?> /><br>
+			Matrimonial Permission :<input type='checkbox' name='IsMatrimonial'  <?=$Matrimonial?> /><br>
+			Executive Permission :<input type='checkbox' name='IsExecutive' id='Executive'  <?=$Executive?> /><br>
+			<input type='hidden' name='user_id' value='<?=$user_id?>' /><br>
+			<input type='hidden' name='insert_id' value='<?=$insert_id?>' /><br>
+			 <input type='submit' name='submit' value='Save' /><br>
+
+		</form>
+		 
+
+	</div>
+	</center>
+
+	<!-- <div  style="float:right;">
+		<p>Unassign Designation</p>
+       <p>   <button type='button' id="UnAssignDesig" onclick='UnassignSubAgent("","<?=$Agentdetails['uid']?>","<?=$subagent['Head']?>","<?=$this->serverUrl().$this->url().'/matrimonyuser/UnassignCommPos'?>",UnassignCommPosRes)'> Un-Assign</button></p>
+	</div> -->
+	</td>
+</tr>
+ </TABLE>

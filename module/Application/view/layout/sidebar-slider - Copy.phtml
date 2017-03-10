@@ -1,0 +1,52 @@
+<!--<div class="featured-list">
+<ul id="flexiselDemo5">
+<li><a href="#"><img src="<?php echo $this->basePath('images/slide1.jpg') ?>" class="img-responsive" /></a></li>
+<li><a href="#"><img src="<?php echo $this->basePath('images/slide1.jpg') ?>" class="img-responsive" /></a></li>
+<li><a href="#"><img src="<?php echo $this->basePath('images/slide1.jpg') ?>" class="img-responsive" /></a></li>
+<li><a href="#"><img src="<?php echo $this->basePath('images/slide1.jpg') ?>" class="img-responsive" /></a></li>
+<li><a href="#"><img src="<?php echo $this->basePath('images/slide1.jpg') ?>" class="img-responsive" /></a></li>
+</ul>
+</div>-->
+
+<div id="myCarousel1" class="carousel slide" data-ride="carousel"> 
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel1" data-slide-to="0" class="active"></li>
+	<?php for($i=1;$i<=9;$i++){ ?>
+    <li data-target="#myCarousel1" data-slide-to="<?php echo $i;?>"></li>
+	<?php } ?>
+  </ol>
+  <div class="carousel-inner">
+<div class="item active">
+	<img src="<?php echo $this->basePath('images/australia_22.jpg') ?>" class="img-responsive" alt="First slide"  style="width:100% !important;">
+</div>
+<div class="item">
+	<img src="<?php echo $this->basePath('images/car_rental_delhi.jpg') ?>" class="img-responsive" alt="Second slide"  style="width:100% !important;">
+</div>
+<div class="item">
+	<img src="<?php echo $this->basePath('images/golden_triangle.jpg') ?>" class="img-responsive" alt="Fourth slide"  style="width:100% !important;">
+</div>
+<div class="item">
+	<img src="<?php echo $this->basePath('images/grand_j.jpg') ?>" class="img-responsive" alt="Fifth slide"  style="width:100% !important;">
+</div>
+<div class="item">
+	<img src="<?php echo $this->basePath('images/hello42_small.jpg') ?>" class="img-responsive" alt="Sixth slide"  style="width:100% !important;">
+</div>
+<div class="item">
+	<img src="<?php echo $this->basePath('images/himachal.jpg') ?>" class="img-responsive" alt="Seventh slide"  style="width:100% !important;">
+</div>
+<div class="item">
+	<img src="<?php echo $this->basePath('images/Kerala.jpg') ?>" class="img-responsive" alt="Eighth slide"  style="width:100% !important;">
+</div>
+<div class="item">
+	<img src="<?php echo $this->basePath('images/Maldives_3.jpg') ?>" class="img-responsive" alt="Nineth slide"  style="width:100% !important;">
+</div>
+<div class="item">
+	<img src="<?php echo $this->basePath('images/regency_small.jpg') ?>" class="img-responsive" alt="Tenth slide"  style="width:100% !important;">
+</div>
+<div class="item">
+	<img src="<?php echo $this->basePath('images/srilanka.jpg') ?>" class="img-responsive" alt="Twelve slide" style="width:100% !important;">
+</div>
+  </div>
+  <a class="left carousel-control" href="#myCarousel1" data-slide="prev"></a>
+  <a class="right carousel-control" href="#myCarousel1" data-slide="next"></a>
+</div>

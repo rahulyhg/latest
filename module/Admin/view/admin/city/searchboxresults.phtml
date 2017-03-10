@@ -1,0 +1,24 @@
+<table  width="100%" style="border:none !important;">
+<tbody>
+<?php
+if(count($cities)>0){
+	$i=1;
+ foreach ($cities as $city) {
+?>
+
+
+<tr>
+<td>
+  
+  <a href="javascript:void(0);" id="statesearch<?=$i;?>" onclick="sendvalues('<?=$city->city_name?>',
+              '<?=$city->city_code?>','<?=$city->id?>','<?=$parentname?>');"><?= $city->city_name?></a>
+</td>
+</tr>
+<?php
+$i++;
+}
+}
+else echo "<p>No matched search</p>";
+?>
+</tbody>
+</table>

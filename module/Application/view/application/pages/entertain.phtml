@@ -1,0 +1,244 @@
+<script type="text/javascript" src="<?php echo $this->basePath('js/easypaginate.js') ?>"></script>	
+	
+	<script type="text/javascript">
+	
+$(document).ready(function(){
+	
+	$('ul#items').easyPaginate({
+		step:8
+	});
+	
+});    
+    
+    </script>
+
+<style>
+
+ul#items{		
+		
+		width:100%;
+		float:left;
+		list-style:none;
+		
+		}
+
+#pagination {
+    border-radius: 4px;
+    display: inline-block;
+    margin: 20px 0;
+    padding-left: 0;
+	float:right;
+	text-align:right;
+	
+}
+
+#pagination > li{
+    border: 0 none;
+    color: #e89436;
+    font-weight: normal;
+    
+	float:left;
+	
+}
+
+
+#pagination > li > a, #pagination > li {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    color: #28377f;
+    float: left;
+    line-height: 1.42857;
+    margin-left: -1px;
+    padding: 1px 5px;
+    position: relative;
+    text-decoration: none;
+}
+ol#pagination{overflow:hidden;}
+	ol#pagination li{
+		float:left;
+		list-style:none;
+		cursor:pointer;
+		margin:0 0 0 .3em;
+		}
+	ol#pagination li.current{color:#f00;font-weight:normal;}
+	
+
+.list-view ul li:first-child {
+    border-color: #eda344;
+	margin: 0 7px 20px;
+   
+}
+
+.news
+{
+	height:220px;
+}
+</style>
+
+<div class="col-sm-3 col-sm-3-new width20per">
+<?php echo $this->partial('layout/sidebar') ?>
+</div>
+
+
+<div class="col-sm-9 width80per">
+<ul class="nav nav-pills">
+    <li class="active"><a data-toggle="pill" href="#jok">Jokes</a></li>
+    <li><a data-toggle="pill" href="#sms">SMS</a></li>
+
+    <li><a data-toggle="pill" href="#poem">Poems</a></li>
+
+  </ul>
+  
+  
+  <div class="tab-content">
+    <div id="jok" class="tab-pane fade in active">
+    
+<h2 class="heading">Jokes </h2>
+
+<table width="100%">
+	<tr>
+    	<td>
+        <ul id="items">
+        <?php 
+        if(count($Fun['Jokes'])>0){
+        foreach ($Fun['Jokes'] as $jokes) {
+        ?>
+        <li>
+      <div class="col-md-6 news col-xs-12">
+<div class="col-md-3 col-sm-2 col-xs-2 img">
+   
+<img src="<?= empty($jokes->image)? $this->basePath()."/images/new-big.jpg":$this->basePath().$jokes->image; ?>" class="img-responsive" />
+</div>
+<div class="col-md-9 col-sm-10 col-xs-10 content">
+<h4 class="limits"><?=substr($jokes->title,0,20);?></h4>
+
+<p><p class="limits"><?=substr($jokes->description,0,50);?>...</p>
+<a href="<?php echo $this->basePath()?>/pages/postview/<?=$jokes->postid?>">Read Full Story >></a></p>
+
+</div>
+<p style="font-size:11px;">
+Sender: <?=$jokes->email?><br>
+Posted Date: <?=$jokes->postdate?></p>
+</div>
+		</li>
+  <?php 
+  }
+}
+echo "<h4>Currently No Data Available</h4>";
+  ?>
+ </ul>
+
+ 
+        </td>
+    
+    </tr>
+
+</table>   
+    
+    </div>
+    <div id="sms" class="tab-pane fade">
+    <h2 class="heading">SMS </h2>
+
+ <table width="100%">
+  <tr>
+      <td>
+        <?php 
+        if(count($Fun['SMS'])>0){
+        foreach ($Fun['SMS'] as $SMS) {
+        ?>
+      <div class="col-md-6 news col-xs-12">
+<div class="col-md-3 col-sm-2 col-xs-2 img">
+   
+<img src="<?= empty($SMS->image)? $this->basePath()."/images/new-big.jpg":$this->basePath().$SMS->image; ?>" class="img-responsive" />
+</div>
+<div class="col-md-9 col-sm-10 col-xs-10 content">
+<h4 class="limits"><?=substr($SMS->title,0,20);?></h4>
+
+<p><p class="limits"><?=substr($SMS->description,0,50);?>...</p>
+<a href="<?php echo $this->basePath()?>/pages/postview/<?=$SMS->postid?>">Read Full Story >></a></p>
+
+</div>
+<p style="font-size:11px;">
+Sender: <?=$SMS->email?><br>
+Posted Date: <?=$SMS->postdate?></p>
+</div>
+  <?php 
+  }
+}
+echo "<h4>Currently No Data Available</h4>";
+  ?>
+ 
+
+ 
+        </td>
+    
+    </tr>
+
+</table>  
+    </div>
+    <div id="poem" class="tab-pane fade">
+    <h2 class="heading">Poems </h2>
+
+ <table width="100%">
+  <tr>
+      <td>
+        <?php 
+        if(count($Fun['Poems'])>0){
+        foreach ($Fun['Poems'] as $Poems) {
+        ?>
+      <div class="col-md-6 news col-xs-12">
+<div class="col-md-3 col-sm-2 col-xs-2 img">
+   
+<img src="<?= empty($Poems->image)? $this->basePath()."/images/new-big.jpg":$this->basePath().$Poems->image; ?>" class="img-responsive" />
+</div>
+<div class="col-md-9 col-sm-10 col-xs-10 content">
+<h4 class="limits"><?=substr($Poems->title,0,20);?></h4>
+
+<p><p class="limits"><?=substr($Poems->description,0,50);?>...</p>
+<a href="<?php echo $this->basePath()?>/pages/postview/<?=$Poems->postid?>">Read Full Story >></a></p>
+
+</div>
+<p style="font-size:11px;">
+Sender: <?=$Poems->email?><br>
+Posted Date: <?=$Poems->postdate?></p>
+</div>
+  <?php 
+  }
+}
+echo "<h4>Currently No Data Available</h4>";
+  ?>
+ 
+
+ 
+        </td>
+    
+    </tr>
+
+</table> 
+    </div>
+    
+  </div>
+
+
+
+
+
+
+<div class="clearfix"></div>
+
+<!-- <nav>
+  <ul class="pagination">
+  <li class="disabled"><a href="#">Pages:</a></li>
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li><a href="#">6</a></li>
+    <li><a href="#">7</a></li>
+    <li class="disabled"><a href="#">.....</a></li>
+    
+  </ul>
+</nav> -->
+<div class="clearfix"></div>
+</div>

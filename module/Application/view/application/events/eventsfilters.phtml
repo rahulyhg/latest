@@ -1,0 +1,52 @@
+<div id="profile">  
+<div class="col-sm-9 width80per">
+
+<div class="clearfix"></div>
+<h2 class="heading"><?=$Event?></h2>
+  <ul id="items">  
+
+ <?php 
+ 
+ if(count($EventsData)>0){
+
+  foreach ($EventsData as $Edata) {
+  ?> 
+  <li>  
+<div class="col-md-6 news col-xs-12">
+<div class="col-md-4 col-sm-2 col-xs-2 img">
+  <?php if($Edata->image=="") $epath="images/lemon-img.jpg"; else $epath =$Edata->image; ?>
+<img src="<?php echo $this->basePath($epath) ?>" class="img-responsive" />
+</div>
+<div class="col-md-8 col-sm-10 col-xs-10 content">
+<h4><?php echo $Edata->event_name?></h4>
+<p>Presented By : Rustagi Samaj</p>
+<p><?php $timestamp = strtotime($Edata->event_date); echo date("d-m-y / l",$timestamp);?></p>
+<p>Time : <?php $timestamp = strtotime($Edata->start_time); echo date("h-i",$timestamp);?> AM To 
+<?php $timestamp = strtotime($Edata->start_time); echo date("h-i",$timestamp);?> PM</p>
+<p>Venue :<?php echo $Edata->venue?></p>
+<p><a href="<?php echo $this->basePath()?>/events/view">Read Full Story >></a></p>
+</div>
+</div>
+</li>
+ <?php 
+}
+}
+ 
+
+ 
+else{ ?> 
+				<span style="text-align:center;font-weight:bold;font-size:16px;color:cornflowerblue;">No Data available</span>
+			<?php } ?>
+
+  </ul>
+
+
+    <div class="clearfix"></div>
+    
+     
+     <div class="clearfix"></div> 
+
+  
+</div>
+</div>
+ 
